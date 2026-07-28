@@ -55,10 +55,26 @@ Validate compose without starting:
 ```bash
 docker compose -f docker-compose.alwathba.yml --env-file .env.alwathba config
 ```
+Note: `--env-file` isn't always needed for validation — the `:?}` syntax on `APP_JWT_SECRET`
+will error during `config` if the var is absent; use `APP_JWT_SECRET=dummy` to lint the
+structure alone.
+
+## Hardening applied on this branch (beyond the upstream fixes)
+
+- **JWT secret fail-fast:** `APP_JWT_SECRET=${APP_JWT_SECRET:?}` — the compose itself
+  errors at startup if the env var is empty or absent (instead of silently falling back
+  to the default `123123` in code).
+- **Redis password removed from compose:** The NestJS Redis clients don't wire the
+  password field, so exposing `REDIS_PASSWORD` was a footgun. Redis is unauthenticated
+  but isolated on the Docker bridge network. A future code change to all three Redis
+  configs (cache, queue, throttle) can restore this.
+- **Proxy bound to loopback:** `127.0.0.1:${PUBLIC_PROXY_PORT:-80}:80` — prevents
+  direct plaintext HTTP exposure when running behind an external TLS proxy.
+- **`.env.alwathba` added to `.gitignore`** — prevents accidental secret commits.
 
 ## Known issues
 
-**Fixed on this branch:** see "Critical environment-variable facts" above + startup race (healthchecks + `service_completed_successfully`).
+**Fixed on this branch:** see "Critical environment-variable facts" above + startup race (healthchecks + `service_completed_successfully`). Additional hardening: JWT fail-fast (`:?}`), Redis password removed (not wired in NestJS clients), proxy bound to loopback, `.env.alwathba` gitignored.
 
 **Avoided by building from source:** upstream #1155 (webapp/server image version skew → PDF "No mutationFn found").
 

@@ -34,7 +34,7 @@ services:
       webapp:
         condition: service_started
     ports:
-      - '${PUBLIC_PROXY_PORT:-80}:80'
+      - '127.0.0.1:${PUBLIC_PROXY_PORT:-80}:80'
     volumes:
       - ./docker/envoy/envoy.yaml:/etc/envoy/envoy.yaml:ro
     restart: unless-stopped
@@ -98,7 +98,6 @@ services:
       # --- Redis (cache + queues) ---
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
       - QUEUE_HOST=redis
       - QUEUE_PORT=6379
 
@@ -107,7 +106,7 @@ services:
 
       # --- Authentication ---
       # NOTE: the server reads APP_JWT_SECRET, not JWT_SECRET.
-      - APP_JWT_SECRET=${APP_JWT_SECRET}
+      - APP_JWT_SECRET=${APP_JWT_SECRET:?}
 
       # --- Application ---
       - BASE_URL=${BASE_URL}
