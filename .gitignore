@@ -6,6 +6,9 @@ node_modules/
 # Production env file 
 .env
 
+# Alwathba env file
+.env.alwathba
+
 test-results/
 .qodo
 

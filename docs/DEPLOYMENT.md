@@ -89,12 +89,15 @@ Full template: `.env.alwathba.example`. Critical variables:
 
 | Variable | Why it matters |
 |---|---|
-| **`APP_JWT_SECRET`** | The server reads **`APP_JWT_SECRET`**, not `JWT_SECRET` (see `packages/server/src/common/config/jwt.ts`). Generate with `openssl rand -hex 48`. Leaving this weak resets to the hard-coded `123123`. |
+| **`APP_JWT_SECRET`** | The server reads **`APP_JWT_SECRET`**, not `JWT_SECRET` (see `packages/server/src/common/config/jwt.ts`). Generate with `openssl rand -hex 48`. The compose uses `${APP_JWT_SECRET:?}` — the stack **will not start** if this is empty (no silent fallback to `123123`). |
 | `BASE_URL` | Public URL (no trailing slash) used in emails/links. |
 | `DB_PASSWORD`, `DB_ROOT_PASSWORD` | Change from defaults. |
 | `SYSTEM_DB_NAME` | Defaults to `bigcapital_system`. |
 | `TENANT_DB_NAME_PERFIX` | Prefix for per-tenant databases (note: the upstream key is spelled `PERFIX`). |
 | `HOSTED_ON_BIGCAPITAL_CLOUD` | Hard-coded `false` in the compose file to disable the forced subscription screen (upstream #1071). |
+
+Redis is unauthenticated on the internal Docker bridge network (clients don't wire the
+password field). Redis is **not** exposed to the host.
 
 Optional integrations (all default off/empty): Plaid, Stripe, Lemon Squeezy, S3, New Relic, Open Exchange Rates, SMTP. Fill only what you use.
 
@@ -125,6 +128,10 @@ docker compose -f docker-compose.alwathba.yml --env-file .env.alwathba run --rm 
 ## 6. HTTPS / reverse proxy (incl. Dokploy)
 
 Envoy is HTTP-only in this stack. Terminate TLS in front of it.
+
+The compose binds Envoy to `127.0.0.1:${PUBLIC_PROXY_PORT}` by default (no external
+network access). When running standalone without a front proxy, update the binding to
+`'${PUBLIC_PROXY_PORT:-80}:80'` (or remove the `127.0.0.1` prefix).
 
 **Generic (Traefik / Caddy / Nginx):**
 - Publish Envoy on a loopback or internal port: `PUBLIC_PROXY_PORT=8080`
