@@ -94,3 +94,5 @@ export const QuickVendorFormDrawer = compose(
   withDrawerActions,
   withDashboardActions,
 )(QuickVendorFormDrawerInner);
+
+export default QuickVendorFormDrawer;

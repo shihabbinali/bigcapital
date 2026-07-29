@@ -86,3 +86,5 @@ function QuickCustomerFormDrawerInner({
 export const QuickCustomerFormDrawer = compose(withDrawerActions)(
   QuickCustomerFormDrawerInner,
 );
+
+export default QuickCustomerFormDrawer;
