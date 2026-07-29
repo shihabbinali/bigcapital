@@ -7,4 +7,5 @@ export default registerAs('s3', () => ({
   endpoint: process.env.S3_ENDPOINT,
   bucket: process.env.S3_BUCKET,
   forcePathStyle: process.env.S3_FORCE_PATH_STYLE === 'true',
+  publicEndpoint: process.env.S3_PUBLIC_ENDPOINT || process.env.S3_ENDPOINT,
 }));

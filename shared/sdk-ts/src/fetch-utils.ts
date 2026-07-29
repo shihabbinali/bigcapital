@@ -87,6 +87,12 @@ export function createApiFetcher(config?: CreateApiFetcherConfig): ApiFetcher {
       ...(parsedConfig.onError ? [createErrorReporterMiddleware(parsedConfig.onError)] : []),
     ],
   });
+  // Store config for getFetcherConfig / postFormData / rawRequest / getBlob
+  // because openapi-typescript-fetch stores this in closures, not properties.
+  (fetcher as unknown as Record<string, unknown>).__fetcherConfig = {
+    baseUrl: parsedConfig.baseUrl,
+    init: parsedConfig?.init,
+  };
   return fetcher;
 }
 
@@ -112,11 +118,16 @@ interface FetcherWithConfig {
 }
 
 function getFetcherConfig(fetcher: ApiFetcher): FetcherRuntimeConfig {
-  const config = (fetcher as FetcherWithConfig).config;
-  return {
-    baseUrl: config?.baseUrl ?? '',
-    init: config?.init,
-  };
+  const stored = (fetcher as unknown as Record<string, unknown>).__fetcherConfig as
+    | FetcherRuntimeConfig
+    | undefined;
+  if (stored) {
+    return stored;
+  }
+  // Fallback: the openapi-typescript-fetch library stores config in closures,
+  // so we can't access it via properties. The __fetcherConfig is set by
+  // createApiFetcher when the fetcher is created.
+  return { baseUrl: '', init: undefined };
 }
 
 /**

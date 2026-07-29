@@ -34,7 +34,7 @@ services:
       webapp:
         condition: service_started
     ports:
-      - '127.0.0.1:${PUBLIC_PROXY_PORT:-80}:80'
+      - "127.0.0.1:${PUBLIC_PROXY_PORT:-80}:80"
     volumes:
       - ./docker/envoy/envoy.yaml:/etc/envoy/envoy.yaml:ro
     restart: unless-stopped
@@ -73,6 +73,8 @@ services:
         condition: service_healthy
       migration:
         condition: service_completed_successfully
+      minio:
+        condition: service_healthy
     networks:
       - bigcapital_network
     environment:
@@ -162,7 +164,9 @@ services:
       - S3_ACCESS_KEY_ID=${S3_ACCESS_KEY_ID}
       - S3_SECRET_ACCESS_KEY=${S3_SECRET_ACCESS_KEY}
       - S3_ENDPOINT=${S3_ENDPOINT}
+      - S3_PUBLIC_ENDPOINT=${S3_PUBLIC_ENDPOINT}
       - S3_BUCKET=${S3_BUCKET}
+      - S3_FORCE_PATH_STYLE=${S3_FORCE_PATH_STYLE}
 
       # --- Stripe ---
       - STRIPE_PAYMENT_SECRET_KEY=${STRIPE_PAYMENT_SECRET_KEY}
@@ -189,8 +193,8 @@ services:
     command:
       - sh
       - -c
-      - 'node dist/cli.js system:migrate:latest && node dist/cli.js tenants:migrate:latest'
-    restart: 'no'
+      - "node dist/cli.js system:migrate:latest && node dist/cli.js tenants:migrate:latest"
+    restart: "no"
     depends_on:
       mysql:
         condition: service_healthy
@@ -212,6 +216,8 @@ services:
     container_name: alwathba-mysql
     build:
       context: ./docker/mariadb
+    ports:
+      - "127.0.0.1:3306:3306"
     restart: unless-stopped
     environment:
       - MYSQL_DATABASE=${SYSTEM_DB_NAME:-bigcapital_system}
@@ -222,7 +228,7 @@ services:
       - mysql:/var/lib/mysql
     # mysqladmin ping is the universal healthcheck; works on mariadb:10.2.
     healthcheck:
-      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', "-p$${MYSQL_ROOT_PASSWORD}"]
+      test: ["CMD-SHELL", 'mysqladmin ping -u root -p"${DB_ROOT_PASSWORD}"']
       interval: 10s
       timeout: 5s
       retries: 18
@@ -237,11 +243,13 @@ services:
     container_name: alwathba-redis
     build:
       context: ./docker/redis
+    ports:
+      - "127.0.0.1:6379:6379"
     restart: unless-stopped
     volumes:
       - redis:/data
     healthcheck:
-      test: ['CMD', 'redis-cli', 'ping']
+      test: ["CMD", "redis-cli", "ping"]
       interval: 10s
       timeout: 3s
       retries: 10
@@ -259,6 +267,53 @@ services:
     networks:
       - bigcapital_network
 
+  # ---------------------------------------------------------------------------
+  # MinIO — local S3-compatible storage for attachments & documents.
+  # ---------------------------------------------------------------------------
+  minio:
+    container_name: alwathba-minio
+    image: minio/minio:RELEASE.2025-04-22T22-12-26Z
+    command: server /data --console-address ":9001"
+    restart: unless-stopped
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+    ports:
+      - '127.0.0.1:9000:9000'
+      - '127.0.0.1:9001:9001'
+    volumes:
+      - minio:/data
+    healthcheck:
+      test: ['CMD', 'mc', 'ready', 'local']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    networks:
+      - bigcapital_network
+
+  # Creates the S3 bucket on first run, then exits.
+  minio-init-bucket:
+    container_name: alwathba-minio-init
+    image: minio/mc:latest
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint:
+      - sh
+      - -c
+      - |
+        mc alias set local http://minio:9000 $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD
+        mc mb local/$S3_BUCKET --ignore-existing
+        mc anonymous set public local/$S3_BUCKET
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+      - S3_BUCKET=${S3_BUCKET}
+    networks:
+      - bigcapital_network
+    restart: 'no'
+
 # =============================================================================
 # Volumes
 # =============================================================================
@@ -268,6 +323,9 @@ volumes:
     driver: local
   redis:
     name: alwathba_redis
+    driver: local
+  minio:
+    name: alwathba_minio
     driver: local
 
 # =============================================================================

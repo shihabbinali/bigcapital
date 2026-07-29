@@ -35,7 +35,17 @@ export class GetWorkspacesService {
       Bucket: config.bucket,
       Key: key,
     });
-    return getSignedUrl(this.s3Client, command, { expiresIn: 300 });
+    const signedUrl = await getSignedUrl(this.s3Client, command, { expiresIn: 300 });
+
+    if (config.publicEndpoint) {
+      const url = new URL(signedUrl);
+      const publicUrl = new URL(config.publicEndpoint);
+      url.protocol = publicUrl.protocol;
+      url.hostname = publicUrl.hostname;
+      url.port = publicUrl.port;
+      return url.toString();
+    }
+    return signedUrl;
   }
 
   /**
