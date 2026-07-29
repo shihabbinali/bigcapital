@@ -74,7 +74,7 @@ function QuickCustomerFormDrawerInner({
     <CustomerFormProvider customerId={customerId}>
       <DrawerCustomerFormLoading>
         <CustomerFormFormik
-          initialValues={{ firstName: displayName }}
+          initialValues={{ firstName: displayName, displayName }}
           onSubmitSuccess={handleSubmitSuccess}
           onCancel={handleCancelForm}
         />

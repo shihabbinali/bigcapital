@@ -1,7 +1,12 @@
 import { useFormikContext } from 'formik';
 import * as R from 'ramda';
 import { FSelect } from '../Forms';
-import { createNewItemFromQuery, createNewItemRenderer } from './utils';
+import {
+  createNewItemFromQuery,
+  createNewItemRenderer,
+  handleContactRenderer,
+  itemPredicate,
+} from './utils';
 import { DRAWERS } from '@/constants/drawers';
 import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
 import type { WithDrawerActionsProps } from '@/containers/Drawer/withDrawerActions';
@@ -54,9 +59,11 @@ function CustomerSelectRoot({
     <FSelect
       name={name}
       items={items}
-      textAccessor={'display_name'}
-      labelAccessor={'formatted_balance'}
+      textAccessor={'displayName'}
+      labelAccessor={'formattedBalance'}
       valueAccessor={'id'}
+      itemPredicate={itemPredicate}
+      itemRenderer={handleContactRenderer}
       popoverProps={{ minimal: true, usePortal: true, inline: false }}
       createNewItemRenderer={maybeCreateNewItemRenderer}
       createNewItemFromQuery={maybeCreateNewItemFromQuery}

@@ -22,6 +22,7 @@ export class CreateEditVendorDTOService {
   private transformCommonDTO = (vendorDTO: IVendorNewDTO | IVendorEditDTO) => {
     return {
       ...vendorDTO,
+      code: vendorDTO.code || null,
     };
   };
 

@@ -23,6 +23,7 @@ export class CreateEditCustomerDTO {
     return {
       ...omit(customerDTO, ['customerType']),
       contactType: customerDTO.customerType,
+      code: customerDTO.code || null,
     };
   };
 
