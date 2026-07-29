@@ -1,16 +1,30 @@
-// @ts-nocheck
-import React from 'react';
-import * as R from 'ramda';
 import { useFormikContext } from 'formik';
-import { createNewItemFromQuery, createNewItemRenderer } from './utils';
+import * as R from 'ramda';
 import { FSelect } from '../Forms';
-import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
-import { useCreateAutofillListener } from '@/hooks/state/autofill';
+import {
+  createNewItemFromQuery,
+  createNewItemRenderer,
+  handleContactRenderer,
+  itemPredicate,
+} from './utils';
 import { DRAWERS } from '@/constants/drawers';
+import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
+import type { WithDrawerActionsProps } from '@/containers/Drawer/withDrawerActions';
+import { useCreateAutofillListener } from '@/hooks/state/autofill';
+
+interface CustomerSelectRootProps extends WithDrawerActionsProps {
+  items: unknown[];
+  allowCreate?: boolean;
+  name: string;
+  [key: string]: unknown;
+}
+
+interface CreatedItem {
+  name: string;
+}
 
 /**
  * Customer select field.
- * @returns {React.ReactNode}
  */
 function CustomerSelectRoot({
   // #withDrawerActions
@@ -21,7 +35,7 @@ function CustomerSelectRoot({
   allowCreate,
   name,
   ...props
-}) {
+}: CustomerSelectRootProps) {
   // Maybe inject create new item props to suggest component.
   const maybeCreateNewItemRenderer = allowCreate ? createNewItemRenderer : null;
   const maybeCreateNewItemFromQuery = allowCreate
@@ -30,11 +44,13 @@ function CustomerSelectRoot({
   const { setFieldValue } = useFormikContext();
 
   // Creates autofill listener once the quick customer drawer submit the form.
-  const autofillRef = useCreateAutofillListener((payload: any) => {
-    setFieldValue(name, payload.customerId);
-  });
+  const autofillRef = useCreateAutofillListener(
+    (payload: { customerId?: number }) => {
+      setFieldValue(name, payload.customerId);
+    },
+  );
   // Handles the create item click.
-  const handleCreateItemClick = (item) => {
+  const handleCreateItemClick = (item: CreatedItem) => {
     const displayName = item.name;
     openDrawer(DRAWERS.QUICK_CREATE_CUSTOMER, { autofillRef, displayName });
   };
@@ -43,9 +59,11 @@ function CustomerSelectRoot({
     <FSelect
       name={name}
       items={items}
-      textAccessor={'display_name'}
-      labelAccessor={'formatted_balance'}
+      textAccessor={'displayName'}
+      labelAccessor={'formattedBalance'}
       valueAccessor={'id'}
+      itemPredicate={itemPredicate}
+      itemRenderer={handleContactRenderer}
       popoverProps={{ minimal: true, usePortal: true, inline: false }}
       createNewItemRenderer={maybeCreateNewItemRenderer}
       createNewItemFromQuery={maybeCreateNewItemFromQuery}

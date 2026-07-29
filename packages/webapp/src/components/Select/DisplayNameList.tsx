@@ -60,9 +60,9 @@ function useDisplayNameFormatOptions(
 export function DisplayNameList({ ...restProps }: DisplayNameListProps) {
   const {
     values: {
-      first_name: firstName,
-      last_name: lastName,
-      company_name: companyName,
+      firstName,
+      lastName,
+      companyName,
       salutation,
     },
   } = useFormikContext<any>();
