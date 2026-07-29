@@ -36,6 +36,7 @@ export default defineConfig(({ mode }) => {
       alias: {
         '@': path.resolve(rootDir, 'src'),
         '@public': path.resolve(rootDir, 'public'),
+        '@bigcapital/sdk-ts': path.resolve(rootDir, '../../shared/sdk-ts/src'),
         path: 'path-browserify',
       },
     },

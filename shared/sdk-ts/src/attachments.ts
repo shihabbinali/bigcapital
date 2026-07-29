@@ -1,4 +1,5 @@
 import type { ApiFetcher } from './fetch-utils';
+import { postFormData } from './fetch-utils';
 import { paths } from './schema';
 
 export const ATTACHMENTS_ROUTES = {
@@ -18,19 +19,19 @@ export interface UploadAttachmentResponse {
 }
 
 /**
- * Upload an attachment via multipart/form-data. Uses the fetcher's baseUrl and init (headers).
- * The OpenAPI client may not support FormData, so we use fetch with the same config.
+ * Upload an attachment via multipart/form-data. Uses postFormData to avoid
+ * openapi-typescript-fetch's JSON-serialization of FormData bodies.
  */
 export async function uploadAttachment(
   fetcher: ApiFetcher,
-  formData: FormData
+  formData: FormData,
 ): Promise<UploadAttachmentResponse> {
-  const post = fetcher.path(ATTACHMENTS_ROUTES.LIST).method('post').create();
-  // Generated client expects typed body; FormData is valid for multipart/form-data at runtime
-  const res = await (
-    post as unknown as (body: FormData) => Promise<{ data?: { data?: UploadAttachmentResponse } }>
-  )(formData);
-  const data = (res as { data?: { data?: UploadAttachmentResponse } })?.data?.data;
+  const res = await postFormData<{ data: UploadAttachmentResponse }>(
+    fetcher,
+    ATTACHMENTS_ROUTES.LIST,
+    formData,
+  );
+  const data = res?.data;
   if (!data) {
     throw new Error('Upload attachment: no data in response');
   }
