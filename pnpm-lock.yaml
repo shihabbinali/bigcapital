@@ -157,7 +157,7 @@ importers:
         specifier: ^1.6.0
         version: 1.7.2
       bcrypt:
-        specifier: ^5.1.1
+        specifier: 5.1.1
         version: 5.1.1(encoding@0.1.13)
       bcryptjs:
         specifier: ^2.4.3
@@ -189,6 +189,9 @@ importers:
       express-validator:
         specifier: ^7.2.0
         version: 7.2.0
+      file-type:
+        specifier: ^16.5.4
+        version: 16.5.4
       form-data:
         specifier: ^4.0.0
         version: 4.0.0
@@ -201,6 +204,9 @@ importers:
       is-my-json-valid:
         specifier: ^2.20.5
         version: 2.20.6
+      jose:
+        specifier: ^5.9.6
+        version: 5.10.0
       js-money:
         specifier: ^0.6.3
         version: 0.6.3
@@ -306,6 +312,9 @@ importers:
       rxjs:
         specifier: ^7.8.1
         version: 7.8.1
+      sanitize-html:
+        specifier: 2.17.5
+        version: 2.17.5
       serialize-interceptor:
         specifier: ^1.1.7
         version: 1.1.7(cache-manager@6.1.3)(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)
@@ -355,6 +364,9 @@ importers:
       '@types/node':
         specifier: ^20.3.1
         version: 20.5.1
+      '@types/sanitize-html':
+        specifier: ^2.11.0
+        version: 2.16.1
       '@types/supertest':
         specifier: ^6.0.0
         version: 6.0.2
@@ -622,6 +634,9 @@ importers:
       moment-timezone:
         specifier: ^0.5.33
         version: 0.5.45
+      openapi-typescript-fetch:
+        specifier: ^2.2.1
+        version: 2.2.1
       path-browserify:
         specifier: ^1.0.1
         version: 1.0.1
@@ -913,13 +928,13 @@ importers:
         version: 2.5.1
       css-loader:
         specifier: ^6.x
-        version: 6.11.0(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4))
+        version: 6.11.0(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4))
       declaration-bundler-webpack-plugin:
         specifier: ^1.0.3
         version: 1.0.3
       fork-ts-checker-webpack-plugin:
         specifier: ^9.0.2
-        version: 9.0.2(typescript@5.6.3)(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4))
+        version: 9.0.2(typescript@5.6.3)(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4))
       lodash:
         specifier: ^4.17.15
         version: 4.17.21
@@ -931,24 +946,16 @@ importers:
         version: 18.3.1(react@18.3.1)
       style-loader:
         specifier: ^3.x
-        version: 3.3.4(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4))
+        version: 3.3.4(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4))
       tailwindcss:
         specifier: ^3.4.14
-<<<<<<< HEAD
-        version: 3.4.14(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.6.3))
-=======
-        version: 3.4.14(ts-node@10.9.2(@swc/core@1.15.46)(@types/node@20.19.25)(typescript@5.6.3))
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
+        version: 3.4.14(ts-node@10.9.2(@swc/core@1.15.46)(@types/node@20.5.1)(typescript@5.6.3))
       ts-loader:
         specifier: ^9.x
-        version: 9.5.1(typescript@5.6.3)(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4))
+        version: 9.5.1(typescript@5.6.3)(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4))
       webpack:
         specifier: ^5.x
-<<<<<<< HEAD
-        version: 5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)
-=======
-        version: 5.91.0(@swc/core@1.15.46)(esbuild@0.23.1)(webpack-cli@5.1.4)
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
+        version: 5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)
       webpack-cli:
         specifier: ^5.x
         version: 5.1.4(webpack@5.91.0)
@@ -967,7 +974,7 @@ importers:
         version: 7.2.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@storybook/addon-styling':
         specifier: 1.3.6
-        version: 1.3.6(@types/react-dom@18.3.0)(@types/react@18.3.4)(encoding@0.1.13)(less@4.2.0)(postcss@8.4.47)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.2)(typescript@5.6.3)(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4))
+        version: 1.3.6(@types/react-dom@18.3.0)(@types/react@18.3.4)(encoding@0.1.13)(less@4.2.0)(postcss@8.4.47)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.2)(typescript@5.6.3)(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4))
       '@storybook/blocks':
         specifier: 7.2.2
         version: 7.2.2(@types/react-dom@18.3.0)(@types/react@18.3.4)(encoding@0.1.13)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1019,11 +1026,7 @@ importers:
         version: 7.13.0(typescript@5.6.3)
       tsup:
         specifier: ^8.3.0
-<<<<<<< HEAD
-        version: 8.3.0(@microsoft/api-extractor@7.47.11(@types/node@20.5.1))(jiti@1.21.0)(postcss@8.4.47)(typescript@5.6.3)(yaml@2.4.2)
-=======
-        version: 8.3.0(@microsoft/api-extractor@7.47.11(@types/node@20.19.25))(@swc/core@1.15.46)(jiti@1.21.0)(postcss@8.4.47)(typescript@5.6.3)(yaml@2.4.2)
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
+        version: 8.3.0(@microsoft/api-extractor@7.47.11(@types/node@20.5.1))(@swc/core@1.15.46)(jiti@1.21.0)(postcss@8.4.47)(typescript@5.6.3)(yaml@2.4.2)
       typescript:
         specifier: ^5.1.3
         version: 5.6.3
@@ -5116,8 +5119,6 @@ packages:
     resolution: {integrity: sha512-pj0cAALblTZBPtMltWOlZTQSLT07jIaFNeM8TWoJD1cQMgDB9mcMlVMoetiB35OzNJpqQ2b+QEtwiR9f20mADg==}
     engines: {node: '>=8'}
 
-<<<<<<< HEAD
-=======
   '@swc/core-darwin-arm64@1.15.46':
     resolution: {integrity: sha512-IsISIT22EfktVJrlvIpnAxG2u/A9aob9l99HMlx80x72WlFmFPk1V3UhkEzx86eJP8hw049KTFv/RISho2cq2Q==}
     engines: {node: '>=10'}
@@ -5205,24 +5206,6 @@ packages:
   '@swc/types@0.1.27':
     resolution: {integrity: sha512-K6h3iUlqeM946U4sXFYeahefR1YBbXJvko+hv8WS8/0BNJ4OHiHRywMnQUJCqkR7Y9+hqQ1TvEpiKqUhz7NEFg==}
 
-  '@tanstack/query-core@5.90.20':
-    resolution: {integrity: sha512-OMD2HLpNouXEfZJWcKeVKUgQ5n+n3A2JFmBaScpNDUqSrQSjiveC7dKMe53uJUg1nDG16ttFPz2xfilz6i2uVg==}
-
-  '@tanstack/query-devtools@5.93.0':
-    resolution: {integrity: sha512-+kpsx1NQnOFTZsw6HAFCW3HkKg0+2cepGtAWXjiiSOJJ1CtQpt72EE2nyZb+AjAbLRPoeRmPJ8MtQd8r8gsPdg==}
-
-  '@tanstack/react-query-devtools@5.91.3':
-    resolution: {integrity: sha512-nlahjMtd/J1h7IzOOfqeyDh5LNfG0eULwlltPEonYy0QL+nqrBB+nyzJfULV+moL7sZyxc2sHdNJki+vLA9BSA==}
-    peerDependencies:
-      '@tanstack/react-query': ^5.90.20
-      react: ^18 || ^19
-
-  '@tanstack/react-query@5.90.21':
-    resolution: {integrity: sha512-0Lu6y5t+tvlTJMTO7oh5NSpJfpg/5D41LlThfepTixPYkJ0sE2Jj0m0f6yYqujBwIXlId87e234+MxG3D3g7kg==}
-    peerDependencies:
-      react: ^18 || ^19
-
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
   '@testing-library/dom@10.1.0':
     resolution: {integrity: sha512-wdsYKy5zupPyLCW2Je5DLHSxSfbIp6h80WoHOQc+RPtmPGA52O9x5MJEkv92Sjonpq+poOAtUKhh1kBGAXBrNA==}
     engines: {node: '>=18'}
@@ -5425,6 +5408,9 @@ packages:
 
   '@tiptap/starter-kit@2.1.13':
     resolution: {integrity: sha512-ph/mUR/OwPtPkZ5rNHINxubpABn8fHnvJSdhXFrY/q6SKoaO11NZXgegRaiG4aL7O6Sz4LsZVw6Sm0Ae+GJmrg==}
+
+  '@tokenizer/token@0.3.0':
+    resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
 
   '@tootallnate/once@2.0.0':
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
@@ -5716,6 +5702,9 @@ packages:
 
   '@types/react@18.3.4':
     resolution: {integrity: sha512-J7W30FTdfCxDDjmfRM+/JqLHBIyl7xUIp9kwK637FGmY7+mkSFSe6L4jpZzhj5QMfLssSDP4/i75AKkrdC7/Jw==}
+
+  '@types/sanitize-html@2.16.1':
+    resolution: {integrity: sha512-n9wjs8bCOTyN/ynwD8s/nTcTreIHB1vf31vhLMGqUPNHaweKC4/fAl4Dj+hUlCTKYgm4P3k83fmiFfzkZ6sgMA==}
 
   '@types/semver@7.5.8':
     resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
@@ -6180,6 +6169,10 @@ packages:
     resolution: {integrity: sha512-6/mh1E2u2YgEsCHdY0Yx5oW+61gZU+1vXaoiHHrpKeuRNNgFvS+/jrwHiQhB5apAf5oB7UB7E19ol2R2LKH8hQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
+  abort-controller@3.0.0:
+    resolution: {integrity: sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==}
+    engines: {node: '>=6.5'}
+
   accept-language-parser@1.5.0:
     resolution: {integrity: sha512-QhyTbMLYo0BBGg1aWbeMG4ekWtds/31BrEU+DONOg/7ax23vxpL03Pb7/zBmha2v7vdD3AyzZVWBVGEZxKOXWw==}
 
@@ -6248,10 +6241,6 @@ packages:
   agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
-
-  agent-base@7.1.1:
-    resolution: {integrity: sha512-H0TSyFNDMomMNJQBn8wFV5YC/2eJ+VXECwOadZJT554xP6cODZHPX3H9QMQECxvrgiSOP1pHjy1sMWQVYJOUOA==}
-    engines: {node: '>= 14'}
 
   agent-base@7.1.4:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
@@ -7435,6 +7424,9 @@ packages:
   dateformat@3.0.3:
     resolution: {integrity: sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==}
 
+  dayjs@1.11.21:
+    resolution: {integrity: sha512-98IT+HOahAisibz/yjKbzuOBwYcjJ7BCLPzARyHiyEBmRz4fatF+KPJszEHXsGYjUG234aH/cOjW1wwTbKUZlA==}
+
   db-errors@0.2.3:
     resolution: {integrity: sha512-OOgqgDuCavHXjYSJoV2yGhv6SeG8nk42aoCSoyXLZUH7VwFG27rxbavU1z+VrZbZjphw5UkDQwUlD21MwZpUng==}
 
@@ -7686,6 +7678,9 @@ packages:
   domutils@3.1.0:
     resolution: {integrity: sha512-H78uMmQtI2AhgDJjWeQmHwJJ2bLPD3GMmO7Zja/ZZh84wkm+4ut+IUnUdRa8uCGX88DiVx1j6FRe1XfxEgjEZA==}
 
+  domutils@3.2.2:
+    resolution: {integrity: sha512-6kZKyUajlDuqlHKVX1w7gyslj9MPIXzIFiz/rGu35uC1wMi+kMhQwGhl4lt9unC9Vb9INnY9Z3/ZA3+FhASLaw==}
+
   dont-sniff-mimetype@1.1.0:
     resolution: {integrity: sha512-ZjI4zqTaxveH2/tTlzS1wFp+7ncxNZaIEWYg3lzZRHkKf5zPT/MnEG6WL0BhHMJUabkh8GeU5NL5j+rEUCb7Ug==}
     engines: {node: '>=4.0.0'}
@@ -7820,6 +7815,10 @@ packages:
 
   entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
+    engines: {node: '>=0.12'}
+
+  entities@7.0.1:
+    resolution: {integrity: sha512-TWrgLOFUQTH994YUyl1yT4uyavY5nNB5muff+RtWaqNVCAK408b5ZnnbNAUEWLTCpum9w6arT70i1XdQ4UeOPA==}
     engines: {node: '>=0.12'}
 
   env-paths@2.2.1:
@@ -8190,6 +8189,10 @@ packages:
   event-emitter@0.3.5:
     resolution: {integrity: sha512-D9rRn9y7kLPnJ+hMq7S/nhvoKwwvVJahBi2BPmx3bvbsEdK3W9ii8cBSGjP+72/LnM4n6fo3+dkCX5FeTQruXA==}
 
+  event-target-shim@5.0.1:
+    resolution: {integrity: sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==}
+    engines: {node: '>=6'}
+
   eventemitter2@6.4.9:
     resolution: {integrity: sha512-JEPTiaOt9f04oa6NOkc4aH+nVp5I3wEjpHbIPqfgCdD5v5bUzy7xQqwcVO2aDQgOWhI28da57HksMrzK9HlRxg==}
 
@@ -8335,6 +8338,10 @@ packages:
 
   file-system-cache@2.3.0:
     resolution: {integrity: sha512-l4DMNdsIPsVnKrgEXbJwDJsA5mB8rGwHYERMgqQx/xAUtChPJMre1bXBzDEqqVbWv9AIbFezXMxeEkZDSrXUOQ==}
+
+  file-type@16.5.4:
+    resolution: {integrity: sha512-/yFHK0aGjFEgDJjEKP0pWCplsPFPhwyfwevf/pVxiN0tmE4L9LmwWxWukdJSHdoCli4VgQLehjJtwQBnqmsKcw==}
+    engines: {node: '>=10'}
 
   file-type@3.9.0:
     resolution: {integrity: sha512-RLoqTXE8/vPmMuTI88DAzhMYC99I8BWv7zYP4A1puo5HIjEJ5EX48ighy4ZyKMG9EDXxBgW6e++cn7d1xuFghA==}
@@ -8665,6 +8672,7 @@ packages:
   glob@9.3.5:
     resolution: {integrity: sha512-e1LleDykUz2Iu+MTYdkSsuWX8lvAjAcs0Xef0lNIu0S2wOAzuTxCJtcd9S3cijlwYF18EsU3rzb8jPVobxDh9Q==}
     engines: {node: '>=16 || 14 >=14.17'}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   global-dirs@0.1.1:
     resolution: {integrity: sha512-NknMLn7F2J7aflwFOlGdNIuCDpN3VGoSoB+aap3KABFWbHVn1TCgFC+np23J8W2BiZbjfEw3BFBycSMv1AFblg==}
@@ -8837,6 +8845,9 @@ packages:
     resolution: {integrity: sha512-QY6S+hZ0f5m1WT8WffYN+Hg+xm/w5I8XeUcAq/ZYP5wVC8xbKi4Whhru3FtrAebD5EhBW8rmFzkDI6eCAuFe2w==}
     hasBin: true
 
+  htmlparser2@10.1.0:
+    resolution: {integrity: sha512-VTZkM9GWRAtEpveh7MSF6SjjrpNVNNVJfFup7xTY3UpFtm67foy9HDVXneLtFVt4pMz5kZtgNcvCniNFb1hlEQ==}
+
   htmlparser2@8.0.2:
     resolution: {integrity: sha512-GYdjWKDkbRLkZ5geuHs5NY1puJ+PXwP7+fHPRz06Eirsb9ugf6d8kkXav6ADhcODhFFPMIXyxkxSuMf3D6NCFA==}
 
@@ -8862,10 +8873,6 @@ packages:
   https-proxy-agent@5.0.1:
     resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
     engines: {node: '>= 6'}
-
-  https-proxy-agent@7.0.4:
-    resolution: {integrity: sha512-wlwpilI7YdjSkWaQ/7omYBMTliDcmCN8OLihO6I9B86g06lMyAoqgoDpV0XqoaPOKj+0DIdAvnsWfyAAhmimcg==}
-    engines: {node: '>= 14'}
 
   https-proxy-agent@7.0.6:
     resolution: {integrity: sha512-vK9P5/iUfdl95AI+JVyUuIcVtd4ofvtrOr3HNtM2yxC9bnMbEdp3x01OhQNnjb8IJYi38VlTE3mBXwcfvywuSw==}
@@ -9469,6 +9476,9 @@ packages:
   jju@1.4.0:
     resolution: {integrity: sha512-8wb9Yw966OSxApiCt0K3yNJL8pnNeIv+OEq2YMidz4FKP6nonSRoOXc80iXY4JaN2FC11B9qsNmDsm+ZOfMROA==}
 
+  jose@5.10.0:
+    resolution: {integrity: sha512-s+3Al/p9g32Iq+oqXxkW//7jk2Vig6FF1CFqzVXoTUXt2qz89YWbL+OwS17NFYEvxC35n0FKeGO2LGYSxeM2Gg==}
+
   joycon@3.1.1:
     resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
     engines: {node: '>=10'}
@@ -9660,6 +9670,9 @@ packages:
   language-tags@1.0.9:
     resolution: {integrity: sha512-MbjN408fEndfiQXbFQ1vnd+1NoLDsnQW41410oQBXiyXDMYH5z505juWa4KUE1LqxRC7DgOgZDbKLxHIwm27hA==}
     engines: {node: '>=0.10'}
+
+  launder@1.7.1:
+    resolution: {integrity: sha512-mU6WRz5EusL9ZZuiZ5SO4Y6C0P9PAUR9iwdb6bzj4KDihm28DiHFw+/yk9DBH4f+Pv1wuzQ4e2jV3oQ7mkIqvw==}
 
   lazy-universal-dotenv@4.0.0:
     resolution: {integrity: sha512-aXpZJRnTkpK6gQ/z4nk+ZBLd/Qdp118cvPruLSIQzQNRhKwEcdXCOzXuF55VDqIiuAaY3UGZ10DJtvZzDcvsxg==}
@@ -10714,6 +10727,9 @@ packages:
   parse-path@7.0.0:
     resolution: {integrity: sha512-Euf9GG8WT9CdqwuWJGdf3RkUcTBArppHABkO7Lm8IzRQp0e2r/kkFnmhu4TSK30Wcu5rVAZLmfPKSBBi9tWFog==}
 
+  parse-srcset@1.0.2:
+    resolution: {integrity: sha512-/2qh0lav6CmI15FzA3i/2Bzk2zCgQhGMkvhOhKNcBVQ1ldgpbfiNTVslmooUmWJcADi1f1kIeynbDRVzNlfR6Q==}
+
   parse-url@8.1.0:
     resolution: {integrity: sha512-xDvOoLU5XRrcOZvnI6b8zA6n9O9ejNk/GExuz1yBuWUGn9KA97GI6HTs6u02wKara1CeVmZhH+0TZFdWScR89w==}
 
@@ -10822,6 +10838,10 @@ packages:
 
   peberminta@0.9.0:
     resolution: {integrity: sha512-XIxfHpEuSJbITd1H3EeQwpcZbTLHc+VVr8ANI9t5sit565tsI4/xK3KWTUFE2e6QiangUkh3B0jihzmGnNrRsQ==}
+
+  peek-readable@4.1.0:
+    resolution: {integrity: sha512-ZI3LnwUv5nOGbQzD9c2iDG6toheuXSZP5esSHBjopsXH4dg19soufvpUGA3uohi5anFtGb2lhAVdHzH6R/Evvg==}
+    engines: {node: '>=8'}
 
   peek-stream@1.1.3:
     resolution: {integrity: sha512-FhJ+YbOSBb9/rIl2ZeE/QHEsWn7PqNYt8ARAY3kIgNGOk13g9FGyIY6JIl/xB/3TFRVoTv5as0l11weORrTekA==}
@@ -11696,6 +11716,14 @@ packages:
     resolution: {integrity: sha512-9u/sniCrY3D5WdsERHzHE4G2YCXqoG5FTHUiCC4SIbr6XcLZBY05ya9EKjYek9O5xOAwjGq+1JdGBAS7Q9ScoA==}
     engines: {node: '>= 6'}
 
+  readable-stream@4.7.0:
+    resolution: {integrity: sha512-oIGGmcpTLwPga8Bn6/Z75SVaH1z5dUut2ibSyAMVhmUggWpmDn2dapB0n7f8nwaSiRtepAsfJyfXIO5DCVAODg==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+
+  readable-web-to-node-stream@3.0.4:
+    resolution: {integrity: sha512-9nX56alTf5bwXQ3ZDipHJhusu9NTQJ/CVPtb/XHAJCXihZeitfJvIRS4GqQ/mfIoOE3IelHMrpayVrosdHBuLw==}
+    engines: {node: '>=8'}
+
   readdirp@3.6.0:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
@@ -11982,6 +12010,9 @@ packages:
 
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
+
+  sanitize-html@2.17.5:
+    resolution: {integrity: sha512-ZmU1joGRrvoyctKIiuwUxqR6moLoU2Wk+2bMccN6f7UwhAmwYDvWziqPxRDDN2Qip62NqnIrVrT9akbL6Wretg==}
 
   sass-loader@13.3.3:
     resolution: {integrity: sha512-mt5YN2F1MOZr3d/wBRcZxeFgwgkH44wVc2zohO2YF6JiOMkiXe4BYRZpSu2sO1g71mo/j16txzUhsKZlqjVGzA==}
@@ -12434,6 +12465,10 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
+  strtok3@6.3.0:
+    resolution: {integrity: sha512-fZtbhtvI9I48xDSywd/somNqgUHl2L2cstmXCCif0itOf96jeW18MBSyrLuNicYQVkvpOxkZtkzujiTJ9LW5Jw==}
+    engines: {node: '>=10'}
+
   style-loader@0.23.1:
     resolution: {integrity: sha512-XK+uv9kWwhZMZ1y7mysB+zoihsEj4wneFWAS5qoiLwzW0WzSqMrrsIy+a3zkQJq0ipFtBpX5W3MqyRIBF/WFGg==}
     engines: {node: '>= 0.12.0'}
@@ -12537,6 +12572,7 @@ packages:
   tar@6.2.1:
     resolution: {integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==}
     engines: {node: '>=10'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   tarn@3.0.2:
     resolution: {integrity: sha512-51LAVKUSZSVfI05vjPESNc5vwqqZpbXCsU+/+wxlOrUjk2SnFTt97v9ZgQrD4YmxYW1Px6w2KjaDitCfkvgxMQ==}
@@ -12691,6 +12727,10 @@ packages:
 
   token-stream@1.0.0:
     resolution: {integrity: sha512-VSsyNPPW74RpHwR8Fc21uubwHY7wMDeJLys2IX5zJNih+OnAnaifKHo+1LHT7DAdloQ7apeaaWg8l7qnf/TnEg==}
+
+  token-types@4.2.1:
+    resolution: {integrity: sha512-6udB24Q737UD/SDsKAHI9FCRP7Bqc9D/MQUV02ORQg5iskjtLJlZJNdN4kKtcdtwCeWIwIHDGaUsTsCCAa8sFQ==}
+    engines: {node: '>=10'}
 
   toposort@2.0.2:
     resolution: {integrity: sha512-0a5EOkAUp8D4moMi2W8ZF8jcga7BgZd91O/yabJCFY8az+XSzeGyTKs0Aoo897iV1Nj6guFq8orWDS96z91oGg==}
@@ -14167,7 +14207,7 @@ snapshots:
       '@babel/traverse': 7.25.9
       '@babel/types': 7.26.0
       convert-source-map: 2.0.0
-      debug: 4.3.7(supports-color@5.5.0)
+      debug: 4.4.3(supports-color@10.2.2)
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -15856,7 +15896,7 @@ snapshots:
       '@babel/helper-split-export-declaration': 7.24.5
       '@babel/parser': 7.24.5
       '@babel/types': 7.24.5
-      debug: 4.3.7(supports-color@5.5.0)
+      debug: 4.4.3(supports-color@5.5.0)
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -16639,7 +16679,7 @@ snapshots:
   '@eslint/eslintrc@2.1.4':
     dependencies:
       ajv: 6.12.6
-      debug: 4.3.7(supports-color@5.5.0)
+      debug: 4.4.3(supports-color@10.2.2)
       espree: 9.6.1
       globals: 13.24.0
       ignore: 5.3.1
@@ -16722,7 +16762,7 @@ snapshots:
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
       '@humanwhocodes/object-schema': 2.0.3
-      debug: 4.3.7(supports-color@5.5.0)
+      debug: 4.4.3(supports-color@10.2.2)
       minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
@@ -17514,9 +17554,9 @@ snapshots:
 
   '@npmcli/agent@2.2.2':
     dependencies:
-      agent-base: 7.1.1
+      agent-base: 7.1.4
       http-proxy-agent: 7.0.2
-      https-proxy-agent: 7.0.4
+      https-proxy-agent: 7.0.6(supports-color@10.2.2)
       lru-cache: 10.2.2
       socks-proxy-agent: 8.0.3
     transitivePeerDependencies:
@@ -18994,7 +19034,7 @@ snapshots:
       - '@types/react'
       - '@types/react-dom'
 
-  '@storybook/addon-styling@1.3.6(@types/react-dom@18.3.0)(@types/react@18.3.4)(encoding@0.1.13)(less@4.2.0)(postcss@8.4.47)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.2)(typescript@5.6.3)(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4))':
+  '@storybook/addon-styling@1.3.6(@types/react-dom@18.3.0)(@types/react@18.3.4)(encoding@0.1.13)(less@4.2.0)(postcss@8.4.47)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.2)(typescript@5.6.3)(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4))':
     dependencies:
       '@babel/template': 7.25.9
       '@babel/types': 7.26.0
@@ -19007,23 +19047,19 @@ snapshots:
       '@storybook/preview-api': 7.6.20
       '@storybook/theming': 7.6.20(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@storybook/types': 7.6.20
-      css-loader: 6.11.0(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4))
-      less-loader: 11.1.4(less@4.2.0)(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4))
-      postcss-loader: 7.3.4(postcss@8.4.47)(typescript@5.6.3)(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4))
+      css-loader: 6.11.0(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4))
+      less-loader: 11.1.4(less@4.2.0)(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4))
+      postcss-loader: 7.3.4(postcss@8.4.47)(typescript@5.6.3)(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4))
       prettier: 2.8.8
       resolve-url-loader: 5.0.0
-      sass-loader: 13.3.3(sass@1.77.2)(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4))
-      style-loader: 3.3.4(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4))
+      sass-loader: 13.3.3(sass@1.77.2)(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4))
+      style-loader: 3.3.4(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4))
     optionalDependencies:
       less: 4.2.0
       postcss: 8.4.47
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-<<<<<<< HEAD
-      webpack: 5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)
-=======
-      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.23.1)(webpack-cli@5.1.4)
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
+      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)
     transitivePeerDependencies:
       - '@rspack/core'
       - '@types/react'
@@ -19840,8 +19876,6 @@ snapshots:
 
   '@supercharge/promise-pool@3.2.0': {}
 
-<<<<<<< HEAD
-=======
   '@swc/core-darwin-arm64@1.15.46':
     optional: true
 
@@ -19905,22 +19939,6 @@ snapshots:
       '@swc/counter': 0.1.3
     optional: true
 
-  '@tanstack/query-core@5.90.20': {}
-
-  '@tanstack/query-devtools@5.93.0': {}
-
-  '@tanstack/react-query-devtools@5.91.3(@tanstack/react-query@5.90.21(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@tanstack/query-devtools': 5.93.0
-      '@tanstack/react-query': 5.90.21(react@18.3.1)
-      react: 18.3.1
-
-  '@tanstack/react-query@5.90.21(react@18.3.1)':
-    dependencies:
-      '@tanstack/query-core': 5.90.20
-      react: 18.3.1
-
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
   '@testing-library/dom@10.1.0':
     dependencies:
       '@babel/code-frame': 7.27.1
@@ -20171,6 +20189,8 @@ snapshots:
       '@tiptap/extension-text': 2.4.0(@tiptap/core@2.1.13(@tiptap/pm@2.1.13))
     transitivePeerDependencies:
       - '@tiptap/pm'
+
+  '@tokenizer/token@0.3.0': {}
 
   '@tootallnate/once@2.0.0': {}
 
@@ -20504,6 +20524,10 @@ snapshots:
       '@types/prop-types': 15.7.12
       csstype: 3.1.3
 
+  '@types/sanitize-html@2.16.1':
+    dependencies:
+      htmlparser2: 10.1.0
+
   '@types/semver@7.5.8': {}
 
   '@types/send@0.17.4':
@@ -20615,7 +20639,7 @@ snapshots:
       '@typescript-eslint/scope-manager': 5.62.0
       '@typescript-eslint/type-utils': 5.62.0(eslint@8.57.0)(typescript@4.9.5)
       '@typescript-eslint/utils': 5.62.0(eslint@8.57.0)(typescript@4.9.5)
-      debug: 4.3.7(supports-color@5.5.0)
+      debug: 4.4.3(supports-color@10.2.2)
       eslint: 8.57.0
       graphemer: 1.4.0
       ignore: 5.3.1
@@ -20681,7 +20705,7 @@ snapshots:
       '@typescript-eslint/scope-manager': 5.62.0
       '@typescript-eslint/types': 5.62.0
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@4.9.5)
-      debug: 4.3.7(supports-color@5.5.0)
+      debug: 4.4.3(supports-color@10.2.2)
       eslint: 8.57.0
     optionalDependencies:
       typescript: 4.9.5
@@ -20694,7 +20718,7 @@ snapshots:
       '@typescript-eslint/types': 8.11.0
       '@typescript-eslint/typescript-estree': 8.11.0(typescript@5.6.3)
       '@typescript-eslint/visitor-keys': 8.11.0
-      debug: 4.3.7(supports-color@5.5.0)
+      debug: 4.3.7
       eslint: 9.13.0(jiti@1.21.0)
     optionalDependencies:
       typescript: 5.6.3
@@ -20741,7 +20765,7 @@ snapshots:
 
   '@typescript-eslint/typescript-estree@2.34.0(typescript@4.9.5)':
     dependencies:
-      debug: 4.3.7(supports-color@5.5.0)
+      debug: 4.4.3(supports-color@10.2.2)
       eslint-visitor-keys: 1.3.0
       glob: 7.2.3
       is-glob: 4.0.3
@@ -21075,31 +21099,19 @@ snapshots:
       '@webassemblyjs/ast': 1.12.1
       '@xtuc/long': 4.2.2
 
-  '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4(webpack@5.91.0))(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4))':
+  '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4(webpack@5.91.0))(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4))':
     dependencies:
-<<<<<<< HEAD
-      webpack: 5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)
-=======
-      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.23.1)(webpack-cli@5.1.4)
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
+      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack@5.91.0)
 
-  '@webpack-cli/info@2.0.2(webpack-cli@5.1.4(webpack@5.91.0))(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4))':
+  '@webpack-cli/info@2.0.2(webpack-cli@5.1.4(webpack@5.91.0))(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4))':
     dependencies:
-<<<<<<< HEAD
-      webpack: 5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)
-=======
-      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.23.1)(webpack-cli@5.1.4)
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
+      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack@5.91.0)
 
-  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4(webpack@5.91.0))(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4))':
+  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4(webpack@5.91.0))(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4))':
     dependencies:
-<<<<<<< HEAD
-      webpack: 5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)
-=======
-      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.23.1)(webpack-cli@5.1.4)
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
+      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack@5.91.0)
 
   '@welldone-software/why-did-you-render@6.2.3(react@18.3.1)':
@@ -21168,6 +21180,10 @@ snapshots:
 
   abbrev@2.0.0: {}
 
+  abort-controller@3.0.0:
+    dependencies:
+      event-target-shim: 5.0.1
+
   accept-language-parser@1.5.0: {}
 
   accepts@1.3.8:
@@ -21217,12 +21233,6 @@ snapshots:
   agent-base@5.1.1: {}
 
   agent-base@6.0.2:
-    dependencies:
-      debug: 4.4.3(supports-color@10.2.2)
-    transitivePeerDependencies:
-      - supports-color
-
-  agent-base@7.1.1:
     dependencies:
       debug: 4.4.3(supports-color@10.2.2)
     transitivePeerDependencies:
@@ -22562,7 +22572,7 @@ snapshots:
     dependencies:
       hyphenate-style-name: 1.0.5
 
-  css-loader@6.11.0(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)):
+  css-loader@6.11.0(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)):
     dependencies:
       icss-utils: 5.1.0(postcss@8.4.47)
       postcss: 8.4.47
@@ -22573,11 +22583,7 @@ snapshots:
       postcss-value-parser: 4.2.0
       semver: 7.6.3
     optionalDependencies:
-<<<<<<< HEAD
-      webpack: 5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)
-=======
-      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.23.1)(webpack-cli@5.1.4)
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
+      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)
 
   css-loader@6.11.0(webpack@5.96.1(@swc/core@1.15.46)(esbuild@0.18.20)):
     dependencies:
@@ -22648,6 +22654,8 @@ snapshots:
 
   dateformat@3.0.3: {}
 
+  dayjs@1.11.21: {}
+
   db-errors@0.2.3: {}
 
   de-indent@1.0.2: {}
@@ -22664,11 +22672,9 @@ snapshots:
     dependencies:
       ms: 2.1.2
 
-  debug@4.3.7(supports-color@5.5.0):
+  debug@4.3.7:
     dependencies:
       ms: 2.1.3
-    optionalDependencies:
-      supports-color: 5.5.0
 
   debug@4.4.3(supports-color@10.2.2):
     dependencies:
@@ -22877,6 +22883,12 @@ snapshots:
       domelementtype: 2.3.0
       domhandler: 5.0.3
 
+  domutils@3.2.2:
+    dependencies:
+      dom-serializer: 2.0.0
+      domelementtype: 2.3.0
+      domhandler: 5.0.3
+
   dont-sniff-mimetype@1.1.0: {}
 
   dot-case@3.0.4:
@@ -22977,7 +22989,7 @@ snapshots:
   engine.io-client@6.5.3:
     dependencies:
       '@socket.io/component-emitter': 3.1.2
-      debug: 4.3.7(supports-color@5.5.0)
+      debug: 4.3.7
       engine.io-parser: 5.2.2
       ws: 8.11.0
       xmlhttprequest-ssl: 2.0.0
@@ -22996,7 +23008,7 @@ snapshots:
       base64id: 2.0.0
       cookie: 0.7.2
       cors: 2.8.5
-      debug: 4.3.7(supports-color@5.5.0)
+      debug: 4.3.7
       engine.io-parser: 5.2.2
       ws: 8.17.1
     transitivePeerDependencies:
@@ -23019,6 +23031,8 @@ snapshots:
       ansi-colors: 4.1.3
 
   entities@4.5.0: {}
+
+  entities@7.0.1: {}
 
   env-paths@2.2.1: {}
 
@@ -23542,7 +23556,7 @@ snapshots:
       ajv: 6.12.6
       chalk: 4.1.2
       cross-spawn: 7.0.3
-      debug: 4.3.7(supports-color@5.5.0)
+      debug: 4.3.7
       escape-string-regexp: 4.0.0
       eslint-scope: 8.1.0
       eslint-visitor-keys: 4.1.0
@@ -23624,6 +23638,8 @@ snapshots:
     dependencies:
       d: 1.0.2
       es5-ext: 0.10.64
+
+  event-target-shim@5.0.1: {}
 
   eventemitter2@6.4.9: {}
 
@@ -23820,6 +23836,12 @@ snapshots:
       fs-extra: 11.1.1
       ramda: 0.29.0
 
+  file-type@16.5.4:
+    dependencies:
+      readable-web-to-node-stream: 3.0.4
+      strtok3: 6.3.0
+      token-types: 4.2.1
+
   file-type@3.9.0: {}
 
   filelist@1.0.4:
@@ -23913,7 +23935,7 @@ snapshots:
       cross-spawn: 7.0.3
       signal-exit: 4.1.0
 
-  fork-ts-checker-webpack-plugin@9.0.2(typescript@5.6.3)(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)):
+  fork-ts-checker-webpack-plugin@9.0.2(typescript@5.6.3)(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)):
     dependencies:
       '@babel/code-frame': 7.26.0
       chalk: 4.1.2
@@ -23928,11 +23950,7 @@ snapshots:
       semver: 7.6.2
       tapable: 2.2.1
       typescript: 5.6.3
-<<<<<<< HEAD
-      webpack: 5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)
-=======
-      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.23.1)(webpack-cli@5.1.4)
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
+      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)
 
   fork-ts-checker-webpack-plugin@9.0.2(typescript@5.6.3)(webpack@5.96.1(@swc/core@1.15.46)(esbuild@0.23.1)):
     dependencies:
@@ -24401,6 +24419,13 @@ snapshots:
       readable-stream: 1.0.34
       through2: 0.4.2
 
+  htmlparser2@10.1.0:
+    dependencies:
+      domelementtype: 2.3.0
+      domhandler: 5.0.3
+      domutils: 3.2.2
+      entities: 7.0.1
+
   htmlparser2@8.0.2:
     dependencies:
       domelementtype: 2.3.0
@@ -24428,7 +24453,7 @@ snapshots:
 
   http-proxy-agent@7.0.2:
     dependencies:
-      agent-base: 7.1.1
+      agent-base: 7.1.4
       debug: 4.4.3(supports-color@10.2.2)
     transitivePeerDependencies:
       - supports-color
@@ -24443,13 +24468,6 @@ snapshots:
   https-proxy-agent@5.0.1:
     dependencies:
       agent-base: 6.0.2
-      debug: 4.4.3(supports-color@10.2.2)
-    transitivePeerDependencies:
-      - supports-color
-
-  https-proxy-agent@7.0.4:
-    dependencies:
-      agent-base: 7.1.1
       debug: 4.4.3(supports-color@10.2.2)
     transitivePeerDependencies:
       - supports-color
@@ -24653,7 +24671,7 @@ snapshots:
     dependencies:
       '@ioredis/commands': 1.2.0
       cluster-key-slot: 1.1.2
-      debug: 4.3.7(supports-color@5.5.0)
+      debug: 4.3.7
       denque: 2.1.0
       lodash.defaults: 4.2.0
       lodash.isarguments: 3.1.0
@@ -25293,6 +25311,8 @@ snapshots:
 
   jju@1.4.0: {}
 
+  jose@5.10.0: {}
+
   joycon@3.1.1: {}
 
   js-beautify@1.15.1:
@@ -25485,6 +25505,10 @@ snapshots:
     dependencies:
       language-subtag-registry: 0.3.23
 
+  launder@1.7.1:
+    dependencies:
+      dayjs: 1.11.21
+
   lazy-universal-dotenv@4.0.0:
     dependencies:
       app-root-dir: 1.0.2
@@ -25577,14 +25601,10 @@ snapshots:
       - encoding
       - supports-color
 
-  less-loader@11.1.4(less@4.2.0)(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)):
+  less-loader@11.1.4(less@4.2.0)(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)):
     dependencies:
       less: 4.2.0
-<<<<<<< HEAD
-      webpack: 5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)
-=======
-      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.23.1)(webpack-cli@5.1.4)
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
+      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)
 
   less-loader@11.1.4(less@4.2.0)(webpack@5.96.1(@swc/core@1.15.46)(esbuild@0.18.20)):
     dependencies:
@@ -26802,6 +26822,8 @@ snapshots:
     dependencies:
       protocols: 2.0.1
 
+  parse-srcset@1.0.2: {}
+
   parse-url@8.1.0:
     dependencies:
       parse-path: 7.0.0
@@ -26901,6 +26923,8 @@ snapshots:
   pause@0.0.1: {}
 
   peberminta@0.9.0: {}
+
+  peek-readable@4.1.0: {}
 
   peek-stream@1.1.3:
     dependencies:
@@ -27019,13 +27043,13 @@ snapshots:
       postcss: 8.4.47
       ts-node: 10.9.2(@swc/core@1.15.46)(@types/node@20.19.25)(typescript@5.6.3)
 
-  postcss-load-config@4.0.2(postcss@8.4.47)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.6.3)):
+  postcss-load-config@4.0.2(postcss@8.4.47)(ts-node@10.9.2(@swc/core@1.15.46)(@types/node@20.5.1)(typescript@5.6.3)):
     dependencies:
       lilconfig: 3.1.1
       yaml: 2.4.2
     optionalDependencies:
       postcss: 8.4.47
-      ts-node: 10.9.2(@types/node@20.5.1)(typescript@5.6.3)
+      ts-node: 10.9.2(@swc/core@1.15.46)(@types/node@20.5.1)(typescript@5.6.3)
 
   postcss-load-config@6.0.1(jiti@1.21.0)(postcss@8.4.47)(yaml@2.4.2):
     dependencies:
@@ -27035,17 +27059,13 @@ snapshots:
       postcss: 8.4.47
       yaml: 2.4.2
 
-  postcss-loader@7.3.4(postcss@8.4.47)(typescript@5.6.3)(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)):
+  postcss-loader@7.3.4(postcss@8.4.47)(typescript@5.6.3)(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)):
     dependencies:
       cosmiconfig: 8.3.6(typescript@5.6.3)
       jiti: 1.21.0
       postcss: 8.4.47
       semver: 7.6.3
-<<<<<<< HEAD
-      webpack: 5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)
-=======
-      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.23.1)(webpack-cli@5.1.4)
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
+      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)
     transitivePeerDependencies:
       - typescript
 
@@ -27973,6 +27993,18 @@ snapshots:
       string_decoder: 1.3.0
       util-deprecate: 1.0.2
 
+  readable-stream@4.7.0:
+    dependencies:
+      abort-controller: 3.0.0
+      buffer: 6.0.3
+      events: 3.3.0
+      process: 0.11.10
+      string_decoder: 1.3.0
+
+  readable-web-to-node-stream@3.0.4:
+    dependencies:
+      readable-stream: 4.7.0
+
   readdirp@3.6.0:
     dependencies:
       picomatch: 2.3.1
@@ -28284,14 +28316,20 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  sass-loader@13.3.3(sass@1.77.2)(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)):
+  sanitize-html@2.17.5:
+    dependencies:
+      deepmerge: 4.3.1
+      escape-string-regexp: 4.0.0
+      htmlparser2: 10.1.0
+      is-plain-object: 5.0.0
+      launder: 1.7.1
+      parse-srcset: 1.0.2
+      postcss: 8.4.47
+
+  sass-loader@13.3.3(sass@1.77.2)(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)):
     dependencies:
       neo-async: 2.6.2
-<<<<<<< HEAD
-      webpack: 5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)
-=======
-      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.23.1)(webpack-cli@5.1.4)
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
+      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)
     optionalDependencies:
       sass: 1.77.2
 
@@ -28513,7 +28551,7 @@ snapshots:
 
   socket.io-adapter@2.5.5:
     dependencies:
-      debug: 4.3.7(supports-color@5.5.0)
+      debug: 4.3.7
       ws: 8.17.1
     transitivePeerDependencies:
       - bufferutil
@@ -28534,7 +28572,7 @@ snapshots:
   socket.io-parser@4.2.4:
     dependencies:
       '@socket.io/component-emitter': 3.1.2
-      debug: 4.3.7(supports-color@5.5.0)
+      debug: 4.3.7
     transitivePeerDependencies:
       - supports-color
 
@@ -28543,7 +28581,7 @@ snapshots:
       accepts: 1.3.8
       base64id: 2.0.0
       cors: 2.8.5
-      debug: 4.3.7(supports-color@5.5.0)
+      debug: 4.3.7
       engine.io: 6.6.4
       socket.io-adapter: 2.5.5
       socket.io-parser: 4.2.4
@@ -28562,7 +28600,7 @@ snapshots:
 
   socks-proxy-agent@8.0.3:
     dependencies:
-      agent-base: 7.1.1
+      agent-base: 7.1.4
       debug: 4.4.3(supports-color@10.2.2)
       socks: 2.8.3
     transitivePeerDependencies:
@@ -28812,18 +28850,19 @@ snapshots:
       minimist: 1.2.8
       through: 2.3.8
 
+  strtok3@6.3.0:
+    dependencies:
+      '@tokenizer/token': 0.3.0
+      peek-readable: 4.1.0
+
   style-loader@0.23.1:
     dependencies:
       loader-utils: 1.4.2
       schema-utils: 1.0.0
 
-  style-loader@3.3.4(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)):
+  style-loader@3.3.4(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)):
     dependencies:
-<<<<<<< HEAD
-      webpack: 5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)
-=======
-      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.23.1)(webpack-cli@5.1.4)
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
+      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)
 
   style-loader@3.3.4(webpack@5.96.1(@swc/core@1.15.46)(esbuild@0.18.20)):
     dependencies:
@@ -28960,7 +28999,7 @@ snapshots:
     transitivePeerDependencies:
       - ts-node
 
-  tailwindcss@3.4.14(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.6.3)):
+  tailwindcss@3.4.14(ts-node@10.9.2(@swc/core@1.15.46)(@types/node@20.5.1)(typescript@5.6.3)):
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
@@ -28979,7 +29018,7 @@ snapshots:
       postcss: 8.4.47
       postcss-import: 15.1.0(postcss@8.4.47)
       postcss-js: 4.0.1(postcss@8.4.47)
-      postcss-load-config: 4.0.2(postcss@8.4.47)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.6.3))
+      postcss-load-config: 4.0.2(postcss@8.4.47)(ts-node@10.9.2(@swc/core@1.15.46)(@types/node@20.5.1)(typescript@5.6.3))
       postcss-nested: 6.0.1(postcss@8.4.47)
       postcss-selector-parser: 6.1.0
       resolve: 1.22.8
@@ -29035,22 +29074,19 @@ snapshots:
       type-fest: 0.16.0
       unique-string: 2.0.0
 
-<<<<<<< HEAD
-  terser-webpack-plugin@5.3.10(esbuild@0.18.20)(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)):
+  terser-webpack-plugin@5.3.10(@swc/core@1.15.46)(esbuild@0.18.20)(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 3.3.0
       serialize-javascript: 6.0.2
       terser: 5.31.0
-      webpack: 5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)
+      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)
     optionalDependencies:
+      '@swc/core': 1.15.46
       esbuild: 0.18.20
 
-  terser-webpack-plugin@5.3.10(esbuild@0.18.20)(webpack@5.96.1(esbuild@0.18.20)):
-=======
   terser-webpack-plugin@5.3.10(@swc/core@1.15.46)(esbuild@0.18.20)(webpack@5.96.1(@swc/core@1.15.46)(esbuild@0.18.20)):
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
@@ -29062,23 +29098,7 @@ snapshots:
       '@swc/core': 1.15.46
       esbuild: 0.18.20
 
-<<<<<<< HEAD
-  terser-webpack-plugin@5.3.10(esbuild@0.23.1)(webpack@5.96.1(esbuild@0.23.1)):
-=======
-  terser-webpack-plugin@5.3.10(@swc/core@1.15.46)(esbuild@0.23.1)(webpack@5.91.0):
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.31
-      jest-worker: 27.5.1
-      schema-utils: 3.3.0
-      serialize-javascript: 6.0.2
-      terser: 5.31.0
-      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.23.1)(webpack-cli@5.1.4)
-    optionalDependencies:
-      '@swc/core': 1.15.46
-      esbuild: 0.23.1
-
   terser-webpack-plugin@5.3.10(@swc/core@1.15.46)(esbuild@0.23.1)(webpack@5.96.1(@swc/core@1.15.46)(esbuild@0.23.1)):
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
@@ -29193,6 +29213,11 @@ snapshots:
 
   token-stream@1.0.0: {}
 
+  token-types@4.2.1:
+    dependencies:
+      '@tokenizer/token': 0.3.0
+      ieee754: 1.2.1
+
   toposort@2.0.2: {}
 
   tr46@0.0.3: {}
@@ -29235,7 +29260,7 @@ snapshots:
       babel-jest: 29.7.0(@babel/core@7.28.5)
       esbuild: 0.23.1
 
-  ts-loader@9.5.1(typescript@5.6.3)(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)):
+  ts-loader@9.5.1(typescript@5.6.3)(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)):
     dependencies:
       chalk: 4.1.2
       enhanced-resolve: 5.17.1
@@ -29243,11 +29268,7 @@ snapshots:
       semver: 7.6.3
       source-map: 0.7.4
       typescript: 5.6.3
-<<<<<<< HEAD
-      webpack: 5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)
-=======
-      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.23.1)(webpack-cli@5.1.4)
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
+      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)
 
   ts-loader@9.5.1(typescript@5.6.3)(webpack@5.96.1(@swc/core@1.15.46)(esbuild@0.23.1)):
     dependencies:
@@ -29339,46 +29360,13 @@ snapshots:
 
   tslib@2.8.1: {}
 
-<<<<<<< HEAD
-  tsup@8.3.0(@microsoft/api-extractor@7.47.11(@types/node@20.5.1))(jiti@1.21.0)(postcss@8.4.47)(typescript@5.6.3)(yaml@2.4.2):
-=======
-  tsup@8.3.0(@microsoft/api-extractor@7.47.11(@types/node@20.19.25))(@swc/core@1.15.46)(jiti@1.21.0)(postcss@8.4.47)(typescript@5.6.3)(yaml@2.4.2):
-    dependencies:
-      bundle-require: 5.0.0(esbuild@0.23.1)
-      cac: 6.7.14
-      chokidar: 3.6.0
-      consola: 3.2.3
-      debug: 4.3.7(supports-color@5.5.0)
-      esbuild: 0.23.1
-      execa: 5.1.1
-      joycon: 3.1.1
-      picocolors: 1.0.1
-      postcss-load-config: 6.0.1(jiti@1.21.0)(postcss@8.4.47)(yaml@2.4.2)
-      resolve-from: 5.0.0
-      rollup: 4.24.0
-      source-map: 0.8.0-beta.0
-      sucrase: 3.35.0
-      tinyglobby: 0.2.9
-      tree-kill: 1.2.2
-    optionalDependencies:
-      '@microsoft/api-extractor': 7.47.11(@types/node@20.19.25)
-      '@swc/core': 1.15.46
-      postcss: 8.4.47
-      typescript: 5.6.3
-    transitivePeerDependencies:
-      - jiti
-      - supports-color
-      - tsx
-      - yaml
-
   tsup@8.3.0(@microsoft/api-extractor@7.47.11(@types/node@20.5.1))(@swc/core@1.15.46)(jiti@1.21.0)(postcss@8.4.47)(typescript@5.6.3)(yaml@2.4.2):
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
     dependencies:
       bundle-require: 5.0.0(esbuild@0.23.1)
       cac: 6.7.14
       chokidar: 3.6.0
       consola: 3.2.3
-      debug: 4.3.7(supports-color@5.5.0)
+      debug: 4.3.7
       esbuild: 0.23.1
       execa: 5.1.1
       joycon: 3.1.1
@@ -29733,7 +29721,7 @@ snapshots:
       '@volar/typescript': 2.4.8
       '@vue/language-core': 2.1.6(typescript@5.6.3)
       compare-versions: 6.1.1
-      debug: 4.3.7(supports-color@5.5.0)
+      debug: 4.3.7
       kolorist: 1.8.0
       local-pkg: 0.5.0
       magic-string: 0.30.12
@@ -29767,7 +29755,7 @@ snapshots:
       '@vitest/spy': 2.1.3
       '@vitest/utils': 2.1.3
       chai: 5.1.2
-      debug: 4.3.7(supports-color@5.5.0)
+      debug: 4.3.7
       magic-string: 0.30.12
       pathe: 1.1.2
       std-env: 3.7.0
@@ -29825,9 +29813,9 @@ snapshots:
   webpack-cli@5.1.4(webpack@5.91.0):
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
-      '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4(webpack@5.91.0))(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4))
-      '@webpack-cli/info': 2.0.2(webpack-cli@5.1.4(webpack@5.91.0))(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4))
-      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4(webpack@5.91.0))(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4))
+      '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4(webpack@5.91.0))(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4))
+      '@webpack-cli/info': 2.0.2(webpack-cli@5.1.4(webpack@5.91.0))(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4))
+      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4(webpack@5.91.0))(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4))
       colorette: 2.0.20
       commander: 10.0.1
       cross-spawn: 7.0.3
@@ -29836,11 +29824,7 @@ snapshots:
       import-local: 3.1.0
       interpret: 3.1.1
       rechoir: 0.8.0
-<<<<<<< HEAD
-      webpack: 5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4)
-=======
-      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.23.1)(webpack-cli@5.1.4)
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
+      webpack: 5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4)
       webpack-merge: 5.10.0
 
   webpack-merge@5.10.0:
@@ -29855,11 +29839,7 @@ snapshots:
 
   webpack-virtual-modules@0.6.2: {}
 
-<<<<<<< HEAD
-  webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4):
-=======
-  webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.23.1)(webpack-cli@5.1.4):
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
+  webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4):
     dependencies:
       '@types/eslint-scope': 3.7.7
       '@types/estree': 1.0.5
@@ -29882,11 +29862,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-<<<<<<< HEAD
-      terser-webpack-plugin: 5.3.10(esbuild@0.18.20)(webpack@5.91.0(esbuild@0.18.20)(webpack-cli@5.1.4))
-=======
-      terser-webpack-plugin: 5.3.10(@swc/core@1.15.46)(esbuild@0.23.1)(webpack@5.91.0)
->>>>>>> 85e9a155a (fix(alwathba): empty code unique constraint, customer/vendor select displayName, quick-create form)
+      terser-webpack-plugin: 5.3.10(@swc/core@1.15.46)(esbuild@0.18.20)(webpack@5.91.0(@swc/core@1.15.46)(esbuild@0.18.20)(webpack-cli@5.1.4))
       watchpack: 2.4.1
       webpack-sources: 3.2.3
     optionalDependencies:
