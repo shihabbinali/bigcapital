@@ -37,7 +37,7 @@ Bigcapital is a **multi-tenant, open-source financial accounting SaaS platform**
 | **Queue** | BullMQ + Redis |
 | **Cache** | Redis + LRU in-process cache |
 | **PDF** | Gotenberg (Chrome headless via HTTP) |
-| **Storage** | AWS S3 / MinIO (attachments, logos, documents) |
+| **Storage** | S3-compatible — Cloudflare R2 / MinIO (attachments, logos, documents) |
 | **Email** | Nodemailer + BullMQ queue |
 | **Real-time** | Socket.IO |
 | **Frontend** | React 18 + Vite 5 |
@@ -47,7 +47,7 @@ Bigcapital is a **multi-tenant, open-source financial accounting SaaS platform**
 | **i18n** | nestjs-i18n (server) + react-intl-universal (client) |
 | **Observability** | PostHog (analytics), New Relic (optional APM) |
 | **CI/CD** | GitHub Actions (build, deploy, E2E, typecheck) |
-| **Infra** | Docker Compose (Envoy proxy, MariaDB, Redis, Gotenberg, MinIO) |
+| **Infra** | Docker Compose (Envoy proxy, MariaDB, Redis, Gotenberg) |
 
 ### Overall Architecture
 
@@ -67,7 +67,7 @@ Browser (React SPA)
 |  Users, Tenants, API Keys       All accounting data         |
 +-------------------------------------------------------------+
          |                |             |
-       Redis           BullMQ         MinIO/S3
+        Redis           BullMQ         R2/S3
     (cache/sessions)  (job queues)  (attachments)
 ```
 
@@ -164,7 +164,7 @@ The frontend is a **traditional Redux SPA** using React Router v5, Formik forms,
 **Strengths:**
 - BullMQ + Redis provides a durable job queue for email, PDF generation, org initialization, and bank sync — workloads that should not run in the HTTP request cycle.
 - Per-tenant database isolation means tenant data never mingles, and a large tenant's queries cannot lock another tenant's data.
-- MinIO provides horizontally scalable object storage.
+- R2/S3 provides horizontally scalable object storage.
 
 **Weaknesses:**
 - **Single NestJS process** — All 80 modules run in one monolithic process. There is no way to independently scale financial reporting (CPU-heavy) separately from the CRUD API.
@@ -280,7 +280,7 @@ Dirty reads as the default isolation level can produce inconsistent ledger balan
 ### Secret/Configuration Handling
 
 - Secrets are in `.env` (gitignored) and `.env.alwathba` (gitignored) — correct.
-- `.env.alwathba.example` shows MinIO root user/password as `minioadmin/minioadmin` — the template does not enforce changing these.
+- `.env.alwathba.example` was migrated from MinIO to Cloudflare R2 — templates no longer expose MinIO credentials.
 - No secrets detection in CI (e.g., `gitleaks`, `truffleHog`, or GitHub secret scanning) is configured.
 
 ---
@@ -671,8 +671,8 @@ The following instructions are for any AI coding agent (OpenCode, Cursor, Aider,
 ### Docker / Deployment Rules
 
 31. **Use `docker-compose.alwathba.yml` for self-hosted builds from source.** Do not modify `docker-compose.prod.yml` (it pulls pre-built Docker Hub images).
-32. **The `minio-init-bucket` service is idempotent** (`mc mb --ignore-existing`). Safe to run multiple times.
-33. **Healthcheck `depends_on` is mandatory** for any new service that depends on MySQL, Redis, or MinIO. Do not use `sleep`; use proper healthcheck conditions.
+32. **Storage is Cloudflare R2 (S3-compatible).** Set `S3_ENDPOINT`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY`, and `S3_BUCKET` in `.env.alwathba`. The env templates use `<your-...>` placeholders. Create R2 API tokens at https://dash.cloudflare.com/<account>/r2/api-tokens. R2 ignores ACLs; `public-read` on uploads is harmless.
+33. **Healthcheck `depends_on` is mandatory** for any new service that depends on MySQL or Redis. Do not use `sleep`; use proper healthcheck conditions.
 
 ---
 

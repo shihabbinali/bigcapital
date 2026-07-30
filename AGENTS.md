@@ -47,13 +47,12 @@ Server reads `APP_JWT_SECRET` (not `JWT_SECRET`). Falls back to hardcoded `"1231
 | Compose file | Uses | Command |
 |---|---|---|
 | `docker-compose.prod.yml` | Pre-built Docker Hub images | `setup.sh` |
-| `docker-compose.alwathba.yml` | Build from source + MinIO | `docker compose -f docker-compose.alwathba.yml --env-file .env.alwathba up -d --build` |
+| `docker-compose.alwathba.yml` | Build from source + Cloudflare R2 | `docker compose -f docker-compose.alwathba.yml --env-file .env.alwathba up -d --build` |
 
 `docker-compose.alwathba.yml` fixes upstream bugs:
 - passes `APP_JWT_SECRET` (not `JWT_SECRET`)
 - `HOSTED_ON_BIGCAPITAL_CLOUD=false` skips forced subscription
 - healthcheck-based `depends_on` instead of `wait-for-it`
-- MinIO local S3 with auto bucket creation via `minio-init-bucket`
 
 ## Database
 
@@ -79,11 +78,16 @@ Signup → tenant record → signin → `/setup` wizard → `POST /api/organizat
 - Added `openapi-typescript-fetch` to `packages/webapp/package.json` (missing dependency).
 - Pinned `sanitize-html` to `2.17.5` in `packages/server/package.json` to avoid ESM `htmlparser2@12` on Node 18.
 - Added `useEffect` import in `SetupInitializingForm.tsx`.
-- Added MinIO service + `minio-init-bucket` to `docker-compose.alwathba.yml`; wired S3 vars in `.env.alwathba`.
 - Fixed MySQL healthcheck to interpolate `DB_ROOT_PASSWORD` correctly.
 - Fixed `uploadAttachment` in `shared/sdk-ts/src/attachments.ts` to use `postFormData` (generated client `JSON.stringify`s FormData to `"{}"`).
 - Fixed `createApiFetcher` / `getFetcherConfig` in `shared/sdk-ts/src/fetch-utils.ts` to store/read `__fetcherConfig` (openapi-typescript-fetch stores config in closures, not properties).
+- Rewrote `ChromiumlyHtmlConvert.service.ts` to POST HTML directly to Gotenberg (no temp files, no `GOTENBERG_DOCS_URL`, no `Document` model tracking).
+- Added logo data-URI embedding in `SaleInvoicePdf.service.ts` so Gotenberg doesn't need external network access for branded PDFs.
+- Added error handling to branding form (`PreferencesBrandingForm.tsx`).
+- Migrated from MinIO to Cloudflare R2: removed MinIO services from both `docker-compose.yml` and `docker-compose.alwathba.yml`; replaced all S3 env vars with R2 placeholders in `.env`, `.env.alwathba`, `.env.alwathba.example`, and `packages/server/.env`.
+- Cleaned stale MinIO references in code comments (`GetAttachmentPresignedUrl.ts`).
+- Fixed `companyLogoUri` → `companyLogo` type error in `SaleInvoicePdf.service.ts`.
 
 ### Open
-- Logo upload returns 401 even when authenticated. Root cause: `postFormData` couldn't read fetcher's auth headers before the `__fetcherConfig` fix. Need to rebuild webapp image and test.
+- Logo upload returns 401 even when authenticated. Root cause was `postFormData` couldn't read fetcher's auth headers before the `__fetcherConfig` fix. Likely fixed now — needs rebuild + test.
 - `HOSTED_ON_BIGCAPITAL_CLOUD=false` is hardcoded in `docker-compose.alwathba.yml` — should be configurable via `.env.alwathba`.
