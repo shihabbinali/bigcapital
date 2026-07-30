@@ -81,7 +81,7 @@ function QuickVendorFormDrawerInner({
     <VendorFormProvider vendorId={vendorId}>
       <DrawerVendorFormLoading>
         <VendorFormFormik
-          initialValues={{ firstName: displayName, displayName }}
+          initialValues={{ first_name: displayName, display_name: displayName }}
           onSubmitSuccess={handleSubmitSuccess}
           onCancel={handleCancelForm}
         />

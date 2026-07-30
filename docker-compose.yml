@@ -1,53 +1,90 @@
-# WARNING!
-# This is a development version of THE Bigcapital docker-compose.yml file.
-# Avoid using this file in your production environment.
-# We're exposing here sensitive ports and mounting code volumes for rapid development and debugging of the server stack.
-
-version: '3.3'
+# Development docker-compose — infrastructure services only.
+# Start these, then run server + webapp locally:
+#   pnpm run dev:server
+#   pnpm run dev:webapp
 
 services:
   mariadb:
     build:
       context: ./docker/mariadb
     environment:
-      - MYSQL_DATABASE=${SYSTEM_DB_NAME}
-      - MYSQL_USER=${DB_USER}
-      - MYSQL_PASSWORD=${DB_PASSWORD}
-      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${SYSTEM_DB_NAME:-bigcapital_system}
+      - MYSQL_USER=${DB_USER:-bigcapital}
+      - MYSQL_PASSWORD=${DB_PASSWORD:-bigcapital}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD:-root}
     volumes:
       - mysql:/var/lib/mysql
-    expose:
-      - '3306'
     ports:
       - '3306:3306'
-    deploy:
-      restart_policy:
-        condition: unless-stopped
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", 'mysqladmin ping -u root -p"${DB_ROOT_PASSWORD:-root}"']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
 
   redis:
     build:
       context: ./docker/redis
-    expose:
-      - '6379'
     ports:
       - '6379:6379'
     volumes:
       - redis:/data
-    deploy:
-      restart_policy:
-        condition: unless-stopped
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
 
   gotenberg:
     image: gotenberg/gotenberg:7
     ports:
-      - '9000:3000'
+      - '9001:3000'
+    restart: unless-stopped
 
-# Volumes
+  minio:
+    image: minio/minio:RELEASE.2025-04-22T22-12-26Z
+    command: server /data --console-address ":9001"
+    restart: unless-stopped
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
+    ports:
+      - '9000:9000'
+      - '9002:9001'
+    volumes:
+      - minio:/data
+    healthcheck:
+      test: ['CMD', 'mc', 'ready', 'local']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  minio-init-bucket:
+    image: minio/mc:latest
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint:
+      - sh
+      - -c
+      - |
+        mc alias set local http://minio:9000 minioadmin minioadmin
+        mc mb local/bigcapital --ignore-existing
+        mc anonymous set public local/bigcapital
+    restart: 'no'
+
 volumes:
   mysql:
     name: bigcapital_dev_mysql
     driver: local
-
   redis:
     name: bigcapital_dev_redis
+    driver: local
+  minio:
+    name: bigcapital_dev_minio
     driver: local

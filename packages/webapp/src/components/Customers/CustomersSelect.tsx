@@ -59,8 +59,8 @@ function CustomerSelectRoot({
     <FSelect
       name={name}
       items={items}
-      textAccessor={'displayName'}
-      labelAccessor={'formattedBalance'}
+      textAccessor={'display_name'}
+      labelAccessor={'formatted_balance'}
       valueAccessor={'id'}
       itemPredicate={itemPredicate}
       itemRenderer={handleContactRenderer}
