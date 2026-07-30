@@ -70,13 +70,11 @@ export const PreferencesBrandingForm = ({
       try {
         // @ts-expect-error
         const uploadedAttachmentRes = await uploadAttachments(formData);
-        setSubmitting(false);
 
         // Adds the attachment key to the values after finishing upload.
         _values['logoKey'] = uploadedAttachmentRes?.key;
       } catch {
         handleError('An error occurred while uploading company logo.');
-        setSubmitting(false);
         return;
       }
     }
@@ -86,9 +84,16 @@ export const PreferencesBrandingForm = ({
     const __values = transfromToSnakeCase(
       omit(excludedPrivateValues, ['logoUri']),
     );
-    // Update organization branding.
-    // @ts-expect-error
-    await updateOrganization({ ...__values });
+    try {
+      // Update organization branding.
+      // @ts-expect-error
+      await updateOrganization({ ...__values });
+    } catch {
+      handleError('An error occurred while saving branding settings.');
+      return;
+    }
+
+    setSubmitting(false);
 
     AppToaster.show({
       message: 'Organization branding has been updated.',

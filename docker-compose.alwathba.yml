@@ -73,8 +73,6 @@ services:
         condition: service_healthy
       migration:
         condition: service_completed_successfully
-      minio:
-        condition: service_healthy
     networks:
       - bigcapital_network
     environment:
@@ -159,14 +157,13 @@ services:
       - NEW_RELIC_LICENSE_KEY=${NEW_RELIC_LICENSE_KEY}
       - NEW_RELIC_APP_NAME=${NEW_RELIC_APP_NAME}
 
-      # --- S3 (documents & attachments) ---
+      # --- S3 (Cloudflare R2) ---
       - S3_REGION=${S3_REGION}
       - S3_ACCESS_KEY_ID=${S3_ACCESS_KEY_ID}
       - S3_SECRET_ACCESS_KEY=${S3_SECRET_ACCESS_KEY}
       - S3_ENDPOINT=${S3_ENDPOINT}
-      - S3_PUBLIC_ENDPOINT=${S3_PUBLIC_ENDPOINT}
       - S3_BUCKET=${S3_BUCKET}
-      - S3_FORCE_PATH_STYLE=${S3_FORCE_PATH_STYLE}
+      - S3_FORCE_PATH_STYLE=true
 
       # --- Stripe ---
       - STRIPE_PAYMENT_SECRET_KEY=${STRIPE_PAYMENT_SECRET_KEY}
@@ -267,53 +264,6 @@ services:
     networks:
       - bigcapital_network
 
-  # ---------------------------------------------------------------------------
-  # MinIO — local S3-compatible storage for attachments & documents.
-  # ---------------------------------------------------------------------------
-  minio:
-    container_name: alwathba-minio
-    image: minio/minio:RELEASE.2025-04-22T22-12-26Z
-    command: server /data --console-address ":9001"
-    restart: unless-stopped
-    environment:
-      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
-      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
-    ports:
-      - '127.0.0.1:9000:9000'
-      - '127.0.0.1:9001:9001'
-    volumes:
-      - minio:/data
-    healthcheck:
-      test: ['CMD', 'mc', 'ready', 'local']
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 15s
-    networks:
-      - bigcapital_network
-
-  # Creates the S3 bucket on first run, then exits.
-  minio-init-bucket:
-    container_name: alwathba-minio-init
-    image: minio/mc:latest
-    depends_on:
-      minio:
-        condition: service_healthy
-    entrypoint:
-      - sh
-      - -c
-      - |
-        mc alias set local http://minio:9000 $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD
-        mc mb local/$S3_BUCKET --ignore-existing
-        mc anonymous set public local/$S3_BUCKET
-    environment:
-      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
-      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
-      - S3_BUCKET=${S3_BUCKET}
-    networks:
-      - bigcapital_network
-    restart: 'no'
-
 # =============================================================================
 # Volumes
 # =============================================================================
@@ -323,9 +273,6 @@ volumes:
     driver: local
   redis:
     name: alwathba_redis
-    driver: local
-  minio:
-    name: alwathba_minio
     driver: local
 
 # =============================================================================

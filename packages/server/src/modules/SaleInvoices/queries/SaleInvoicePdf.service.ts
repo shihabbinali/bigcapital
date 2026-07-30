@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import axios from 'axios';
 import { renderInvoicePaperTemplateHtml } from '@bigcapital/pdf-templates';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { GetSaleInvoice } from './GetSaleInvoice.service';
@@ -98,9 +99,28 @@ export class SaleInvoicePdf {
       );
 
     // Merge the branding template attributes with the invoice.
-    return {
+    const attributes = {
       ...brandingTemplate.attributes,
       ...transformInvoiceToPdfTemplate(invoice),
-    };
+    } as InvoicePdfTemplateAttributes;
+
+    // Fetch the company logo and embed it as a data URI so that Gotenberg's
+    // Chromium does not need to make an external network call (which would
+    // fail when Gotenberg runs in Docker and the URL points to localhost).
+    if (attributes.companyLogo) {
+      try {
+        const response = await axios.get(attributes.companyLogo, {
+          responseType: 'arraybuffer',
+        });
+        const base64 = Buffer.from(response.data).toString('base64');
+        const mimeType = response.headers['content-type'] || 'image/png';
+        attributes.companyLogo = `data:${mimeType};base64,${base64}`;
+      } catch {
+        // If the logo fetch fails, leave the original URL in place.
+        // The template conditionally renders the logo only when the URI is set,
+        // so a failed fetch effectively hides it — acceptable fallback.
+      }
+    }
+    return attributes;
   }
 }

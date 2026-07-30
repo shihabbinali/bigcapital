@@ -39,8 +39,8 @@ export class GetAttachmentPresignedUrl {
     const signedUrl = await getSignedUrl(this.s3Client, command, { expiresIn: 300 });
 
     // If a public endpoint is configured, replace the origin in the signed URL
-    // so that browsers can reach MinIO/S3 (the S3 client endpoint may be an
-    // internal Docker hostname like http://alwathba-minio:9000).
+    // so that browsers can reach S3 (the S3 client endpoint may be an
+    // internal Docker hostname).
     if (config.publicEndpoint) {
       const url = new URL(signedUrl);
       const publicUrl = new URL(config.publicEndpoint);
