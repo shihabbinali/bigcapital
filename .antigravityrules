@@ -1,0 +1,12 @@
+ENV: WSL / Linux.
+
+CRITICAL REQUIREMENTS FOR BASH EXECUTION:
+1. Always append non-interactive flags (e.g., `apt-get install -y`, `npm install --no-audit`).
+2. NEVER use interactive editors or pagers like `nano`, `vim`, `less`, or `more`.
+3. If a command generates large output, redirect it to a log file instead of printing to stdout. Example: `npm install > install.log 2>&1`.
+4. If starting a server or long-running process, detach it completely: `nohup <command> > /dev/null 2>&1 &`.
+5. When saving or writing files via bash, ALWAYS use `cat << 'EOF' > filename` and ensure the EOF marker is correct. Do not use complex multi-line `echo` commands.
+
+CRITICAL REQUIREMENTS FOR DIRECTORY LISTING:
+6. When using 'ls', ALWAYS use the flag '--color=never' or escape it like '\ls -la'. ANSI color codes will break the output parser.
+7. Never run an unfiltered 'ls -la' on unknown directories. ALWAYS pipe it to limit the output (e.g., `ls -la | head -n 50`), or redirect it to a log file.
