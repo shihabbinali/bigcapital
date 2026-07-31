@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { events } from '@/common/events/events';
 import { OnEvent } from '@nestjs/event-emitter';
+import { ConfigService } from '@nestjs/config';
 import {
   IAuthSendedResetPassword,
   IAuthSignedUpEventPayload,
@@ -20,6 +21,8 @@ import { SendSignupVerificationMailJobPayload } from '../processors/SendSignupVe
 @Injectable()
 export class AuthMailSubscriber {
   constructor(
+    private readonly configService: ConfigService,
+
     @InjectQueue(SendResetPasswordMailQueue)
     private readonly sendResetPasswordMailQueue: Queue,
 
@@ -35,6 +38,12 @@ export class AuthMailSubscriber {
   async handleSignupSendVerificationMail(
     payload: IAuthSignedUpEventPayload | ISignUpConfigmResendedEventPayload,
   ) {
+    const signupConfirmation = this.configService.get('signupConfirmation');
+
+    // Don't queue the verification mail when email confirmation is disabled:
+    // the user is auto-verified and has no verification token.
+    if (!signupConfirmation.enabled) return;
+
     try {
       await this.sendSignupVerificationMailQueue.add(
         SendSignupVerificationMailJob,
