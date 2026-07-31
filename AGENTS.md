@@ -87,7 +87,15 @@ Signup → tenant record → signin → `/setup` wizard → `POST /api/organizat
 - Migrated from MinIO to Cloudflare R2: removed MinIO services from both `docker-compose.yml` and `docker-compose.alwathba.yml`; replaced all S3 env vars with R2 placeholders in `.env`, `.env.alwathba`, `.env.alwathba.example`, and `packages/server/.env`.
 - Cleaned stale MinIO references in code comments (`GetAttachmentPresignedUrl.ts`).
 - Fixed `companyLogoUri` → `companyLogo` type error in `SaleInvoicePdf.service.ts`.
+- Added signature blocks to invoice templates (`shared/pdf-templates` + webapp preview).
+- Added Dokploy deployment: `docker-compose.dokploy.yml` (image-based, proxy on `dokploy-network`, no host ports) + `.github/workflows/docker-alwathba.yml` (push to `alwathba-merged` → build/push server+webapp to Docker Hub tags `alwathba`/`alwathba-<sha>` → POST `DOKPLOY_DEPLOY_WEBHOOK` after both succeed).
+- Gated signup verification mail on `SIGNUP_EMAIL_CONFIRMATION` (`AuthMail.subscriber.ts`) — previously queued on every signup; with no SMTP, nodemailer tried localhost:587 and logged ECONNREFUSED.
+
+### Notes / gotchas (production)
+- `AuthMailSubscriber` skips verification mail when `signupConfirmation.enabled` is false — no SMTP needed for signup.
+- `ER_BAD_DB_ERROR Unknown database 'bigcapital_tenant_<id>'` during setup is transient: the org-build BullMQ job creates the tenant DB asynchronously; the models-init guard catches and logs it. It stops once the build job completes.
 
 ### Open
 - Logo upload returns 401 even when authenticated. Root cause was `postFormData` couldn't read fetcher's auth headers before the `__fetcherConfig` fix. Likely fixed now — needs rebuild + test.
 - `HOSTED_ON_BIGCAPITAL_CLOUD=false` is hardcoded in `docker-compose.alwathba.yml` — should be configurable via `.env.alwathba`.
+- `DOKPLOY_DEPLOY_WEBHOOK` GitHub secret not yet set — auto-deploy from CI is skipped (workflow warns) until it is.
