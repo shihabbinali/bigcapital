@@ -24,7 +24,7 @@ const initialValues = {
 const validationSchema = Yup.object({
   logoKey: Yup.string().optional(),
   logoUri: Yup.string().optional(),
-  primaryColor: Yup.string().required('Primary color is required'),
+  primaryColor: Yup.string().optional(),
 });
 
 interface PreferencesBrandingFormProps {
