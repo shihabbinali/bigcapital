@@ -1,0 +1,95 @@
+# Builds the Alwathba server + webapp images, pushes them to Docker Hub, and
+# triggers a Dokploy redeploy so the production stack picks them up.
+#
+# Flow: push to alwathba-merged -> build both images -> push to Docker Hub
+# (moving tag `alwathba` + immutable `alwathba-<sha>`) -> POST to the Dokploy
+# deploy webhook. Dokploy then runs `docker compose up -d`, which recreates the
+# containers and re-runs the migration one-shot.
+#
+# Required repository secrets:
+#   DOCKER_USERNAME / DOCKER_PASSWORD   Docker Hub credentials
+#   DOKPLOY_DEPLOY_WEBHOOK              Dokploy project deploy hook URL
+name: Build & Deploy Alwathba (Dokploy)
+
+on:
+  push:
+    branches: [alwathba-merged]
+  workflow_dispatch:
+
+env:
+  IMAGE_TAG: alwathba
+  SHA_TAG: alwathba-${{ github.sha }}
+
+jobs:
+  build-server:
+    name: Build & push server image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./
+          file: ./packages/server/Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/bigcapital-server:${{ env.IMAGE_TAG }}
+            ${{ secrets.DOCKER_USERNAME }}/bigcapital-server:${{ env.SHA_TAG }}
+
+  build-webapp:
+    name: Build & push webapp image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./
+          file: ./packages/webapp/Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/bigcapital-webapp:${{ env.IMAGE_TAG }}
+            ${{ secrets.DOCKER_USERNAME }}/bigcapital-webapp:${{ env.SHA_TAG }}
+
+  # Only runs after BOTH images are on Docker Hub, so Dokploy never pulls a
+  # half-updated pair. The webhook triggers the full compose up (incl. the
+  # migration one-shot).
+  trigger-dokploy:
+    name: Trigger Dokploy redeploy
+    runs-on: ubuntu-latest
+    needs: [build-server, build-webapp]
+    if: always() && !cancelled() && !contains(needs.*.result, 'failure')
+    steps:
+      - name: Call Dokploy deploy webhook
+        env:
+          WEBHOOK: ${{ secrets.DOKPLOY_DEPLOY_WEBHOOK }}
+        run: |
+          if [ -z "$WEBHOOK" ]; then
+            echo "::warning::DOKPLOY_DEPLOY_WEBHOOK not set; skipping redeploy trigger."
+            exit 0
+          fi
+          curl -fsS -o /dev/null --retry 3 --retry-delay 5 "$WEBHOOK"

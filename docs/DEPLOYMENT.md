@@ -1,11 +1,13 @@
 # Bigcapital — Alwathba self-hosted deployment
 
-This guide deploys Bigcapital **from local source** (no Docker Hub images for the
-server/webapp/migration) using `docker-compose.alwathba.yml`. Everything is built
-on the host from the checked-out source tree, so the frontend and backend always
-match the exact commit you are on.
+Two deployment flavours live in this repo:
 
-> Branch: `alwathba` (forked from `develop`)
+| File | Build strategy | Used for |
+|---|---|---|
+| `docker-compose.alwathba.yml` | Builds server/webapp from the local source tree | Manual deploys on a VPS, local validation |
+| `docker-compose.dokploy.yml` | Server/webapp pulled as prebuilt **Docker Hub** images | Dokploy (with auto-updates via CI) |
+
+> Branch: `alwathba-merged` (forked from `develop`)
 
 ---
 
@@ -54,9 +56,11 @@ match the exact commit you are on.
 
 ## 3. First-time deploy
 
+### 3a. Manual VPS deploy (build from source)
+
 ```bash
-# from the repo root, on branch alwathba
-git checkout alwathba
+# from the repo root, on branch alwathba-merged
+git checkout alwathba-merged
 
 # 1. Create your environment file and edit secrets
 cp .env.alwathba.example .env.alwathba
@@ -65,6 +69,12 @@ $EDITOR .env.alwathba   # at minimum: APP_JWT_SECRET, DB_PASSWORD, DB_ROOT_PASSW
 # 2. Build images from source and start the stack
 docker compose -f docker-compose.alwathba.yml --env-file .env.alwathba up -d --build
 ```
+
+### 3b. Dokploy deploy (prebuilt images) — recommended
+
+Skip straight to [§6 Dokploy](#6-dokploy-deployment) for the full walkthrough.
+No source build happens on the server: images come from Docker Hub and are
+updated automatically on every push (see [§7 Auto-updates](#7-auto-updates-cicd)).
 
 Startup order is enforced by healthchecks + `depends_on` conditions:
 
@@ -101,6 +111,10 @@ password field). Redis is **not** exposed to the host.
 
 Optional integrations (all default off/empty): Plaid, Stripe, Lemon Squeezy, S3, New Relic, Open Exchange Rates, SMTP. Fill only what you use.
 
+> **Dokploy only:** also set `DOCKERHUB_USER` (your Docker Hub namespace, e.g.
+> `shihabbinali`) — `docker-compose.dokploy.yml` resolves the server/webapp
+> images as `${DOCKERHUB_USER}/bigcapital-{server,webapp}:alwathba`.
+
 ---
 
 ## 5. Operational commands
@@ -125,35 +139,115 @@ docker compose -f docker-compose.alwathba.yml --env-file .env.alwathba run --rm 
 
 ---
 
-## 6. HTTPS / reverse proxy (incl. Dokploy)
+## 6. Dokploy deployment
 
-Envoy is HTTP-only in this stack. Terminate TLS in front of it.
+Dokploy is the recommended way to run the Alwathba stack: it manages the
+reverse proxy (Traefik), HTTPS certificates, environment variables, deploy
+hooks, and (via CI) automatic updates.
 
-The compose binds Envoy to `127.0.0.1:${PUBLIC_PROXY_PORT}` by default (no external
-network access). When running standalone without a front proxy, update the binding to
-`'${PUBLIC_PROXY_PORT:-80}:80'` (or remove the `127.0.0.1` prefix).
+How routing works:
 
-**Generic (Traefik / Caddy / Nginx):**
-- Publish Envoy on a loopback or internal port: `PUBLIC_PROXY_PORT=8080`
-- Point your proxy at `http://<host>:8080`
-- Forward `Host` and pass through websockets; allow large request bodies for imports/uploads
+```
+Browser ──HTTPS──▶ Dokploy Traefik (:80/:443)
+                        │  Host(domain) ──▶ proxy (Envoy) :80  ← on dokploy-network
+                        ▼
+                   proxy splits paths:  /api/*  ──▶ server :3000
+                                        /      ──▶ webapp :80
+```
 
-**Dokploy:**
-1. In Dokploy, create an Application pointing at this repo/branch.
-2. Set the build/preset to **Docker Compose** with compose file `docker-compose.alwathba.yml` and env file `.env.alwathba`.
-3. Set `PUBLIC_PROXY_PORT` to a port Traefik can reach (Dokploy routes via Traefik).
-4. Add your domain in Dokploy; Dokploy/Traefik provisions the Let's Encrypt certificate and terminates TLS.
-5. Set `BASE_URL=https://your-domain` so email links and PDF callbacks use HTTPS.
+### One-time setup
 
-When behind an external TLS proxy, ensure the proxy:
-- preserves the original `Host` header
-- forwards `X-Forwarded-Proto` (so the app sees HTTPS)
-- does **not** strip `Authorization` (auth on import/export endpoints — relevant to upstream #1155)
-- allows large multipart bodies (imports / attachments)
+1. **Repo access.** In Dokploy, add the GitHub source:
+   - *Recommended:* GitHub App — install it and grant access to
+     `shihabbinali/bigcapital`. The repo is private, so a PAT or SSH deploy
+     key also works but must be managed manually.
+
+2. **Create the project.** Project → **Docker Compose** → repository
+   `shihabbinali/bigcapital`, branch `alwathba-merged`, compose path
+   `docker-compose.dokploy.yml`.
+
+3. **Environment variables.** Open the **Environment** tab and paste the
+   contents of `.env.alwathba.example` with real values, plus `DOCKERHUB_USER`:
+
+   | Variable | Value |
+   |---|---|
+   | `APP_JWT_SECRET` | `openssl rand -hex 48` |
+   | `DB_PASSWORD`, `DB_ROOT_PASSWORD` | random hex (`openssl rand -hex 16`) |
+   | `BASE_URL` | `https://your-domain` |
+   | `DOCKERHUB_USER` | your Docker Hub namespace (e.g. `shihabbinali`) |
+   | `S3_REGION`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY`, `S3_ENDPOINT`, `S3_BUCKET` | Cloudflare R2 credentials |
+
+   Dokploy writes these into an env file that is passed to
+   `docker compose --env-file`, so every `${VAR}` in the compose file resolves.
+
+4. **Domain.** **Domains** tab → add your domain → service `proxy`, container
+   port **80**, HTTPS enabled. Dokploy injects the Traefik labels automatically
+   and provisions the Let's Encrypt certificate (needs port 80/443 open and DNS
+   pointing at the server first).
+
+   > The `proxy` service is the only one connected to Dokploy's
+   > `dokploy-network`; Traefik must never reach `mysql`/`redis` directly.
+
+5. **DNS.** Create an `A` record: `your-domain` → your server's public IP. Wait
+   for propagation (`dig +short your-domain`), then click **Deploy**.
+
+6. **First deploy.** Dokploy pulls the images (no source build) and runs the
+   compose stack: mysql/redis start, the migration one-shot runs
+   system+tenant migrations, then the server comes up healthy. Check the
+   project **Logs** for `server` → `healthy` and open `https://your-domain`.
+
+7. **Deploy webhook (for auto-updates).** Project **Settings** → copy the
+   **Deploy Hook** URL. Store it as a GitHub Actions secret:
+
+   ```bash
+   gh secret set DOKPLOY_DEPLOY_WEBHOOK   # paste the URL
+   ```
+
+   Also ensure `DOCKER_USERNAME` and `DOCKER_PASSWORD` (Docker Hub) exist as
+   repository secrets.
+
+### Upgrade / rollback
+
+- **Upgrade:** `git push` to `alwathba-merged` — CI does the rest (see §7).
+- **Rollback:** the workflow also tags every build as `alwathba-<sha>`.
+  Temporarily point the compose image at the previous SHA tag, or run the
+  previous workflow run's images via the **Deploy** button.
+
+## 7. Auto-updates (CI/CD)
+
+`.github/workflows/docker-alwathba.yml` implements the update pipeline:
+
+```
+git push (alwathba-merged)
+   │
+   ▼  GitHub Actions
+build server image ──┐
+                     ├─▶ push to Docker Hub: <user>/bigcapital-server:alwathba
+build webapp image ──┘                              <user>/bigcapital-webapp:alwathba
+                     (plus immutable :alwathba-<sha> tags)
+   │ both succeeded
+   ▼
+POST https://dokploy.../deploy (secret DOKPLOY_DEPLOY_WEBHOOK)
+   │
+   ▼  Dokploy
+docker compose up -d  →  pulls new images, recreates containers,
+                          re-runs the migration one-shot
+```
+
+Notes:
+
+- The deploy webhook fires **only after both images are pushed**, so Dokploy
+  never pulls a half-updated pair.
+- The migration one-shot re-runs on every redeploy (system + tenant
+  migrations), so schema changes ship with the code that uses them.
+- Secret prerequisites: `DOCKER_USERNAME`, `DOCKER_PASSWORD`
+  (Docker Hub), `DOKPLOY_DEPLOY_WEBHOOK` (Dokploy). If the webhook secret is
+  missing the workflow still pushes images and only warns.
+- Images are built for `linux/amd64` only — fine for standard VPSs.
 
 ---
 
-## 7. Known issues & mitigations
+## 8. Known issues & mitigations
 
 ### Fixed on this branch
 - **JWT secret silently defaulting to `123123`** — upstream `docker-compose.prod.yml` passes `JWT_SECRET`, but the code reads `APP_JWT_SECRET`. This branch passes the correct name.
@@ -162,8 +256,8 @@ When behind an external TLS proxy, ensure the proxy:
 - **Gotenberg port confusion** — documented; `GOTENBERG_URL=http://gotenberg:3000`.
 - **Forced subscription screen on self-host** — `HOSTED_ON_BIGCAPITAL_CLOUD=false`.
 
-### Avoided by building from source
-- **#1155 PDF "No mutationFn found"** — caused by webapp/server image version skew on Docker Hub. Building both from the same commit removes the skew.
+### Avoided by pairing images from the same commit
+- **#1155 PDF "No mutationFn found"** — caused by webapp/server image version skew. The CI workflow builds both images from the same commit and only then triggers the redeploy, so they can never diverge.
 
 ### Still upstream (tracked, not fixed here)
 - **MariaDB 10.2 is EOL** (June 2022). Kept on 10.2 for compatibility. Consider upgrading to 10.11 LTS.
@@ -172,11 +266,13 @@ When behind an external TLS proxy, ensure the proxy:
 
 ---
 
-## 8. Where things live
+## 9. Where things live
 
 | Path | Purpose |
 |---|---|
-| `docker-compose.alwathba.yml` | Source-build production compose (this branch) |
+| `docker-compose.alwathba.yml` | Source-build production compose (manual VPS deploys) |
+| `docker-compose.dokploy.yml` | Dokploy compose (prebuilt Docker Hub images) |
+| `.github/workflows/docker-alwathba.yml` | CI: build images → push to Docker Hub → trigger Dokploy |
 | `.env.alwathba.example` | Environment template |
 | `packages/server/Dockerfile` | Server image build (multi-stage) |
 | `packages/webapp/Dockerfile` | Webapp image build (Vite → nginx) |
