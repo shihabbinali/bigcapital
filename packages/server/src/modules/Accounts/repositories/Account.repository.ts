@@ -7,6 +7,7 @@ import { I18nService } from 'nestjs-i18n';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import {
   DiscountExpenseAccount,
+  FundsHeldForSuppliersAccount,
   OtherChargesAccount,
   OtherExpensesAccount,
   PrepardExpenses,
@@ -228,6 +229,34 @@ export class AccountRepository extends TenantRepository {
     if (!result) {
       result = await this.model.query(trx).insertAndFetch({
         ...UnearnedRevenueAccount,
+        ..._extraAttrs,
+      });
+    }
+    return result;
+  }
+
+  /**
+   * Finds or creates the funds held for suppliers account.
+   * @param {Record<string, string>} extraAttrs
+   * @param {Knex.Transaction} trx
+   * @returns
+   */
+  public async findOrCreateFundsHeldForSuppliers(
+    extraAttrs: Record<string, string> = {},
+    trx?: Knex.Transaction,
+  ) {
+    const tenantMeta = await this.tenancyContext.getTenantMetadata();
+    const _extraAttrs = {
+      currencyCode: tenantMeta.baseCurrency,
+      ...extraAttrs,
+    };
+    let result = await this.model
+      .query(trx)
+      .findOne({ slug: FundsHeldForSuppliersAccount.slug, ..._extraAttrs });
+
+    if (!result) {
+      result = await this.model.query(trx).insertAndFetch({
+        ...FundsHeldForSuppliersAccount,
         ..._extraAttrs,
       });
     }

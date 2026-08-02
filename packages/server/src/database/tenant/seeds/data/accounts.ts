@@ -32,6 +32,19 @@ export const UnearnedRevenueAccount = {
   predefined: true,
 };
 
+export const FundsHeldForSuppliersAccount = {
+  name: 'Funds Held for Suppliers',
+  slug: 'funds-held-for-suppliers',
+  account_type: 'other-current-liability',
+  parent_account_id: null,
+  description:
+    'Holds the cost portion of service sales (e.g. flight tickets) owed to suppliers.',
+  code: '20007',
+  active: true,
+  index: 1,
+  predefined: true,
+};
+
 export const PrepardExpenses = {
   name: 'Prepaid Expenses',
   slug: 'prepaid-expenses',
@@ -231,6 +244,7 @@ export const AccountsData = [
     predefined: 0,
   },
   TaxPayableAccount,
+  FundsHeldForSuppliersAccount,
 
   // Equity
   {
