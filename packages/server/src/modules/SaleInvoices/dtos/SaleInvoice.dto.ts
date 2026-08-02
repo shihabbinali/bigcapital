@@ -43,11 +43,24 @@ class AttachmentDto {
 }
 
 class CommandSaleInvoiceDto {
+  @IsOptional()
   @ToNumber()
   @IsInt()
-  @IsNotEmpty()
-  @ApiProperty({ description: 'Customer ID', example: 1 })
-  customerId: number;
+  @ApiProperty({
+    description: 'Customer ID (omit for walk-in customer)',
+    required: false,
+    example: 1,
+  })
+  customerId?: number;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty({
+    description: 'Walk-in customer name (used when no customer ID)',
+    required: false,
+    example: 'Walk-in Customer',
+  })
+  customerName?: string;
 
   @IsDateString()
   @IsNotEmpty()

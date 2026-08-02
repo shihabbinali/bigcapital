@@ -1,5 +1,5 @@
 import { Knex } from 'knex';
-import { Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import {
   ISaleInvoiceEditDTO,
   ISaleInvoiceEditedPayload,
@@ -61,11 +61,18 @@ export class EditSaleInvoice {
     // Validates the given invoice existance.
     this.validators.validateInvoiceExistance(oldSaleInvoice);
 
-    // Validate customer existance.
-    const customer = await this.customerModel()
-      .query()
-      .findById(saleInvoiceDTO.customerId)
-      .throwIfNotFound();
+    // Validate customer existance (walk-in: no customer record).
+    let customer: Customer = null;
+    if (saleInvoiceDTO.customerId) {
+      customer = await this.customerModel()
+        .query()
+        .findById(saleInvoiceDTO.customerId)
+        .throwIfNotFound();
+    } else if (!saleInvoiceDTO.customerName) {
+      throw new BadRequestException(
+        'Either customer ID or customer name should be provided.',
+      );
+    }
 
     // Validate items ids existance.
     await this.itemsEntriesService.validateItemsIdsExistance(
@@ -139,7 +146,7 @@ export class EditSaleInvoice {
    * @param {ISaleInvoice} oldSaleInvoice
    */
   private tranformEditDTOToModel = async (
-    customer: Customer,
+    customer: Customer | null,
     saleInvoiceDTO: EditSaleInvoiceDto,
     oldSaleInvoice: SaleInvoice,
   ) => {

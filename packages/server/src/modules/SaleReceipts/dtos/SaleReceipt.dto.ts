@@ -31,14 +31,24 @@ class AttachmentDto {
 }
 
 export class CommandSaleReceiptDto {
-  @IsNotEmpty()
+  @IsOptional()
   @ToNumber()
   @IsNumber()
   @ApiProperty({
-    description: 'The id of the customer',
+    description: 'The id of the customer (omit for walk-in)',
+    required: false,
     example: 1,
   })
-  customerId: number;
+  customerId?: number;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty({
+    description: 'Walk-in customer name (used when no customer ID)',
+    required: false,
+    example: 'Walk-in Customer',
+  })
+  customerName?: string;
 
   @IsOptional()
   @ToNumber()

@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { Knex } from 'knex';
 import {
   ISaleReceiptEditedPayload,
@@ -49,11 +49,18 @@ export class EditSaleReceipt {
       .withGraphFetched('entries')
       .throwIfNotFound();
 
-    // Retrieves the payment customer model.
-    const paymentCustomer = await this.customerModel()
-      .query()
-      .findById(saleReceiptDTO.customerId)
-      .throwIfNotFound();
+    // Retrieves the payment customer model (walk-in: no customer record).
+    let paymentCustomer: Customer = null;
+    if (saleReceiptDTO.customerId) {
+      paymentCustomer = await this.customerModel()
+        .query()
+        .findById(saleReceiptDTO.customerId)
+        .throwIfNotFound();
+    } else if (!saleReceiptDTO.customerName) {
+      throw new BadRequestException(
+        'Either customer ID or customer name should be provided.',
+      );
+    }
 
     // Transform sale receipt DTO to model.
     const saleReceiptObj = await this.dtoTransformer.transformDTOToModel(

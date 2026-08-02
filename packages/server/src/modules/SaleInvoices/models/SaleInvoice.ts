@@ -49,6 +49,7 @@ export class SaleInvoice extends TenantBaseModel {
   public adjustment: number;
 
   public customerId: number;
+  public customerName: string;
   public invoiceNo: string;
   public referenceNo: string;
 

@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Knex } from 'knex';
 import {
@@ -60,11 +60,18 @@ export class CreateSaleInvoice {
     saleInvoiceDTO: CreateSaleInvoiceDto,
     trx?: Knex.Transaction,
   ): Promise<SaleInvoice> => {
-    // Validate customer existance.
-    const customer = await this.customerModel()
-      .query()
-      .findById(saleInvoiceDTO.customerId)
-      .throwIfNotFound();
+    // Validate customer existance (walk-in: no customer record).
+    let customer: Customer = null;
+    if (saleInvoiceDTO.customerId) {
+      customer = await this.customerModel()
+        .query()
+        .findById(saleInvoiceDTO.customerId)
+        .throwIfNotFound();
+    } else if (!saleInvoiceDTO.customerName) {
+      throw new BadRequestException(
+        'Either customer ID or customer name should be provided.',
+      );
+    }
 
     // Validate the from estimate id exists on the storage.
     if (saleInvoiceDTO.fromEstimateId) {
@@ -130,7 +137,7 @@ export class CreateSaleInvoice {
    * @param {ISaleInvoiceCreateDTO} saleInvoiceDTO -
    */
   private transformCreateDTOToModel = async (
-    customer: Customer,
+    customer: Customer | null,
     saleInvoiceDTO: CreateSaleInvoiceDto,
   ) => {
     return this.transformerDTO.transformDTOToModel(customer, saleInvoiceDTO);

@@ -53,7 +53,7 @@ export class CommandSaleInvoiceDTOTransformer {
    * @return {ISaleInvoice}
    */
   public async transformDTOToModel(
-    customer: Customer,
+    customer: Customer | null,
     saleInvoiceDTO: CreateSaleInvoiceDto | EditSaleInvoiceDto,
     oldSaleInvoice?: SaleInvoice,
   ): Promise<SaleInvoice> {
@@ -65,6 +65,10 @@ export class CommandSaleInvoiceDTOTransformer {
 
     // Retrieve the authorized user.
     const authorizedUser = await this.tenancyContext.getSystemUser();
+
+    // Currency: use customer currency, or fall back to org base currency for walk-ins.
+    const tenantMeta = await this.tenancyContext.getTenantMetadata();
+    const currencyCode = customer ? customer.currencyCode : tenantMeta.baseCurrency;
 
     // Invoice number.
     const invoiceNo =
@@ -107,7 +111,7 @@ export class CommandSaleInvoiceDTOTransformer {
       ),
       // Avoid rewrite the deliver date in edit mode when already published.
       balance: amount,
-      currencyCode: customer.currencyCode,
+      currencyCode: currencyCode,
       exchangeRate: saleInvoiceDTO.exchangeRate || 1,
       ...(saleInvoiceDTO.delivered &&
         !oldSaleInvoice?.deliveredAt && {

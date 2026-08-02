@@ -39,6 +39,7 @@ export class SaleReceipt extends ExtendedModel {
   public currencyCode!: string;
   public depositAccountId!: number;
   public customerId!: number;
+  public customerName!: string;
   public receiptDate!: Date;
   public receiptNumber!: string;
   public referenceNo!: string;

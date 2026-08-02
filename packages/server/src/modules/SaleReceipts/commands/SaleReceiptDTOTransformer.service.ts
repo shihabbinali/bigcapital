@@ -12,6 +12,7 @@ import { BrandingTemplateDTOTransformer } from '@/modules/PdfTemplate/BrandingTe
 import { ItemEntry } from '@/modules/TransactionItemEntry/models/ItemEntry';
 import { formatDateFields } from '@/utils/format-date-fields';
 import { assocItemEntriesDefaultIndex } from '@/utils/associate-item-entries-index';
+import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { SaleReceipt } from '../models/SaleReceipt';
 import { Customer } from '@/modules/Customers/models/Customer';
 import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
@@ -38,6 +39,7 @@ export class SaleReceiptDTOTransformer {
     private readonly validators: SaleReceiptValidators,
     private readonly receiptIncrement: SaleReceiptIncrement,
     private readonly brandingTemplatesTransformer: BrandingTemplateDTOTransformer,
+    private readonly tenancyContext: TenancyContext,
 
     @Inject(ItemEntry.name)
     private readonly itemEntryModel: TenantModelProxy<typeof ItemEntry>,
@@ -51,7 +53,7 @@ export class SaleReceiptDTOTransformer {
    */
   async transformDTOToModel(
     saleReceiptDTO: CreateSaleReceiptDto | EditSaleReceiptDto,
-    paymentCustomer: Customer,
+    paymentCustomer: Customer | null,
     oldSaleReceipt?: SaleReceipt,
   ): Promise<SaleReceipt> {
     const amount = sumBy(saleReceiptDTO.entries, (e) =>
@@ -83,13 +85,19 @@ export class SaleReceiptDTOTransformer {
       assocItemEntriesDefaultIndex,
     )(asyncEntries);
 
+    // Currency: use customer currency, or fall back to org base currency for walk-ins.
+    const tenantMeta = await this.tenancyContext.getTenantMetadata();
+    const currencyCode = paymentCustomer
+      ? paymentCustomer.currencyCode
+      : tenantMeta.baseCurrency;
+
     const initialDTO = {
       amount,
       ...formatDateFields(
         omit(saleReceiptDTO, ['closed', 'entries', 'attachments']),
         ['receiptDate'],
       ),
-      currencyCode: paymentCustomer.currencyCode,
+      currencyCode: currencyCode,
       exchangeRate: saleReceiptDTO.exchangeRate || 1,
       receiptNumber,
       // Avoid rewrite the deliver date in edit mode when already published.

@@ -31,8 +31,20 @@ export class SaleReceiptResponseDto {
   })
   referenceNo?: string;
 
-  @ApiProperty({ description: 'The ID of the customer', example: 1 })
-  customerId: number;
+  @ApiProperty({
+    description: 'The ID of the customer (null for walk-in)',
+    example: 1,
+    required: false,
+    nullable: true,
+  })
+  customerId?: number;
+
+  @ApiProperty({
+    description: 'Walk-in customer name (when no customer ID)',
+    example: 'Walk-in Customer',
+    required: false,
+  })
+  customerName?: string;
 
   @ApiProperty({
     description: 'The customer details',
