@@ -392,6 +392,8 @@
   "value": "القيمة",
   "you_reached_conditions_limit": "لقد وصلت إلى حد المشروط.",
   "customer_name": "اسم الزبون",
+  "walkin_customer_name": "اسم الزبون العابر (اختياري)",
+  "customer_or_name_required": "اختر زبوناً أو أدخل اسماً",
   "as_date": "كتاريخ",
   "aging_before_days": "الايام قبل الاعمار",
   "aging_periods": "فترات الاعمار ",

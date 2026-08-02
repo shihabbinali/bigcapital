@@ -46,9 +46,13 @@ export default function ReceiptDetailHeader() {
               children={defaultTo(receipt.receipt_number, '-')}
             />
             <DetailItem label={intl.get('customer_name')}>
-              <CustomerDrawerLink customerId={receipt.customer_id}>
-                {receipt.customer?.display_name}
-              </CustomerDrawerLink>
+              {receipt.customer_id ? (
+                <CustomerDrawerLink customerId={receipt.customer_id}>
+                  {receipt.customer?.display_name}
+                </CustomerDrawerLink>
+              ) : (
+                defaultTo(receipt.customer_name, '--')
+              )}
             </DetailItem>
             <DetailItem
               label={intl.get('receipt_date')}

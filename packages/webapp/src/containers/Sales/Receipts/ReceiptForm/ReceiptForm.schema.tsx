@@ -5,7 +5,11 @@ import { DATATYPES_LENGTH } from '@/constants/dataTypes';
 import { isBlank } from '@/utils';
 
 const Schema = Yup.object().shape({
-  customer_id: Yup.string().label(intl.get('customer_name_')).required(),
+  customer_id: Yup.string().nullable().label(intl.get('customer_name_')),
+  customer_name: Yup.string()
+    .nullable()
+    .max(DATATYPES_LENGTH.STRING)
+    .label(intl.get('customer_name_')),
   receipt_date: Yup.date().required().label(intl.get('receipt_date_')),
   receipt_number: Yup.string()
     .nullable()
@@ -48,8 +52,13 @@ const Schema = Yup.object().shape({
       discount: Yup.number().nullable().min(0).max(DATATYPES_LENGTH.INT_10),
       description: Yup.string().nullable().max(DATATYPES_LENGTH.TEXT),
     }),
-  ),
-});
+    ),
+  })
+  .test(
+    'customer-or-name',
+    intl.get('customer_or_name_required'),
+    (value) => !!value.customer_id || !!value.customer_name,
+  );
 
 const CreateReceiptFormSchema = Schema;
 const EditReceiptFormSchema = Schema;

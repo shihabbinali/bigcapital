@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import classNames from 'classnames';
 import { Position, Classes } from '@blueprintjs/core';
 import { useFormikContext } from 'formik';
+import intl from 'react-intl-universal';
 import { css } from '@emotion/css';
 import { Theme, useTheme } from '@emotion/react';
 
@@ -167,6 +168,7 @@ function InvoiceFormCustomerSelect() {
     // If the customer id has changed change the customer id and currency code.
     if (values.customer_id !== customer.id) {
       setFieldValue('customer_id', customer.id);
+      setFieldValue('customer_name', '');
       setFieldValue('currency_code', customer?.currency_code);
     }
     updateEntries(customer);
@@ -192,6 +194,15 @@ function InvoiceFormCustomerSelect() {
         shouldUpdate={customerNameFieldShouldUpdate}
         shouldUpdateDeps={{ items: customers }}
       />
+      {!values.customer_id && (
+        <FInputGroup
+          name={'customer_name'}
+          placeholder={intl.get('walkin_customer_name')}
+          fill={true}
+          fastField={true}
+          style={{ marginTop: 6 }}
+        />
+      )}
       {values.customer_id && (
         <CustomerButtonLink customerId={values.customer_id}>
           <T id={'view_customer_details'} />

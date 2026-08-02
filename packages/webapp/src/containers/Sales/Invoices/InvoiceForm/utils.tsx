@@ -53,6 +53,7 @@ export const defaultInvoiceEntry = {
 // Default invoice object.
 export const defaultInvoice = {
   customer_id: '',
+  customer_name: '',
   invoice_date: moment(new Date()).format('YYYY-MM-DD'),
   due_date: moment().format('YYYY-MM-DD'),
   delivered: '',

@@ -8,7 +8,11 @@ import { TaxType } from '@/interfaces/TaxRates';
 
 const getSchema = () =>
   Yup.object().shape({
-    customer_id: Yup.string().label(intl.get('customer_name_')).required(),
+    customer_id: Yup.string().nullable().label(intl.get('customer_name_')),
+    customer_name: Yup.string()
+      .nullable()
+      .max(DATATYPES_LENGTH.STRING)
+      .label(intl.get('customer_name_')),
     invoice_date: Yup.date().required().label(intl.get('invoice_date_')),
     due_date: Yup.date()
       .min(Yup.ref('invoice_date'), ({ path, min }) =>
@@ -63,7 +67,12 @@ const getSchema = () =>
         description: Yup.string().nullable().max(DATATYPES_LENGTH.TEXT),
       }),
     ),
-  });
+  })
+  .test(
+    'customer-or-name',
+    intl.get('customer_or_name_required'),
+    (value) => !!value.customer_id || !!value.customer_name,
+  );
 
 export const getCreateInvoiceFormSchema = getSchema;
 export const getEditInvoiceFormSchema = getSchema;

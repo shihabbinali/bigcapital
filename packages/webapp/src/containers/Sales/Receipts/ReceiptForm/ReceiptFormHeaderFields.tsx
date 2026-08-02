@@ -7,6 +7,7 @@ import { Position, Classes } from '@blueprintjs/core';
 import { css } from '@emotion/css';
 import { Theme, useTheme } from '@emotion/react';
 
+import intl from 'react-intl-universal';
 import { ACCOUNT_TYPE } from '@/constants/accountTypes';
 import { Features } from '@/constants';
 import {
@@ -157,6 +158,7 @@ function ReceiptFormCustomerSelect() {
   // Handles the customer item change.
   const handleItemChange = (customer) => {
     setFieldValue('customer_id', customer.id);
+    setFieldValue('customer_name', '');
     setFieldValue('currency_code', customer?.currency_code);
 
     updateEntries(customer);
@@ -183,6 +185,15 @@ function ReceiptFormCustomerSelect() {
         shouldUpdate={customersFieldShouldUpdate}
         shouldUpdateDeps={{ items: customers }}
       />
+      {!values.customer_id && (
+        <FInputGroup
+          name={'customer_name'}
+          placeholder={intl.get('walkin_customer_name')}
+          fill={true}
+          fastField={true}
+          style={{ marginTop: 6 }}
+        />
+      )}
       {values.customer_id && (
         <CustomerButtonLink customerId={values.customer_id}>
           <T id={'view_customer_details'} />

@@ -48,6 +48,7 @@ const defaultReceiptEntryReq = {
 
 export const defaultReceipt = {
   customer_id: '',
+  customer_name: '',
   deposit_account_id: '',
   receipt_number: '',
   // Holds the receipt number that entered manually only.

@@ -199,7 +199,8 @@ export function useInvoicesTableColumns() {
       {
         id: 'customer',
         Header: intl.get('customer_name'),
-        accessor: 'customer.display_name',
+        accessor: (row) =>
+          row.customer?.display_name || row.customer_name || '',
         width: 180,
         className: 'customer_id',
         clickable: true,

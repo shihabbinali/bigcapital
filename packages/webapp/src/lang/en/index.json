@@ -384,6 +384,8 @@
   "value": "Value",
   "you_reached_conditions_limit": "You have reached to conditions limit.",
   "customer_name": "Customer Name",
+  "walkin_customer_name": "Walk-in customer name (optional)",
+  "customer_or_name_required": "Select a customer or enter a walk-in name",
   "as_date": "As Date",
   "aging_before_days": "Aging before days",
   "aging_periods": "Aging periods",

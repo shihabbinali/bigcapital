@@ -49,9 +49,13 @@ export default function InvoiceDetailHeader() {
             </DetailItem>
 
             <DetailItem label={intl.get('customer_name')}>
-              <CustomerDrawerLink customerId={invoice.customer_id}>
-                {invoice.customer?.display_name}
-              </CustomerDrawerLink>
+              {invoice.customer_id ? (
+                <CustomerDrawerLink customerId={invoice.customer_id}>
+                  {invoice.customer?.display_name}
+                </CustomerDrawerLink>
+              ) : (
+                defaultTo(invoice.customer_name, '--')
+              )}
             </DetailItem>
 
             <DetailItem label={intl.get('invoice.details.invoice_no')}>
