@@ -50,7 +50,7 @@ export class GetInvoicePaymentLinkMetaTransformer extends SaleInvoiceTransformer
   };
 
   public customerName(invoice) {
-    return invoice.customer.displayName;
+    return invoice.customer?.displayName || invoice.customerName || '';
   }
 
   /**
@@ -133,7 +133,8 @@ export class GetInvoicePaymentLinkMetaTransformer extends SaleInvoiceTransformer
   protected formattedCustomerAddress(invoice) {
     return contactAddressTextFormat(
       invoice.customer,
-      this.customerAddressFormat
+      this.customerAddressFormat,
+      invoice.customerName
     );
   }
 }

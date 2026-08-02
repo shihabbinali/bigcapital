@@ -58,7 +58,7 @@ export class GetSaleInvoiceMailStateTransformer extends SaleInvoiceTransformer {
    * @returns {string}
    */
   protected customerName = (invoice) => {
-    return invoice.customer.displayName;
+    return invoice.customer?.displayName || invoice.customerName || '';
   };
 
   /**

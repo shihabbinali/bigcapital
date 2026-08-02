@@ -89,7 +89,7 @@ export function ReceiptUniversalSearchItem(
  */
 const transformReceiptsToSearch = (receipt) => ({
   id: receipt.id,
-  text: receipt.customer.display_name,
+  text: receipt.customer?.display_name || receipt.customer_name || '',
   label: receipt.formatted_amount,
   reference: receipt,
 });

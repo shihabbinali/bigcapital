@@ -49,7 +49,7 @@ export class GetSaleReceiptMailStateTransformer extends Transformer {
    * @returns {string}
    */
   protected customerName = (receipt) => {
-    return receipt.customer.displayName;
+    return receipt.customer?.displayName || receipt.customerName || '';
   };
 
   /**

@@ -83,9 +83,25 @@ export const defaultContactAddressFormat = `{CONTACT_NAME}
 `;
 
 export const contactAddressTextFormat = (
-  contact: Contact,
-  message: string = defaultContactAddressFormat
+  contact: Contact | null,
+  message: string = defaultContactAddressFormat,
+  customerName?: string,
 ) => {
+  if (!contact) {
+    const replacements: Record<string, string> = {
+      CONTACT_NAME: customerName || '',
+      ADDRESS_1: '',
+      ADDRESS_2: '',
+      CITY: '',
+      STATE: '',
+      POSTAL_CODE: '',
+      COUNTRY: '',
+      EMAIL: '',
+      PHONE: '',
+    };
+    return formatText(message, replacements);
+  }
+
   const args = {
     displayName: contact.displayName,
     address1: contact.billingAddress1,

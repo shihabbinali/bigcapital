@@ -105,7 +105,7 @@ export function InvoiceUniversalSearchItem(
  */
 const transformInvoicesToSearch = (invoice) => ({
   id: invoice.id,
-  text: invoice.customer.display_name,
+  text: invoice.customer?.display_name || invoice.customer_name || '',
   label: invoice.formatted_balance,
   reference: invoice,
 });

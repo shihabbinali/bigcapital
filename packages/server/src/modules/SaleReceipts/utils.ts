@@ -25,13 +25,13 @@ export const transformReceiptToBrandingTemplateAttributes = (
     discountLabel: saleReceipt.discountPercentageFormatted
       ? `Discount [${saleReceipt.discountPercentageFormatted}]`
       : 'Discount',
-    customerAddress: contactAddressTextFormat(saleReceipt.customer),
+    customerAddress: contactAddressTextFormat(saleReceipt.customer, undefined, saleReceipt.customerName),
   };
 };
 
 export const transformReceiptToMailDataArgs = (saleReceipt: any) => {
   return {
-    'Customer Name': saleReceipt.customer.displayName,
+    'Customer Name': saleReceipt.customer?.displayName || saleReceipt.customerName || '',
     'Receipt Number': saleReceipt.receiptNumber,
     'Receipt Date': saleReceipt.formattedReceiptDate,
     'Receipt Amount': saleReceipt.formattedAmount,

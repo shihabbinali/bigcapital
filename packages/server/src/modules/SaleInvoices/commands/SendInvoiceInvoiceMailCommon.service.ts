@@ -106,7 +106,7 @@ export class SendSaleInvoiceMailCommon {
 
     return {
       ...commonArgs,
-      'Customer Name': invoice.customer.displayName,
+      'Customer Name': invoice.customer?.displayName || invoice.customerName || '',
       'Invoice Number': invoice.invoiceNo,
       'Invoice Due Amount': invoice.dueAmountFormatted,
       'Invoice Due Date': invoice.dueDateFormatted,

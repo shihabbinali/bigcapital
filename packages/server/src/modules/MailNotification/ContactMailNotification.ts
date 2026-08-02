@@ -27,6 +27,14 @@ export class ContactMailNotification {
   ): Promise<
     Pick<CommonMailOptions, 'to' | 'from' | 'toOptions' | 'fromOptions'>
   > {
+    // Walk-in customers have no contact record — return empty mail options.
+    if (!customerId) {
+      const fromOptions = await this.mailTenancy.senders();
+      const fromAddress = fromOptions.find((a) => a.primary);
+      const from = fromAddress?.mail ? castArray(fromAddress?.mail) : [];
+      return { to: [], from, toOptions: [], fromOptions };
+    }
+
     const customer = await this.customerModel()
       .query()
       .findById(customerId)

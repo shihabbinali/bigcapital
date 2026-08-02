@@ -48,6 +48,6 @@ export const transformInvoiceToPdfTemplate = (
     discountLabel: invoice.discountPercentageFormatted
       ? `Discount [${invoice.discountPercentageFormatted}]`
       : 'Discount',
-    customerAddress: contactAddressTextFormat(invoice.customer),
+    customerAddress: contactAddressTextFormat(invoice.customer, undefined, invoice.customerName),
   };
 };
