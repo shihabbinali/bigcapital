@@ -719,6 +719,15 @@ export const SidebarMenu = [
             },
           },
           {
+            text: <T id={'sales_profit.sidebar'} />,
+            href: '/financial-reports/sales-profit',
+            type: ISidebarMenuItemType.Link,
+            permission: {
+              subject: AbilitySubject.Report,
+              ability: ReportsAction.READ_SALES_PROFIT,
+            },
+          },
+          {
             text: <T id={'sidebar.customers_transactions'} />,
             href: '/financial-reports/transactions-by-customers',
             type: ISidebarMenuItemType.Link,

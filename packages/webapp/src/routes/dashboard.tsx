@@ -332,6 +332,19 @@ export const getDashboardRoutes = () => [
     subscriptionActive: [SUBSCRIPTION_TYPE.MAIN],
   },
   {
+    path: `/financial-reports/sales-profit`,
+    component: lazy(
+      () =>
+        import('@/containers/FinancialStatements/SalesProfit/SalesProfit'),
+    ),
+    breadcrumb: intl.get('sales_profit'),
+    pageTitle: intl.get('sales_profit'),
+    hint: intl.get('sales_profit.desc'),
+    backLink: true,
+    sidebarExpand: false,
+    subscriptionActive: [SUBSCRIPTION_TYPE.MAIN],
+  },
+  {
     path: `/financial-reports/inventory-valuation`,
     component: lazy(
       () =>

@@ -607,6 +607,10 @@ export const getPermissionsSchema = () => [
             key: ReportsAction.READ_SALES_BY_ITEMS,
           },
           {
+            label: intl.get('permissions.sales_profit'),
+            key: ReportsAction.READ_SALES_PROFIT,
+          },
+          {
             label: intl.get('permissions.customers_transactions'),
             key: ReportsAction.READ_CUSTOMERS_TRANSACTIONS,
           },

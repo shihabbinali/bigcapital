@@ -117,6 +117,19 @@ export function toggleSalesByItemsFilterDrawer(toggle) {
     },
   };
 }
+
+/**
+ * Toggles display of the sales profit filter drawer.
+ * @param {boolean} toggle
+ */
+export function toggleSalesProfitFilterDrawer(toggle) {
+  return {
+    type: `${t.SALES_PROFIT}/${t.DISPLAY_FILTER_DRAWER_TOGGLE}`,
+    payload: {
+      toggle,
+    },
+  };
+}
 /**
  * Toggles display of the inventory valuation filter drawer.
  * @param {boolean} toggle

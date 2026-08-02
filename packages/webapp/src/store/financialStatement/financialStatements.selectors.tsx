@@ -46,6 +46,10 @@ export const purchasesByItemsFilterDrawerSelector = (state) => {
 export const salesByItemsFilterDrawerSelector = (state) => {
   return filterDrawerByTypeSelector('salesByItems')(state);
 };
+
+export const salesProfitFilterDrawerSelector = (state) => {
+  return filterDrawerByTypeSelector('salesProfit')(state);
+};
 export const inventoryValuationFilterDrawerSelector = (state) => {
   return filterDrawerByTypeSelector('inventoryValuation')(state);
 };
@@ -183,6 +187,16 @@ export const getPurchasesByItemsFilterDrawer = createSelector(
  */
 export const getSalesByItemsFilterDrawer = createSelector(
   salesByItemsFilterDrawerSelector,
+  (isOpen) => {
+    return isOpen;
+  },
+);
+
+/**
+ * Retrieve whether sales profit display filter drawer.
+ */
+export const getSalesProfitFilterDrawer = createSelector(
+  salesProfitFilterDrawerSelector,
   (isOpen) => {
     return isOpen;
   },

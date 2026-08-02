@@ -117,6 +117,13 @@ export const financialReportMenus = [
         ability: ReportsAction.READ_SALES_BY_ITEMS,
       },
       {
+        title: <T id={'sales_profit'} />,
+        desc: <T id={'sales_profit.desc'} />,
+        link: '/financial-reports/sales-profit',
+        subject: AbilitySubject.Report,
+        ability: ReportsAction.READ_SALES_PROFIT,
+      },
+      {
         title: <T id={'customers_balance_summary'} />,
         desc: (
           <T

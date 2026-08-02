@@ -164,6 +164,7 @@ export const ReportsAction = {
   READ_AP_AGING_SUMMARY: 'read-ap-aging-summary',
   READ_PURCHASES_BY_ITEMS: 'read-purchases-by-items',
   READ_SALES_BY_ITEMS: 'read-sales-by-items',
+  READ_SALES_PROFIT: 'read-sales-profit',
   READ_CUSTOMERS_TRANSACTIONS: 'read-customers-transactions',
   READ_VENDORS_TRANSACTIONS: 'read-vendors-transactions',
   READ_CUSTOMERS_SUMMARY_BALANCE: 'read-customers-summary-balance',

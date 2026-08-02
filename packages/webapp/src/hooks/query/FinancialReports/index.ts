@@ -10,6 +10,7 @@ export * from './use-inventory-valuation';
 export * from './use-inventory-item-details';
 export * from './use-purchases-by-items';
 export * from './use-sales-by-items';
+export * from './use-sales-profit';
 export * from './use-customer-balance-summary';
 export * from './use-vendor-balance-summary';
 export * from './use-customer-transactions';

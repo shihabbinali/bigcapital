@@ -79,6 +79,7 @@ export enum DialogsName {
   ARAgingSummaryPdfPreview = 'ARAgingSummaryPdfPreview',
   JournalPdfPreview = 'JournalPdfPreview',
   SalesByItemsPdfPreview = 'SalesByItemsPdfPreview',
+  SalesProfitPdfPreview = 'SalesProfitPdfPreview',
   PurchasesByItemsPdfPreview = 'PurchasesByItemsPdfPreview',
   VendorBalancePdfPreview = 'VendorBalancePdfPreview',
   InventoryItemDetailsPdfPreview = 'InventoryItemDetailsPdfPreview',

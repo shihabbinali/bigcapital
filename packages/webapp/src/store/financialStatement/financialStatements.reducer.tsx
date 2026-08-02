@@ -31,6 +31,9 @@ const initialState = {
   salesByItems: {
     displayFilterDrawer: false,
   },
+  salesProfit: {
+    displayFilterDrawer: false,
+  },
   inventoryValuation: {
     displayFilterDrawer: false,
   },
@@ -90,6 +93,7 @@ export default createReducer(initialState, {
   ...financialStatementFilterToggle(t.AP_AGING_SUMMARY, 'APAgingSummary'),
   ...financialStatementFilterToggle(t.PURCHASES_BY_ITEMS, 'purchasesByItems'),
   ...financialStatementFilterToggle(t.SALES_BY_ITEMS, 'salesByItems'),
+  ...financialStatementFilterToggle(t.SALES_PROFIT, 'salesProfit'),
   ...financialStatementFilterToggle(
     t.INVENTORY_VALUATION,
     'inventoryValuation',
