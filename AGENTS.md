@@ -95,7 +95,20 @@ Signup → tenant record → signin → `/setup` wizard → `POST /api/organizat
 - `AuthMailSubscriber` skips verification mail when `signupConfirmation.enabled` is false — no SMTP needed for signup.
 - `ER_BAD_DB_ERROR Unknown database 'bigcapital_tenant_<id>'` during setup is transient: the org-build BullMQ job creates the tenant DB asynchronously; the models-init guard catches and logs it. It stops once the build job completes.
 
+### Done (session 2026-08-03)
+- **Toolbar list-print for receipts** was 500ing `provider does not exist in the current context`. Root cause: `SaleReceiptsExportable` was the ONLY exportable missing the `@ExportableService({ name: SaleReceipt.name })` decorator. Without it `getExportableService('SaleReceipt')` returns `undefined` -> `ModuleRef.resolve(undefined)` in `ExportService.ts:125` 500s. **Every exportable must carry `@ExportableService({ name: <Model>.name })`** (same fix already applied to invoice in `04c25bd31`).
+- **Silent "print does nothing"**: `useRequestPdf` (`webapp/src/hooks/useRequestPdf.tsx`) and `use-export-pdf.ts` have **no `.catch`**, so a server 5xx leaves `pdfUrl=''` (anchor `href=""`) / no download and shows no UI error. Any new PDF/print feature should add a `.catch` (toast) for visibility.
+- **Receipt PDF printed blank Customer Note / Terms**: `transformReceiptToBrandingTemplateAttributes` (`SaleReceipts/utils.ts`) didn't pass `customerNote`/`termsConditions`, so the sample text in `defaultSaleReceiptBrandingAttributes` (`constants.ts`) leaked into the print. Fixed by passing real (possibly empty) values; template already hides empties via `!isEmpty`. **`sales_receipts` lacked a `terms_conditions` column** (unlike `sales_invoices`); added via tenant migration `20260802000003_add_terms_conditions_to_sales_receipts` (+ model/DTO/response-DTO field `termsConditions`).
+- **Receipt signature block** added (mirror of invoice): props + 2-column Customer/Authorized signature block in `shared/pdf-templates/src/components/ReceiptPaperTemplate.tsx` AND `webapp/.../ReceiptCustomize/ReceiptPaperTemplate.tsx`. Note webapp uses Blueprint `Text` -> pass `style={{ fontSize, color, fontWeight }}`, NOT individual props.
+- **sdk-ts build was broken** (blocked `pnpm build`): `fetch-utils.ts` imported `./middleware/snake-case-request-middleware` and `./middleware/error-reporter-middleware` which didn't exist (only `camel-case-middleware.ts`). Created both (Middleware type = `(url, init, next) => Promise<ApiResponse>`, `init.headers` is a `Headers`). Now builds green.
+
+### Notes / gotchas
+- **`@bigcapital/pdf-templates` runtime uses the BUILT `dist`** (symlink; `main: ./dist/components.umd.js`). Edits to `shared/pdf-templates/src/**` do NOT take effect until `pnpm run build:shared` regenerates `dist`, then restart server.
+- **Node 18 required for pnpm/CLI**: under Node 23, `corepack` throws `Cannot find matching keyid`. Prefix commands with `export PATH="/home/spro/.nvm/versions/node/v18.20.8/bin:$PATH"` (or run e.g. `pnpm run tenants:migrate:latest` under Node 18).
+- **Tenant DB table names are UPPERCASE** (`SALES_RECEIPTS`, `PDF_TEMPLATES`, `ACCOUNTS`, ...) with `lower_case_table_names=0` (case-sensitive). Reading/writing directly via the `mysql` CLI MUST use uppercase table+column names (e.g. `TERMS_CONDITIONS`). The app/knex models query lowercase and work (there's an internal reconciliation), so inspect columns via the app models, not the raw CLI.
+
 ### Open
+
 - Logo upload returns 401 even when authenticated. Root cause was `postFormData` couldn't read fetcher's auth headers before the `__fetcherConfig` fix. Likely fixed now — needs rebuild + test.
 - `HOSTED_ON_BIGCAPITAL_CLOUD=false` is hardcoded in `docker-compose.alwathba.yml` — should be configurable via `.env.alwathba`.
 - `DOKPLOY_DEPLOY_WEBHOOK` GitHub secret not yet set — auto-deploy from CI is skipped (workflow warns) until it is.

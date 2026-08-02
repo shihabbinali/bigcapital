@@ -28,6 +28,7 @@ import UnlockingTransactionsDialog from '@/containers/Dialogs/UnlockingTransacti
 import UnlockingPartialTransactionsDialog from '@/containers/Dialogs/UnlockingPartialTransactionsDialog';
 import CreditNotePdfPreviewDialog from '@/containers/Dialogs/CreditNotePdfPreviewDialog';
 import PaymentReceivePdfPreviewDialog from '@/containers/Dialogs/PaymentReceivePdfPreviewDialog';
+import ReceiptPdfPreviewDialog from '@/containers/Dialogs/ReceiptPdfPreviewDialog';
 import WarehouseFormDialog from '@/containers/Dialogs/WarehouseFormDialog';
 import BranchFormDialog from '@/containers/Dialogs/BranchFormDialog';
 import BranchActivateDialog from '@/containers/Dialogs/BranchActivateDialog';
@@ -123,6 +124,7 @@ export default function DialogsContainer() {
       />
       <CreditNotePdfPreviewDialog dialogName={DialogsName.CreditNotePdfForm} />
       <PaymentReceivePdfPreviewDialog dialogName={DialogsName.PaymentPdfForm} />
+      <ReceiptPdfPreviewDialog dialogName={DialogsName.ReceiptPdfForm} />
       <WarehouseFormDialog dialogName={DialogsName.WarehouseForm} />
       <BranchFormDialog dialogName={DialogsName.BranchForm} />
       <BranchActivateDialog dialogName={DialogsName.BranchActivateForm} />

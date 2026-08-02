@@ -1,5 +1,6 @@
 import { Classes, Text } from '@blueprintjs/core';
 import { Box, Group, Stack } from '@/components';
+import { isEmpty } from 'lodash';
 import {
   PaperTemplate,
   PaperTemplateProps,
@@ -74,6 +75,15 @@ export interface ReceiptPaperTemplateProps extends PaperTemplateProps {
   lineQuantityLabel?: string;
   lineRateLabel?: string;
   lineTotalLabel?: string;
+
+  // Signatures
+  showCustomerSignature?: boolean;
+  customerSignatureLabel?: string;
+  customerSignatureUri?: string;
+
+  showAuthorizedSignature?: boolean;
+  authorizedSignatureLabel?: string;
+  authorizedSignatureUri?: string;
 }
 
 export function ReceiptPaperTemplate({
@@ -138,6 +148,15 @@ export function ReceiptPaperTemplate({
   lineQuantityLabel = 'Qty',
   lineRateLabel = 'Rate',
   lineTotalLabel = 'Total',
+
+  // Signatures
+  showCustomerSignature = true,
+  customerSignatureLabel = 'Customer Signature',
+  customerSignatureUri = '',
+
+  showAuthorizedSignature = true,
+  authorizedSignatureLabel = 'Authorized Signature',
+  authorizedSignatureUri = '',
 }: ReceiptPaperTemplateProps) {
   return (
     <PaperTemplate primaryColor={primaryColor} secondaryColor={secondaryColor}>
@@ -217,17 +236,52 @@ export function ReceiptPaperTemplate({
         </Stack>
 
         <Stack spacing={0}>
-          {showCustomerNote && (
+          {showCustomerNote && !isEmpty(customerNote) && (
             <PaperTemplate.Statement label={customerNoteLabel}>
               {customerNote}
             </PaperTemplate.Statement>
           )}
-          {showTermsConditions && (
+          {showTermsConditions && !isEmpty(termsConditions) && (
             <PaperTemplate.Statement label={termsConditionsLabel}>
               {termsConditions}
             </PaperTemplate.Statement>
           )}
         </Stack>
+
+        {/* Signatures Block */}
+        {(showCustomerSignature || showAuthorizedSignature) && (
+          <Group align="start" spacing={40} style={{ marginTop: '30px', paddingTop: '10px' }}>
+            {showCustomerSignature && (
+              <Stack spacing={8} style={{ flex: 1, textAlign: 'center' }}>
+                <Box style={{ height: '60px', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+                  {customerSignatureUri ? (
+                    <img src={customerSignatureUri} style={{ maxHeight: '50px', objectFit: 'contain' }} alt="Customer Signature" />
+                  ) : (
+                    <Box style={{ width: '100%', borderBottom: '1px solid #c1c1c1' }} />
+                  )}
+                </Box>
+                <Text style={{ fontSize: 12, color: "#5f6b7c", fontWeight: 500 }}>
+                  {customerSignatureLabel}
+                </Text>
+              </Stack>
+            )}
+
+            {showAuthorizedSignature && (
+              <Stack spacing={8} style={{ flex: 1, textAlign: 'center' }}>
+                <Box style={{ height: '60px', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+                  {authorizedSignatureUri ? (
+                    <img src={authorizedSignatureUri} style={{ maxHeight: '50px', objectFit: 'contain' }} alt="Authorized Signature" />
+                  ) : (
+                    <Box style={{ width: '100%', borderBottom: '1px solid #c1c1c1' }} />
+                  )}
+                </Box>
+                <Text style={{ fontSize: 12, color: "#5f6b7c", fontWeight: 500 }}>
+                  {authorizedSignatureLabel}
+                </Text>
+              </Stack>
+            )}
+          </Group>
+        )}
       </Stack>
     </PaperTemplate>
   );

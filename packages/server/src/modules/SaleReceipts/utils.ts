@@ -25,6 +25,8 @@ export const transformReceiptToBrandingTemplateAttributes = (
     discountLabel: saleReceipt.discountPercentageFormatted
       ? `Discount [${saleReceipt.discountPercentageFormatted}]`
       : 'Discount',
+    customerNote: saleReceipt.receiptMessage,
+    termsConditions: saleReceipt.termsConditions,
     customerAddress: contactAddressTextFormat(saleReceipt.customer, undefined, saleReceipt.customerName),
   };
 };

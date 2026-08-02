@@ -94,6 +94,15 @@ export interface ReceiptPaperTemplateProps extends PaperTemplateProps {
   lineQuantityLabel?: string;
   lineRateLabel?: string;
   lineTotalLabel?: string;
+
+  // Signatures
+  showCustomerSignature?: boolean;
+  customerSignatureLabel?: string;
+  customerSignatureUri?: string;
+
+  showAuthorizedSignature?: boolean;
+  authorizedSignatureLabel?: string;
+  authorizedSignatureUri?: string;
 }
 
 export function ReceiptPaperTemplate({
@@ -174,6 +183,15 @@ export function ReceiptPaperTemplate({
   // # Line Discount
   lineDiscountLabel = 'Discount',
   showLineDiscount = false,
+
+  // Signatures
+  showCustomerSignature = true,
+  customerSignatureLabel = 'Customer Signature',
+  customerSignatureUri = '',
+
+  showAuthorizedSignature = true,
+  authorizedSignatureLabel = 'Authorized Signature',
+  authorizedSignatureUri = '',
 }: ReceiptPaperTemplateProps) {
   return (
     <PaperTemplate primaryColor={primaryColor} secondaryColor={secondaryColor}>
@@ -291,6 +309,41 @@ export function ReceiptPaperTemplate({
             </PaperTemplate.Statement>
           )}
         </Stack>
+
+        {/* Signatures Block */}
+        {(showCustomerSignature || showAuthorizedSignature) && (
+          <Group align="start" spacing={40} style={{ marginTop: '30px', paddingTop: '10px' }}>
+            {showCustomerSignature && (
+              <Stack spacing={8} style={{ flex: 1, textAlign: 'center' }}>
+                <Box style={{ height: '60px', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+                  {customerSignatureUri ? (
+                    <img src={customerSignatureUri} style={{ maxHeight: '50px', objectFit: 'contain' }} alt="Customer Signature" />
+                  ) : (
+                    <Box style={{ width: '100%', borderBottom: '1px solid #c1c1c1' }} />
+                  )}
+                </Box>
+                <Text fontSize={12} color="#5f6b7c" fontWeight={500}>
+                  {customerSignatureLabel}
+                </Text>
+              </Stack>
+            )}
+
+            {showAuthorizedSignature && (
+              <Stack spacing={8} style={{ flex: 1, textAlign: 'center' }}>
+                <Box style={{ height: '60px', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+                  {authorizedSignatureUri ? (
+                    <img src={authorizedSignatureUri} style={{ maxHeight: '50px', objectFit: 'contain' }} alt="Authorized Signature" />
+                  ) : (
+                    <Box style={{ width: '100%', borderBottom: '1px solid #c1c1c1' }} />
+                  )}
+                </Box>
+                <Text fontSize={12} color="#5f6b7c" fontWeight={500}>
+                  {authorizedSignatureLabel}
+                </Text>
+              </Stack>
+            )}
+          </Group>
+        )}
       </Stack>
     </PaperTemplate>
   );

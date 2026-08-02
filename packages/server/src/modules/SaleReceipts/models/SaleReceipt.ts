@@ -46,6 +46,7 @@ export class SaleReceipt extends ExtendedModel {
   public sendToEmail!: string;
   public receiptMessage!: string;
   public statement!: string;
+  public termsConditions!: string;
   public closedAt!: Date | string;
   public discountType!: DiscountType;
   public discount!: number;

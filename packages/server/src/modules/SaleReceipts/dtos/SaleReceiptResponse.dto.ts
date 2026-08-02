@@ -91,6 +91,13 @@ export class SaleReceiptResponseDto {
   })
   statement?: string;
 
+  @ApiProperty({
+    description: 'The terms and conditions on the receipt',
+    example: 'Payment due within 30 days.',
+    required: false,
+  })
+  termsConditions?: string;
+
   @ApiProperty({ description: 'Whether the receipt is closed', example: false })
   closed: boolean;
 

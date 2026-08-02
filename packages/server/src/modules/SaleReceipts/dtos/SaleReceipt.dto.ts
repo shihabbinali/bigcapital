@@ -142,6 +142,14 @@ export class CommandSaleReceiptDto {
   statement?: string;
 
   @IsOptional()
+  @IsString()
+  @ApiProperty({
+    description: 'The terms and conditions of the sale receipt',
+    example: 'Payment due within 30 days.',
+  })
+  termsConditions?: string;
+
+  @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => AttachmentDto)
