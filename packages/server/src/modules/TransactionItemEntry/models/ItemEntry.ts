@@ -21,6 +21,7 @@ export class ItemEntry extends BaseModel {
 
   public quantity: number;
   public rate: number;
+  public costRate: number;
 
   public taxRate: number;
   public isInclusiveTax: number;
@@ -81,6 +82,12 @@ export class ItemEntry extends BaseModel {
 
       // Total (Subtotal - Discount)
       'total',
+
+      // Cost amount (cost rate * quantity)
+      'costAmount',
+
+      // Margin (total excluding tax - cost amount)
+      'margin',
     ];
   }
 
@@ -99,6 +106,22 @@ export class ItemEntry extends BaseModel {
    */
   get totalExcludingTax() {
     return this.subtotalExcludingTax - this.discountAmount;
+  }
+
+  /**
+   * Cost amount (cost rate * quantity).
+   * @returns {number}
+   */
+  get costAmount() {
+    return (this.costRate || 0) * this.quantity;
+  }
+
+  /**
+   * Margin (total excluding tax - cost amount).
+   * @returns {number}
+   */
+  get margin() {
+    return this.totalExcludingTax - this.costAmount;
   }
 
   /**

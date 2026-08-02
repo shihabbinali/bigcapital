@@ -9,6 +9,7 @@ export class CreditNoteGL {
   ARAccountId: number;
   discountAccountId: number;
   adjustmentAccountId: number;
+  suppliersFundsAccountId: number;
 
   /**
    * @param {CreditNote} creditNoteModel - Credit note model.
@@ -41,6 +42,15 @@ export class CreditNoteGL {
    */
   public setAdjustmentAccountId(adjustmentAccountId: number) {
     this.adjustmentAccountId = adjustmentAccountId;
+    return this;
+  }
+
+  /**
+   * Sets the suppliers funds held account id.
+   * @param {number} suppliersFundsAccountId - Suppliers funds held account id.
+   */
+  public setSuppliersFundsAccountId(suppliersFundsAccountId: number) {
+    this.suppliersFundsAccountId = suppliersFundsAccountId;
     return this;
   }
 
@@ -101,8 +111,9 @@ export class CreditNoteGL {
     index: number,
   ): ILedgerEntry {
     const commonEntry = this.creditNoteCommonEntry;
-    const totalLocal =
-      entry.totalExcludingTax * this.creditNoteModel.exchangeRate;
+    const hasCost = entry.costAmount > 0;
+    const incomeBase = hasCost ? entry.margin : entry.totalExcludingTax;
+    const totalLocal = incomeBase * this.creditNoteModel.exchangeRate;
 
     return {
       ...commonEntry,
@@ -110,6 +121,32 @@ export class CreditNoteGL {
       accountId: entry.sellAccountId || entry.item.sellAccountId,
       note: entry.description,
       index: index + 2,
+      itemId: entry.itemId,
+      accountNormal: AccountNormal.CREDIT,
+    };
+  }
+
+  /**
+   * Retrieve the cost liability reversal entry of a service item line.
+   * Debits the "Funds held for suppliers" account to reverse the original cost credit.
+   * @param {ItemEntry} entry - Item entry.
+   * @param {number} index - Index.
+   * @returns {ILedgerEntry}
+   */
+  private getCreditNoteCostEntry(
+    entry: ItemEntry,
+    index: number,
+  ): ILedgerEntry {
+    const commonEntry = this.creditNoteCommonEntry;
+    const costLocal = entry.costAmount * this.creditNoteModel.exchangeRate;
+
+    return {
+      ...commonEntry,
+      debit: costLocal,
+      accountId: this.suppliersFundsAccountId,
+      note: entry.description,
+      index: index + 2,
+      indexGroup: 20,
       itemId: entry.itemId,
       accountNormal: AccountNormal.CREDIT,
     };
@@ -165,10 +202,13 @@ export class CreditNoteGL {
     const itemsEntries = this.creditNoteModel.entries.map((entry, index) =>
       this.getCreditNoteItemEntry(entry, index),
     );
+    const costEntries = this.creditNoteModel.entries
+      .filter((entry) => entry.costAmount > 0)
+      .map((entry, index) => this.getCreditNoteCostEntry(entry, index));
     const discountEntry = this.discountEntry;
     const adjustmentEntry = this.adjustmentEntry;
 
-    return [AREntry, discountEntry, adjustmentEntry, ...itemsEntries];
+    return [AREntry, discountEntry, adjustmentEntry, ...itemsEntries, ...costEntries];
   }
 
   /**

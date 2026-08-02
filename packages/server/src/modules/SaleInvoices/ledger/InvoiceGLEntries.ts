@@ -46,6 +46,9 @@ export class SaleInvoiceGLEntries {
     // Find or create the other charges account.
     const otherChargesAccount =
       await this.accountRepository.findOrCreateOtherChargesAccount({}, trx);
+    // Find or create the suppliers funds held account.
+    const suppliersFundsAccount =
+      await this.accountRepository.findOrCreateFundsHeldForSuppliers({}, trx);
 
     // Retrieves the ledger of the invoice.
     const invoiceGL = new InvoiceGL(saleInvoice);
@@ -54,6 +57,7 @@ export class SaleInvoiceGLEntries {
     invoiceGL.setTaxPayableAccountId(taxPayableAccount.id);
     invoiceGL.setDiscountAccountId(discountAccount.id);
     invoiceGL.setOtherChargesAccountId(otherChargesAccount.id);
+    invoiceGL.setSuppliersFundsAccountId(suppliersFundsAccount.id);
 
     const ledger = invoiceGL.getInvoiceLedger();
 

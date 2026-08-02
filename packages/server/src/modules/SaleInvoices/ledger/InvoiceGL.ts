@@ -12,6 +12,7 @@ export class InvoiceGL {
   private taxPayableAccountId: number;
   private discountAccountId: number;
   private otherChargesAccountId: number;
+  private suppliersFundsAccountId: number;
 
   /**
    * Constructor method.
@@ -51,6 +52,14 @@ export class InvoiceGL {
    */
   setOtherChargesAccountId(otherChargesAccountId: number) {
     this.otherChargesAccountId = otherChargesAccountId;
+  }
+
+  /**
+   * Set the suppliers funds held account id.
+   * @param {number} suppliersFundsAccountId - Suppliers funds held account id.
+   */
+  setSuppliersFundsAccountId(suppliersFundsAccountId: number) {
+    this.suppliersFundsAccountId = suppliersFundsAccountId;
   }
 
   /**
@@ -106,8 +115,9 @@ export class InvoiceGL {
   private getInvoiceItemEntry = R.curry(
     (entry: ItemEntry, index: number): ILedgerEntry => {
       const commonEntry = this.invoiceGLCommonEntry;
-      const localAmount =
-        entry.totalExcludingTax * this.saleInvoice.exchangeRate;
+      const hasCost = entry.costAmount > 0;
+      const incomeBase = hasCost ? entry.margin : entry.totalExcludingTax;
+      const localAmount = incomeBase * this.saleInvoice.exchangeRate;
 
       return {
         ...commonEntry,
@@ -119,6 +129,31 @@ export class InvoiceGL {
         accountNormal: AccountNormal.CREDIT,
         taxRateId: entry.taxRateId,
         taxRate: entry.taxRate,
+      };
+    },
+  );
+
+  /**
+   * Retrieve the cost liability entry of a service item line.
+   * Credits the "Funds held for suppliers" account for the cost portion.
+   * @param {ItemEntry} entry - Item entry.
+   * @param {number} index - Index.
+   * @returns {ILedgerEntry}
+   */
+  private getInvoiceCostEntry = R.curry(
+    (entry: ItemEntry, index: number): ILedgerEntry => {
+      const commonEntry = this.invoiceGLCommonEntry;
+      const costLocal = entry.costAmount * this.saleInvoice.exchangeRate;
+
+      return {
+        ...commonEntry,
+        credit: costLocal,
+        accountId: this.suppliersFundsAccountId,
+        note: entry.description,
+        index: index + 2,
+        indexGroup: 20,
+        itemId: entry.itemId,
+        accountNormal: AccountNormal.CREDIT,
       };
     },
   );
@@ -186,6 +221,9 @@ export class InvoiceGL {
     const creditEntries = this.saleInvoice.entries.map(
       (entry, index) => this.getInvoiceItemEntry(entry, index),
     );
+    const costEntries = this.saleInvoice.entries
+      .filter((entry) => entry.costAmount > 0)
+      .map((entry, index) => this.getInvoiceCostEntry(entry, index));
     const taxEntries = this.saleInvoice.entries
       .filter((entry) => entry.taxAmount > 0)
       .map((entry, index) => this.getInvoiceTaxEntry(entry, index));
@@ -193,6 +231,7 @@ export class InvoiceGL {
     return [
       this.invoiceReceivableEntry,
       ...creditEntries,
+      ...costEntries,
       ...taxEntries,
       this.invoiceDiscountEntry,
       this.adjustmentEntry,

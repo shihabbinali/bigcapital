@@ -52,11 +52,14 @@ export class CreditNoteGLEntries {
 
     const adjustmentAccount =
       await this.accountRepository.findOrCreateOtherChargesAccount({});
+    const suppliersFundsAccount =
+      await this.accountRepository.findOrCreateFundsHeldForSuppliers({});
 
     const creditNoteLedger = new CreditNoteGL(creditNoteWithItems)
       .setARAccountId(ARAccount.id)
       .setDiscountAccountId(discountAccount.id)
       .setAdjustmentAccountId(adjustmentAccount.id)
+      .setSuppliersFundsAccountId(suppliersFundsAccount.id)
       .getCreditNoteLedger();
 
     // Saves the credit note GL entries.

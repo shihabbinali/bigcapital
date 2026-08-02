@@ -36,11 +36,15 @@ export class SaleReceiptGLEntries {
     // Find or create the other charges account.
     const otherChargesAccount =
       await this.accountRepository.findOrCreateOtherChargesAccount({}, trx);
+    // Find or create the suppliers funds held account.
+    const suppliersFundsAccount =
+      await this.accountRepository.findOrCreateFundsHeldForSuppliers({}, trx);
 
     // Retrieves the income ledger.
     const incomeLedger = new SaleReceiptGL(saleReceipt)
       .setDiscountAccountId(discountAccount.id)
       .setOtherChargesAccountId(otherChargesAccount.id)
+      .setSuppliersFundsAccountId(suppliersFundsAccount.id)
       .getIncomeLedger();
 
     // Commits the ledger entries to the storage.

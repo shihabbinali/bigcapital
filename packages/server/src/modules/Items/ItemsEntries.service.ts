@@ -236,6 +236,9 @@ export class ItemsEntriesService {
         ...(item.type === 'inventory' && {
           costAccountId: entry.costAccountId || item.costAccountId,
         }),
+        ...(item.type !== 'inventory' && {
+          costRate: entry.costRate ?? item.costPrice ?? 0,
+        }),
       };
     });
   };

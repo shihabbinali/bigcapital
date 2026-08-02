@@ -10,6 +10,7 @@ export class SaleReceiptGL {
   private saleReceipt: SaleReceipt;
   private discountAccountId: number;
   private otherChargesAccountId: number;
+  private suppliersFundsAccountId: number;
 
   /**
    * Constructor method.
@@ -34,6 +35,15 @@ export class SaleReceiptGL {
    */
   setOtherChargesAccountId(otherChargesAccountId: number) {
     this.otherChargesAccountId = otherChargesAccountId;
+    return this;
+  }
+
+  /**
+   * Sets the suppliers funds held account id.
+   * @param {number} suppliersFundsAccountId - Suppliers funds held account id.
+   */
+  setSuppliersFundsAccountId(suppliersFundsAccountId: number) {
+    this.suppliersFundsAccountId = suppliersFundsAccountId;
     return this;
   }
 
@@ -72,8 +82,9 @@ export class SaleReceiptGL {
   private getReceiptIncomeItemEntry = R.curry(
     (entry: ItemEntry, index: number): ILedgerEntry => {
       const commonEntry = this.getIncomeGLCommonEntry();
-      const totalLocal =
-        entry.totalExcludingTax * this.saleReceipt.exchangeRate;
+      const hasCost = entry.costAmount > 0;
+      const incomeBase = hasCost ? entry.margin : entry.totalExcludingTax;
+      const totalLocal = incomeBase * this.saleReceipt.exchangeRate;
 
       return {
         ...commonEntry,
@@ -82,7 +93,31 @@ export class SaleReceiptGL {
         note: entry.description,
         index: index + 2,
         itemId: entry.itemId,
-        // itemQuantity: entry.quantity,
+        accountNormal: AccountNormal.CREDIT,
+      };
+    },
+  );
+
+  /**
+   * Retrieve the cost liability entry of a service item line.
+   * Credits the "Funds held for suppliers" account for the cost portion.
+   * @param {ItemEntry} entry - Item entry.
+   * @param {number} index - Index.
+   * @returns {ILedgerEntry}
+   */
+  private getReceiptCostEntry = R.curry(
+    (entry: ItemEntry, index: number): ILedgerEntry => {
+      const commonEntry = this.getIncomeGLCommonEntry();
+      const costLocal = entry.costAmount * this.saleReceipt.exchangeRate;
+
+      return {
+        ...commonEntry,
+        credit: costLocal,
+        accountId: this.suppliersFundsAccountId,
+        note: entry.description,
+        index: index + 2,
+        indexGroup: 20,
+        itemId: entry.itemId,
         accountNormal: AccountNormal.CREDIT,
       };
     },
@@ -148,11 +183,20 @@ export class SaleReceiptGL {
     const creditEntries = this.saleReceipt.entries.map((e, index) =>
       getItemEntry(e, index),
     );
+    const costEntries = this.saleReceipt.entries
+      .filter((entry) => entry.costAmount > 0)
+      .map((entry, index) => this.getReceiptCostEntry(entry, index));
     const depositEntry = this.getReceiptDepositEntry();
     const discountEntry = this.getDiscountEntry();
     const adjustmentEntry = this.getAdjustmentEntry();
 
-    return [depositEntry, ...creditEntries, discountEntry, adjustmentEntry];
+    return [
+      depositEntry,
+      ...creditEntries,
+      ...costEntries,
+      discountEntry,
+      adjustmentEntry,
+    ];
   };
 
   /**
