@@ -33,7 +33,7 @@ export const TenancyDatabaseProxyProvider = ClsModule.forFeatureAsync({
       },
       migrations: {
         directory: configService.get('tenantDatabase.migrationsDir'),
-        loadExtensions: ['.js'],
+        loadExtensions: ['.js', '.ts'],
       },
       seeds: {
         directory: configService.get('tenantDatabase.seedsDir'),
