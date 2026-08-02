@@ -26,6 +26,7 @@ interface ItemsEntriesTableProps {
   taxRates?: any[];
   minLinesNumber?: number;
   enableTaxRates?: boolean;
+  costRateEnabled?: boolean;
 }
 
 /**
@@ -128,6 +129,8 @@ ItemsEntriesTable.defaultProps = {
     description: '',
     quantity: '',
     rate: '',
+    cost_rate: '',
+    cost_rate_hidden: false,
     discount: '',
   },
   initialEntries: [],

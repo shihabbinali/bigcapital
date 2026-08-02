@@ -16,6 +16,7 @@ import {
   VENDOR_TRANSACTIONS_VIEWED,
   SALES_BY_ITEM_VIEWED,
   PURCHASES_BY_ITEM_VIEWED,
+  SALES_PROFIT_VIEWED,
 } from '../event-tracker';
 import { events } from '@/common/events/events';
 import { EventTrackerService } from '../EventTracker.service';
@@ -140,6 +141,14 @@ export class ReportsEventsTracker {
   handleTrackPurchasesByItemViewedEvent() {
     this.posthog.trackEvent({
       event: PURCHASES_BY_ITEM_VIEWED,
+      properties: {},
+    });
+  }
+
+  @OnEvent(events.reports.onSalesProfitViewed)
+  handleTrackSalesProfitViewedEvent() {
+    this.posthog.trackEvent({
+      event: SALES_PROFIT_VIEWED,
       properties: {},
     });
   }

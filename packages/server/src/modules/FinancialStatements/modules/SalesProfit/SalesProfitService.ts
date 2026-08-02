@@ -11,6 +11,7 @@ import { SalesProfitReport } from './SalesProfit';
 import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { ModelObject } from 'objection';
 import { get } from 'lodash';
+import { events } from '@/common/events/events';
 
 @Injectable()
 export class SalesProfitReportService {
@@ -124,6 +125,11 @@ export class SalesProfitReportService {
       { baseCurrency: tenantMetadata.baseCurrency, dateFormat: meta.dateFormat },
     );
     const salesProfitData = sheet.reportData();
+
+    // Triggers `onSalesProfitViewed` event.
+    await this.eventPublisher.emitAsync(events.reports.onSalesProfitViewed, {
+      query,
+    });
 
     return {
       data: salesProfitData,

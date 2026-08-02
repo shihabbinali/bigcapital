@@ -13,6 +13,7 @@ export * from './transactions-customers';
 export * from './transactions-vendors';
 export * from './sales-by-items';
 export * from './purchases-by-items';
+export * from './sales-profit';
 export * from './inventory-valuation';
 export * from './inventory-details';
 export * from './sales-tax-liability';

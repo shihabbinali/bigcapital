@@ -115,7 +115,8 @@ export class InvoiceGL {
   private getInvoiceItemEntry = R.curry(
     (entry: ItemEntry, index: number): ILedgerEntry => {
       const commonEntry = this.invoiceGLCommonEntry;
-      const hasCost = entry.costAmount > 0;
+      const hasCost =
+        entry.costAmount > 0 && entry.item?.type !== 'inventory';
       const incomeBase = hasCost ? entry.margin : entry.totalExcludingTax;
       const localAmount = incomeBase * this.saleInvoice.exchangeRate;
 
@@ -222,7 +223,10 @@ export class InvoiceGL {
       (entry, index) => this.getInvoiceItemEntry(entry, index),
     );
     const costEntries = this.saleInvoice.entries
-      .filter((entry) => entry.costAmount > 0)
+      .filter(
+        (entry) =>
+          entry.costAmount > 0 && entry.item?.type !== 'inventory',
+      )
       .map((entry, index) => this.getInvoiceCostEntry(entry, index));
     const taxEntries = this.saleInvoice.entries
       .filter((entry) => entry.taxAmount > 0)

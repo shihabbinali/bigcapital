@@ -3777,6 +3777,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/reports/sales-profit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Sales profit report
+         * @description Retrieves the sales profit report.
+         */
+        get: operations["SalesProfitController_salesProfit"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/reports/general-ledger": {
         parameters: {
             query?: never;
@@ -6274,6 +6294,11 @@ export interface components {
              */
             rate: number;
             /**
+             * @description The cost rate of the item entry (for service items with variable cost)
+             * @example 0
+             */
+            costRate?: number;
+            /**
              * @description The quantity of the item entry
              * @example 1
              */
@@ -6381,10 +6406,15 @@ export interface components {
              */
             referenceNo?: string;
             /**
-             * @description The ID of the customer
+             * @description The ID of the customer (null for walk-in)
              * @example 1
              */
-            customerId: number;
+            customerId?: number | null;
+            /**
+             * @description Walk-in customer name (when no customer ID)
+             * @example Walk-in Customer
+             */
+            customerName?: string;
             /**
              * @description The exchange rate for currency conversion
              * @example 1
@@ -6528,10 +6558,15 @@ export interface components {
         };
         CreateSaleInvoiceDto: {
             /**
-             * @description Customer ID
+             * @description Customer ID (omit for walk-in customer)
              * @example 1
              */
-            customerId: number;
+            customerId?: number;
+            /**
+             * @description Walk-in customer name (used when no customer ID)
+             * @example Walk-in Customer
+             */
+            customerName?: string;
             /**
              * Format: date-time
              * @description Invoice date
@@ -6636,10 +6671,15 @@ export interface components {
         };
         EditSaleInvoiceDto: {
             /**
-             * @description Customer ID
+             * @description Customer ID (omit for walk-in customer)
              * @example 1
              */
-            customerId: number;
+            customerId?: number;
+            /**
+             * @description Walk-in customer name (used when no customer ID)
+             * @example Walk-in Customer
+             */
+            customerName?: string;
             /**
              * Format: date-time
              * @description Invoice date
@@ -9065,10 +9105,15 @@ export interface components {
              */
             referenceNo?: string;
             /**
-             * @description The ID of the customer
+             * @description The ID of the customer (null for walk-in)
              * @example 1
              */
-            customerId: number;
+            customerId?: number | null;
+            /**
+             * @description Walk-in customer name (when no customer ID)
+             * @example Walk-in Customer
+             */
+            customerName?: string;
             /** @description The customer details */
             customer: components["schemas"]["CustomerResponseDto"];
             /**
@@ -9232,10 +9277,15 @@ export interface components {
         };
         CreateSaleReceiptDto: {
             /**
-             * @description The id of the customer
+             * @description The id of the customer (omit for walk-in)
              * @example 1
              */
-            customerId: number;
+            customerId?: number;
+            /**
+             * @description Walk-in customer name (used when no customer ID)
+             * @example Walk-in Customer
+             */
+            customerName?: string;
             /**
              * @description The exchange rate of the sale receipt
              * @example 1
@@ -9328,10 +9378,15 @@ export interface components {
         };
         EditSaleReceiptDto: {
             /**
-             * @description The id of the customer
+             * @description The id of the customer (omit for walk-in)
              * @example 1
              */
-            customerId: number;
+            customerId?: number;
+            /**
+             * @description Walk-in customer name (used when no customer ID)
+             * @example Walk-in Customer
+             */
+            customerName?: string;
             /**
              * @description The exchange rate of the sale receipt
              * @example 1
@@ -9591,6 +9646,11 @@ export interface components {
              * @example 1
              */
             rate: number;
+            /**
+             * @description The cost rate of the item entry (for service items with variable cost)
+             * @example 0
+             */
+            costRate?: number;
             /**
              * @description The quantity of the item entry
              * @example 1
@@ -12524,6 +12584,92 @@ export interface components {
             query: components["schemas"]["SalesByItemsQueryResponseDto"];
             /** @description Report metadata */
             meta: components["schemas"]["SalesByItemsMetaDto"];
+        };
+        SalesProfitQueryResponseDto: {
+            /** @description Start date */
+            fromDate: string;
+            /** @description End date */
+            toDate: string;
+            /** @description Number format settings */
+            numberFormat?: components["schemas"]["NumberFormatQueryDto"];
+            /** @description Whether to exclude rows with no transactions */
+            noneTransactions?: boolean;
+            /** @description Whether to include only active rows */
+            onlyActive?: boolean;
+        };
+        SalesProfitRowDto: {
+            /** @description Document date */
+            date: string;
+            /** @description Document number */
+            docNumber: string;
+            /** @description Document type (SaleInvoice/SaleReceipt) */
+            docType: string;
+            /** @description Customer name */
+            customerName: string;
+            /** @description Service item name */
+            itemName: string;
+            /** @description Quantity */
+            quantity: number;
+            /** @description Revenue (rate * quantity) */
+            revenue: number;
+            /** @description Cost (cost_rate * quantity) */
+            cost: number;
+            /** @description Profit (revenue - cost) */
+            profit: number;
+            /** @description Margin percentage */
+            marginPct: number;
+        };
+        SalesProfitTotalDto: {
+            /** @description Total quantity */
+            quantity: number;
+            /** @description Total revenue */
+            revenue: number;
+            /** @description Total cost */
+            cost: number;
+            /** @description Total profit */
+            profit: number;
+            /** @description Overall margin percentage */
+            marginPct: number;
+        };
+        SalesProfitSheetDataDto: {
+            /** @description Sales profit rows */
+            rows: components["schemas"]["SalesProfitRowDto"][];
+            /** @description Sales profit totals */
+            total: components["schemas"]["SalesProfitTotalDto"];
+        };
+        SalesProfitMetaDto: {
+            /** @description Organization name */
+            organizationName: string;
+            /** @description Base currency code */
+            baseCurrency: string;
+            /** @description Date format string */
+            dateFormat: string;
+            /** @description Whether cost computation is running */
+            isCostComputeRunning: boolean;
+            /** @description Sheet name */
+            sheetName: string;
+            /** @description Formatted from date */
+            formattedFromDate: string;
+            /** @description Formatted to date */
+            formattedToDate: string;
+            /** @description Formatted date range */
+            formattedDateRange: string;
+        };
+        SalesProfitResponseDto: {
+            /** @description Query parameters used to generate the report */
+            query: components["schemas"]["SalesProfitQueryResponseDto"];
+            /** @description Sales profit data */
+            data: components["schemas"]["SalesProfitSheetDataDto"];
+            /** @description Report metadata */
+            meta: components["schemas"]["SalesProfitMetaDto"];
+        };
+        SalesProfitTableResponseDto: {
+            /** @description Table data structure */
+            table: components["schemas"]["FinancialTableDataDto"];
+            /** @description Query parameters used to generate the report */
+            query: components["schemas"]["SalesProfitQueryResponseDto"];
+            /** @description Report metadata */
+            meta: components["schemas"]["SalesProfitMetaDto"];
         };
         GeneralLedgerQueryResponseDto: {
             /** @description Start date */
@@ -24165,6 +24311,52 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["SalesByItemsResponseDto"];
                     "application/json+table": components["schemas"]["SalesByItemsTableResponseDto"];
+                };
+            };
+        };
+    };
+    SalesProfitController_salesProfit: {
+        parameters: {
+            query?: {
+                /** @description Start date for the sales profit report */
+                fromDate?: string;
+                /** @description End date for the sales profit report */
+                toDate?: string;
+                /** @description Number of decimal places to display */
+                precision?: number;
+                /** @description Whether to divide the number by 1000 */
+                divideOn1000?: boolean;
+                /** @description Whether to show zero values */
+                showZero?: boolean;
+                /** @description How to format money values */
+                formatMoney?: "total" | "always" | "none";
+                /** @description How to format negative numbers */
+                negativeFormat?: "parentheses" | "mines";
+                /** @description Whether to exclude rows with no transactions */
+                noneTransactions?: boolean;
+                /** @description Whether to include only active rows */
+                onlyActive?: boolean;
+            };
+            header: {
+                /** @description Value must be 'Bearer <token>' where <token> is an API key prefixed with 'bc_' or a JWT token. */
+                Authorization: string;
+                /** @description Required if Authorization is a JWT token. The organization ID to operate within. */
+                "organization-id": string;
+                accept: string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Sales profit report */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SalesProfitResponseDto"];
+                    "application/json+table": components["schemas"]["SalesProfitTableResponseDto"];
                 };
             };
         };

@@ -76,6 +76,19 @@ export function TotalCell({ payload: { currencyCode }, value }) {
 }
 
 /**
+ * Cost rate cell renderer — hidden for inventory items.
+ */
+export function CostRateCell(props) {
+  const { row } = props;
+
+  if (row.cost_rate_hidden) {
+    return null;
+  }
+  return <MoneyFieldCell {...props} />;
+}
+CostRateCell.cellType = CellType.Field;
+
+/**
  * Landed cost header cell.
  */
 const LandedCostHeaderCell = () => {
@@ -92,7 +105,8 @@ const LandedCostHeaderCell = () => {
  */
 export function useEditableItemsEntriesColumns() {
   const { featureCan } = useFeatureCan();
-  const { landedCost, enableTaxRates } = useItemEntriesTableContext();
+  const { landedCost, enableTaxRates, costRateEnabled } =
+    useItemEntriesTableContext();
 
   const isProjectsFeatureEnabled = featureCan(Features.Projects);
 
@@ -132,6 +146,18 @@ export function useEditableItemsEntriesColumns() {
         width: 70,
         align: Align.Right,
       },
+      ...(costRateEnabled
+        ? [
+            {
+              Header: intl.get('cost'),
+              accessor: 'cost_rate',
+              Cell: CostRateCell,
+              disableSortBy: true,
+              width: 70,
+              align: Align.Right,
+            },
+          ]
+        : []),
       ...(enableTaxRates
         ? [
             {

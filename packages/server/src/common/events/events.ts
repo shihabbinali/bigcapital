@@ -773,5 +773,6 @@ export const events = {
     onVendorTransactionsViewed: 'onVendorTransactionsViewed',
     onSalesByItemViewed: 'onSalesByItemViewed',
     onPurchasesByItemViewed: 'onPurchasesByItemViewed',
+    onSalesProfitViewed: 'onSalesProfitViewed',
   },
 };

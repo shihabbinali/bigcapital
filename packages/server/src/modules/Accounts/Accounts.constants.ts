@@ -416,6 +416,7 @@ export const SeedAccounts = [
   DiscountExpenseAccount,
   PurchaseDiscountAccount,
   OtherChargesAccount,
+  FundsHeldForSuppliersAccount,
 ];
 
 export const ACCOUNT_TYPE = {

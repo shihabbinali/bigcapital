@@ -128,3 +128,4 @@ export const CUSTOMER_TRANSACTIONS_VIEWED = 'Customer transactions viewed';
 export const VENDOR_TRANSACTIONS_VIEWED = 'Vendor transactions viewed';
 export const SALES_BY_ITEM_VIEWED = 'Sales by item viewed';
 export const PURCHASES_BY_ITEM_VIEWED = 'Purchases by item viewed';
+export const SALES_PROFIT_VIEWED = 'Sales profit viewed';

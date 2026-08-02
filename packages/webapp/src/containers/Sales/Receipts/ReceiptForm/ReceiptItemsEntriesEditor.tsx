@@ -31,6 +31,7 @@ export default function ReceiptItemsEntriesEditor({ defaultReceipt }) {
             linesNumber={4}
             currencyCode={values.currency_code}
             enableTaxRates={false}
+            costRateEnabled
           />
         )}
       </FastField>

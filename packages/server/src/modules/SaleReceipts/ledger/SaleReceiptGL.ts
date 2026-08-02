@@ -82,7 +82,8 @@ export class SaleReceiptGL {
   private getReceiptIncomeItemEntry = R.curry(
     (entry: ItemEntry, index: number): ILedgerEntry => {
       const commonEntry = this.getIncomeGLCommonEntry();
-      const hasCost = entry.costAmount > 0;
+      const hasCost =
+        entry.costAmount > 0 && entry.item?.type !== 'inventory';
       const incomeBase = hasCost ? entry.margin : entry.totalExcludingTax;
       const totalLocal = incomeBase * this.saleReceipt.exchangeRate;
 
@@ -184,7 +185,9 @@ export class SaleReceiptGL {
       getItemEntry(e, index),
     );
     const costEntries = this.saleReceipt.entries
-      .filter((entry) => entry.costAmount > 0)
+      .filter(
+        (entry) => entry.costAmount > 0 && entry.item?.type !== 'inventory',
+      )
       .map((entry, index) => this.getReceiptCostEntry(entry, index));
     const depositEntry = this.getReceiptDepositEntry();
     const discountEntry = this.getDiscountEntry();

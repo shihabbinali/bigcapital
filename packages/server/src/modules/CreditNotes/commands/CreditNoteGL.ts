@@ -111,7 +111,8 @@ export class CreditNoteGL {
     index: number,
   ): ILedgerEntry {
     const commonEntry = this.creditNoteCommonEntry;
-    const hasCost = entry.costAmount > 0;
+    const hasCost =
+      entry.costAmount > 0 && entry.item?.type !== 'inventory';
     const incomeBase = hasCost ? entry.margin : entry.totalExcludingTax;
     const totalLocal = incomeBase * this.creditNoteModel.exchangeRate;
 
@@ -203,7 +204,9 @@ export class CreditNoteGL {
       this.getCreditNoteItemEntry(entry, index),
     );
     const costEntries = this.creditNoteModel.entries
-      .filter((entry) => entry.costAmount > 0)
+      .filter(
+        (entry) => entry.costAmount > 0 && entry.item?.type !== 'inventory',
+      )
       .map((entry, index) => this.getCreditNoteCostEntry(entry, index));
     const discountEntry = this.discountEntry;
     const adjustmentEntry = this.adjustmentEntry;

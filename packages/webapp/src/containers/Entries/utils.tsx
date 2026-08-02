@@ -121,6 +121,9 @@ export function useFetchItemRow({ landedCost, itemType, notifyNewRow }) {
       // Detarmines whether the landed cost checkbox should be disabled.
       const landedCostDisabled = isLandedCostDisabled(item);
 
+      // Hides the cost rate input for inventory items.
+      const costRateHidden = item.type === 'inventory';
+
       const taxRateId =
         itemType === ITEM_TYPE.PURCHASABLE
           ? item.purchase_tax_rate_id
@@ -132,6 +135,8 @@ export function useFetchItemRow({ landedCost, itemType, notifyNewRow }) {
         description,
         quantity: 1,
         tax_rate_id: taxRateId,
+        cost_rate: costRateHidden ? '' : item.cost_price ?? '',
+        cost_rate_hidden: costRateHidden,
         ...(landedCost
           ? {
               landed_cost: false,

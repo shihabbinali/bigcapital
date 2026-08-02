@@ -38,6 +38,7 @@ export default function InvoiceItemsEntriesEditorField() {
           linesNumber={4}
           currencyCode={values.currency_code}
           isInclusiveTax={values.inclusive_exclusive_tax === TaxType.Inclusive}
+          costRateEnabled
         />
       )}
     </FastField>

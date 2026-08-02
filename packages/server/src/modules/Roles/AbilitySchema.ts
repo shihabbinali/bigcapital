@@ -270,6 +270,10 @@ export const AbilitySchema: ISubjectAbilitiesSchema[] = [
         label: 'ability.sales_by_items_report',
       },
       {
+        key: ReportsAction.READ_SALES_PROFIT,
+        label: 'ability.sales_profit_report',
+      },
+      {
         key: ReportsAction.READ_CUSTOMERS_TRANSACTIONS,
         label: 'ability.customers_transactions_report',
       },
