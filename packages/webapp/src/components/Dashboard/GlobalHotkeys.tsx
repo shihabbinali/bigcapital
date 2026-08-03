@@ -8,17 +8,7 @@ import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { withUniversalSearchActions } from '@/containers/UniversalSearch/withUniversalSearchActions';
 
 import { compose } from '@/utils';
-
-// Toggle dark/light mode by toggling 'bp4-dark' class on body
-const handleToggleDarkMode = () => {
-  const body = document.body;
-
-  if (body.classList.contains('bp4-dark')) {
-    body.classList.remove('bp4-dark');
-  } else {
-    body.classList.add('bp4-dark');
-  }
-};
+import { useTheme } from '@/context/theme/ThemeProvider';
 
 function GlobalHotkeys({
   // #withDashboardActions
@@ -32,6 +22,7 @@ function GlobalHotkeys({
 }) {
   const history = useHistory();
   const routes = getDashboardRoutes();
+  const { toggleTheme } = useTheme();
 
   const globalHotkeys = routes
     .filter(({ hotkey }) => hotkey)
@@ -67,7 +58,7 @@ function GlobalHotkeys({
     }, 0);
   });
   useHotkeys('shift+h', () => {
-    handleToggleDarkMode();
+    toggleTheme();
   });
 
   return <div></div>;

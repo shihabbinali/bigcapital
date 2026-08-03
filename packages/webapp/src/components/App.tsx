@@ -14,6 +14,7 @@ import { EnsureAuthenticated } from '@/components/Guards/EnsureAuthenticated';
 import GlobalErrors from '@/containers/GlobalErrors/GlobalErrors';
 
 import { SplashScreen, DashboardThemeProvider } from '../components';
+import { AppThemeProvider } from '@/context/theme/ThemeProvider';
 import { queryConfig } from '../hooks/query/base';
 import { EnsureUserEmailNotVerified } from './Guards/EnsureUserEmailNotVerified';
 
@@ -87,13 +88,15 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SplashScreen />
+      <AppThemeProvider>
+        <SplashScreen />
 
-      <AppIntlLoader>
-        <AppInsider history={history} />
-      </AppIntlLoader>
+        <AppIntlLoader>
+          <AppInsider history={history} />
+        </AppIntlLoader>
 
-      <ReactQueryDevtools initialIsOpen />
+        <ReactQueryDevtools initialIsOpen />
+      </AppThemeProvider>
     </QueryClientProvider>
   );
 }

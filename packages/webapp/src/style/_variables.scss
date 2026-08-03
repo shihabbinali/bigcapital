@@ -4,7 +4,7 @@
 $ns: bp4;
 
 :root {
-  --color-primary: #8abbff;
+  --color-primary: #0052cc;
   --color-danger: red;
 
   // Green colors
@@ -43,7 +43,7 @@ $ns: bp4;
   --color-white: #fff;
   --color-black: #000;
 
-  --color-muted-text: #abb3bf;
+  --color-muted-text: #5c7080;
 
   // Background
   --color-ui-background-primary: var(--color-base-sand-0);
@@ -318,7 +318,7 @@ $pt-popover-box-shadow:
   0 2px 4px rgba(16, 22, 26, 0.1),
   0 8px 24px rgba(16, 22, 26, 0.1);
   
-body.bp4-dark  {
+:root[data-theme='dark'] {
   --color-primary: #8abbff;
   --color-danger: rgb(213, 103, 103);
 

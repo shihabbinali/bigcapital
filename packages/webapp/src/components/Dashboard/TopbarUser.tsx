@@ -17,6 +17,7 @@ import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 
 import { useAuthenticatedAccount } from '@/hooks/query';
 import { firstLettersArgs, compose } from '@/utils';
+import { useTheme } from '@/context/theme/ThemeProvider';
 
 /**
  * Dashboard topbar user.
@@ -27,6 +28,7 @@ function DashboardTopbarUser({
 }) {
   const history = useHistory();
   const { setLogout } = useAuthActions();
+  const { isDark, setTheme } = useTheme();
 
   // Retrieve authenticated user information.
   const { data: user } = useAuthenticatedAccount();
@@ -37,6 +39,10 @@ function DashboardTopbarUser({
 
   const onKeyboardShortcut = () => {
     openDialog('keyboard-shortcuts');
+  };
+
+  const onClickToggleTheme = () => {
+    setTheme(isDark ? 'light' : 'dark');
   };
 
   return (
@@ -58,6 +64,11 @@ function DashboardTopbarUser({
             }
           />
           <MenuDivider />
+          <MenuItem
+            icon={isDark ? 'flash' : 'moon'}
+            text={isDark ? 'Light Mode' : 'Dark Mode'}
+            onClick={onClickToggleTheme}
+          />
           <MenuItem
             text={<T id={'keyboard_shortcuts'} />}
             onClick={onKeyboardShortcut}
