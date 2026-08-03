@@ -37,8 +37,14 @@ const InvoiceFormContext = createContext<InvoiceFormContextValue>(
  * Accounts chart data provider.
  */
 function InvoiceFormProvider({ invoiceId, baseCurrency, ...props }) {
-  const { state } = useLocation();
-  const estimateId = state?.action;
+  const { state, search } = useLocation();
+
+  // The estimate id may come from the router state (SPA navigation) or the
+  // `from_estimate_id` query param (hard refresh / direct link).
+  const estimateId = React.useMemo(() => {
+    const fromSearch = new URLSearchParams(search).get('from_estimate_id');
+    return state?.action ?? fromSearch;
+  }, [state, search]);
 
   // Features guard.
   const { featureCan } = useFeatureCan();

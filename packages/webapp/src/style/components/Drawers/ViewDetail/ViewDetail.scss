@@ -65,4 +65,20 @@
   .card {
     margin: 15px;
   }
+
+  .bp4-dark & {
+    .bp4-tabs {
+      .bp4-tab-list {
+        background-color: transparent;
+
+        &:before {
+          background: rgba(255, 255, 255, 0.2);
+        }
+
+        &.bp4-large > .bp4-tab {
+          color: var(--color-light-gray4);
+        }
+      }
+    }
+  }
 }

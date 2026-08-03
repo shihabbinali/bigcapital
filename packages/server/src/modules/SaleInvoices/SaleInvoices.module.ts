@@ -19,6 +19,7 @@ import { CommandSaleInvoiceValidators } from './commands/CommandSaleInvoiceValid
 import { CommandSaleInvoiceDTOTransformer } from './commands/CommandSaleInvoiceDTOTransformer.service';
 import { SaleEstimateValidators } from '../SaleEstimates/commands/SaleEstimateValidators.service';
 import { UnlinkConvertedSaleEstimate } from '../SaleEstimates/commands/UnlinkConvertedSaleEstimate.service';
+import { ConvertSaleEstimate } from '../SaleEstimates/commands/ConvetSaleEstimate.service';
 import { PdfTemplatesModule } from '../PdfTemplate/PdfTemplates.module';
 import { AutoIncrementOrdersModule } from '../AutoIncrementOrders/AutoIncrementOrders.module';
 import { ChromiumlyTenancyModule } from '../ChromiumlyTenancy/ChromiumlyTenancy.module';
@@ -110,6 +111,7 @@ import { ValidateBulkDeleteSaleInvoicesService } from './ValidateBulkDeleteSaleI
     CommandSaleInvoiceDTOTransformer,
     SaleEstimateValidators,
     UnlinkConvertedSaleEstimate,
+    ConvertSaleEstimate,
     SaleInvoicePdfTemplate,
     WriteoffSaleInvoice,
     GetInvoicePaymentsService,

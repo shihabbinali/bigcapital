@@ -706,20 +706,6 @@ export const getDashboardRoutes = () => [
     subscriptionActive: [SUBSCRIPTION_TYPE.MAIN],
   },
   {
-    path: `/invoices/new?from_estimate_id=/:id`,
-    component: lazy(
-      () =>
-        import('@/containers/Sales/Estimates/EstimateForm/EstimateFormPage'),
-    ),
-    name: 'convert-to-invoice',
-    breadcrumb: intl.get('new_estimate'),
-    pageTitle: intl.get('new_estimate'),
-    backLink: true,
-    sidebarExpand: false,
-    defaultSearchResource: RESOURCES_TYPES.INVOICE,
-    subscriptionActive: [SUBSCRIPTION_TYPE.MAIN],
-  },
-  {
     path: `/estimates/new`,
     component: lazy(
       () =>

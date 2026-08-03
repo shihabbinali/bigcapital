@@ -39,6 +39,7 @@ import {
 } from '@/constants/routes';
 
 import { compose } from '@/utils';
+import { useTheme } from '@/context/theme/ThemeProvider';
 
 /**
  * Dashboard topbar.
@@ -62,6 +63,7 @@ function DashboardTopbar({
   openDialog,
 }) {
   const history = useHistory();
+  const { isDark, setTheme } = useTheme();
 
   const handlerClickEditView = () => {
     history.push(`/custom_views/${editViewId}/edit`);
@@ -69,6 +71,11 @@ function DashboardTopbar({
 
   const handleSidebarToggleBtn = () => {
     toggleSidebarExpand();
+  };
+
+  // Toggle between light and dark theme.
+  const onClickToggleTheme = () => {
+    setTheme(isDark ? 'light' : 'dark');
   };
 
   return (
@@ -128,6 +135,19 @@ function DashboardTopbar({
               <Button
                 className={Classes.MINIMAL}
                 icon={<Icon icon={'notification-24'} iconSize={20} />}
+              />
+            </Tooltip>
+
+            <Tooltip
+              content={isDark ? 'Light Mode' : 'Dark Mode'}
+              position={Position.BOTTOM}
+            >
+              <Button
+                className={Classes.MINIMAL}
+                icon={
+                  <Icon icon={isDark ? 'moon' : 'flash'} iconSize={20} />
+                }
+                onClick={onClickToggleTheme}
               />
             </Tooltip>
 

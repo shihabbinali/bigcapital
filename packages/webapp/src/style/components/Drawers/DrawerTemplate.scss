@@ -136,3 +136,64 @@
     color: #0d244a;
   }
 }
+
+.bp4-dark {
+  .template {
+    &__header {
+      &--title h1 {
+        color: var(--color-primary);
+      }
+      &--title p {
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+
+    &__content {
+      border-bottom-color: var(--color-primary);
+
+      &__info {
+        color: rgba(255, 255, 255, 0.6);
+
+        .info-paragraph-amount {
+          color: var(--color-primary);
+        }
+
+        .info-paragraph {
+          color: var(--color-light-gray4);
+        }
+      }
+    }
+
+    &__table {
+      .bigcapital-datatable {
+        .table {
+          color: var(--color-light-gray4);
+
+          .thead .th {
+            color: var(--color-primary);
+          }
+          .tbody .tr .td {
+            border-bottom-color: rgba(255, 255, 255, 0.2);
+          }
+        }
+      }
+    }
+
+    &__terms {
+      &__title h4 {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      ul li {
+        color: var(--color-light-gray4);
+      }
+      ul li::before {
+        color: rgba(255, 255, 255, 0.4);
+      }
+    }
+  }
+
+  .bp4-drawer-header .bp4-heading {
+    color: var(--color-light-gray4);
+  }
+}

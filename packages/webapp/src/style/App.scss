@@ -258,8 +258,16 @@ html[lang^='ar'] {
 }
 
 .drawer-portal {
+  --color-drawer-overlay-backdrop: rgba(0, 10, 30, 0.05);
+
   .bp4-overlay-backdrop {
-    background: rgba(0, 10, 30, 0.05);
+    background: var(--color-drawer-overlay-backdrop);
+  }
+}
+
+body.bp4-dark {
+  .drawer-portal {
+    --color-drawer-overlay-backdrop: rgba(0, 0, 0, 0.35);
   }
 }
 
