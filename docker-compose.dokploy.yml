@@ -56,7 +56,7 @@ services:
   # ---------------------------------------------------------------------------
   webapp:
     container_name: alwathba-webapp
-    image: ${DOCKERHUB_USER:?}/bigcapital-webapp:alwathba
+    image: ${DOCKERHUB_USER:?}/bigcapital-webapp:alwathba-26bee31c8202e67948fb4c17504fc244b32e8de7
     restart: unless-stopped
     networks:
       - bigcapital_network
@@ -68,7 +68,7 @@ services:
   # ---------------------------------------------------------------------------
   server:
     container_name: alwathba-server
-    image: ${DOCKERHUB_USER:?}/bigcapital-server:alwathba
+    image: ${DOCKERHUB_USER:?}/bigcapital-server:alwathba-26bee31c8202e67948fb4c17504fc244b32e8de7
     restart: unless-stopped
     depends_on:
       mysql:
@@ -182,7 +182,7 @@ services:
   # ---------------------------------------------------------------------------
   migration:
     container_name: alwathba-migration
-    image: ${DOCKERHUB_USER:?}/bigcapital-server:alwathba
+    image: ${DOCKERHUB_USER:?}/bigcapital-server:alwathba-26bee31c8202e67948fb4c17504fc244b32e8de7
     # The CLI resolves migration paths relative to the package dir, so mirror
     # the upstream migration image's WORKDIR exactly.
     working_dir: /app/packages/server
