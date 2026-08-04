@@ -9,14 +9,12 @@ exports.up = function (knex) {
     })
     .then(() => {
       // Backfill cost_rate from the linked item's cost price for service/non-inventory items.
-      return knex.raw(
-        `UPDATE items_entries
-         INNER JOIN items ON items.id = items_entries.item_id
-         SET items_entries.cost_rate = items.cost_price
-         WHERE items.type != 'inventory'
-           AND items.cost_price IS NOT NULL
-           AND items.cost_price > 0`,
-      );
+      return knex('items_entries')
+        .join('items', 'items.id', 'items_entries.item_id')
+        .whereNot('items.type', 'inventory')
+        .whereNotNull('items.cost_price')
+        .where('items.cost_price', '>', 0)
+        .update({ cost_rate: knex.raw('??.??', ['items', 'cost_price']) });
     });
 };
 
