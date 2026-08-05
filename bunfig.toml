@@ -1,0 +1,4 @@
+[install]
+# Workspaces are configured via the `workspaces` field in package.json.
+# Shared packages resolve through workspace:* protocol deps.
+linkWorkspacePackages = true
