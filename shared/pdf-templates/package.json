@@ -2,17 +2,17 @@
   "name": "@bigcapital/pdf-templates",
   "version": "0.0.0",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
+    "build": "bun build ./src/index.ts --target=node --format=cjs --outfile=dist/components.umd.js && tsc --emitDeclarationOnly --declaration --declarationMap --outDir dist",
     "lint": "eslint .",
     "storybook:dev": "storybook dev -p 6006",
     "storybook:build": "storybook build"
   },
   "main": "./dist/components.umd.js",
-  "module": "./dist/components.es.js",
+  "module": "./dist/components.umd.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/src/index.d.ts",
+      "types": "./dist/index.d.ts",
       "import": "./dist/components.umd.js",
       "require": "./dist/components.umd.js"
     }
@@ -26,17 +26,10 @@
     "@xstyled/emotion": "^3.8.1",
     "@xstyled/system": "^3.8.1",
     "classnames": "^2.3.2",
-    "css-loader": "^6.x",
-    "declaration-bundler-webpack-plugin": "^1.0.3",
-    "fork-ts-checker-webpack-plugin": "^9.0.2",
     "lodash": "^4.17.15",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "style-loader": "^3.x",
-    "tailwindcss": "^3.4.14",
-    "ts-loader": "^9.x",
-    "webpack": "^5.x",
-    "webpack-cli": "^5.x"
+    "tailwindcss": "^3.4.14"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
