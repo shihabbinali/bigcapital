@@ -12,7 +12,7 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start:prod": "bun src/main.ts",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "typecheck": "tsc --noEmit",
     "test": "jest",
@@ -20,17 +20,17 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json --forceExit",
-    "cli": "ts-node -r tsconfig-paths/register src/cli.ts",
-    "cli:system:migrate:latest": "ts-node -r tsconfig-paths/register src/cli.ts system:migrate:latest",
-    "cli:system:migrate:rollback": "ts-node -r tsconfig-paths/register src/cli.ts system:migrate:rollback",
-    "cli:system:migrate:make": "ts-node -r tsconfig-paths/register src/cli.ts system:migrate:make",
-    "cli:tenants:migrate:latest": "ts-node -r tsconfig-paths/register src/cli.ts tenants:migrate:latest",
-    "cli:tenants:migrate:rollback": "ts-node -r tsconfig-paths/register src/cli.ts tenants:migrate:rollback",
-    "cli:tenants:migrate:make": "ts-node -r tsconfig-paths/register src/cli.ts tenants:migrate:make",
-    "cli:tenants:list": "ts-node -r tsconfig-paths/register src/cli.ts tenants:list",
-    "openapi:export": "ts-node -r tsconfig-paths/register src/cli.ts openapi:export",
-    "cli:system:seed:latest": "ts-node -r tsconfig-paths/register src/cli.ts system:seed:latest",
-    "cli:tenants:seed:latest": "ts-node -r tsconfig-paths/register src/cli.ts tenants:seed:latest"
+    "cli": "bun src/cli.ts",
+    "cli:system:migrate:latest": "bun src/cli.ts system:migrate:latest",
+    "cli:system:migrate:rollback": "bun src/cli.ts system:migrate:rollback",
+    "cli:system:migrate:make": "bun src/cli.ts system:migrate:make",
+    "cli:tenants:migrate:latest": "bun src/cli.ts tenants:migrate:latest",
+    "cli:tenants:migrate:rollback": "bun src/cli.ts tenants:migrate:rollback",
+    "cli:tenants:migrate:make": "bun src/cli.ts tenants:migrate:make",
+    "cli:tenants:list": "bun src/cli.ts tenants:list",
+    "openapi:export": "bun src/cli.ts openapi:export",
+    "cli:system:seed:latest": "bun src/cli.ts system:seed:latest",
+    "cli:tenants:seed:latest": "bun src/cli.ts tenants:seed:latest"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.576.0",
@@ -62,6 +62,7 @@
     "@nestjs/swagger": "^7.4.2",
     "@nestjs/throttler": "^6.2.1",
     "@nestjs/websockets": "^10.0.0",
+    "express": "^4.21.1",
     "@supercharge/promise-pool": "^3.2.0",
     "@types/multer": "^1.4.11",
     "@types/nodemailer": "^6.4.17",
@@ -180,6 +181,11 @@
     "testEnvironment": "node",
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/$1"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsconfig": "tsconfig.spec.json"
+      }
     }
   }
 }

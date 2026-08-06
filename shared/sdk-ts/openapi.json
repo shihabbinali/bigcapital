@@ -30369,6 +30369,11 @@
             "description": "The statement on the receipt",
             "example": "Paid in full"
           },
+          "termsConditions": {
+            "type": "string",
+            "description": "The terms and conditions on the receipt",
+            "example": "Payment due within 30 days."
+          },
           "closed": {
             "type": "boolean",
             "description": "Whether the receipt is closed",
@@ -30629,6 +30634,11 @@
             "description": "The statement of the sale receipt",
             "example": "123456"
           },
+          "termsConditions": {
+            "type": "string",
+            "description": "The terms and conditions of the sale receipt",
+            "example": "Payment due within 30 days."
+          },
           "attachments": {
             "description": "The attachments of the sale receipt",
             "example": [
@@ -30674,6 +30684,7 @@
           "entries",
           "receiptMessage",
           "statement",
+          "termsConditions",
           "attachments",
           "pdfTemplateId",
           "discount",
@@ -30757,6 +30768,11 @@
             "description": "The statement of the sale receipt",
             "example": "123456"
           },
+          "termsConditions": {
+            "type": "string",
+            "description": "The terms and conditions of the sale receipt",
+            "example": "Payment due within 30 days."
+          },
           "attachments": {
             "description": "The attachments of the sale receipt",
             "example": [
@@ -30802,6 +30818,7 @@
           "entries",
           "receiptMessage",
           "statement",
+          "termsConditions",
           "attachments",
           "pdfTemplateId",
           "discount",

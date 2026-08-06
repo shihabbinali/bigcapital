@@ -12,6 +12,11 @@
  * 2. depd: "callSite.getFileName is not a function" — inside jest's vm
  *    sandbox bun's Error.captureStackTrace returns plain strings instead of
  *    CallSite objects. Guard callSiteLocation accordingly.
+ * 3. @nestjs/swagger helpers.js: bun's emitDecoratorMetadata stores the raw
+ *    TS enum OBJECT (e.g. { Percentage: 'percentage' }) as design:type for
+ *    string/number enums, where tsc emits String/Number. Swagger then treats
+ *    the enum as an object literal and throws "circular dependency" during
+ *    openapi:export. Normalize plain-object design:type back to String/Number.
  *
  * Files live under pnpm's `.pnpm/<pkg>@<ver>/node_modules/<pkg>/` layout or
  * bun's `.bun/<pkg>@<ver>/node_modules/<pkg>/` layout — resolved via
@@ -82,6 +87,40 @@ const PATCHES = [
     return ['<anonymous>', 0, 0]
   }
   var file = callSite.getFileName() || '<anonymous>'`,
+  },
+  {
+    name: '@nestjs/swagger (bun enum design:type normalization)',
+    file: findPackage('@nestjs/swagger', 'dist/decorators/helpers.js'),
+    old: `        else {
+            const type = (_d = (_c = (_b = (_a = target === null || target === void 0 ? void 0 : target.constructor) === null || _a === void 0 ? void 0 : _a[plugin_constants_1.METADATA_FACTORY_NAME]) === null || _b === void 0 ? void 0 : _b.call(_a)[propertyKey]) === null || _c === void 0 ? void 0 : _c.type) !== null && _d !== void 0 ? _d : Reflect.getMetadata('design:type', target, propertyKey);
+            Reflect.defineMetadata(metakey, Object.assign({ type }, (0, lodash_1.pickBy)(metadata, (0, lodash_1.negate)(lodash_1.isUndefined))), target, propertyKey);
+        }`,
+    next: `        else {
+            const type = (_d = (_c = (_b = (_a = target === null || target === void 0 ? void 0 : target.constructor) === null || _a === void 0 ? void 0 : _a[plugin_constants_1.METADATA_FACTORY_NAME]) === null || _b === void 0 ? void 0 : _b.call(_a)[propertyKey]) === null || _c === void 0 ? void 0 : _c.type) !== null && _d !== void 0 ? _d : Reflect.getMetadata('design:type', target, propertyKey);
+            Reflect.defineMetadata(metakey, Object.assign({ type: normalizeEnumDesignType(type) }, (0, lodash_1.pickBy)(metadata, (0, lodash_1.negate)(lodash_1.isUndefined))), target, propertyKey);
+        }
+
+function normalizeEnumDesignType(type) {
+    // bun emits the raw TS enum object as design:type for string/number enums;
+    // tsc emits String/Number. Normalize plain objects of primitives back so
+    // swagger doesn't treat enums as object literals (fixes openapi:export).
+    if (type === null || typeof type !== 'object' || Array.isArray(type)) {
+        return type;
+    }
+    const values = Object.values(type);
+    if (values.length === 0) {
+        return type;
+    }
+    const allStrings = values.every((v) => typeof v === 'string');
+    const allNumbers = values.every((v) => typeof v === 'number');
+    if (allStrings) {
+        return String;
+    }
+    if (allNumbers) {
+        return Number;
+    }
+    return type;
+}`,
   },
 ];
 

@@ -9144,6 +9144,11 @@ export interface components {
              */
             statement?: string;
             /**
+             * @description The terms and conditions on the receipt
+             * @example Payment due within 30 days.
+             */
+            termsConditions?: string;
+            /**
              * @description Whether the receipt is closed
              * @example false
              */
@@ -9347,6 +9352,11 @@ export interface components {
              */
             statement: string;
             /**
+             * @description The terms and conditions of the sale receipt
+             * @example Payment due within 30 days.
+             */
+            termsConditions: string;
+            /**
              * @description The attachments of the sale receipt
              * @example [
              *       {
@@ -9447,6 +9457,11 @@ export interface components {
              * @example 123456
              */
             statement: string;
+            /**
+             * @description The terms and conditions of the sale receipt
+             * @example Payment due within 30 days.
+             */
+            termsConditions: string;
             /**
              * @description The attachments of the sale receipt
              * @example [
