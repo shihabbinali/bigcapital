@@ -1,39 +1,40 @@
 # Stage 1: Build
-FROM node:18.16.0-alpine AS builder
+FROM oven/bun:1.3.9-alpine AS builder
 
 WORKDIR /app
 
-# Install pnpm
-RUN npm install -g pnpm@9.0.5
-
 # Install build dependencies
-RUN apk add --no-cache python3 build-base chromium
+RUN apk add --no-cache python3 build-base
 
-# Set Python environment
 ENV PYTHON=/usr/bin/python3
 
 # Copy package files for dependency installation
-COPY --chown=node:node package.json pnpm-lock.yaml pnpm-workspace.yaml lerna.json ./
-COPY --chown=node:node packages/webapp/package.json ./packages/webapp/
-COPY --chown=node:node shared ./shared
+COPY package.json bun.lock bunfig.toml ./
+COPY packages/webapp/package.json ./packages/webapp/
+COPY packages/server/package.json ./packages/server/
+COPY shared ./shared
+COPY scripts ./scripts
 
 # Install all dependencies (including devDependencies for build)
-RUN pnpm install
+RUN bun install --frozen-lockfile
 
 # Copy source code for webapp and dependencies
-COPY --chown=node:node ./packages/webapp ./packages/webapp
+COPY ./packages/webapp ./packages/webapp
+
+# Build the shared workspace packages the webapp imports at runtime
+RUN bun run --filter '@bigcapital/utils' build
 
 # Build webapp package
-RUN pnpm run build:webapp
+RUN bun run --filter '@bigcapital/webapp' build
 
 # Stage 2: Nginx
 FROM nginx:alpine
 
 # Copy nginx configuration
-COPY --chown=root:root ./packages/webapp/nginx/sites/default.conf /etc/nginx/conf.d/default.conf
+COPY ./packages/webapp/nginx/sites/default.conf /etc/nginx/conf.d/default.conf
 
 # Copy built webapp assets from builder stage
-COPY --from=builder --chown=nginx:nginx /app/packages/webapp/dist /usr/share/nginx/html
+COPY --from=builder /app/packages/webapp/dist /usr/share/nginx/html
 
 # Expose port
 EXPOSE 80

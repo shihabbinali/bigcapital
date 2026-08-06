@@ -16,8 +16,8 @@
     "generate": "node -e \"if(!require('fs').existsSync('./openapi.json')){console.error('\\n  openapi.json not found. Run from repo root: pnpm run generate:sdk-types\\n'); process.exit(1)}\" && npx openapi-typescript ./openapi.json -o ./src/schema.ts",
     "build:cjs": "tsup src/index.ts --format cjs --dts --sourcemap",
     "build:esm": "tsup src/index.ts --format esm --dts --sourcemap",
-    "build": "npm run build:cjs && npm run build:esm",
-    "dev": "npm run build -- --watch",
+    "build": "bun run build:cjs && bun run build:esm",
+    "dev": "bun run build -- --watch",
     "typecheck": "tsc --noEmit"
   },
   "author": "",

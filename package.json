@@ -18,7 +18,7 @@
     "test:watch": "bun run --filter '*' test:watch",
     "test:e2e": "bun run --filter '*' test:e2e",
     "start:debug": "bun run --filter '*' start:debug",
-    "prepare": "husky install",
+    "prepare": "husky install || true",
     "postinstall": "node scripts/patch-node-modules.js",
     "system:migrate:make": "bun run --filter '@bigcapital/server' cli:system:migrate:make",
     "tenants:migrate:make": "bun run --filter '@bigcapital/server' cli:tenants:migrate:make",

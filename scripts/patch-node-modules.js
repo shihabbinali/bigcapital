@@ -127,8 +127,9 @@ function normalizeEnumDesignType(type) {
 let changed = 0;
 for (const patch of PATCHES) {
   if (!patch.file) {
-    console.error(`[patch-node-modules] FAIL ${patch.name}: package not found in node_modules`);
-    process.exitCode = 1;
+    // Package not installed (e.g. dev-only jest-runtime absent from a
+    // --production install). Nothing to patch — not an error.
+    console.warn(`[patch-node-modules] skip (package not installed): ${patch.name}`);
     continue;
   }
   const content = fs.readFileSync(patch.file, 'utf8');

@@ -15,8 +15,11 @@
   "scripts": {
     "build:cjs": "tsup src/index.ts --format cjs --dts --sourcemap",
     "build:esm": "tsup src/index.ts --format esm --dts --sourcemap",
-    "build": "npm run build:cjs && npm run build:esm",
-    "dev": "npm run build -- --watch"
+    "build": "bun run build:cjs && bun run build:esm",
+    "dev": "bun run build -- --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.3"
   },
   "author": "",
   "license": "ISC"
