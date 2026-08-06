@@ -1,5 +1,11 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "verbatimModuleSyntax": false,
+    "esModuleInterop": true,
+    "incremental": false
+  },
   "exclude": [
     "node_modules",
     "test",
