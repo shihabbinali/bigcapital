@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { ERRORS } from '../types/BankAccounts.types';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { PlaidItem } from '@/modules/BankingPlaid/models/PlaidItem';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class PauseBankAccountFeeds {

@@ -1,5 +1,5 @@
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   IBillPaymentEventCreatedPayload,
   IBillPaymentCreatingPayload,
 } from '../types/BillPayments.types';
@@ -12,7 +12,7 @@ import { events } from '@/common/events/events';
 import { TenancyContext } from '../../Tenancy/TenancyContext.service';
 import { BillPayment } from '../models/BillPayment';
 import { Vendor } from '../../Vendors/models/Vendor';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { CreateBillPaymentDto } from '../dtos/BillPayment.dto';
 
 @Injectable()
@@ -38,7 +38,7 @@ export class CreateBillPaymentService {
 
     @Inject(BillPayment.name)
     private readonly billPaymentModel: TenantModelProxy<typeof BillPayment>,
-  ) { }
+  ) {}
 
   /**
    * Creates a new bill payment transcations and store it to the storage

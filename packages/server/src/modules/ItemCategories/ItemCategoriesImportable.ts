@@ -1,5 +1,5 @@
 import { Importable } from '../Import/Importable';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { ItemCategoriesSampleData } from './constants';
 import { Injectable } from '@nestjs/common';
 import { CreateItemCategoryDto } from './dtos/ItemCategory.dto';
@@ -16,7 +16,7 @@ export class ItemCategoriesImportable extends Importable {
 
   /**
    * Importing to create new item category service.
-   * @param {CreateItemCategoryDto} createDTO 
+   * @param {CreateItemCategoryDto} createDTO
    * @param {Knex.Transaction} trx
    */
   public async importable(

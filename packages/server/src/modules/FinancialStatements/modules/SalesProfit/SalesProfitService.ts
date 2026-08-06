@@ -2,14 +2,18 @@ import { SalesProfitMeta } from './SalesProfitMeta';
 import { getSalesProfitDefaultQuery } from './utils';
 import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { ISalesProfitQuery, ISalesProfitSheet, ISalesProfitParent } from './SalesProfit.types';
+import type {
+  ISalesProfitQuery,
+  ISalesProfitSheet,
+  ISalesProfitParent,
+} from './SalesProfit.types';
 import { ItemEntry } from '@/modules/TransactionItemEntry/models/ItemEntry';
 import { SaleInvoice } from '@/modules/SaleInvoices/models/SaleInvoice';
 import { SaleReceipt } from '@/modules/SaleReceipts/models/SaleReceipt';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { SalesProfitReport } from './SalesProfit';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
-import { ModelObject } from 'objection';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { ModelObject } from 'objection';
 import { get } from 'lodash';
 import { events } from '@/common/events/events';
 
@@ -35,7 +39,9 @@ export class SalesProfitReportService {
    * @param {ISalesProfitQuery} query - The sales profit report query.
    * @returns {Promise<ISalesProfitSheet>}
    */
-  public async salesProfit(query: ISalesProfitQuery): Promise<ISalesProfitSheet> {
+  public async salesProfit(
+    query: ISalesProfitQuery,
+  ): Promise<ISalesProfitSheet> {
     const filter = {
       ...getSalesProfitDefaultQuery(),
       ...query,
@@ -76,7 +82,9 @@ export class SalesProfitReportService {
         invoiceMap.set(String(invoice.id), {
           date: invoice.invoiceDate,
           number: invoice.invoiceNo,
-          customerName: get(invoice, ['customer', 'displayName'], null) || invoice.customerName,
+          customerName:
+            get(invoice, ['customer', 'displayName'], null) ||
+            invoice.customerName,
         });
       });
     }
@@ -97,7 +105,9 @@ export class SalesProfitReportService {
         receiptMap.set(String(receipt.id), {
           date: receipt.receiptDate,
           number: receipt.receiptNumber,
-          customerName: get(receipt, ['customer', 'displayName'], null) || receipt.customerName,
+          customerName:
+            get(receipt, ['customer', 'displayName'], null) ||
+            receipt.customerName,
         });
       });
     }
@@ -122,7 +132,10 @@ export class SalesProfitReportService {
       filteredEntries,
       invoiceMap,
       receiptMap,
-      { baseCurrency: tenantMetadata.baseCurrency, dateFormat: meta.dateFormat },
+      {
+        baseCurrency: tenantMetadata.baseCurrency,
+        dateFormat: meta.dateFormat,
+      },
     );
     const salesProfitData = sheet.reportData();
 

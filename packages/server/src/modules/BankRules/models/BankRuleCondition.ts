@@ -1,5 +1,5 @@
 import { BaseModel } from '@/models/Model';
-import { BankRuleComparator } from '../types';
+import type { BankRuleComparator } from '../types';
 
 export class BankRuleCondition extends BaseModel {
   public id!: number;

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import * as moment from 'moment';
-import {
+import moment from 'moment';
+import type {
   IProfitLossSheetMeta,
   IProfitLossSheetQuery,
 } from './ProfitLossSheet.types';
@@ -20,7 +20,9 @@ export class ProfitLossSheetMeta {
   ): Promise<IProfitLossSheetMeta> {
     const commonMeta = await this.financialSheetMeta.meta();
     const formattedToDate = moment(query.toDate).format(commonMeta.dateFormat);
-    const formattedFromDate = moment(query.fromDate).format(commonMeta.dateFormat);
+    const formattedFromDate = moment(query.fromDate).format(
+      commonMeta.dateFormat,
+    );
     const formattedDateRange = `From ${formattedFromDate} | To ${formattedToDate}`;
 
     const sheetName = 'Cashflow Statement';

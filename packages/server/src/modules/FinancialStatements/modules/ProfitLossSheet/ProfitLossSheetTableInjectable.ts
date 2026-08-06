@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ProfitLossSheetService } from './ProfitLossSheetService';
 import { ProfitLossSheetTable } from './ProfitLossSheetTable';
-import {
+import type {
   IProfitLossSheetQuery,
   IProfitLossSheetTable,
 } from './ProfitLossSheet.types';

@@ -1,4 +1,4 @@
-import { IBranchesActivatedPayload } from '../../Branches.types';
+import type { IBranchesActivatedPayload } from '../../Branches.types';
 import { events } from '@/common/events/events';
 import { Injectable } from '@nestjs/common';
 import { VendorCreditActivateBranches } from '../../integrations/Purchases/VendorCreditBranchesActivate';
@@ -8,7 +8,7 @@ import { OnEvent } from '@nestjs/event-emitter';
 export class VendorCreditBranchesActivateSubscriber {
   constructor(
     private readonly vendorCreditActivateBranches: VendorCreditActivateBranches,
-  ) { }
+  ) {}
 
   /**
    * Updates vendor credits transactions with the primary branch once

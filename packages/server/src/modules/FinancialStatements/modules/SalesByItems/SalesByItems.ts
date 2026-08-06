@@ -1,18 +1,19 @@
 import { get, sumBy } from 'lodash';
 import * as R from 'ramda';
-import {
+import type {
   ISalesByItemsReportQuery,
   ISalesByItemsItem,
   ISalesByItemsTotal,
   ISalesByItemsSheetData,
 } from './SalesByItems.types';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { FinancialSheet } from '../../common/FinancialSheet';
 import { Item } from '@/modules/Items/models/Item';
 import { transformToMap } from '@/utils/transform-to-key';
 import { allPassedConditionsPass } from '@/utils/all-conditions-passed';
 import { InventoryTransaction } from '@/modules/InventoryCost/models/InventoryTransaction';
-import { IFinancialReportMeta, DEFAULT_REPORT_META } from '../../types/Report.types';
+import type { IFinancialReportMeta } from '../../types/Report.types';
+import { DEFAULT_REPORT_META } from '../../types/Report.types';
 
 export class SalesByItemsReport extends FinancialSheet {
   readonly baseCurrency: string;

@@ -1,6 +1,6 @@
 import { InventoryDetailsTableInjectable } from './InventoryItemDetailsTableInjectable';
 import { Injectable } from '@nestjs/common';
-import { IInventoryDetailsQuery } from './InventoryItemDetails.types';
+import type { IInventoryDetailsQuery } from './InventoryItemDetails.types';
 import { TableSheet } from '../../common/TableSheet';
 
 @Injectable()

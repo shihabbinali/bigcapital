@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { TENANCY_DB_CONNECTION } from '../Tenancy/TenancyDB/TenancyDB.constants';
 import { DeleteManualJournalService } from './commands/DeleteManualJournal.service';
 
@@ -53,4 +53,3 @@ export class ValidateBulkDeleteManualJournalsService {
     }
   }
 }
-

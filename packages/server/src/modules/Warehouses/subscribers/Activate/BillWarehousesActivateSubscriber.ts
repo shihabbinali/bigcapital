@@ -2,7 +2,7 @@ import { BillActivateWarehouses } from '../../Activate/BillWarehousesActivate';
 import { OnEvent } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
 import { events } from '@/common/events/events';
-import { IWarehousesActivatedPayload } from '../../Warehouse.types';
+import type { IWarehousesActivatedPayload } from '../../Warehouse.types';
 
 @Injectable()
 export class BillsActivateWarehousesSubscriber {
@@ -16,11 +16,11 @@ export class BillsActivateWarehousesSubscriber {
    * @param {IWarehousesActivatedPayload}
    */
   @OnEvent(events.warehouse.onActivated)
-  async  updateBillsWithWarehouseOnActivated ({
+  async updateBillsWithWarehouseOnActivated({
     primaryWarehouse,
   }: IWarehousesActivatedPayload) {
     await this.billsActivateWarehouses.updateBillsWithWarehouse(
-      primaryWarehouse
+      primaryWarehouse,
     );
-  };
+  }
 }

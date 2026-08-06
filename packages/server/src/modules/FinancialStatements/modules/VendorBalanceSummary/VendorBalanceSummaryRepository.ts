@@ -2,14 +2,14 @@ import * as R from 'ramda';
 import { isEmpty, map } from 'lodash';
 import { Inject, Injectable, Scope } from '@nestjs/common';
 import { Ledger } from '@/modules/Ledger/Ledger';
-import { IVendorBalanceSummaryQuery } from './VendorBalanceSummary.types';
+import type { IVendorBalanceSummaryQuery } from './VendorBalanceSummary.types';
 import { AccountTransaction } from '@/modules/Accounts/models/AccountTransaction.model';
 import { Vendor } from '@/modules/Vendors/models/Vendor';
 import { Account } from '@/modules/Accounts/models/Account.model';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
-import { ModelObject } from 'objection';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ModelObject } from 'objection';
 import { ACCOUNT_TYPE } from '@/constants/accounts';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class VendorBalanceSummaryRepository {

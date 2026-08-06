@@ -1,12 +1,12 @@
 import { StripePaymentService } from './StripePaymentService';
-import { Knex } from 'knex';
-import { StripeOAuthCodeGrantedEventPayload } from './types';
+import type { Knex } from 'knex';
+import type { StripeOAuthCodeGrantedEventPayload } from './types';
 import { Inject, Injectable } from '@nestjs/common';
 import { UnitOfWork } from '../Tenancy/TenancyDB/UnitOfWork.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { PaymentIntegration } from './models/PaymentIntegration.model';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 
 @Injectable()
 export class ExchangeStripeOAuthTokenService {

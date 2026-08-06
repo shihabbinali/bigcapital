@@ -1,10 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { fromPairs, isUndefined } from 'lodash';
-import {
-  ImportDateFormats,
-  ImportFileMapPOJO,
-  ImportMappingAttr,
-} from './interfaces';
+import { ImportDateFormats } from './interfaces';
+import type { ImportFileMapPOJO, ImportMappingAttr } from './interfaces';
 import { ResourceService } from '../Resource/ResourceService';
 import { ServiceError } from '../Items/ServiceError';
 import { ERRORS } from './_utils';

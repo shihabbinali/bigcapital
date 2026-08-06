@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { TenantRepository } from '@/common/repository/TenantRepository';
 import { TENANCY_DB_CONNECTION } from '@/modules/Tenancy/TenancyDB/TenancyDB.constants';

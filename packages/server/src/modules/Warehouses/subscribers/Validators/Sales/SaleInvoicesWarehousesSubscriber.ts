@@ -1,7 +1,7 @@
 import { WarehousesDTOValidators } from '../../../Integrations/WarehousesDTOValidators';
 import { OnEvent } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
-import {
+import type {
   ISaleInvoiceCreatingPaylaod,
   ISaleInvoiceEditingPayload,
 } from '@/modules/SaleInvoices/SaleInvoice.types';

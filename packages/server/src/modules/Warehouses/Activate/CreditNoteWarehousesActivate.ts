@@ -1,4 +1,4 @@
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { ItemEntry } from '@/modules/TransactionItemEntry/models/ItemEntry';
 import { CreditNote } from '@/modules/CreditNotes/models/CreditNote';
 import { Inject, Injectable } from '@nestjs/common';
@@ -20,7 +20,7 @@ export class CreditNotesActivateWarehouses {
    * @returns {Promise<void>}
    */
   public updateCreditsWithWarehouse = async (
-    primaryWarehouse: Warehouse
+    primaryWarehouse: Warehouse,
   ): Promise<void> => {
     // Updates the sale estimates with primary warehouse.
     await this.creditNoteModel().query().update({

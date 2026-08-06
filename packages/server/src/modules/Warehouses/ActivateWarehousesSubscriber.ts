@@ -3,7 +3,7 @@ import { OnEvent } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { UpdateInventoryTransactionsWithWarehouse } from './UpdateInventoryTransactionsWithWarehouse';
 import { CreateInitialWarehousesItemsQuantity } from './CreateInitialWarehousesitemsQuantity';
-import { IWarehousesActivatedPayload } from './Warehouse.types';
+import type { IWarehousesActivatedPayload } from './Warehouse.types';
 
 @Injectable()
 export class ActivateWarehousesSubscriber {

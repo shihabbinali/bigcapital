@@ -1,4 +1,4 @@
-import {
+import type {
   ITransactionsByCustomersFilter,
   ITransactionsByCustomersStatement,
 } from './TransactionsByCustomer.types';

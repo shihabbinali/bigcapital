@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import {
+import type {
   IItemEventDeletedPayload,
   IItemEventDeletingPayload,
 } from '@/interfaces/Item';
@@ -9,7 +9,7 @@ import { events } from '@/common/events/events';
 import { Item } from './models/Item';
 import { ERRORS } from './Items.constants';
 import { UnitOfWork } from '../Tenancy/TenancyDB/UnitOfWork.service';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 
 @Injectable()
 export class DeleteItemService {
@@ -25,7 +25,7 @@ export class DeleteItemService {
 
     @Inject(Item.name)
     private readonly itemModel: TenantModelProxy<typeof Item>,
-  ) { }
+  ) {}
 
   /**
    * Delete the given item from the storage.

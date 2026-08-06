@@ -2,7 +2,7 @@
 import * as R from 'ramda';
 import { sumBy, mapValues, get } from 'lodash';
 import { ACCOUNT_ROOT_TYPE } from '@/constants/accounts';
-import {
+import type {
   ICashFlowDatePeriod,
   ICashFlowStatementNetIncomeSection,
   ICashFlowStatementAccountSection,
@@ -12,11 +12,11 @@ import {
   ICashFlowStatementQuery,
   IDateRange,
 } from './Cashflow.types';
-import { IFormatNumberSettings } from '../../types/Report.types';
+import type { IFormatNumberSettings } from '../../types/Report.types';
 import { dateRangeFromToCollection } from '@/utils/date-range-collection';
 import { accumSum } from '@/utils/accum-sum';
 import { FinancialSheet } from '../../common/FinancialSheet';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { Ledger } from '@/modules/Ledger/Ledger';
 
 export const CashFlowStatementDatePeriods = <

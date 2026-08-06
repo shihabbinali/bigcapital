@@ -13,7 +13,7 @@ import { ItemEntry } from '../TransactionItemEntry/models/ItemEntry';
 import { ItemCategory } from '../ItemCategories/models/ItemCategory.model';
 import { AccountTransaction } from '../Accounts/models/AccountTransaction.model';
 import { InventoryAdjustment } from '../InventoryAdjutments/models/InventoryAdjustment';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { CreateItemDto, EditItemDto } from './dtos/Item.dto';
 
 @Injectable()

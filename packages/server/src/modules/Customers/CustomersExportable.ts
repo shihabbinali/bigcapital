@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { CustomersApplication } from './CustomersApplication.service';
-import { IItemsFilter } from '../Items/types/Items.types';
+import type { IItemsFilter } from '../Items/types/Items.types';
 import { EXPORT_SIZE_LIMIT } from '../Export/constants';
 import { Exportable } from '../Export/Exportable';
-import { ICustomersFilter } from './types/Customers.types';
+import type { ICustomersFilter } from './types/Customers.types';
 import { ExportableService } from '../Export/decorators/ExportableModel.decorator';
 import { Customer } from './models/Customer';
 

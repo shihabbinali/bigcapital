@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { WarehousesDTOValidators } from '../../../Integrations/WarehousesDTOValidators';
-import {
+import type {
   ICreditNoteEditingPayload,
   ICreditNoteCreatingPayload,
 } from '@/modules/CreditNotes/types/CreditNotes.types';

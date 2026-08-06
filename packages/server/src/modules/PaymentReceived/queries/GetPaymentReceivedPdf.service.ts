@@ -7,8 +7,8 @@ import { transformPaymentReceivedToPdfTemplate } from '../utils';
 import { PaymentReceived } from '../models/PaymentReceived';
 import { PdfTemplateModel } from '@/modules/PdfTemplate/models/PdfTemplate';
 import { ChromiumlyTenancy } from '@/modules/ChromiumlyTenancy/ChromiumlyTenancy.service';
-import { PaymentReceivedPdfTemplateAttributes } from '../types/PaymentReceived.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { PaymentReceivedPdfTemplateAttributes } from '../types/PaymentReceived.types';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { events } from '@/common/events/events';
 
 @Injectable()

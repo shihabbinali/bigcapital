@@ -1,6 +1,6 @@
 import { sumBy } from 'lodash';
 import { Injectable } from '@nestjs/common';
-import {
+import type {
   IApplyCreditToInvoicesCreatedPayload,
   IApplyCreditToInvoicesDeletedPayload,
 } from '../types/CreditNoteApplyInvoice.types';

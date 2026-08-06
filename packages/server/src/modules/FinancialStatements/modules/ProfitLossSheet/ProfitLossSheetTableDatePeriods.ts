@@ -1,13 +1,16 @@
 // @ts-nocheck
 import * as R from 'ramda';
-import * as moment from 'moment';
-import { ITableColumn, ITableColumnAccessor } from '../../types/Table.types';
+import moment from 'moment';
+import type {
+  ITableColumn,
+  ITableColumnAccessor,
+} from '../../types/Table.types';
 import { ProfitLossSheetTablePercentage } from './ProfitLossSheetTablePercentage';
 import { ProfitLossTablePreviousPeriod } from './ProfitLossTablePreviousPeriod';
 import { FinancialDatePeriods } from '../../common/FinancialDatePeriods';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from '../../common/FinancialSheet';
-import { IDateRange } from '../../types/Report.types';
+import type { IDateRange } from '../../types/Report.types';
 
 export const ProfitLossSheetTableDatePeriods = <
   T extends GConstructor<FinancialSheet>,

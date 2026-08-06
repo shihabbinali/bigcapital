@@ -1,7 +1,7 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { ItemWarehouseQuantity } from '../models/ItemWarehouseQuantity';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DeleteItemWarehousesQuantity {

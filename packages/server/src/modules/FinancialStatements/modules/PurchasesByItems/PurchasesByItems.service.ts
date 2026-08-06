@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { PurchasesByItems } from './PurchasesByItems';
-import {
+import type {
   IPurchasesByItemsReportQuery,
   IPurchasesByItemsSheet,
 } from './types/PurchasesByItems.types';
@@ -11,7 +11,7 @@ import { Item } from '@/modules/Items/models/Item';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { events } from '@/common/events/events';
 import { getPurchasesByItemsDefaultQuery } from './utils';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class PurchasesByItemsService {
@@ -80,7 +80,10 @@ export class PurchasesByItemsService {
       filter,
       inventoryItems,
       inventoryTransactions,
-      { baseCurrency: tenantMetadata.baseCurrency, dateFormat: meta.dateFormat },
+      {
+        baseCurrency: tenantMetadata.baseCurrency,
+        dateFormat: meta.dateFormat,
+      },
     );
     const purchasesByItemsData = purchasesByItemsInstance.reportData();
 

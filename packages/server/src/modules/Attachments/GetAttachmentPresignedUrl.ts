@@ -1,8 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { GetObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { ConfigService } from '@nestjs/config';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { DocumentModel } from './models/Document.model';
 import { S3_CLIENT } from '../S3/S3.module';
 
@@ -10,7 +11,7 @@ import { S3_CLIENT } from '../S3/S3.module';
 export class GetAttachmentPresignedUrl {
   constructor(
     private readonly configService: ConfigService,
-    
+
     @Inject(DocumentModel.name)
     private readonly documentModel: TenantModelProxy<typeof DocumentModel>,
 
@@ -20,7 +21,7 @@ export class GetAttachmentPresignedUrl {
 
   /**
    * Retrieves the presigned url of the given attachment key with the original filename.
-   * @param {string} key - 
+   * @param {string} key -
    * @returns {string}
    */
   async getPresignedUrl(key: string) {
@@ -36,7 +37,9 @@ export class GetAttachmentPresignedUrl {
       Key: key,
       ResponseContentDisposition,
     });
-    const signedUrl = await getSignedUrl(this.s3Client, command, { expiresIn: 300 });
+    const signedUrl = await getSignedUrl(this.s3Client, command, {
+      expiresIn: 300,
+    });
 
     // If a public endpoint is configured, replace the origin in the signed URL
     // so that browsers can reach S3 (the S3 client endpoint may be an

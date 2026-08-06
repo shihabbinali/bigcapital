@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { IDynamicFilter } from './DynamicFilter.types';
-import { MetableModel } from '../types/DynamicList.types';
+import type { IDynamicFilter } from './DynamicFilter.types';
+import type { MetableModel } from '../types/DynamicList.types';
 
 export class DynamicFilterAbstractor {
   public model: MetableModel;

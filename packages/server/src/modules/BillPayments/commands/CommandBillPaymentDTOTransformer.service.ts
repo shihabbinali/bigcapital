@@ -6,10 +6,7 @@ import { assocItemEntriesDefaultIndex } from '@/utils/associate-item-entries-ind
 import { BranchTransactionDTOTransformer } from '@/modules/Branches/integrations/BranchTransactionDTOTransform';
 import { Vendor } from '@/modules/Vendors/models/Vendor';
 import { BillPayment } from '../models/BillPayment';
-import {
-  CreateBillPaymentDto,
-  EditBillPaymentDto,
-} from '../dtos/BillPayment.dto';
+import { CreateBillPaymentDto, EditBillPaymentDto } from '../dtos/BillPayment.dto';
 
 @Injectable()
 export class CommandBillPaymentDTOTransformer {

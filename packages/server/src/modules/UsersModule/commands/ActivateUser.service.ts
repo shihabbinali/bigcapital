@@ -1,14 +1,14 @@
 import { events } from '@/common/events/events';
 import { ServiceError } from '@/modules/Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { TenantUser } from '@/modules/Tenancy/TenancyModels/models/TenantUser.model';
 import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { ERRORS } from '../Users.constants';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { SystemUser } from '@/modules/System/models/SystemUser';
-import { ITenantUserActivatedPayload } from '../Users.types';
+import type { ITenantUserActivatedPayload } from '../Users.types';
 
 @Injectable()
 export class ActivateUserService {

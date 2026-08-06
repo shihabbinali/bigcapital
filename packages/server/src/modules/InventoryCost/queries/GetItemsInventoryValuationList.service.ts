@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InventoryItemCostService } from '../commands/InventoryCosts.service';
-import { IInventoryItemCostMeta } from '../types/InventoryCost.types';
+import type { IInventoryItemCostMeta } from '../types/InventoryCost.types';
 
 @Injectable()
 export class GetItemsInventoryValuationListService {

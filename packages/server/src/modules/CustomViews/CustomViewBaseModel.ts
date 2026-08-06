@@ -1,5 +1,5 @@
 import { BaseModel } from '@/models/Model';
-import { IView } from '../Views/Views.types';
+import type { IView } from '../Views/Views.types';
 
 type GConstructor<T = {}> = new (...args: any[]) => T;
 

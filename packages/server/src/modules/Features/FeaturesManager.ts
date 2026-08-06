@@ -1,12 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { FeaturesSettingsDriver } from './FeaturesSettingsDriver';
-import { IFeatureAllItem } from '@/common/types/Features';
+import type { IFeatureAllItem } from '@/common/types/Features';
 
 @Injectable()
 export class FeaturesManager {
-  constructor(
-    private drive: FeaturesSettingsDriver,
-  ) {}
+  constructor(private drive: FeaturesSettingsDriver) {}
 
   /**
    * Turns-on the given feature name.

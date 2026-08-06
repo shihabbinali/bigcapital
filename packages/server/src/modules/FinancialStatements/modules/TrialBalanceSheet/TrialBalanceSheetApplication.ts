@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { TrialBalanceSheetTableInjectable } from './TrialBalanceSheetTableInjectable';
 import { TrialBalanceExportInjectable } from './TrialBalanceExportInjectable';
-import { ITrialBalanceStatement } from './TrialBalanceSheet.types';
+import type { ITrialBalanceStatement } from './TrialBalanceSheet.types';
 import { TrialBalanceSheetService } from './TrialBalanceSheetInjectable';
 import { TrialBalanceSheetQueryDto } from './TrialBalanceSheetQuery.dto';
 

@@ -1,4 +1,4 @@
-import {
+import type {
   IGeneralLedgerSheetQuery,
   IGeneralLedgerTableData,
 } from './GeneralLedger.types';

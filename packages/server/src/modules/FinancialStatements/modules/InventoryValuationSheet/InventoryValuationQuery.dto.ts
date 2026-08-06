@@ -5,7 +5,7 @@ import {
   IsOptional,
   ValidateNested,
 } from 'class-validator';
-import { INumberFormatQuery } from '../../types/Report.types';
+import type { INumberFormatQuery } from '../../types/Report.types';
 import { Transform, Type } from 'class-transformer';
 import { parseBoolean } from '@/utils/parse-boolean';
 import { NumberFormatQueryDto } from '@/modules/BankingTransactions/dtos/NumberFormatQuery.dto';

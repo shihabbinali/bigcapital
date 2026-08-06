@@ -4,7 +4,7 @@ import { Account } from '@/modules/Accounts/models/Account.model';
 import { RefundVendorCredit } from '../models/RefundVendorCredit';
 import { VendorCredit } from '@/modules/VendorCredit/models/VendorCredit';
 import { ServiceError } from '@/modules/Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class RefundVendorCreditService {

@@ -1,7 +1,7 @@
-import { Transaction } from 'objection';
+import type { Transaction } from 'objection';
 import { Inject, Injectable } from '@nestjs/common';
 import { VendorCredit } from '@/modules/VendorCredit/models/VendorCredit';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class RefundSyncCreditRefundedAmount {

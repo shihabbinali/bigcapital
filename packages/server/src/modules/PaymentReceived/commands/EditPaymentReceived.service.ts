@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import {
+import type {
   IPaymentReceivedEditDTO,
   IPaymentReceivedEditedPayload,
   IPaymentReceivedEditingPayload,
@@ -13,7 +13,7 @@ import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { events } from '@/common/events/events';
 import { Customer } from '@/modules/Customers/models/Customer';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { EditPaymentReceivedDto } from '../dtos/PaymentReceived.dto';
 
 @Injectable()

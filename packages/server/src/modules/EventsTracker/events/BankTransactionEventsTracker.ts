@@ -9,13 +9,13 @@ import { Injectable } from '@nestjs/common';
 import { EventTrackerService } from '../EventTracker.service';
 import { OnEvent } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import { IBankTransactionMatchedEventPayload } from '@/modules/BankingMatching/types';
-import { IBankTransactionExcludedEventPayload } from '@/modules/BankingTransactionsExclude/types/BankTransactionsExclude.types';
-import {
+import type { IBankTransactionMatchedEventPayload } from '@/modules/BankingMatching/types';
+import type { IBankTransactionExcludedEventPayload } from '@/modules/BankingTransactionsExclude/types/BankTransactionsExclude.types';
+import type {
   ICashflowTransactionCategorizedPayload,
   ICashflowTransactionUncategorizedPayload,
 } from '@/modules/BankingTransactions/types/BankingTransactions.types';
-import { IBankAccountDisconnectedEventPayload } from '@/modules/BankingAccounts/types/BankAccounts.types';
+import type { IBankAccountDisconnectedEventPayload } from '@/modules/BankingAccounts/types/BankAccounts.types';
 
 @Injectable()
 export class BankTransactionEventsTracker {

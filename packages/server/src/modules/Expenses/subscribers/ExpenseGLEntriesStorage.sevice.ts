@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Injectable } from '@nestjs/common';
 import { ExpenseGLEntriesService } from './ExpenseGLEntries.service';
 import { LedgerStorageService } from '@/modules/Ledger/LedgerStorage.service';
@@ -43,11 +43,7 @@ export class ExpenseGLEntriesStorageService {
     expenseId: number,
     trx?: Knex.Transaction,
   ) => {
-    await this.ledgerStorage.deleteByReference(
-      expenseId,
-      'Expense',
-      trx,
-    );
+    await this.ledgerStorage.deleteByReference(expenseId, 'Expense', trx);
   };
 
   /**

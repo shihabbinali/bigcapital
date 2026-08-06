@@ -1,10 +1,10 @@
 import { Inject, Injectable, Scope } from '@nestjs/common';
 import { isEmpty, groupBy } from 'lodash';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { Bill } from '@/modules/Bills/models/Bill';
 import { Vendor } from '@/modules/Vendors/models/Vendor';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { APAgingSummaryQueryDto } from './APAgingSummaryQuery.dto';
 
 @Injectable({ scope: Scope.REQUEST })

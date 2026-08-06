@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { InvoiceInventoryTransactions } from '../commands/inventory/InvoiceInventoryTransactions';
 import { events } from '@/common/events/events';
-import {
+import type {
   ISaleInvoiceCreatedPayload,
   ISaleInvoiceEditedPayload,
   ISaleInvoiceDeletedPayload,

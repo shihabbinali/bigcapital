@@ -1,13 +1,15 @@
-import { Processor, WorkerHost } from '@nestjs/bullmq';
+import { Processor } from '@nestjs/bullmq';
+import { WorkerHost } from '@nestjs/bullmq';
 import { Job } from 'bullmq';
 import { Scope } from '@nestjs/common';
-import { ClsService, UseCls } from 'nestjs-cls';
+import { UseCls } from 'nestjs-cls';
+import { ClsService } from 'nestjs-cls';
 import {
   SEND_PAYMENT_RECEIVED_MAIL_JOB,
   SEND_PAYMENT_RECEIVED_MAIL_QUEUE,
 } from '../constants';
 import { SendPaymentReceiveMailNotification } from '../commands/PaymentReceivedMailNotification';
-import { SendPaymentReceivedMailPayload } from '../types/PaymentReceived.types';
+import type { SendPaymentReceivedMailPayload } from '../types/PaymentReceived.types';
 
 @Processor({
   name: SEND_PAYMENT_RECEIVED_MAIL_QUEUE,

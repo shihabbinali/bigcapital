@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { Knex } from 'knex';
-import { IItemCategoryCreatedPayload } from '../ItemCategory.interfaces';
+import type { Knex } from 'knex';
+import type { IItemCategoryCreatedPayload } from '../ItemCategory.interfaces';
 import { events } from '@/common/events/events';
 import { CommandItemCategoryValidatorService } from './CommandItemCategoryValidator.service';
 import { ItemCategory } from '../models/ItemCategory.model';

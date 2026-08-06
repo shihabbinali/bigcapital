@@ -1,7 +1,5 @@
-import {
-  InvoicePaymentEmailProps,
-  renderInvoicePaymentEmail,
-} from '@bigcapital/email-components';
+import { renderInvoicePaymentEmail } from '@bigcapital/email-components';
+import type { InvoicePaymentEmailProps } from '@bigcapital/email-components';
 import { GetSaleInvoice } from './GetSaleInvoice.service';
 import { GetPdfTemplateService } from '@/modules/PdfTemplate/queries/GetPdfTemplate.service';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';

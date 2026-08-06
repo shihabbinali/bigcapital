@@ -2,7 +2,7 @@ import { I18nService } from 'nestjs-i18n';
 import { Transformer } from './Transformer';
 import { Global, Injectable } from '@nestjs/common';
 import { TenancyContext } from '../Tenancy/TenancyContext.service';
-import { TransformerContext } from './Transformer.types';
+import type { TransformerContext } from './Transformer.types';
 
 @Injectable()
 export class TransformerInjectable {

@@ -2,7 +2,7 @@ import { events } from '@/common/events/events';
 import { SystemUser } from '@/modules/System/models/SystemUser';
 import { Inject, Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
-import { ITenantUserDeletedPayload } from '../Users.types';
+import type { ITenantUserDeletedPayload } from '../Users.types';
 
 @Injectable()
 export class SyncTenantUserDeleteSubscriber {

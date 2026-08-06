@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { TaxRateTransformer } from './TaxRate.transformer';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { TaxRateModel } from '../models/TaxRate.model';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetTaxRatesService {

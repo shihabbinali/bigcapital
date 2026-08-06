@@ -3,7 +3,7 @@ import { ApplyVendorCreditToBillsService } from './command/ApplyVendorCreditToBi
 import { DeleteApplyVendorCreditToBillService } from './command/DeleteApplyVendorCreditToBill.service';
 import { GetAppliedBillsToVendorCreditService } from './queries/GetAppliedBillsToVendorCredit.service';
 import { GetVendorCreditToApplyBills } from './queries/GetVendorCreditToApplyBills.service';
-import { IVendorCreditApplyToInvoicesDTO } from './types/VendorCreditApplyBills.types';
+import type { IVendorCreditApplyToInvoicesDTO } from './types/VendorCreditApplyBills.types';
 
 @Injectable()
 export class VendorCreditApplyBillsApplicationService {

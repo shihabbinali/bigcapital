@@ -2,13 +2,12 @@ import { OnEvent } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
 import { ReceiptActivateWarehouses } from '../../Activate/ReceiptWarehousesActivate';
 import { events } from '@/common/events/events';
-import { IWarehousesActivatedPayload } from '../../Warehouse.types';
-
+import type { IWarehousesActivatedPayload } from '../../Warehouse.types';
 
 @Injectable()
 export class ReceiptsActivateWarehousesSubscriber {
   constructor(
-    private readonly receiptsActivateWarehouses: ReceiptActivateWarehouses, 
+    private readonly receiptsActivateWarehouses: ReceiptActivateWarehouses,
   ) {}
 
   /**
@@ -21,7 +20,7 @@ export class ReceiptsActivateWarehousesSubscriber {
     primaryWarehouse,
   }: IWarehousesActivatedPayload) {
     await this.receiptsActivateWarehouses.updateReceiptsWithWarehouse(
-      primaryWarehouse
+      primaryWarehouse,
     );
-  };
+  }
 }

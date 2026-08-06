@@ -1,7 +1,7 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import { defaultTo, isEmpty } from 'lodash';
 import { Injectable } from '@nestjs/common';
-import { IVendorEditDTO, IVendorNewDTO } from '../types/Vendors.types';
+import type { IVendorEditDTO, IVendorNewDTO } from '../types/Vendors.types';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { ContactService } from '@/modules/Contacts/types/Contacts.types';
 import { Vendor } from '../models/Vendor';

@@ -1,10 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { NumberFormatQueryDto } from '@/modules/BankingTransactions/dtos/NumberFormatQuery.dto';
-import {
-  FinancialReportTotalDto,
-  FinancialReportMetaDto,
-  FinancialTableDataDto,
-} from '../../dtos/FinancialReportResponse.dto';
+import { FinancialReportTotalDto, FinancialTableDataDto } from '../../dtos/FinancialReportResponse.dto';
+import { FinancialReportMetaDto } from '../../dtos/FinancialReportResponse.dto';
 
 export class InventoryItemTransactionDto {
   @ApiProperty({ description: 'Transaction date' })
@@ -54,7 +51,10 @@ export class InventoryItemDetailDto {
   @ApiProperty({ description: 'Closing quantity', type: Number })
   closingQuantity: number;
 
-  @ApiProperty({ description: 'Item transactions', type: [InventoryItemTransactionDto] })
+  @ApiProperty({
+    description: 'Item transactions',
+    type: [InventoryItemTransactionDto],
+  })
   transactions: InventoryItemTransactionDto[];
 }
 
@@ -76,7 +76,10 @@ export class InventoryItemDetailsQueryResponseDto {
   @ApiProperty({ description: 'End date' })
   toDate: string;
 
-  @ApiProperty({ description: 'Number format settings', type: NumberFormatQueryDto })
+  @ApiProperty({
+    description: 'Number format settings',
+    type: NumberFormatQueryDto,
+  })
   numberFormat: NumberFormatQueryDto;
 
   @ApiProperty({ description: 'Item IDs to include', type: [Number] })
@@ -84,13 +87,22 @@ export class InventoryItemDetailsQueryResponseDto {
 }
 
 export class InventoryItemDetailsResponseDto {
-  @ApiProperty({ description: 'Query parameters used to generate the report', type: InventoryItemDetailsQueryResponseDto })
+  @ApiProperty({
+    description: 'Query parameters used to generate the report',
+    type: InventoryItemDetailsQueryResponseDto,
+  })
   query: InventoryItemDetailsQueryResponseDto;
 
-  @ApiProperty({ description: 'Inventory items with details', type: [InventoryItemDetailDto] })
+  @ApiProperty({
+    description: 'Inventory items with details',
+    type: [InventoryItemDetailDto],
+  })
   data: InventoryItemDetailDto[];
 
-  @ApiProperty({ description: 'Report metadata', type: InventoryItemDetailsMetaDto })
+  @ApiProperty({
+    description: 'Report metadata',
+    type: InventoryItemDetailsMetaDto,
+  })
   meta: InventoryItemDetailsMetaDto;
 }
 
@@ -103,12 +115,21 @@ export {
 } from '../../dtos/FinancialReportResponse.dto';
 
 export class InventoryItemDetailsTableResponseDto {
-  @ApiProperty({ description: 'Table data structure', type: () => FinancialTableDataDto })
+  @ApiProperty({
+    description: 'Table data structure',
+    type: () => FinancialTableDataDto,
+  })
   table: FinancialTableDataDto;
 
-  @ApiProperty({ description: 'Query parameters used to generate the report', type: InventoryItemDetailsQueryResponseDto })
+  @ApiProperty({
+    description: 'Query parameters used to generate the report',
+    type: InventoryItemDetailsQueryResponseDto,
+  })
   query: InventoryItemDetailsQueryResponseDto;
 
-  @ApiProperty({ description: 'Report metadata', type: InventoryItemDetailsMetaDto })
+  @ApiProperty({
+    description: 'Report metadata',
+    type: InventoryItemDetailsMetaDto,
+  })
   meta: InventoryItemDetailsMetaDto;
 }

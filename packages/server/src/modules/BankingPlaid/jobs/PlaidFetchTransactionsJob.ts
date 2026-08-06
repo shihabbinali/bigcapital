@@ -1,11 +1,10 @@
 import { UseCls } from 'nestjs-cls';
-import { Processor, WorkerHost } from '@nestjs/bullmq';
+import { Processor } from '@nestjs/bullmq';
+import { WorkerHost } from '@nestjs/bullmq';
 import { Scope } from '@nestjs/common';
 import { Job } from 'bullmq';
-import {
-  PlaidFetchTransitonsEventPayload,
-  UpdateBankingPlaidTransitionsQueueJob,
-} from '../types/BankingPlaid.types';
+import { UpdateBankingPlaidTransitionsQueueJob } from '../types/BankingPlaid.types';
+import type { PlaidFetchTransitonsEventPayload } from '../types/BankingPlaid.types';
 import { PlaidUpdateTransactions } from '../command/PlaidUpdateTransactions';
 import { SetupPlaidItemTenantService } from '../command/SetupPlaidItemTenant.service';
 import { SocketGateway } from '../../Socket/Socket.gateway';

@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { EXPORT_SIZE_LIMIT } from '../Export/constants';
 import { Exportable } from '../Export/Exportable';
-import { ISalesInvoicesFilter } from '../SaleInvoices/SaleInvoice.types';
+import type { ISalesInvoicesFilter } from '../SaleInvoices/SaleInvoice.types';
 import { SaleEstimatesApplication } from './SaleEstimates.application';
-import { ISalesEstimatesFilter } from './types/SaleEstimates.types';
+import type { ISalesEstimatesFilter } from './types/SaleEstimates.types';
 import { ExportableService } from '../Export/decorators/ExportableModel.decorator';
 import { SaleEstimate } from './models/SaleEstimate';
 

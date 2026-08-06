@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   ISaleInvoiceDeletePayload,
   ISaleInvoiceDeletedPayload,
   ISaleInvoiceDeletingPayload,
@@ -15,7 +15,7 @@ import { ERRORS } from '../constants';
 import { events } from '@/common/events/events';
 import { PaymentReceivedEntry } from '@/modules/PaymentReceived/models/PaymentReceivedEntry';
 import { CreditNoteAppliedInvoice } from '@/modules/CreditNotesApplyInvoice/models/CreditNoteAppliedInvoice';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DeleteSaleInvoice {
@@ -47,7 +47,7 @@ export class DeleteSaleInvoice {
 
     @Inject(ItemEntry.name)
     private itemEntryModel: TenantModelProxy<typeof ItemEntry>,
-  ) { }
+  ) {}
 
   /**
    * Validate the sale invoice has no payment entries.

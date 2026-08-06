@@ -1,11 +1,11 @@
-import {
+import type {
   IAgingPeriod,
   IAgingSummaryTotal,
   IAgingSummaryContact,
   IAgingSummaryData,
   IAgingSummaryMeta,
 } from '../AgingSummary/AgingSummary.types';
-import { IFinancialTable } from '../../types/Table.types';
+import type { IFinancialTable } from '../../types/Table.types';
 import { ARAgingSummaryQueryDto } from './ARAgingSummaryQuery.dto';
 
 export interface IARAgingSummaryCustomer extends IAgingSummaryContact {

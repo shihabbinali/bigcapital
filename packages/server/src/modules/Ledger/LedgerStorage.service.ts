@@ -1,12 +1,12 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
-import { ILedger } from './types/Ledger.types';
+import type { ILedger } from './types/Ledger.types';
 import { LedgerContactsBalanceStorage } from './LedgerContactStorage.service';
 import { LedegrAccountsStorage } from './LedgetAccountStorage.service';
 import { LedgerEntriesStorageService } from './LedgerEntriesStorage.service';
 import { AccountTransaction } from '../Accounts/models/AccountTransaction.model';
 import { Ledger } from './Ledger';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 
 @Injectable()
 export class LedgerStorageService {

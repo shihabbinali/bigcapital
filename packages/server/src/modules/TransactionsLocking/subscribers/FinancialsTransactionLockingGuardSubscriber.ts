@@ -1,18 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { FinancialTransactionLocking } from '../guards/FinancialTransactionLockingGuard';
-import {
+import type {
   IManualJournalCreatingPayload,
   IManualJournalEditingPayload,
   IManualJournalPublishingPayload,
 } from '@/modules/ManualJournals/types/ManualJournals.types';
-import {
+import type {
   IExpenseCreatingPayload,
   IExpenseDeletingPayload,
   IExpenseEventEditingPayload,
   IExpensePublishingPayload,
 } from '@/modules/Expenses/Expenses.types';
-import {
+import type {
   ICommandCashflowCreatingPayload,
   ICommandCashflowDeletingPayload,
 } from '@/modules/BankingTransactions/types/BankingTransactions.types';
@@ -22,7 +22,7 @@ import { events } from '@/common/events/events';
 export class FinancialTransactionLockingGuardSubscriber {
   constructor(
     public readonly financialTransactionsLocking: FinancialTransactionLocking,
-  ) { }
+  ) {}
 
   /**
    * ---------------------------------------------

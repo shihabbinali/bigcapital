@@ -1,20 +1,20 @@
-import { ModelObject } from 'objection';
-import * as moment from 'moment';
+import type { ModelObject } from 'objection';
+import moment from 'moment';
 import * as R from 'ramda';
 import { ACCOUNT_TYPE } from '@/constants/accounts';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { AccountTransaction } from '@/modules/Accounts/models/AccountTransaction.model';
 import { Customer } from '@/modules/Customers/models/Customer';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { Inject, Injectable, Scope } from '@nestjs/common';
 import { isEmpty, map } from 'lodash';
 import { AccountRepository } from '@/modules/Accounts/repositories/Account.repository';
 import { Ledger } from '@/modules/Ledger/Ledger';
-import { ITransactionsByCustomersFilter } from './TransactionsByCustomer.types';
+import type { ITransactionsByCustomersFilter } from './TransactionsByCustomer.types';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { TransactionsByContactRepository } from '../TransactionsByContact/TransactionsByContactRepository';
-import { DateInput } from '@/common/types/Date';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { DateInput } from '@/common/types/Date';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class TransactionsByCustomersRepository extends TransactionsByContactRepository {

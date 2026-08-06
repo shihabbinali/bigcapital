@@ -1,8 +1,8 @@
 // @ts-nocheck
 import { chain } from 'lodash';
 import { pick } from 'lodash';
-import { IItemEntryTransactionType } from '../TransactionItemEntry/ItemEntry.types';
-import { TInventoryTransactionDirection } from './types/InventoryCost.types';
+import type { IItemEntryTransactionType } from '../TransactionItemEntry/ItemEntry.types';
+import type { TInventoryTransactionDirection } from './types/InventoryCost.types';
 
 /**
  * Grpups by transaction type and id the inventory transactions.

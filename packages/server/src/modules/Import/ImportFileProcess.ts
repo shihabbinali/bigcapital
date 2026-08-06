@@ -1,10 +1,10 @@
 import { chain } from 'lodash';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { ERRORS, getUnmappedSheetColumns, readImportFile } from './_utils';
 import { ImportFileCommon } from './ImportFileCommon';
 import { ImportFileDataTransformer } from './ImportFileDataTransformer';
-import { ImportFilePreviewPOJO } from './interfaces';
+import type { ImportFilePreviewPOJO } from './interfaces';
 import { parseSheetData } from './sheet_utils';
 import { ResourceService } from '../Resource/ResourceService';
 import { UnitOfWork } from '../Tenancy/TenancyDB/UnitOfWork.service';

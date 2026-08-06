@@ -2,7 +2,7 @@ import { isEqual, omit } from 'lodash';
 import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import {
+import type {
   IBankRuleEventCreatedPayload,
   IBankRuleEventDeletedPayload,
   IBankRuleEventEditedPayload,
@@ -11,9 +11,9 @@ import { Queue } from 'bullmq';
 import { InjectQueue } from '@nestjs/bullmq';
 import {
   RecognizeUncategorizedTransactionsJob,
-  RecognizeUncategorizedTransactionsJobPayload,
   RecognizeUncategorizedTransactionsQueue,
 } from '../_types';
+import type { RecognizeUncategorizedTransactionsJobPayload } from '../_types';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 
 @Injectable()
@@ -55,7 +55,6 @@ export class TriggerRecognizedTransactionsSubscriber {
     oldBankRule,
     bankRule,
   }: IBankRuleEventEditedPayload) {
-    
     // Cannot continue if the new and old bank rule values are the same,
     // after excluding `createdAt` and `updatedAt` dates.
     if (

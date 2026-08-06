@@ -1,7 +1,14 @@
-import { Controller, Get, Headers, Query, Res, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Headers,
+  Query,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
 import { ARAgingSummaryApplication } from './ARAgingSummaryApplication';
 import { AcceptType } from '@/constants/accept-type';
-import { Response } from 'express';
+import type { Response } from 'express';
 import {
   ApiExtraModels,
   ApiOperation,

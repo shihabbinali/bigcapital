@@ -1,19 +1,19 @@
 import { Inject, Injectable } from '@nestjs/common';
-import * as uniqid from 'uniqid';
-import * as moment from 'moment';
-import {
+import uniqid from 'uniqid';
+import moment from 'moment';
+import type {
   IUserSendInviteDTO,
   IUserInvitedEventPayload,
   IUserInviteResendEventPayload,
 } from '../Users.types';
 import { ERRORS } from '../Users.constants';
 import { ServiceError } from '@/modules/Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { TenantUser } from '@/modules/Tenancy/TenancyModels/models/TenantUser.model';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { Role } from '@/modules/Roles/models/Role.model';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { SendInviteUserDto } from '../dtos/InviteUser.dto';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 
@@ -78,7 +78,9 @@ export class InviteTenantUserService {
    * @param {string} email -
    * @return {Promise<{ invite: IUserInvite }>}
    */
-  public async resendInvite(userId: number): Promise<{ user: ModelObject<TenantUser> }> {
+  public async resendInvite(
+    userId: number,
+  ): Promise<{ user: ModelObject<TenantUser> }> {
     // Retrieve the user by id or throw not found service error.
     const user = await this.getUserByIdOrThrowError(userId);
 

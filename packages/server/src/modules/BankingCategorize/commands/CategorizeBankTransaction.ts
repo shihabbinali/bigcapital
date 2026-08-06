@@ -1,8 +1,8 @@
 import { castArray } from 'lodash';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   ICashflowTransactionCategorizedPayload,
   ICashflowTransactionUncategorizingPayload,
 } from '../types/BankingCategorize.types';
@@ -15,7 +15,7 @@ import { CreateBankTransactionService } from '../../BankingTransactions/commands
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { UncategorizedBankTransaction } from '@/modules/BankingTransactions/models/UncategorizedBankTransaction';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { CategorizeBankTransactionDto } from '../dtos/CategorizeBankTransaction.dto';
 
 @Injectable()

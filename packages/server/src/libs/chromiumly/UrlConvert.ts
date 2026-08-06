@@ -1,5 +1,7 @@
-import * as  FormData from 'form-data';
-import { IConverter, PageProperties, PdfFormat, ChromiumRoute } from './_types';
+import FormData from 'form-data';
+import type { IConverter, PageProperties } from './_types';
+import { PdfFormat } from './_types';
+import { ChromiumRoute } from './_types';
 import { ConverterUtils } from './ConvertUtils';
 import { Converter } from './Converter';
 import { GotenbergUtils } from './GotenbergUtils';

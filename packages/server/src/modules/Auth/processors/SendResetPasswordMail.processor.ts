@@ -1,10 +1,11 @@
-import { Processor, WorkerHost } from '@nestjs/bullmq';
+import { Processor } from '@nestjs/bullmq';
+import { WorkerHost } from '@nestjs/bullmq';
 import { Scope } from '@nestjs/common';
 import { SendResetPasswordMailQueue } from '../Auth.constants';
 import { Job } from 'bullmq';
 import { AuthenticationMailMesssages } from '../AuthMailMessages.esrvice';
 import { MailTransporter } from '@/modules/Mail/MailTransporter.service';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { SystemUser } from '@/modules/System/models/SystemUser';
 
 @Processor({

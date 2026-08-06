@@ -4,10 +4,10 @@ import { OnEvent } from '@nestjs/event-emitter';
 import { Queue } from 'bullmq';
 import { InjectQueue } from '@nestjs/bullmq';
 import {
-  IPlaidItemCreatedEventPayload,
   UpdateBankingPlaidTransitionsJob,
   UpdateBankingPlaidTransitionsQueueJob,
 } from '../types/BankingPlaid.types';
+import type { IPlaidItemCreatedEventPayload } from '../types/BankingPlaid.types';
 
 @Injectable()
 export class PlaidUpdateTransactionsOnItemCreatedSubscriber {

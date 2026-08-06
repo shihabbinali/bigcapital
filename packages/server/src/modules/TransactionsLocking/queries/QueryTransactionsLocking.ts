@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import {
+import { TransactionsLockingGroup } from '../types/TransactionsLocking.types';
+import type {
   ITransactionLockingMetaPOJO,
   ITransactionsLockingListPOJO,
   ITransactionsLockingSchema,
-  TransactionsLockingGroup,
 } from '../types/TransactionsLocking.types';
 import { TRANSACTIONS_LOCKING_SCHEMA } from '../constants';
 import { TransactionsLockingRepository } from '../TransactionsLockingRepository';

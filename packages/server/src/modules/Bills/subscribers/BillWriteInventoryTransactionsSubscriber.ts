@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {
+import type {
   IBillCreatedPayload,
   IBillEditedPayload,
   IBIllEventDeletedPayload,
@@ -42,7 +42,7 @@ export class BillWriteInventoryTransactionsSubscriber {
     if (!bill.openedAt) return null;
 
     await this.billsInventory.recordInventoryTransactions(bill.id, true, trx);
-  };
+  }
 
   /**
    * Handles the reverting the inventory transactions once the bill deleted.

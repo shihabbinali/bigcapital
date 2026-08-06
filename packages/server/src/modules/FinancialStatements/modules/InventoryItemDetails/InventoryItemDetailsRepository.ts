@@ -1,14 +1,15 @@
-import { ModelObject, raw } from 'objection';
+import { raw } from 'objection';
+import type { ModelObject } from 'objection';
 import { isEmpty } from 'lodash';
-import * as moment from 'moment';
-import { IInventoryDetailsQuery } from './InventoryItemDetails.types';
+import moment from 'moment';
+import type { IInventoryDetailsQuery } from './InventoryItemDetails.types';
 import { Item } from '@/modules/Items/models/Item';
 import { InventoryTransaction } from '@/modules/InventoryCost/models/InventoryTransaction';
 import { Inject, Injectable, Scope } from '@nestjs/common';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { transformToMapKeyValue } from '@/utils/transform-to-map-key-value';
 import { transformToMapBy } from '@/utils/transform-to-map-by';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class InventoryItemDetailsRepository {
@@ -144,13 +145,15 @@ export class InventoryItemDetailsRepository {
   public async getInventoryItems(
     itemsIds?: number[],
   ): Promise<ModelObject<Item>[]> {
-    return this.itemModel().query().onBuild((q) => {
-      q.where('type', 'inventory');
+    return this.itemModel()
+      .query()
+      .onBuild((q) => {
+        q.where('type', 'inventory');
 
-      if (!isEmpty(itemsIds)) {
-        q.whereIn('id', itemsIds);
-      }
-    });
+        if (!isEmpty(itemsIds)) {
+          q.whereIn('id', itemsIds);
+        }
+      });
   }
 
   /**

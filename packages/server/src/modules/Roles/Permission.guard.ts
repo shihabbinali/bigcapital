@@ -1,12 +1,9 @@
-import {
-  Injectable,
-  CanActivate,
-  ExecutionContext,
-  ForbiddenException,
-} from '@nestjs/common';
+import { Injectable, ForbiddenException } from '@nestjs/common';
+import type { CanActivate, ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { Request } from 'express';
-import { REQUIRED_PERMISSION_KEY, RequiredPermission } from './RequirePermission.decorator';
+import type { Request } from 'express';
+import { REQUIRED_PERMISSION_KEY } from './RequirePermission.decorator';
+import type { RequiredPermission } from './RequirePermission.decorator';
 import { AbilitySubject } from './Roles.types';
 
 /**
@@ -24,10 +21,11 @@ export class PermissionGuard implements CanActivate {
    * @throws ForbiddenException if the user doesn't have the required permission
    */
   canActivate(context: ExecutionContext): boolean {
-    const requiredPermission = this.reflector.getAllAndOverride<RequiredPermission>(
-      REQUIRED_PERMISSION_KEY,
-      [context.getHandler(), context.getClass()],
-    );
+    const requiredPermission =
+      this.reflector.getAllAndOverride<RequiredPermission>(
+        REQUIRED_PERMISSION_KEY,
+        [context.getHandler(), context.getClass()],
+      );
 
     // If no permission is required, allow access
     if (!requiredPermission) {
@@ -39,7 +37,9 @@ export class PermissionGuard implements CanActivate {
 
     // If no ability instance is attached to the request, deny access
     if (!ability) {
-      throw new ForbiddenException('Ability instance not found. Ensure AuthorizationGuard is applied.');
+      throw new ForbiddenException(
+        'Ability instance not found. Ensure AuthorizationGuard is applied.',
+      );
     }
 
     const { ability: action, subject } = requiredPermission;

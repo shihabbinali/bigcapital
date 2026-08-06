@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { GetPaymentMethodsPOJO } from '../types';
+import type { GetPaymentMethodsPOJO } from '../types';
 import { GetStripeAuthorizationLinkService } from '../../StripePayment/GetStripeAuthorizationLink';
 import { PaymentIntegration } from '../models/PaymentIntegration.model';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetPaymentMethodsStateService {
@@ -15,7 +15,7 @@ export class GetPaymentMethodsStateService {
     private readonly paymentIntegrationModel: TenantModelProxy<
       typeof PaymentIntegration
     >,
-  ) { }
+  ) {}
 
   /**
    * Retrieves the payment state provising state.

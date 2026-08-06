@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ERRORS } from '../constants';
 import { ServiceError } from '../../Items/ServiceError';
 import { BankTransactionLine } from '../models/BankTransactionLine';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class ValidateDeleteBankAccountTransactions {

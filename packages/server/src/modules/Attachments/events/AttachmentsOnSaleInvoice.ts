@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { isEmpty } from 'lodash';
 import { OnEvent } from '@nestjs/event-emitter';
-import {
+import type {
   ISaleInvoiceCreatedPayload,
   ISaleInvoiceCreatingPaylaod,
   ISaleInvoiceDeletingPayload,

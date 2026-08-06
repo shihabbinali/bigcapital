@@ -1,4 +1,4 @@
-import {
+import type {
   ISaleReceiptCreatingPayload,
   ISaleReceiptEditingPayload,
 } from '@/modules/SaleReceipts/types/SaleReceipts.types';

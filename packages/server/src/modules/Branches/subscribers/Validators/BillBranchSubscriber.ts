@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { ValidateBranchExistance } from '../../integrations/ValidateBranchExistance';
-import {
+import type {
   IBillCreatingPayload,
   IBillEditingPayload,
 } from '@/modules/Bills/Bills.types';
@@ -11,7 +11,7 @@ import {
 export class BillBranchValidateSubscriber {
   constructor(
     private readonly validateBranchExistance: ValidateBranchExistance,
-  ) { }
+  ) {}
 
   /**
    * Validate branch existance on bill creating.

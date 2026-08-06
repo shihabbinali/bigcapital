@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import * as moment from 'moment';
-import {
+import moment from 'moment';
+import type {
   IInventoryDetailsQuery,
   IInventoryItemDetailMeta,
 } from './InventoryItemDetails.types';
@@ -19,7 +19,9 @@ export class InventoryDetailsMetaInjectable {
   ): Promise<IInventoryItemDetailMeta> {
     const commonMeta = await this.financialSheetMeta.meta();
 
-    const formattedFromDate = moment(query.fromDate).format(commonMeta.dateFormat);
+    const formattedFromDate = moment(query.fromDate).format(
+      commonMeta.dateFormat,
+    );
     const formattedToDay = moment(query.toDate).format(commonMeta.dateFormat);
     const formattedDateRange = `From ${formattedFromDate} | To ${formattedToDay}`;
 

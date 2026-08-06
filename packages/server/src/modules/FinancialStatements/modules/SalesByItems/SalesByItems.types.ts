@@ -1,6 +1,6 @@
-import { IFinancialSheetCommonMeta } from "../../types/Report.types";
-import { INumberFormatQuery } from "../../types/Report.types";
-import { IFinancialTable } from "../../types/Table.types";
+import type { IFinancialSheetCommonMeta } from '../../types/Report.types';
+import type { INumberFormatQuery } from '../../types/Report.types';
+import type { IFinancialTable } from '../../types/Table.types';
 
 export interface ISalesByItemsReportQuery {
   fromDate: Date | string;

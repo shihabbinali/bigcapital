@@ -1,5 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { ICreateInvoicePdfTemplateDTO, IEditPdfTemplateDTO } from './types';
+import type {
+  ICreateInvoicePdfTemplateDTO,
+  IEditPdfTemplateDTO,
+} from './types';
 import { CreatePdfTemplateService } from './commands/CreatePdfTemplate.service';
 import { DeletePdfTemplateService } from './commands/DeletePdfTemplate.service';
 import { GetPdfTemplateService } from './queries/GetPdfTemplate.service';
@@ -70,10 +73,7 @@ export class PdfTemplateApplication {
    * @param {number} templateId - The ID of the template to edit.
    * @param {IEditPdfTemplateDTO} editDTO - The data transfer object containing the updates.
    */
-  public editPdfTemplate(
-    templateId: number,
-    editDTO: IEditPdfTemplateDTO,
-  ) {
+  public editPdfTemplate(templateId: number, editDTO: IEditPdfTemplateDTO) {
     return this.editPdfTemplateService.editPdfTemplate(templateId, editDTO);
   }
 

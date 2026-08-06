@@ -18,15 +18,10 @@ import {
   ApiTags,
   getSchemaPath,
 } from '@nestjs/swagger';
-import {
-  CreateVendorCreditDto,
-  EditVendorCreditDto,
-} from './dtos/VendorCredit.dto';
+import { CreateVendorCreditDto, EditVendorCreditDto } from './dtos/VendorCredit.dto';
 import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
-import {
-  BulkDeleteDto,
-  ValidateBulkDeleteResponseDto,
-} from '@/common/dtos/BulkDelete.dto';
+import { ValidateBulkDeleteResponseDto } from '@/common/dtos/BulkDelete.dto';
+import { BulkDeleteDto } from '@/common/dtos/BulkDelete.dto';
 import { RequirePermission } from '@/modules/Roles/RequirePermission.decorator';
 import { PermissionGuard } from '@/modules/Roles/Permission.guard';
 import { AuthorizationGuard } from '@/modules/Roles/Authorization.guard';
@@ -41,7 +36,7 @@ import { VendorCreditAction } from './types/VendorCredit.types';
 export class VendorCreditsController {
   constructor(
     private readonly vendorCreditsApplication: VendorCreditsApplicationService,
-  ) { }
+  ) {}
 
   @Post('validate-bulk-delete')
   @RequirePermission(VendorCreditAction.Delete, AbilitySubject.VendorCredit)

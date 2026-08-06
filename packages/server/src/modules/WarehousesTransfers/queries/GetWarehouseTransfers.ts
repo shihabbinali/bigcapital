@@ -1,10 +1,10 @@
 import * as R from 'ramda';
 import { Inject, Injectable } from '@nestjs/common';
 import { WarehouseTransferTransformer } from './WarehouseTransferTransfomer';
-import { IGetWarehousesTransfersFilterDTO } from '../../Warehouses/Warehouse.types';
+import type { IGetWarehousesTransfersFilterDTO } from '../../Warehouses/Warehouse.types';
 import { TransformerInjectable } from '../../Transformer/TransformerInjectable.service';
 import { DynamicListService } from '../../DynamicListing/DynamicList.service';
-import { TenantModelProxy } from '../../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../../System/models/TenantBaseModel';
 import { WarehouseTransfer } from '../models/WarehouseTransfer';
 import { GetWarehouseTransfersQueryDto } from '@/modules/Warehouses/dtos/GetWarehouseTransfersQuery.dto';
 

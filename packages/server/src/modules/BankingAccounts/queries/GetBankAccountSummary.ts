@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { UncategorizedBankTransaction } from '@/modules/BankingTransactions/models/UncategorizedBankTransaction';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
-import { Knex } from 'knex';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { Knex } from 'knex';
 import { TENANCY_DB_CONNECTION } from '@/modules/Tenancy/TenancyDB/TenancyDB.constants';
 import { initialize } from 'objection';
 import { MatchedBankTransaction } from '@/modules/BankingMatching/models/MatchedBankTransaction';

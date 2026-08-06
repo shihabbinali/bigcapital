@@ -1,6 +1,6 @@
 import { events } from '@/common/events/events';
 import { RefundSyncCreditNoteBalanceService } from '@/modules/CreditNoteRefunds/commands/RefundSyncCreditNoteBalance';
-import {
+import type {
   IRefundCreditNoteCreatedPayload,
   IRefundCreditNoteDeletedPayload,
 } from '@/modules/CreditNoteRefunds/types/CreditNoteRefunds.types';

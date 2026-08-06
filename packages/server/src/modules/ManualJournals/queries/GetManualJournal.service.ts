@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ManualJournal } from '../models/ManualJournal';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { ManualJournalTransfromer } from './ManualJournalTransformer';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetManualJournal {

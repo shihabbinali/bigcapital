@@ -1,18 +1,18 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { UncategorizedBankTransaction } from '@/modules/BankingTransactions/models/UncategorizedBankTransaction';
 import {
   validateTransactionNotCategorized,
   validateTransactionNotExcluded,
 } from './utils';
-import {
+import type {
   IBankTransactionUnexcludedEventPayload,
   IBankTransactionUnexcludingEventPayload,
 } from '../types/BankTransactionsExclude.types';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class ExcludeBankTransactionService {

@@ -1,6 +1,6 @@
 import { OnEvent } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
-import {
+import type {
   IManualJournalEventCreatedPayload,
   IManualJournalEventEditedPayload,
   IManualJournalEventPublishedPayload,

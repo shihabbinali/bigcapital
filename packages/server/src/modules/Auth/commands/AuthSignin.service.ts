@@ -2,8 +2,8 @@ import { ClsService } from 'nestjs-cls';
 import { Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { SystemUser } from '@/modules/System/models/SystemUser';
-import { ModelObject } from 'objection';
-import { JwtPayload } from '../Auth.interfaces';
+import type { ModelObject } from 'objection';
+import type { JwtPayload } from '../Auth.interfaces';
 import { InvalidEmailPasswordException } from '../exceptions/InvalidEmailPassword.exception';
 import { UserNotFoundException } from '../exceptions/UserNotFound.exception';
 
@@ -14,7 +14,7 @@ export class AuthSigninService {
     private readonly systemUserModel: typeof SystemUser,
     private readonly jwtService: JwtService,
     private readonly clsService: ClsService,
-  ) { }
+  ) {}
 
   /**
    * Validates the given email and password.

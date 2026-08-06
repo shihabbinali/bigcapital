@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { SaleInvoice } from '../../SaleInvoices/models/SaleInvoice';
-import { IPaymentReceivedEntryDTO } from '../types/PaymentReceived.types';
+import type { IPaymentReceivedEntryDTO } from '../types/PaymentReceived.types';
 import { entriesAmountDiff } from '@/utils/entries-amount-diff';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class PaymentReceivedInvoiceSync {

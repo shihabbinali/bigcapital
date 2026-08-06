@@ -1,9 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { NumberFormatQueryDto } from '@/modules/BankingTransactions/dtos/NumberFormatQuery.dto';
-import {
-  FinancialReportMetaDto,
-  FinancialTableDataDto,
-} from '../../dtos/FinancialReportResponse.dto';
+import { FinancialTableDataDto } from '../../dtos/FinancialReportResponse.dto';
+import { FinancialReportMetaDto } from '../../dtos/FinancialReportResponse.dto';
 
 export class SalesProfitRowDto {
   @ApiProperty({ description: 'Document date' })
@@ -58,7 +56,10 @@ export class SalesProfitSheetDataDto {
   @ApiProperty({ description: 'Sales profit rows', type: [SalesProfitRowDto] })
   rows: SalesProfitRowDto[];
 
-  @ApiProperty({ description: 'Sales profit totals', type: SalesProfitTotalDto })
+  @ApiProperty({
+    description: 'Sales profit totals',
+    type: SalesProfitTotalDto,
+  })
   total: SalesProfitTotalDto;
 }
 
@@ -80,21 +81,36 @@ export class SalesProfitQueryResponseDto {
   @ApiProperty({ description: 'End date' })
   toDate: string;
 
-  @ApiPropertyOptional({ description: 'Number format settings', type: NumberFormatQueryDto })
+  @ApiPropertyOptional({
+    description: 'Number format settings',
+    type: NumberFormatQueryDto,
+  })
   numberFormat: NumberFormatQueryDto;
 
-  @ApiPropertyOptional({ description: 'Whether to exclude rows with no transactions', type: Boolean })
+  @ApiPropertyOptional({
+    description: 'Whether to exclude rows with no transactions',
+    type: Boolean,
+  })
   noneTransactions: boolean;
 
-  @ApiPropertyOptional({ description: 'Whether to include only active rows', type: Boolean })
+  @ApiPropertyOptional({
+    description: 'Whether to include only active rows',
+    type: Boolean,
+  })
   onlyActive: boolean;
 }
 
 export class SalesProfitResponseDto {
-  @ApiProperty({ description: 'Query parameters used to generate the report', type: SalesProfitQueryResponseDto })
+  @ApiProperty({
+    description: 'Query parameters used to generate the report',
+    type: SalesProfitQueryResponseDto,
+  })
   query: SalesProfitQueryResponseDto;
 
-  @ApiProperty({ description: 'Sales profit data', type: SalesProfitSheetDataDto })
+  @ApiProperty({
+    description: 'Sales profit data',
+    type: SalesProfitSheetDataDto,
+  })
   data: SalesProfitSheetDataDto;
 
   @ApiProperty({ description: 'Report metadata', type: SalesProfitMetaDto })
@@ -110,10 +126,16 @@ export {
 } from '../../dtos/FinancialReportResponse.dto';
 
 export class SalesProfitTableResponseDto {
-  @ApiProperty({ description: 'Table data structure', type: () => FinancialTableDataDto })
+  @ApiProperty({
+    description: 'Table data structure',
+    type: () => FinancialTableDataDto,
+  })
   table: FinancialTableDataDto;
 
-  @ApiProperty({ description: 'Query parameters used to generate the report', type: SalesProfitQueryResponseDto })
+  @ApiProperty({
+    description: 'Query parameters used to generate the report',
+    type: SalesProfitQueryResponseDto,
+  })
   query: SalesProfitQueryResponseDto;
 
   @ApiProperty({ description: 'Report metadata', type: SalesProfitMetaDto })

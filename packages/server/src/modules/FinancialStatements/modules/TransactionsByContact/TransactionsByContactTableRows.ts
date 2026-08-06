@@ -1,7 +1,7 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import * as R from 'ramda';
-import { ITransactionsByContactsContact } from './TransactionsByContact.types';
-import { ITableRow } from '../../types/Table.types';
+import type { ITransactionsByContactsContact } from './TransactionsByContact.types';
+import type { ITableRow } from '../../types/Table.types';
 import { tableMapper, tableRowMapper } from '../../utils/Table.utils';
 import { I18nService } from 'nestjs-i18n';
 

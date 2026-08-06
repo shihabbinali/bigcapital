@@ -1,11 +1,10 @@
 import {
-  CanActivate,
-  ExecutionContext,
   Inject,
   Injectable,
   SetMetadata,
   UnauthorizedException,
 } from '@nestjs/common';
+import type { CanActivate, ExecutionContext } from '@nestjs/common';
 import { TenancyContext } from './TenancyContext.service';
 import { Reflector } from '@nestjs/core';
 import { IS_PUBLIC_ROUTE } from '../Auth/Auth.constants';
@@ -20,7 +19,7 @@ export class EnsureTenantIsSeededGuard implements CanActivate {
   constructor(
     private readonly tenancyContext: TenancyContext,
     private reflector: Reflector,
-  ) { }
+  ) {}
 
   /**
    * Validate the tenant of the current request is seeded.

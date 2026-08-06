@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Item } from './models/Item';
 import { events } from '@/common/events/events';
 import { UnitOfWork } from '../Tenancy/TenancyDB/UnitOfWork.service';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 
 @Injectable()
 export class InactivateItem {

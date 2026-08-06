@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { TenantModelProxy } from '../../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../../System/models/TenantBaseModel';
 import { InventoryCostLotTracker } from '../models/InventoryCostLotTracker';
 
 @Injectable()

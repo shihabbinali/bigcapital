@@ -1,7 +1,7 @@
 import { isEmpty } from 'lodash';
 import { OnEvent } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
-import {
+import type {
   IExpenseCreatedPayload,
   IExpenseCreatingPayload,
   IExpenseDeletingPayload,
@@ -52,12 +52,7 @@ export class AttachmentsOnExpenses {
 
     const keys = expenseDTO.attachments?.map((attachment) => attachment.key);
 
-    await this.linkAttachmentService.bulkLink(
-      keys,
-      'Expense',
-      expense.id,
-      trx,
-    );
+    await this.linkAttachmentService.bulkLink(keys, 'Expense', expense.id, trx);
   }
 
   /**

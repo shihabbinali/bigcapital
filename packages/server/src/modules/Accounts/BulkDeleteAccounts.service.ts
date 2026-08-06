@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { PromisePool } from '@supercharge/promise-pool';
 import { castArray, uniq } from 'lodash';
 import { DeleteAccount } from './DeleteAccount.service';
 
 @Injectable()
 export class BulkDeleteAccountsService {
-  constructor(private readonly deleteAccountService: DeleteAccount) { }
+  constructor(private readonly deleteAccountService: DeleteAccount) {}
 
   /**
    * Deletes multiple accounts.
@@ -38,4 +38,3 @@ export class BulkDeleteAccountsService {
     }
   }
 }
-

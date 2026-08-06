@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import type { Response } from 'express';
 import {
   ApiTags,
   ApiOperation,
@@ -27,10 +27,8 @@ import { CreditNoteResponseDto } from './dtos/CreditNoteResponse.dto';
 import { CreditNoteStateResponseDto } from './dtos/CreditNoteStateResponse.dto';
 import { PaginatedResponseDto } from '@/common/dtos/PaginatedResults.dto';
 import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
-import {
-  BulkDeleteDto,
-  ValidateBulkDeleteResponseDto,
-} from '@/common/dtos/BulkDelete.dto';
+import { ValidateBulkDeleteResponseDto } from '@/common/dtos/BulkDelete.dto';
+import { BulkDeleteDto } from '@/common/dtos/BulkDelete.dto';
 import { AcceptType } from '@/constants/accept-type';
 import { RequirePermission } from '@/modules/Roles/RequirePermission.decorator';
 import { PermissionGuard } from '@/modules/Roles/Permission.guard';
@@ -49,7 +47,7 @@ export class CreditNotesController {
   /**
    * @param {CreditNoteApplication} creditNoteApplication - The credit note application service.
    */
-  constructor(private creditNoteApplication: CreditNoteApplication) { }
+  constructor(private creditNoteApplication: CreditNoteApplication) {}
 
   @Post()
   @RequirePermission(CreditNoteAction.Create, AbilitySubject.CreditNote)

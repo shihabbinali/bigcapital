@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   IExpenseEventEditPayload,
   IExpenseEventEditingPayload,
 } from '../interfaces/Expenses.interface';
@@ -11,7 +11,7 @@ import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { Expense } from '../models/Expense.model';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { EditExpenseDto } from '../dtos/Expense.dto';
 
 @Injectable()

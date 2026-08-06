@@ -1,17 +1,17 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { CommandItemCategoryValidatorService } from './CommandItemCategoryValidator.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import {
+import type {
   IItemCategoryEditedPayload,
   IItemCategoryOTD,
 } from '../ItemCategory.interfaces';
 import { SystemUser } from '@/modules/System/models/SystemUser';
 import { ItemCategory } from '../models/ItemCategory.model';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { EditItemCategoryDto } from '../dtos/ItemCategory.dto';
 
 @Injectable()

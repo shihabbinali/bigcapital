@@ -1,10 +1,10 @@
 // Vendor Interfaces.
 
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Vendor } from '../models/Vendor';
-import { IContactAddressDTO } from '@/modules/Contacts/types/Contacts.types';
-import { IDynamicListFilter } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
-import { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
+import type { IContactAddressDTO } from '@/modules/Contacts/types/Contacts.types';
+import type { IDynamicListFilter } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
+import type { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
 import { CreateVendorDto } from '../dtos/CreateVendor.dto';
 import { EditVendorDto } from '../dtos/EditVendor.dto';
 import { VendorOpeningBalanceEditDto } from '../dtos/VendorOpeningBalanceEdit.dto';

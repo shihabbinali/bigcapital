@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { difference } from 'lodash';
 // import { IItemEntryDTO } from '@/modules/Items/';
 import { ERRORS } from '../constants';
@@ -6,8 +6,8 @@ import { TaxRateModel } from '../models/TaxRate.model';
 import { Inject } from '@nestjs/common';
 import { Injectable } from '@nestjs/common';
 import { ServiceError } from '@/modules/Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
-import { IItemEntryDTO } from '@/modules/TransactionItemEntry/ItemEntry.types';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { IItemEntryDTO } from '@/modules/TransactionItemEntry/ItemEntry.types';
 import { ItemEntryDto } from '@/modules/TransactionItemEntry/dto/ItemEntry.dto';
 
 @Injectable()

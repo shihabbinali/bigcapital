@@ -1,14 +1,14 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import * as yup from 'yup';
-import * as uniqid from 'uniqid';
+import uniqid from 'uniqid';
 import { Importable } from '../../Import/Importable';
 import { CreateUncategorizedTransactionService } from './CreateUncategorizedTransaction.service';
-import { ImportableContext } from '../../Import/interfaces';
+import type { ImportableContext } from '../../Import/interfaces';
 import { BankTransactionsSampleData } from '../../BankingTransactions/constants';
 import { Account } from '@/modules/Accounts/models/Account.model';
-import { CreateUncategorizedTransactionDTO } from '../types/BankingCategorize.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { CreateUncategorizedTransactionDTO } from '../types/BankingCategorize.types';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { ImportableService } from '../../Import/decorators/Import.decorator';
 import { UncategorizedBankTransaction } from '../../BankingTransactions/models/UncategorizedBankTransaction';
 @Injectable()

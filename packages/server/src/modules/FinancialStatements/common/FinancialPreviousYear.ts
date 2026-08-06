@@ -1,11 +1,11 @@
 import * as R from 'ramda';
 import { sumBy } from 'lodash';
-import {
+import type {
   IFinancialCommonHorizDatePeriodNode,
   IFinancialCommonNode,
   IFinancialNodeWithPreviousYear,
 } from '../types/Report.types';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from './FinancialSheet';
 import { FinancialDatePeriods } from './FinancialDatePeriods';
 

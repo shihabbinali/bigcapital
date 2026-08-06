@@ -2,11 +2,11 @@ import { Inject, Injectable } from '@nestjs/common';
 import * as R from 'ramda';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { DynamicListService } from '@/modules/DynamicListing/DynamicList.service';
-import { GetCreditNotesResponse } from '../types/CreditNotes.types';
+import type { GetCreditNotesResponse } from '../types/CreditNotes.types';
 import { GetCreditNotesQueryDto } from '../dtos/GetCreditNotesQuery.dto';
 import { CreditNote } from '../models/CreditNote';
 import { CreditNoteTransformer } from './CreditNoteTransformer';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetCreditNotesService {

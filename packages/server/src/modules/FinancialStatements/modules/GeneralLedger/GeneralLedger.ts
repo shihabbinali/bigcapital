@@ -1,25 +1,26 @@
 import { isEmpty, get, last, head } from 'lodash';
-import * as moment from 'moment';
+import moment from 'moment';
 import * as R from 'ramda';
-import {
+import type {
   IGeneralLedgerSheetQuery,
   IGeneralLedgerSheetAccount,
   IGeneralLedgerSheetAccountBalance,
   IGeneralLedgerSheetAccountTransaction,
-  IGeneralLedgerNumberFormat,
 } from './GeneralLedger.types';
+import type { IGeneralLedgerNumberFormat } from './GeneralLedger.types';
 import { GeneralLedgerRepository } from './GeneralLedgerRepository';
 import { calculateRunningBalance } from './_utils';
 import { FinancialSheetStructure } from '../../common/FinancialSheetStructure';
 import { FinancialSheet } from '../../common/FinancialSheet';
 import { I18nService } from 'nestjs-i18n';
 import { Ledger } from '@/modules/Ledger/Ledger';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { Account } from '@/modules/Accounts/models/Account.model';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { flatToNestedArray } from '@/utils/flat-to-nested-array';
 import { getTransactionTypeLabel } from '@/modules/BankingTransactions/utils';
-import { IFinancialReportMeta, DEFAULT_REPORT_META } from '../../types/Report.types';
+import type { IFinancialReportMeta } from '../../types/Report.types';
+import { DEFAULT_REPORT_META } from '../../types/Report.types';
 
 export class GeneralLedgerSheet extends R.compose(FinancialSheetStructure)(
   FinancialSheet,

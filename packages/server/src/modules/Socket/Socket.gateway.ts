@@ -1,6 +1,5 @@
-import {
-  WebSocketGateway,
-  WebSocketServer,
+import { WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
+import type {
   OnGatewayConnection,
   OnGatewayDisconnect,
   OnGatewayInit,
@@ -17,7 +16,8 @@ import { Logger } from '@nestjs/common';
   },
 })
 export class SocketGateway
-  implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
+  implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
+{
   @WebSocketServer()
   server: Server;
 
@@ -47,5 +47,3 @@ export class SocketGateway
     this.logger.log('Emitted SUBSCRIPTION_CHANGED event');
   }
 }
-
-

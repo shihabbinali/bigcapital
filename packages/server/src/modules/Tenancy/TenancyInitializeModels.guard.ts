@@ -1,10 +1,5 @@
-import {
-  CanActivate,
-  ExecutionContext,
-  Inject,
-  Injectable,
-  SetMetadata,
-} from '@nestjs/common';
+import { Inject, Injectable, SetMetadata } from '@nestjs/common';
+import type { CanActivate, ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { IS_PUBLIC_ROUTE } from '../Auth/Auth.constants';
 import { TENANT_MODELS_INIT } from './TenantModelsInitialize.module';

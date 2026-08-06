@@ -1,6 +1,6 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import { Injectable } from '@nestjs/common';
-import {
+import type {
   IVendorBalanceSummaryMeta,
   IVendorBalanceSummaryQuery,
 } from './VendorBalanceSummary.types';

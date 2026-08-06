@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ICreditNoteState } from '../types/CreditNotes.types';
+import type { ICreditNoteState } from '../types/CreditNotes.types';
 import { PdfTemplateModel } from '@/modules/PdfTemplate/models/PdfTemplate';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetCreditNoteState {

@@ -1,4 +1,5 @@
-import { Model, ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
+import { Model } from 'objection';
 import { BaseModel } from '@/models/Model';
 
 export class ImportModel extends BaseModel {

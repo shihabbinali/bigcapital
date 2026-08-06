@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import {
+import type {
   SalesTaxLiabilitySummaryQuery,
   SalesTaxLiabilitySummaryRate,
   SalesTaxLiabilitySummaryReportData,
@@ -9,8 +9,8 @@ import { AgingReport } from '../AgingSummary/AgingReport';
 import { IROW_TYPE } from './_constants';
 import { FinancialTable } from '../../common/FinancialTable';
 import { FinancialSheetStructure } from '../../common/FinancialSheetStructure';
-import { ITableRow } from '../../types/Table.types';
-import { ITableColumn } from '../../types/Table.types';
+import type { ITableRow } from '../../types/Table.types';
+import type { ITableColumn } from '../../types/Table.types';
 import { tableRowMapper } from '../../utils/Table.utils';
 
 export class SalesTaxLiabilitySummaryTable extends R.pipe(

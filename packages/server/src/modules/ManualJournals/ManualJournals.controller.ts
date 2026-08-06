@@ -19,17 +19,12 @@ import {
   ApiTags,
   getSchemaPath,
 } from '@nestjs/swagger';
-import {
-  CreateManualJournalDto,
-  EditManualJournalDto,
-} from './dtos/ManualJournal.dto';
+import { CreateManualJournalDto, EditManualJournalDto } from './dtos/ManualJournal.dto';
 import { GetManualJournalsQueryDto } from './dtos/GetManualJournalsQuery.dto';
 import { ManualJournalResponseDto } from './dtos/ManualJournalResponse.dto';
 import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
-import {
-  BulkDeleteDto,
-  ValidateBulkDeleteResponseDto,
-} from '@/common/dtos/BulkDelete.dto';
+import { ValidateBulkDeleteResponseDto } from '@/common/dtos/BulkDelete.dto';
+import { BulkDeleteDto } from '@/common/dtos/BulkDelete.dto';
 import { RequirePermission } from '@/modules/Roles/RequirePermission.decorator';
 import { PermissionGuard } from '@/modules/Roles/Permission.guard';
 import { AuthorizationGuard } from '@/modules/Roles/Authorization.guard';
@@ -43,7 +38,7 @@ import { ManualJournalAction } from './types/ManualJournals.types';
 @ApiCommonHeaders()
 @UseGuards(AuthorizationGuard, PermissionGuard)
 export class ManualJournalsController {
-  constructor(private manualJournalsApplication: ManualJournalsApplication) { }
+  constructor(private manualJournalsApplication: ManualJournalsApplication) {}
 
   @Post('validate-bulk-delete')
   @RequirePermission(ManualJournalAction.Delete, AbilitySubject.ManualJournal)

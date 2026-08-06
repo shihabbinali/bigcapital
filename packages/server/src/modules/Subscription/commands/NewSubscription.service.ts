@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { SubscriptionPayload } from '@/interfaces/SubscriptionPlan';
+import type { SubscriptionPayload } from '@/interfaces/SubscriptionPlan';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { Plan } from '../models/Plan';
 import { NotAllowedChangeSubscriptionPlan } from '../exceptions/NotAllowedChangeSubscriptionPlan';
@@ -15,7 +15,7 @@ export class NewSubscriptionService {
 
     @Inject(Plan.name)
     private readonly planModel: typeof Plan,
-  ) { }
+  ) {}
 
   /**
    * Give the tenant a new subscription.

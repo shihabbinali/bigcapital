@@ -4,7 +4,7 @@ import { Account } from '@/modules/Accounts/models/Account.model';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { PLAID_CLIENT } from '@/modules/Plaid/Plaid.module';
 import { ERRORS } from '../types/BankAccounts.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class RefreshBankAccountService {

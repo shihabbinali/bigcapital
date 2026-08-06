@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Currency } from '../models/Currency.model';
-import { TenantModelProxy } from '../../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../../System/models/TenantBaseModel';
 import { EditCurrencyDto } from '../dtos/EditCurrency.dto';
 
 @Injectable()

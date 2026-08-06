@@ -1,10 +1,10 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { LedgerStorageService } from '@/modules/Ledger/LedgerStorage.service';
 import { AccountRepository } from '@/modules/Accounts/repositories/Account.repository';
 import { CustomerGLEntries } from './CustomerGLEntries';
 import { Customer } from './models/Customer';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { Account } from '../Accounts/models/Account.model';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class CustomerGLEntriesStorage {
 
     @Inject(Customer.name)
     private readonly customerModel: TenantModelProxy<typeof Customer>,
-  ) { }
+  ) {}
 
   /**
    * Customer opening balance journals.
@@ -28,9 +28,7 @@ export class CustomerGLEntriesStorage {
     customerId: number,
     trx?: Knex.Transaction,
   ) => {
-    const customer = await this.customerModel()
-      .query(trx)
-      .findById(customerId);
+    const customer = await this.customerModel().query(trx).findById(customerId);
 
     // Finds the income account.
     const incomeAccount = await this.accountModel()

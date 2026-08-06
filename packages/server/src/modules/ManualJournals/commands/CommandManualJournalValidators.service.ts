@@ -5,7 +5,7 @@ import { ServiceError } from '@/modules/Items/ServiceError';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { ManualJournal } from '../models/ManualJournal';
 import { Contact } from '@/modules/Contacts/models/Contact';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import {
   CreateManualJournalDto,
   EditManualJournalDto,

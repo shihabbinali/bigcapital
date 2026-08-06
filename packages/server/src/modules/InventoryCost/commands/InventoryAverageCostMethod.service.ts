@@ -1,11 +1,11 @@
 import { pick } from 'lodash';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { InventoryTransaction } from '../models/InventoryTransaction';
 import { InventoryItemOpeningAvgCostService } from './InventoryItemOpeningAvgCost.service';
 import { Inject, Injectable } from '@nestjs/common';
 import { InventoryAverageCostMethod } from './InventoryAverageCostMethod';
 import { StoreInventoryLotsCostService } from './StoreInventortyLotsCost.service';
-import { TenantModelProxy } from '../../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../../System/models/TenantBaseModel';
 
 @Injectable()
 export class InventoryAverageCostMethodService {

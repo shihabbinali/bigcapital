@@ -7,7 +7,7 @@ import { BillPaymentEntry } from '../models/BillPaymentEntry';
 import { ServiceError } from '../../Items/ServiceError';
 import { ACCOUNT_TYPE } from '@/constants/accounts';
 import { Account } from '../../Accounts/models/Account.model';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import {
   BillPaymentEntryDto,
   EditBillPaymentDto,

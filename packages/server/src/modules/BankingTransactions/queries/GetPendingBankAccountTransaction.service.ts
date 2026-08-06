@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { GetPendingBankAccountTransactionTransformer } from './GetPendingBankAccountTransactionTransformer';
 import { UncategorizedBankTransaction } from '../models/UncategorizedBankTransaction';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { GetPendingTransactionsQueryDto } from '../dtos/GetPendingTransactionsQuery.dto';
 
 @Injectable()

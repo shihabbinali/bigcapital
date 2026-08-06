@@ -6,9 +6,9 @@ import { SaleReceipt } from '../models/SaleReceipt';
 import { ChromiumlyTenancy } from '@/modules/ChromiumlyTenancy/ChromiumlyTenancy.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { PdfTemplateModel } from '@/modules/PdfTemplate/models/PdfTemplate';
-import { ISaleReceiptBrandingTemplateAttributes } from '../types/SaleReceipts.types';
+import type { ISaleReceiptBrandingTemplateAttributes } from '../types/SaleReceipts.types';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { renderReceiptPaperTemplateHtml } from '@bigcapital/pdf-templates';
 
 @Injectable()

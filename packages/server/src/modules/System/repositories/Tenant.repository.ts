@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
-import * as uniqid from 'uniqid';
-import * as moment from 'moment';
+import type { Knex } from 'knex';
+import uniqid from 'uniqid';
+import moment from 'moment';
 import { TenantRepository as TenantBaseRepository } from '@/common/repository/TenantRepository';
 import { SystemKnexConnection } from '../SystemDB/SystemDB.constants';
 import { TenantModel } from '../models/TenantModel';

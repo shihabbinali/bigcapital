@@ -4,11 +4,11 @@ import { Inject, Injectable } from '@nestjs/common';
 import * as R from 'ramda';
 import { Customer } from '../models/Customer';
 import { CustomerTransfromer } from './CustomerTransformer';
-import {
+import type {
   GetCustomersResponse,
   ICustomersFilter,
 } from '../types/Customers.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { GetCustomersQueryDto } from '../dtos/GetCustomersQuery.dto';
 
 @Injectable()

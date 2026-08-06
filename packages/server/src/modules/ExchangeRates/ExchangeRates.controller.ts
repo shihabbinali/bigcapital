@@ -6,13 +6,8 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { Request } from 'express';
-import {
-  ApiOperation,
-  ApiTags,
-  ApiResponse,
-  ApiQuery,
-} from '@nestjs/swagger';
+import type { Request } from 'express';
+import { ApiOperation, ApiTags, ApiResponse, ApiQuery } from '@nestjs/swagger';
 import { ExchangeRateApplication } from './ExchangeRates.application';
 import { ExchangeRateLatestQueryDto } from './dtos/ExchangeRateLatestQuery.dto';
 import { ExchangeRateLatestResponseDto } from './dtos/ExchangeRateLatestResponse.dto';

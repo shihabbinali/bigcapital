@@ -1,12 +1,12 @@
-import { IFinancialSheetCommonMeta } from '../../types/Report.types';
-import { IFinancialTable } from '../../types/Table.types';
-import {
+import type { IFinancialSheetCommonMeta } from '../../types/Report.types';
+import type { IFinancialTable } from '../../types/Table.types';
+import type {
   IAgingPeriod,
-  IAgingSummaryQuery,
   IAgingSummaryTotal,
   IAgingSummaryContact,
   IAgingSummaryData,
 } from '../AgingSummary/AgingSummary.types';
+import type { IAgingSummaryQuery } from '../AgingSummary/AgingSummary.types';
 import { APAgingSummaryQueryDto } from './APAgingSummaryQuery.dto';
 
 export interface IAPAgingSummaryVendor extends IAgingSummaryContact {

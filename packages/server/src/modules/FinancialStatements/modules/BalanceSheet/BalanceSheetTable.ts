@@ -1,10 +1,9 @@
 // @ts-nocheck
 import * as R from 'ramda';
 import { I18nService } from 'nestjs-i18n';
-import {
+import type {
   IBalanceSheetStatementData,
   IBalanceSheetQuery,
-  BALANCE_SHEET_SCHEMA_NODE_TYPE,
   IBalanceSheetDataNode,
   IBalanceSheetSchemaNode,
   IBalanceSheetNetIncomeNode,
@@ -12,7 +11,8 @@ import {
   IBalanceSheetAccountsNode,
   IBalanceSheetAggregateNode,
 } from './BalanceSheet.types';
-import {
+import { BALANCE_SHEET_SCHEMA_NODE_TYPE } from './BalanceSheet.types';
+import type {
   ITableColumnAccessor,
   ITableColumn,
   ITableRow,

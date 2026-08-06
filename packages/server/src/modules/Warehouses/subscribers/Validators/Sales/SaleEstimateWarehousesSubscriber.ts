@@ -2,8 +2,8 @@ import { WarehousesDTOValidators } from '../../../Integrations/WarehousesDTOVali
 import { OnEvent } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
 import { events } from '@/common/events/events';
-import { ISaleEstimateEditingPayload } from '@/modules/SaleEstimates/types/SaleEstimates.types';
-import { ISaleEstimateCreatingPayload } from '@/modules/SaleEstimates/types/SaleEstimates.types';
+import type { ISaleEstimateEditingPayload } from '@/modules/SaleEstimates/types/SaleEstimates.types';
+import type { ISaleEstimateCreatingPayload } from '@/modules/SaleEstimates/types/SaleEstimates.types';
 
 @Injectable()
 export class SaleEstimateWarehousesValidateSubscriber {

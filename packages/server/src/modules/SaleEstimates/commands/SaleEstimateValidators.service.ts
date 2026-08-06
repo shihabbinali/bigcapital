@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ERRORS } from '../constants';
 import { SaleEstimate } from '../models/SaleEstimate';
 import { ServiceError } from '@/modules/Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class SaleEstimateValidators {

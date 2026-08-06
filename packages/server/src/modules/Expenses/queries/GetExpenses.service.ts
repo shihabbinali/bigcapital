@@ -3,11 +3,11 @@ import { ExpenseTransfromer } from './Expense.transformer';
 import { DynamicListService } from '@/modules/DynamicListing/DynamicList.service';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { Inject, Injectable } from '@nestjs/common';
-import { IPaginationMeta } from '../Expenses.types';
+import type { IPaginationMeta } from '../Expenses.types';
 import { GetExpensesQueryDto } from '../dtos/GetExpensesQuery.dto';
 import { Expense } from '../models/Expense.model';
-import { IFilterMeta } from '@/interfaces/Model';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { IFilterMeta } from '@/interfaces/Model';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetExpensesService {

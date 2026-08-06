@@ -1,9 +1,10 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import * as R from 'ramda';
 import type { Knex } from 'knex';
 import { Model, raw } from 'objection';
 import { castArray, difference, defaultTo } from 'lodash';
-import { BaseModel, PaginationQueryBuilderType } from '@/models/Model';
+import { BaseModel } from '@/models/Model';
+import type { PaginationQueryBuilderType } from '@/models/Model';
 import { ItemEntry } from '@/modules/TransactionItemEntry/models/ItemEntry';
 import { BillLandedCost } from '@/modules/BillLandedCosts/models/BillLandedCost';
 import { DiscountType } from '@/common/types/Discount';
@@ -636,7 +637,7 @@ export class Bill extends TenantBaseModel {
 
     return this.query(trx)
       .where('id', billId)
-    [changeMethod]('payment_amount', Math.abs(amount));
+      [changeMethod]('payment_amount', Math.abs(amount));
   }
 
   /**

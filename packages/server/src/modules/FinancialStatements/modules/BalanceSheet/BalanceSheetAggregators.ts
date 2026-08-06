@@ -1,13 +1,13 @@
 // @ts-nocheck
 import * as R from 'ramda';
 import { I18nService } from 'nestjs-i18n';
-import {
-  BALANCE_SHEET_SCHEMA_NODE_TYPE,
+import type {
   IBalanceSheetAggregateNode,
   IBalanceSheetDataNode,
   IBalanceSheetSchemaAggregateNode,
   IBalanceSheetSchemaNode,
 } from './BalanceSheet.types';
+import { BALANCE_SHEET_SCHEMA_NODE_TYPE } from './BalanceSheet.types';
 import { BalanceSheetDatePeriods } from './BalanceSheetDatePeriods';
 import { BalanceSheetComparsionPreviousPeriod } from './BalanceSheetComparsionPreviousPeriod';
 import { BalanceSheetComparsionPreviousYear } from './BalanceSheetComparsionPreviousYear';
@@ -16,8 +16,8 @@ import { BalanceSheetSchema } from './BalanceSheetSchema';
 import { BalanceSheetBase } from './BalanceSheetBase';
 import { BalanceSheetQuery } from './BalanceSheetQuery';
 import { FinancialSheetStructure } from '../../common/FinancialSheetStructure';
-import { GConstructor } from '@/common/types/Constructor';
-import { INumberFormatQuery } from '../../types/Report.types';
+import type { GConstructor } from '@/common/types/Constructor';
+import type { INumberFormatQuery } from '../../types/Report.types';
 import { FinancialSheet } from '../../common/FinancialSheet';
 
 export const BalanceSheetAggregators = <T extends GConstructor<FinancialSheet>>(

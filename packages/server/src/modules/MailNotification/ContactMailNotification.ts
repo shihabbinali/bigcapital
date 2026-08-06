@@ -3,9 +3,9 @@ import { Inject, Injectable } from '@nestjs/common';
 import { MailTenancy } from '../MailTenancy/MailTenancy.service';
 import { TenancyContext } from '../Tenancy/TenancyContext.service';
 import { Customer } from '../Customers/models/Customer';
-import { CommonMailOptions } from './MailNotification.types';
+import type { CommonMailOptions } from './MailNotification.types';
 import { formatMessage } from '@/utils/format-message';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 
 @Injectable()
 export class ContactMailNotification {

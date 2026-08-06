@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InventoryTransactionsWarehouses } from './AccountsTransactionsWarehouses';
 import { OnEvent } from '@nestjs/event-emitter';
-import { IBranchesActivatedPayload } from '../Branches/Branches.types';
+import type { IBranchesActivatedPayload } from '../Branches/Branches.types';
 import { events } from '@/common/events/events';
 
 @Injectable()

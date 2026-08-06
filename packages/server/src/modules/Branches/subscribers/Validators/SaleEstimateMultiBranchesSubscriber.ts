@@ -1,7 +1,7 @@
 import { OnEvent } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
 import { events } from '@/common/events/events';
-import {
+import type {
   ISaleEstimateCreatingPayload,
   ISaleEstimateEditingPayload,
 } from '@/modules/SaleEstimates/types/SaleEstimates.types';
@@ -11,7 +11,7 @@ import { ValidateBranchExistance } from '../../integrations/ValidateBranchExista
 export class SaleEstimateBranchValidateSubscriber {
   constructor(
     private readonly validateBranchExistance: ValidateBranchExistance,
-  ) { }
+  ) {}
 
   /**
    * Validate branch existance on estimate creating.

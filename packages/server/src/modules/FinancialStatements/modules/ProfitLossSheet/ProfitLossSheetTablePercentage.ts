@@ -2,9 +2,12 @@
 import * as R from 'ramda';
 import { ProfitLossSheetQuery } from './ProfitLossSheetQuery';
 import { I18nService } from 'nestjs-i18n';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from '../../common/FinancialSheet';
-import { ITableColumn, ITableColumnAccessor } from '../../types/Table.types';
+import type {
+  ITableColumn,
+  ITableColumnAccessor,
+} from '../../types/Table.types';
 
 export const ProfitLossSheetTablePercentage = <
   T extends GConstructor<FinancialSheet>,

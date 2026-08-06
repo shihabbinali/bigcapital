@@ -1,5 +1,5 @@
-import { IFilterRole } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
-import { Knex } from 'knex';
+import type { IFilterRole } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
+import type { Knex } from 'knex';
 import { Expense } from '../models/Expense.model';
 import { CreateExpenseDto, EditExpenseDto } from '../dtos/Expense.dto';
 

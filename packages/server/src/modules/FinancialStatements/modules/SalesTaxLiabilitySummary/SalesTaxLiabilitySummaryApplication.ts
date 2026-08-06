@@ -1,10 +1,9 @@
-
 import { SalesTaxLiabilitySummaryTableInjectable } from './SalesTaxLiabilitySummaryTableInjectable';
 import { SalesTaxLiabilitySummaryExportInjectable } from './SalesTaxLiabilitySummaryExportInjectable';
 import { SalesTaxLiabilitySummaryService } from './SalesTaxLiabilitySummaryService';
 import { SalesTaxLiabiltiySummaryPdf } from './SalesTaxLiabiltiySummaryPdf';
 import { Injectable } from '@nestjs/common';
-import { SalesTaxLiabilitySummaryQuery } from './SalesTaxLiability.types';
+import type { SalesTaxLiabilitySummaryQuery } from './SalesTaxLiability.types';
 
 @Injectable()
 export class SalesTaxLiabilitySummaryApplication {
@@ -17,7 +16,7 @@ export class SalesTaxLiabilitySummaryApplication {
 
   /**
    * Retrieves the sales tax liability summary in json format.
-   * @param {SalesTaxLiabilitySummaryQuery} query - 
+   * @param {SalesTaxLiabilitySummaryQuery} query -
    * @returns {Promise<Buffer>}
    */
   public sheet(query: SalesTaxLiabilitySummaryQuery) {

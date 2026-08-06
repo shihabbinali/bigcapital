@@ -3,10 +3,10 @@ import { OnEvent } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { RecognizeTranasctionsService } from '@/modules/BankingTranasctionsRegonize/commands/RecognizeTranasctions.service';
 import { runAfterTransaction } from '@/modules/Tenancy/TenancyDB/TransactionsHooks';
-import { IPlaidTransactionsSyncedEventPayload } from '../types/BankingPlaid.types';
+import type { IPlaidTransactionsSyncedEventPayload } from '../types/BankingPlaid.types';
 
 @Injectable()
-export class RecognizeSyncedBankTranasctionsSubscriber  {
+export class RecognizeSyncedBankTranasctionsSubscriber {
   constructor(
     private readonly recognizeTranasctionsService: RecognizeTranasctionsService,
   ) {}
@@ -21,10 +21,9 @@ export class RecognizeSyncedBankTranasctionsSubscriber  {
     trx,
   }: IPlaidTransactionsSyncedEventPayload) {
     runAfterTransaction(trx, async () => {
-      await this.recognizeTranasctionsService.recognizeTransactions(
-        null,
-        { batch }
-      );
+      await this.recognizeTranasctionsService.recognizeTransactions(null, {
+        batch,
+      });
     });
-  };
+  }
 }

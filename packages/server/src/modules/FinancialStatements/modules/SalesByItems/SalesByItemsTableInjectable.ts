@@ -1,4 +1,4 @@
-import { ISalesByItemsReportQuery } from './SalesByItems.types';
+import type { ISalesByItemsReportQuery } from './SalesByItems.types';
 import { SalesByItemsReportService } from './SalesByItemsService';
 import { SalesByItemsTable } from './SalesByItemsTable';
 import { Injectable } from '@nestjs/common';

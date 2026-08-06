@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InvoicesActivateWarehouses } from '../../Activate/InvoiceWarehousesActivate';
 import { OnEvent } from '@nestjs/event-emitter';
-import { IWarehousesActivatedPayload } from '../../Warehouse.types';
+import type { IWarehousesActivatedPayload } from '../../Warehouse.types';
 import { events } from '@/common/events/events';
 
 @Injectable()

@@ -1,8 +1,9 @@
-import * as moment from 'moment';
-import { IDateRange, IFinancialDatePeriodsUnit } from '../types/Report.types';
-import { GConstructor } from '@/common/types/Constructor';
+import moment from 'moment';
+import type { IDateRange } from '../types/Report.types';
+import { IFinancialDatePeriodsUnit } from '../types/Report.types';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from './FinancialSheet';
-import { DateInput } from '@/common/types/Date';
+import type { DateInput } from '@/common/types/Date';
 
 export const FinancialDateRanges = <T extends GConstructor<FinancialSheet>>(
   Base: T,

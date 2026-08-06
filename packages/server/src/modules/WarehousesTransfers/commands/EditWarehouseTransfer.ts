@@ -1,18 +1,18 @@
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   IEditWarehouseTransferDTO,
   IWarehouseTransferEditPayload,
   IWarehouseTransferEditedPayload,
 } from '@/modules/Warehouses/Warehouse.types';
 import { CommandWarehouseTransfer } from './CommandWarehouseTransfer';
 import { Inject, Injectable } from '@nestjs/common';
-import { TenantModelProxy } from '../../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../../System/models/TenantBaseModel';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { WarehouseTransfer } from '../models/WarehouseTransfer';
 import { ItemsEntriesService } from '@/modules/Items/ItemsEntries.service';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { EditWarehouseTransferDto } from '../dtos/WarehouseTransfer.dto';
 
 @Injectable()

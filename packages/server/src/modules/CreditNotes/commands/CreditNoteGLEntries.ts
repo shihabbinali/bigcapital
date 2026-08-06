@@ -1,10 +1,10 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { CreditNoteGL } from './CreditNoteGL';
 import { Inject, Injectable } from '@nestjs/common';
 import { LedgerStorageService } from '@/modules/Ledger/LedgerStorage.service';
 import { CreditNote } from '../models/CreditNote';
 import { AccountRepository } from '@/modules/Accounts/repositories/Account.repository';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class CreditNoteGLEntries {

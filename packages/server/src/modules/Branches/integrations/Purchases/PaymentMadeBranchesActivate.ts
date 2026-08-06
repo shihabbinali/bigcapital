@@ -1,6 +1,6 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { BillPayment } from '@/modules/BillPayments/models/BillPayment';
 
 @Injectable()
@@ -17,9 +17,11 @@ export class BillPaymentsActivateBranches {
    */
   public updateBillPaymentsWithBranch = async (
     primaryBranchId: number,
-    trx?: Knex.Transaction
+    trx?: Knex.Transaction,
   ) => {
     // Updates the bill payments with primary branch.
-    await this.billPaymentModel().query(trx).update({ branchId: primaryBranchId });
+    await this.billPaymentModel()
+      .query(trx)
+      .update({ branchId: primaryBranchId });
   };
 }

@@ -3,10 +3,10 @@ import { Inject, Injectable } from '@nestjs/common';
 import { SaleReceiptTransformer } from './SaleReceiptTransformer';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { DynamicListService } from '@/modules/DynamicListing/DynamicList.service';
-import { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
+import type { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
 import { GetSaleReceiptsQueryDto } from '../dtos/GetSaleReceiptsQuery.dto';
 import { SaleReceipt } from '../models/SaleReceipt';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 interface GetSaleReceiptsSettings {
   fetchEntriesGraph?: boolean;

@@ -3,9 +3,9 @@ import { ERRORS } from '../constants';
 import { Inject, Injectable } from '@nestjs/common';
 import { Bill } from '../../Bills/models/Bill';
 import { BillPayment } from '../models/BillPayment';
-import { IBillReceivePageEntry } from '../types/BillPayments.types';
+import type { IBillReceivePageEntry } from '../types/BillPayments.types';
 import { ServiceError } from '../../Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class BillPaymentsPages {
@@ -19,7 +19,7 @@ export class BillPaymentsPages {
 
     @Inject(BillPayment.name)
     private readonly billPaymentModel: TenantModelProxy<typeof BillPayment>,
-  ) { }
+  ) {}
 
   /**
    * Retrieve bill payment with associated metadata.

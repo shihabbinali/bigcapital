@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IBankTransactionUnmatchingEventPayload } from '../types';
+import type { IBankTransactionUnmatchingEventPayload } from '../types';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { UnitOfWork } from '../../Tenancy/TenancyDB/UnitOfWork.service';
 import { events } from '@/common/events/events';
 import { MatchedBankTransaction } from '../models/MatchedBankTransaction';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class UnmatchMatchedBankTransaction {

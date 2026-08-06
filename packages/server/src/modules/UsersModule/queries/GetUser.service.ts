@@ -1,5 +1,5 @@
 import { SystemUser } from '@/modules/System/models/SystemUser';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { TenantUser } from '@/modules/Tenancy/TenancyModels/models/TenantUser.model';
 import { Inject, Injectable } from '@nestjs/common';
 

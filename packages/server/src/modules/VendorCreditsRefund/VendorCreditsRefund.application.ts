@@ -5,7 +5,7 @@ import { CreateRefundVendorCredit } from './commands/CreateRefundVendorCredit.se
 import { RefundVendorCreditDto } from './dtos/RefundVendorCredit.dto';
 import { GetRefundVendorCreditService } from './queries/GetRefundVendorCredit.service';
 import { GetRefundVendorCreditsService } from './queries/GetRefundVendorCredits.service';
-import { IRefundVendorCreditPOJO } from './types/VendorCreditRefund.types';
+import type { IRefundVendorCreditPOJO } from './types/VendorCreditRefund.types';
 
 @Injectable()
 export class VendorCreditsRefundApplication {
@@ -20,7 +20,7 @@ export class VendorCreditsRefundApplication {
     private readonly deleteRefundVendorCreditService: DeleteRefundVendorCreditService,
     private readonly getRefundVendorCreditsService: GetRefundVendorCreditsService,
     private readonly getRefundVendorCreditService: GetRefundVendorCreditService,
-  ) { }
+  ) {}
 
   /**
    * Retrieve the vendor credit refunds graph.

@@ -1,4 +1,4 @@
-import { IFilterRole } from '../DynamicListing/DynamicFilter/DynamicFilter.types';
+import type { IFilterRole } from '../DynamicListing/DynamicFilter/DynamicFilter.types';
 
 export interface IContactsAutoCompleteFilter {
   limit: number;

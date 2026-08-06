@@ -2,7 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { I18nService } from 'nestjs-i18n';
 import { BalanceSheetInjectable } from './BalanceSheetInjectable';
 import { BalanceSheetTable } from './BalanceSheetTable';
-import { IBalanceSheetQuery, IBalanceSheetTable } from './BalanceSheet.types';
+import type {
+  IBalanceSheetQuery,
+  IBalanceSheetTable,
+} from './BalanceSheet.types';
 
 @Injectable()
 export class BalanceSheetTableInjectable {

@@ -1,15 +1,13 @@
 import * as R from 'ramda';
 import { memoize } from 'lodash';
-import {
-  IAccountTransactionsGroupBy,
-  IFinancialDatePeriodsUnit,
-  IFormatNumberSettings,
-} from '../types/Report.types';
+import type { IFormatNumberSettings } from '../types/Report.types';
+import { IFinancialDatePeriodsUnit } from '../types/Report.types';
+import { IAccountTransactionsGroupBy } from '../types/Report.types';
 import { dateRangeFromToCollection } from '@/utils/date-range-collection';
 import { FinancialDateRanges } from './FinancialDateRanges';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from './FinancialSheet';
-import { IFinancialSheetTotalPeriod } from '../modules/BalanceSheet/BalanceSheet.types';
+import type { IFinancialSheetTotalPeriod } from '../modules/BalanceSheet/BalanceSheet.types';
 
 export const FinancialDatePeriods = <T extends GConstructor<FinancialSheet>>(
   Base: T,

@@ -1,20 +1,20 @@
 import * as R from 'ramda';
-import * as moment from 'moment';
+import moment from 'moment';
 import { isEmpty, map } from 'lodash';
 import { Inject, Injectable } from '@nestjs/common';
 import { AccountTransaction } from '@/modules/Accounts/models/AccountTransaction.model';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { Vendor } from '@/modules/Vendors/models/Vendor';
 import { ACCOUNT_TYPE } from '@/constants/accounts';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { TransactionsByContactRepository } from '../TransactionsByContact/TransactionsByContactRepository';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { AccountRepository } from '@/modules/Accounts/repositories/Account.repository';
 import { Ledger } from '@/modules/Ledger/Ledger';
-import { ModelObject } from 'objection';
-import { ITransactionsByVendorsFilter } from './TransactionsByVendor.types';
-import { DateInput } from '@/common/types/Date';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { ModelObject } from 'objection';
+import type { ITransactionsByVendorsFilter } from './TransactionsByVendor.types';
+import type { DateInput } from '@/common/types/Date';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class TransactionsByVendorRepository extends TransactionsByContactRepository {

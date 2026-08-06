@@ -1,7 +1,7 @@
 import { WarehousesDTOValidators } from '../../../Integrations/WarehousesDTOValidators';
 import { OnEvent } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
-import { IInventoryAdjustmentCreatingPayload } from '@/modules/InventoryAdjutments/types/InventoryAdjustments.types';
+import type { IInventoryAdjustmentCreatingPayload } from '@/modules/InventoryAdjutments/types/InventoryAdjustments.types';
 import { events } from '@/common/events/events';
 
 @Injectable()

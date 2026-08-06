@@ -1,5 +1,6 @@
 import { WriteInventoryTransactionsGLEntriesQueue } from '../types/InventoryCost.types';
-import { Processor, WorkerHost } from '@nestjs/bullmq';
+import { Processor } from '@nestjs/bullmq';
+import { WorkerHost } from '@nestjs/bullmq';
 import { Scope } from '@nestjs/common';
 
 @Processor({

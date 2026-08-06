@@ -1,9 +1,9 @@
 import { castArray } from 'lodash';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { PromisePool } from '@supercharge/promise-pool';
-import {
-  ERRORS,
+import { ERRORS } from '../types';
+import type {
   IBankTransactionMatchedEventPayload,
   IBankTransactionMatchingEventPayload,
   IMatchTransactionDTO,
@@ -20,7 +20,7 @@ import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { UncategorizedBankTransaction } from '@/modules/BankingTransactions/models/UncategorizedBankTransaction';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { MatchTransactionEntryDto } from '../dtos/MatchBankTransaction.dto';
 
 @Injectable()
@@ -34,7 +34,7 @@ export class MatchBankTransactions {
     private readonly uncategorizedBankTransactionModel: TenantModelProxy<
       typeof UncategorizedBankTransaction
     >,
-  ) { }
+  ) {}
 
   /**
    * Validates the match bank transactions DTO.
@@ -102,7 +102,9 @@ export class MatchBankTransactions {
     // uncategorized transaction amount.
     // Use tolerance-based comparison to handle floating-point precision issues
     const tolerance = 0.01; // Allow 0.01 difference for floating-point precision
-    const difference = Math.abs(totalUncategorizedTransactions - totalMatchedTranasctions);
+    const difference = Math.abs(
+      totalUncategorizedTransactions - totalMatchedTranasctions,
+    );
     if (difference > tolerance) {
       throw new ServiceError(ERRORS.TOTAL_MATCHING_TRANSACTIONS_INVALID);
     }
@@ -115,7 +117,9 @@ export class MatchBankTransactions {
    */
   public async matchTransaction(
     uncategorizedTransactionId: number | Array<number>,
-    matchedTransactionsDto: MatchTransactionEntryDto | Array<MatchTransactionEntryDto>,
+    matchedTransactionsDto:
+      | MatchTransactionEntryDto
+      | Array<MatchTransactionEntryDto>,
   ): Promise<void> {
     const uncategorizedTransactionIds = castArray(uncategorizedTransactionId);
     const matchedTransactions = castArray(matchedTransactionsDto);

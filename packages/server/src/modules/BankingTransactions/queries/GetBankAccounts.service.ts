@@ -5,7 +5,7 @@ import { DynamicListService } from '@/modules/DynamicListing/DynamicList.service
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { CashflowAccountTransformer } from './BankAccountTransformer';
 import { ACCOUNT_TYPE } from '@/constants/accounts';
-import { IBankAccountsFilter } from '../types/BankingTransactions.types';
+import type { IBankAccountsFilter } from '../types/BankingTransactions.types';
 
 @Injectable()
 export class GetBankAccountsService {

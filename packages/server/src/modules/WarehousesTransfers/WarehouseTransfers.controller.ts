@@ -17,10 +17,7 @@ import {
   getSchemaPath,
 } from '@nestjs/swagger';
 import { WarehouseTransferApplication } from './WarehouseTransferApplication';
-import {
-  CreateWarehouseTransferDto,
-  EditWarehouseTransferDto,
-} from './dtos/WarehouseTransfer.dto';
+import { CreateWarehouseTransferDto, EditWarehouseTransferDto } from './dtos/WarehouseTransfer.dto';
 import { GetWarehouseTransfersQueryDto } from '../Warehouses/dtos/GetWarehouseTransfersQuery.dto';
 import { WarehouseTransferResponseDto } from './dtos/WarehouseTransferResponse.dto';
 import { PaginatedResponseDto } from '@/common/dtos/PaginatedResults.dto';

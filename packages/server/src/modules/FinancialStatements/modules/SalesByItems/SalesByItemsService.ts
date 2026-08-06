@@ -2,7 +2,7 @@ import { SalesByItemsMeta } from './SalesByItemsMeta';
 import { getSalesByItemsDefaultQuery } from './utils';
 import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import {
+import type {
   ISalesByItemsReportQuery,
   ISalesByItemsSheet,
 } from './SalesByItems.types';
@@ -11,7 +11,7 @@ import { InventoryTransaction } from '@/modules/InventoryCost/models/InventoryTr
 import { events } from '@/common/events/events';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { SalesByItemsReport } from './SalesByItems';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class SalesByItemsReportService {
@@ -75,7 +75,10 @@ export class SalesByItemsReportService {
       filter,
       inventoryItems,
       inventoryTransactions,
-      { baseCurrency: tenantMetadata.baseCurrency, dateFormat: meta.dateFormat },
+      {
+        baseCurrency: tenantMetadata.baseCurrency,
+        dateFormat: meta.dateFormat,
+      },
     );
     const salesByItemsData = sheet.reportData();
 

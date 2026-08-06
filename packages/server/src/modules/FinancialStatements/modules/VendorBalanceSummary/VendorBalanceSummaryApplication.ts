@@ -3,7 +3,7 @@ import { VendorBalanceSummaryExportInjectable } from './VendorBalanceSummaryExpo
 import { VendorBalanceSummaryService } from './VendorBalanceSummaryService';
 import { VendorBalanceSummaryPdf } from './VendorBalanceSummaryPdf';
 import { Injectable } from '@nestjs/common';
-import { IVendorBalanceSummaryQuery } from './VendorBalanceSummary.types';
+import type { IVendorBalanceSummaryQuery } from './VendorBalanceSummary.types';
 
 @Injectable()
 export class VendorBalanceSummaryApplication {

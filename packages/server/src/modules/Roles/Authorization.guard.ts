@@ -1,14 +1,10 @@
-import {
-  Injectable,
-  CanActivate,
-  ExecutionContext,
-  Inject,
-} from '@nestjs/common';
-import { Request } from 'express';
+import { Injectable, Inject } from '@nestjs/common';
+import type { CanActivate, ExecutionContext } from '@nestjs/common';
+import type { Request } from 'express';
 import { Reflector } from '@nestjs/core';
 import { ClsService } from 'nestjs-cls';
 import { ABILITIES_CACHE, getAbilityForRole } from './TenantAbilities';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { TenantUser } from '../Tenancy/TenancyModels/models/TenantUser.model';
 
 /**
@@ -21,7 +17,7 @@ export class AuthorizationGuard implements CanActivate {
 
     @Inject(TenantUser.name)
     private readonly tenantUserModel: TenantModelProxy<typeof TenantUser>,
-  ) { }
+  ) {}
 
   /**
    * Checks if the user has the required abilities to access the route

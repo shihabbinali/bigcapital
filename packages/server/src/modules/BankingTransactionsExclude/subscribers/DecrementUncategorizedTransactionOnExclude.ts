@@ -1,13 +1,13 @@
 import { OnEvent } from '@nestjs/event-emitter';
 import { Inject, Injectable } from '@nestjs/common';
-import {
+import type {
   IBankTransactionExcludedEventPayload,
   IBankTransactionUnexcludedEventPayload,
 } from '../types/BankTransactionsExclude.types';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { UncategorizedBankTransaction } from '@/modules/BankingTransactions/models/UncategorizedBankTransaction';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DecrementUncategorizedTransactionOnExclude {
@@ -19,7 +19,7 @@ export class DecrementUncategorizedTransactionOnExclude {
     private readonly uncategorizedBankTransaction: TenantModelProxy<
       typeof UncategorizedBankTransaction
     >,
-  ) { }
+  ) {}
 
   /**
    * Validates the cashflow transaction whether matched with bank transaction on deleting.

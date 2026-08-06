@@ -1,13 +1,16 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
-import { IBranchDeletedPayload, IBranchDeletePayload } from '../Branches.types';
+import type { Knex } from 'knex';
+import type {
+  IBranchDeletedPayload,
+  IBranchDeletePayload,
+} from '../Branches.types';
 import { BranchCommandValidator } from './BranchCommandValidator.service';
 import { ERRORS } from '../constants';
 import { Branch } from '../models/Branch.model';
 import { UnitOfWork } from '../../Tenancy/TenancyDB/UnitOfWork.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DeleteBranchService {

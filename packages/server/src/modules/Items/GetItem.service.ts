@@ -4,7 +4,7 @@ import { Item } from './models/Item';
 import { events } from '@/common/events/events';
 import { TransformerInjectable } from '../Transformer/TransformerInjectable.service';
 import { ItemTransformer } from './Item.transformer';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { ClsService } from 'nestjs-cls';
 
 @Injectable()

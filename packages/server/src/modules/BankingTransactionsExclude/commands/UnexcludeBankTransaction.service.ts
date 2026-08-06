@@ -1,9 +1,9 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import {
   validateTransactionNotCategorized,
   validateTransactionShouldBeExcluded,
 } from './utils';
-import {
+import type {
   IBankTransactionUnexcludedEventPayload,
   IBankTransactionUnexcludingEventPayload,
 } from '../types/BankTransactionsExclude.types';
@@ -12,7 +12,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { UncategorizedBankTransaction } from '@/modules/BankingTransactions/models/UncategorizedBankTransaction';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class UnexcludeBankTransactionService {
@@ -24,7 +24,7 @@ export class UnexcludeBankTransactionService {
     private readonly uncategorizedBankTransactionModel: TenantModelProxy<
       typeof UncategorizedBankTransaction
     >,
-  ) { }
+  ) {}
 
   /**
    * Marks the given bank transaction as excluded.

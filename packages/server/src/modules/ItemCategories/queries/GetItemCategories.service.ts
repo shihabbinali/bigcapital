@@ -1,12 +1,13 @@
 import * as R from 'ramda';
 import { DynamicListService } from '@/modules/DynamicListing/DynamicList.service';
 import { ItemCategory } from '../models/ItemCategory.model';
-import { Inject } from '@nestjs/common';
-import { GetItemCategoriesResponse } from '../ItemCategory.interfaces';
+import { Inject, Injectable } from '@nestjs/common';
+import type { GetItemCategoriesResponse } from '../ItemCategory.interfaces';
 import { GetItemCategoriesQueryDto } from '../dtos/GetItemCategoriesQuery.dto';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { ISortOrder } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
 
+@Injectable()
 export class GetItemCategoriesService {
   constructor(
     private readonly dynamicListService: DynamicListService,

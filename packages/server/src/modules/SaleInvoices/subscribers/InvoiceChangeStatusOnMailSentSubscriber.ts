@@ -4,7 +4,7 @@ import { ERRORS } from '../constants';
 import { OnEvent } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { ServiceError } from '@/modules/Items/ServiceError';
-import { ISaleInvoiceMailSent } from '../SaleInvoice.types';
+import type { ISaleInvoiceMailSent } from '../SaleInvoice.types';
 
 @Injectable()
 export class InvoiceChangeStatusOnMailSentSubscriber {

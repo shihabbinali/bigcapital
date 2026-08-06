@@ -1,5 +1,5 @@
 import PromisePool from '@supercharge/promise-pool';
-import {
+import type {
   ICashflowTransactionCategorizedPayload,
   ICashflowTransactionUncategorizedPayload,
 } from '../types/BankingTransactions.types';
@@ -8,7 +8,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { events } from '@/common/events/events';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { UncategorizedBankTransaction } from '../models/UncategorizedBankTransaction';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DecrementUncategorizedTransactionOnCategorizeSubscriber {

@@ -5,7 +5,7 @@ import { CustomerMeta } from './Customer.meta';
 import { InjectModelDefaultViews } from '@/modules/Views/decorators/InjectModelDefaultViews.decorator';
 import { CustomerDefaultViews } from '../constants';
 import { BaseQueryBuilder } from '@/models/Model';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 
 export class CustomerQueryBuilder<
   M extends Model,

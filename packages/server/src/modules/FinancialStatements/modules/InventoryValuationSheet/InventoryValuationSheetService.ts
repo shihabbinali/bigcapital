@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import {
+import type {
   IInventoryValuationReportQuery,
   IInventoryValuationSheet,
 } from './InventoryValuationSheet.types';
@@ -18,7 +18,7 @@ export class InventoryValuationSheetService {
     private readonly inventoryValuationMeta: InventoryValuationMetaInjectable,
     private readonly eventPublisher: EventEmitter2,
     private readonly inventoryValuationSheetRepository: InventoryValuationSheetRepository,
-  ) { }
+  ) {}
 
   /**
    * Inventory valuation sheet.

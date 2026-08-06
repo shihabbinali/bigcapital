@@ -3,7 +3,7 @@ import { WarehousesSettings } from '../WarehousesSettings';
 import { OnEvent } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
 import { events } from '@/common/events/events';
-import {
+import type {
   IInventoryTransactionsCreatedPayload,
   IInventoryTransactionsDeletedPayload,
 } from '@/modules/InventoryCost/types/InventoryCost.types';

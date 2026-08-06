@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { Mail } from '@/modules/Mail/Mail';
 import { MailTransporter } from '@/modules/Mail/MailTransporter.service';
 import { SystemUser } from '@/modules/System/models/SystemUser';

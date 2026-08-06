@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ValidateTransactionMatched } from '../commands/ValidateTransactionsMatched.service';
 import { OnEvent } from '@nestjs/event-emitter';
-import { IManualJournalDeletingPayload } from '@/modules/ManualJournals/types/ManualJournals.types';
+import type { IManualJournalDeletingPayload } from '@/modules/ManualJournals/types/ManualJournals.types';
 import { events } from '@/common/events/events';
 
 @Injectable()

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
-import { ITransactionsLockingPartialUnlocked } from '../../TransactionsLocking/types/TransactionsLocking.types';
+import type { ITransactionsLockingPartialUnlocked } from '../../TransactionsLocking/types/TransactionsLocking.types';
 import { EventTrackerService } from '../EventTracker.service';
 import {
   TRANSACTIONS_LOCKING_LOCKED,

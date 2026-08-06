@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { kebabCase } from 'lodash';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import {
+import type {
   IAccountEventCreatingPayload,
   CreateAccountParams,
   IAccountEventCreatedPayload,
@@ -13,8 +13,8 @@ import { UnitOfWork } from '../Tenancy/TenancyDB/UnitOfWork.service';
 import { TenancyContext } from '../Tenancy/TenancyContext.service';
 import { events } from '@/common/events/events';
 import { CreateAccountDTO } from './CreateAccount.dto';
-import { PartialModelObject } from 'objection';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { PartialModelObject } from 'objection';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { AccountsSettingsService } from './AccountsSettings.service';
 
 @Injectable()

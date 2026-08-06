@@ -2,13 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { ValidateBranchExistance } from '../../integrations/ValidateBranchExistance';
-import { ICommandCashflowCreatingPayload } from '@/modules/BankingTransactions/types/BankingTransactions.types';
+import type { ICommandCashflowCreatingPayload } from '@/modules/BankingTransactions/types/BankingTransactions.types';
 
 @Injectable()
 export class CashflowBranchDTOValidatorSubscriber {
   constructor(
     private readonly validateBranchExistance: ValidateBranchExistance,
-  ) { }
+  ) {}
 
   /**
    * Validate branch existance once cashflow transaction creating.

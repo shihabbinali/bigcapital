@@ -1,7 +1,7 @@
 import { Exportable } from '@/modules/Export/Exportable';
 import { CreditNoteApplication } from '../CreditNoteApplication.service';
 import { Injectable } from '@nestjs/common';
-import { ICreditNotesQueryDTO } from '../types/CreditNotes.types';
+import type { ICreditNotesQueryDTO } from '../types/CreditNotes.types';
 import { ExportableService } from '@/modules/Export/decorators/ExportableModel.decorator';
 import { CreditNote } from '../models/CreditNote';
 

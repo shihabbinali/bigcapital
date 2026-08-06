@@ -26,19 +26,15 @@ import {
   EditSaleReceiptDto,
 } from './dtos/SaleReceipt.dto';
 import { GetSaleReceiptsQueryDto } from './dtos/GetSaleReceiptsQuery.dto';
-import {
-  SaleReceiptMailOptsDTO,
-} from './types/SaleReceipts.types';
+import type { SaleReceiptMailOptsDTO } from './types/SaleReceipts.types';
 import { AcceptType } from '@/constants/accept-type';
-import { Response } from 'express';
+import type { Response } from 'express';
 import { SaleReceiptResponseDto } from './dtos/SaleReceiptResponse.dto';
 import { PaginatedResponseDto } from '@/common/dtos/PaginatedResults.dto';
 import { SaleReceiptStateResponseDto } from './dtos/SaleReceiptState.dto';
 import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
-import {
-  BulkDeleteDto,
-  ValidateBulkDeleteResponseDto,
-} from '@/common/dtos/BulkDelete.dto';
+import { ValidateBulkDeleteResponseDto } from '@/common/dtos/BulkDelete.dto';
+import { BulkDeleteDto } from '@/common/dtos/BulkDelete.dto';
 
 @Controller('sale-receipts')
 @ApiTags('Sale Receipts')
@@ -48,7 +44,7 @@ import {
 @ApiCommonHeaders()
 @ApiExtraModels(ValidateBulkDeleteResponseDto)
 export class SaleReceiptsController {
-  constructor(private saleReceiptApplication: SaleReceiptApplication) { }
+  constructor(private saleReceiptApplication: SaleReceiptApplication) {}
 
   @Post('validate-bulk-delete')
   @ApiOperation({

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { GetMatchedTransactions } from './queries/GetMatchedTransactions.service';
 import { MatchBankTransactions } from './commands/MatchTransactions';
 import { UnmatchMatchedBankTransaction } from './commands/UnmatchMatchedTransaction.service';
-import { GetMatchedTransactionsFilter } from './types';
+import type { GetMatchedTransactionsFilter } from './types';
 import { MatchTransactionEntryDto } from './dtos/MatchBankTransaction.dto';
 
 @Injectable()

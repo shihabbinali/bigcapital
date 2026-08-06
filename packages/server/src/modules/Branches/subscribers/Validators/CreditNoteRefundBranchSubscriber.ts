@@ -2,13 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { ValidateBranchExistance } from '../../integrations/ValidateBranchExistance';
 import { events } from '@/common/events/events';
-import { IRefundCreditNoteCreatingPayload } from '@/modules/CreditNoteRefunds/types/CreditNoteRefunds.types';
+import type { IRefundCreditNoteCreatingPayload } from '@/modules/CreditNoteRefunds/types/CreditNoteRefunds.types';
 
 @Injectable()
 export class CreditNoteRefundBranchValidateSubscriber {
   constructor(
-    private readonly validateBranchExistance: ValidateBranchExistance
-  ) { }
+    private readonly validateBranchExistance: ValidateBranchExistance,
+  ) {}
 
   /**
    * Validate branch existance on refund credit note creating.
@@ -19,7 +19,7 @@ export class CreditNoteRefundBranchValidateSubscriber {
     newCreditNoteDTO,
   }: IRefundCreditNoteCreatingPayload) {
     await this.validateBranchExistance.validateTransactionBranchWhenActive(
-      newCreditNoteDTO.branchId
+      newCreditNoteDTO.branchId,
     );
   }
 }

@@ -1,6 +1,6 @@
 import { OnEvent } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
-import {
+import type {
   IBillPaymentCreatingPayload,
   IBillPaymentEditingPayload,
 } from '@/modules/BillPayments/types/BillPayments.types';
@@ -11,7 +11,7 @@ import { events } from '@/common/events/events';
 export class PaymentMadeBranchValidateSubscriber {
   constructor(
     private readonly validateBranchExistance: ValidateBranchExistance,
-  ) { }
+  ) {}
 
   /**
    * Validate branch existance on estimate creating.

@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { ItemEntry } from '@/modules/TransactionItemEntry/models/ItemEntry';
 import { Warehouse } from '../models/Warehouse.model';
 import { SaleReceipt } from '@/modules/SaleReceipts/models/SaleReceipt';

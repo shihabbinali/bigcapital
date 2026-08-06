@@ -22,10 +22,8 @@ import { CreateCustomerDto } from './dtos/CreateCustomer.dto';
 import { EditCustomerDto } from './dtos/EditCustomer.dto';
 import { CustomerResponseDto } from './dtos/CustomerResponse.dto';
 import { GetCustomersQueryDto } from './dtos/GetCustomersQuery.dto';
-import {
-  BulkDeleteCustomersDto,
-  ValidateBulkDeleteCustomersResponseDto,
-} from './dtos/BulkDeleteCustomers.dto';
+import { ValidateBulkDeleteCustomersResponseDto } from './dtos/BulkDeleteCustomers.dto';
+import { BulkDeleteCustomersDto } from './dtos/BulkDeleteCustomers.dto';
 import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
 import { RequirePermission } from '@/modules/Roles/RequirePermission.decorator';
 import { PermissionGuard } from '@/modules/Roles/Permission.guard';
@@ -40,7 +38,7 @@ import { CustomerAction } from './types/Customers.types';
 @ApiCommonHeaders()
 @UseGuards(AuthorizationGuard, PermissionGuard)
 export class CustomersController {
-  constructor(private customersApplication: CustomersApplication) { }
+  constructor(private customersApplication: CustomersApplication) {}
 
   @Get(':id')
   @RequirePermission(CustomerAction.View, AbilitySubject.Customer)

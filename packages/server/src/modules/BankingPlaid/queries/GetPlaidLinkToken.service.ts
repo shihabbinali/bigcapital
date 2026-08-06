@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PLAID_CLIENT } from '@/modules/Plaid/Plaid.module';
-import { CountryCode, PlaidApi, Products } from 'plaid';
+import { CountryCode, Products } from 'plaid';
+import { PlaidApi } from 'plaid';
 
 @Injectable()
 export class PlaidLinkTokenService {

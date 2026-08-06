@@ -3,7 +3,7 @@ import { BillsValidators } from '../commands/BillsValidators.service';
 import { BillTransformer } from './Bill.transformer';
 import { Bill } from '../models/Bill';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetBill {

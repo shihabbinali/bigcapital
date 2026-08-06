@@ -1,5 +1,5 @@
 import { CustomerBalanceSummaryService } from './CustomerBalanceSummaryService';
-import {
+import type {
   ICustomerBalanceSummaryQuery,
   ICustomerBalanceSummaryTable,
 } from './CustomerBalanceSummary.types';

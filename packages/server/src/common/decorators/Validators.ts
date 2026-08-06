@@ -1,5 +1,6 @@
 import { Transform } from 'class-transformer';
-import { ValidateIf, ValidationOptions } from 'class-validator';
+import type { ValidationOptions } from 'class-validator';
+import { ValidateIf } from 'class-validator';
 
 /**
  * Decorator that converts the property value to a number.

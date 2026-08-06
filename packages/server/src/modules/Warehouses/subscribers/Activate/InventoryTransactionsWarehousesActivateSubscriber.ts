@@ -2,7 +2,7 @@ import { InventoryActivateWarehouses } from '../../Activate/InventoryTransaction
 import { OnEvent } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
 import { events } from '@/common/events/events';
-import { IWarehousesActivatedPayload } from '../../Warehouse.types';
+import type { IWarehousesActivatedPayload } from '../../Warehouse.types';
 
 @Injectable()
 export class InventoryActivateWarehousesSubscriber {

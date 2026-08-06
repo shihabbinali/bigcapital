@@ -1,4 +1,4 @@
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { BankTransaction } from '../models/BankTransaction';
 import { transformCashflowTransactionType } from '../utils';
 import { Ledger } from '@/modules/Ledger/Ledger';

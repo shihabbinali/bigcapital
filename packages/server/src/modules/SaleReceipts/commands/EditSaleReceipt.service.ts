@@ -1,6 +1,6 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   ISaleReceiptEditedPayload,
   ISaleReceiptEditingPayload,
 } from '../types/SaleReceipts.types';
@@ -13,7 +13,7 @@ import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { Contact } from '@/modules/Contacts/models/Contact';
 import { events } from '@/common/events/events';
 import { Customer } from '@/modules/Customers/models/Customer';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { EditSaleReceiptDto } from '../dtos/SaleReceipt.dto';
 
 @Injectable()

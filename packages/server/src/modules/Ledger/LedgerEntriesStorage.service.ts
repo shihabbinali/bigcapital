@@ -1,14 +1,14 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import * as async from 'async';
 import { Inject, Injectable } from '@nestjs/common';
 import { transformLedgerEntryToTransaction } from './utils';
-import {
+import type {
   ILedgerEntry,
   ISaveLedgerEntryQueuePayload,
 } from './types/Ledger.types';
-import { ILedger } from './types/Ledger.types';
+import type { ILedger } from './types/Ledger.types';
 import { AccountTransaction } from '../Accounts/models/AccountTransaction.model';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 
 // Filter the blank entries.
 const filterBlankEntry = (entry: ILedgerEntry) =>

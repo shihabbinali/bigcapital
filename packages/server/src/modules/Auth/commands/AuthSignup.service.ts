@@ -1,5 +1,5 @@
 import * as crypto from 'crypto';
-import * as moment from 'moment';
+import moment from 'moment';
 import { events } from '@/common/events/events';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { SystemUser } from '@/modules/System/models/SystemUser';
@@ -9,7 +9,7 @@ import { ConfigService } from '@nestjs/config';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { isEmpty } from 'class-validator';
 import { AuthSignupDto } from '../dtos/AuthSignup.dto';
-import {
+import type {
   IAuthSignedUpEventPayload,
   IAuthSigningUpEventPayload,
 } from '../Auth.interfaces';
@@ -33,7 +33,7 @@ export class AuthSignupService {
 
     @Inject(SystemUser.name)
     private readonly systemUserModel: typeof SystemUser,
-  ) { }
+  ) {}
 
   /**
    * Registers a new tenant with user from user input.
@@ -53,7 +53,7 @@ export class AuthSignupService {
     const verifiedEnabed = signupConfirmation.enabled ?? false;
     const verifyToken = verifiedEnabed ? verifyTokenCrypto : '';
     const verified = !verifiedEnabed;
-    
+
     const inviteAcceptedAt = moment().format('YYYY-MM-DD');
 
     // Triggers signin up event.

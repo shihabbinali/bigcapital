@@ -1,11 +1,11 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { sumBy, difference, map } from 'lodash';
 import { Inject, Injectable } from '@nestjs/common';
 import { Item } from './models/Item';
 import { ItemEntry } from '../TransactionItemEntry/models/ItemEntry';
 import { ServiceError } from './ServiceError';
-import { IItemEntryDTO } from '../TransactionItemEntry/ItemEntry.types';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { IItemEntryDTO } from '../TransactionItemEntry/ItemEntry.types';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { entriesAmountDiff } from '@/utils/entries-amount-diff';
 import { ItemEntryDto } from '../TransactionItemEntry/dto/ItemEntry.dto';
 
@@ -28,7 +28,7 @@ export class ItemsEntriesService {
 
     @Inject(ItemEntry.name)
     private readonly itemEntryModel: TenantModelProxy<typeof ItemEntry>,
-  ) { }
+  ) {}
 
   /**
    * Retrieve the inventory items entries of the reference id and type.
@@ -84,7 +84,9 @@ export class ItemsEntriesService {
    * @param {IItemEntryDTO[]} itemEntries - Items entries.
    * @returns {Promise<Item[]>}
    */
-  public async validateItemsIdsExistance(itemEntries: Array<{ itemId: number }>) {
+  public async validateItemsIdsExistance(
+    itemEntries: Array<{ itemId: number }>,
+  ) {
     const itemsIds = itemEntries.map((e) => e.itemId);
 
     const foundItems = await this.itemModel().query().whereIn('id', itemsIds);
@@ -130,9 +132,7 @@ export class ItemsEntriesService {
    * Validate the entries items that not purchase-able.
    * @param {IItemEntryDTO[]} itemEntries -
    */
-  public async validateNonPurchasableEntriesItems(
-    itemEntries: ItemEntryDto[],
-  ) {
+  public async validateNonPurchasableEntriesItems(itemEntries: ItemEntryDto[]) {
     const itemsIds = itemEntries.map((e: ItemEntryDto) => e.itemId);
     const purchasbleItems = await this.itemModel()
       .query()

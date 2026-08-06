@@ -1,4 +1,4 @@
-import { IItemWarehouseQuantityChange } from '@/modules/Warehouses/Warehouse.types';
+import type { IItemWarehouseQuantityChange } from '@/modules/Warehouses/Warehouse.types';
 import { set, get, chain, toPairs } from 'lodash';
 import { InventoryTransaction } from '@/modules/InventoryCost/models/InventoryTransaction';
 

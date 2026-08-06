@@ -1,4 +1,4 @@
-import {
+import type {
   IAllocatedLandedCostCreatedPayload,
   IAllocatedLandedCostDeletedPayload,
 } from '../types/BillLandedCosts.types';

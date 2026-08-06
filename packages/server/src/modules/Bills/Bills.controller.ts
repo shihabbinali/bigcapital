@@ -26,10 +26,8 @@ import { GetBillsQueryDto } from './dtos/GetBillsQuery.dto';
 import { BillResponseDto } from './dtos/BillResponse.dto';
 import { PaginatedResponseDto } from '@/common/dtos/PaginatedResults.dto';
 import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
-import {
-  BulkDeleteDto,
-  ValidateBulkDeleteResponseDto,
-} from '@/common/dtos/BulkDelete.dto';
+import { ValidateBulkDeleteResponseDto } from '@/common/dtos/BulkDelete.dto';
+import { BulkDeleteDto } from '@/common/dtos/BulkDelete.dto';
 import { RequirePermission } from '@/modules/Roles/RequirePermission.decorator';
 import { PermissionGuard } from '@/modules/Roles/Permission.guard';
 import { AuthorizationGuard } from '@/modules/Roles/Authorization.guard';
@@ -44,7 +42,7 @@ import { BillAction } from './Bills.types';
 @ApiExtraModels(ValidateBulkDeleteResponseDto)
 @UseGuards(AuthorizationGuard, PermissionGuard)
 export class BillsController {
-  constructor(private billsApplication: BillsApplication) { }
+  constructor(private billsApplication: BillsApplication) {}
 
   @Post('validate-bulk-delete')
   @RequirePermission(BillAction.Delete, AbilitySubject.Bill)
@@ -74,9 +72,7 @@ export class BillsController {
     status: 200,
     description: 'Bills deleted successfully',
   })
-  bulkDeleteBills(
-    @Body() bulkDeleteDto: BulkDeleteDto,
-  ): Promise<void> {
+  bulkDeleteBills(@Body() bulkDeleteDto: BulkDeleteDto): Promise<void> {
     return this.billsApplication.bulkDeleteBills(bulkDeleteDto.ids, {
       skipUndeletable: bulkDeleteDto.skipUndeletable ?? false,
     });

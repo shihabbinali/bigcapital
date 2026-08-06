@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { SaleInvoice } from '../models/SaleInvoice';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetSaleInvoicesPayable {

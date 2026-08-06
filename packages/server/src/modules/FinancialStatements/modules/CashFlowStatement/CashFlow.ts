@@ -2,9 +2,9 @@
 import * as R from 'ramda';
 import { defaultTo, set, sumBy, isEmpty, mapValues, get } from 'lodash';
 import * as mathjs from 'mathjs';
-import * as moment from 'moment';
+import moment from 'moment';
 import { I18nService } from 'nestjs-i18n';
-import {
+import type {
   ICashFlowSchemaSection,
   ICashFlowStatementQuery,
   ICashFlowStatementNetIncomeSection,
@@ -12,7 +12,6 @@ import {
   ICashFlowSchemaSectionAccounts,
   ICashFlowStatementAccountMeta,
   ICashFlowSchemaAccountRelation,
-  ICashFlowStatementSectionType,
   ICashFlowStatementData,
   ICashFlowSchemaTotalSection,
   ICashFlowStatementTotalSection,
@@ -20,17 +19,22 @@ import {
   ICashFlowCashBeginningNode,
   ICashFlowStatementAggregateSection,
 } from './Cashflow.types';
+import { ICashFlowStatementSectionType } from './Cashflow.types';
 import { CASH_FLOW_SCHEMA } from './schema';
 import { ACCOUNT_ROOT_TYPE } from '@/constants/accounts';
 import { CashFlowStatementDatePeriods } from './CashFlowDatePeriods';
 import { DISPLAY_COLUMNS_BY } from './constants';
 import { FinancialSheetStructure } from '../../common/FinancialSheetStructure';
 import { Account } from '@/modules/Accounts/models/Account.model';
-import { ILedger } from '@/modules/Ledger/types/Ledger.types';
-import { INumberFormatQuery, IFinancialReportMeta, DEFAULT_REPORT_META } from '../../types/Report.types';
+import type { ILedger } from '@/modules/Ledger/types/Ledger.types';
+import type {
+  INumberFormatQuery,
+  IFinancialReportMeta,
+} from '../../types/Report.types';
+import { DEFAULT_REPORT_META } from '../../types/Report.types';
 import { transformToMapBy } from '@/utils/transform-to-map-by';
 import { accumSum } from '@/utils/accum-sum';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { CashflowStatementBase } from './CashflowStatementBase';
 
 export class CashFlowStatement extends R.pipe(

@@ -1,8 +1,8 @@
 import * as R from 'ramda';
 import { isEmpty } from 'lodash';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { I18nService } from 'nestjs-i18n';
-import {
+import type {
   ITransactionsByVendorsFilter,
   ITransactionsByVendorsTransaction,
   ITransactionsByVendorsVendor,
@@ -10,9 +10,10 @@ import {
 } from './TransactionsByVendor.types';
 import { TransactionsByContact } from '../TransactionsByContact/TransactionsByContact';
 import { Vendor } from '@/modules/Vendors/models/Vendor';
-import { INumberFormatQuery } from '../../types/Report.types';
+import type { INumberFormatQuery } from '../../types/Report.types';
 import { TransactionsByVendorRepository } from './TransactionsByVendorRepository';
-import { IFinancialReportMeta, DEFAULT_REPORT_META } from '../../types/Report.types';
+import type { IFinancialReportMeta } from '../../types/Report.types';
+import { DEFAULT_REPORT_META } from '../../types/Report.types';
 
 const VENDOR_NORMAL = 'credit';
 
@@ -21,7 +22,7 @@ export class TransactionsByVendor extends TransactionsByContact {
   public readonly filter: ITransactionsByVendorsFilter;
   public readonly numberFormat: INumberFormatQuery;
   public readonly i18n: I18nService;
-  
+
   /**
    * Constructor method.
    * @param {TransactionsByVendorRepository} transactionsByVendorRepository - Transactions by vendor repository.

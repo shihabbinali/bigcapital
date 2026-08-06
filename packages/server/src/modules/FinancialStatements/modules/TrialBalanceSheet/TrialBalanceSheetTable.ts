@@ -1,13 +1,13 @@
 import * as R from 'ramda';
 import { FinancialSheet } from '../../common/FinancialSheet';
 import { FinancialTable } from '../../common/FinancialTable';
-import {
+import type {
   ITrialBalanceAccount,
   ITrialBalanceSheetData,
   ITrialBalanceSheetQuery,
   ITrialBalanceTotal,
 } from './TrialBalanceSheet.types';
-import {
+import type {
   ITableColumn,
   ITableColumnAccessor,
   ITableRow,

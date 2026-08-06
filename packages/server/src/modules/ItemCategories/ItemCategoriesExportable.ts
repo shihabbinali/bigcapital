@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Exportable } from '../Export/Exportable';
 import { ItemCategoryApplication } from './ItemCategory.application';
-import { IItemCategoriesFilter } from './ItemCategory.interfaces';
+import type { IItemCategoriesFilter } from './ItemCategory.interfaces';
 import { ExportableService } from '../Export/decorators/ExportableModel.decorator';
 import { ItemCategory } from './models/ItemCategory.model';
 
@@ -19,7 +19,7 @@ export class ItemCategoriesExportable extends Exportable {
    */
   public exportable(query: Partial<IItemCategoriesFilter>) {
     const parsedQuery = {
-      ...query
+      ...query,
     } as IItemCategoriesFilter;
 
     return this.itemCategoryApp

@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { ref } from 'objection';
-import { curry, pipe, map } from 'lodash/fp';
+import { curry, pipe } from 'lodash/fp';
+import { map } from 'lodash/fp';
 import * as R from 'ramda';
-import {
+import type {
   ILandedCostTransaction,
   ILandedCostTransactionDOJO,
   ILandedCostTransactionEntry,
@@ -14,7 +15,7 @@ import { LandedCostTransactionsQueryDto } from '../dtos/LandedCostTransactionsQu
 
 @Injectable()
 export class LandedCostTranasctions {
-  constructor(private readonly transactionLandedCost: TransactionLandedCost) { }
+  constructor(private readonly transactionLandedCost: TransactionLandedCost) {}
 
   /**
    * Retrieve the landed costs based on the given query.

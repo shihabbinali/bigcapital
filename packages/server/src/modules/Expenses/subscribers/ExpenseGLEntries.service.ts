@@ -1,9 +1,9 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { ExpenseGL } from './ExpenseGL';
 import { Inject, Injectable } from '@nestjs/common';
 import { Expense } from '../models/Expense.model';
-import { ILedger } from '@/modules/Ledger/types/Ledger.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { ILedger } from '@/modules/Ledger/types/Ledger.types';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class ExpenseGLEntriesService {

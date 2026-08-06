@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { I18nService } from 'nestjs-i18n';
-import {
+import type {
   IInventoryDetailsQuery,
   IInvetoryItemDetailsTable,
 } from './InventoryItemDetails.types';

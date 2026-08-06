@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Global, Module, Scope } from '@nestjs/common';
 import { TENANCY_DB_CONNECTION } from '../TenancyDB/TenancyDB.constants';
 import { Item } from '../../../modules/Items/models/Item';
@@ -107,4 +107,4 @@ const modelProviders = models.map((model) => RegisterTenancyModel(model));
   imports: [...modelProviders],
   exports: [...modelProviders],
 })
-export class TenancyModelsModule { }
+export class TenancyModelsModule {}

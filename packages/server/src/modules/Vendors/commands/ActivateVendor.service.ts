@@ -1,12 +1,12 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { VendorValidators } from './VendorValidators';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Vendor } from '../models/Vendor';
 import { events } from '@/common/events/events';
-import { IVendorActivatedPayload } from '../types/Vendors.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { IVendorActivatedPayload } from '../types/Vendors.types';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class ActivateVendorService {

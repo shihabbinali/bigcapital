@@ -1,4 +1,4 @@
-import { Transporter } from 'nodemailer';
+import type { Transporter } from 'nodemailer';
 import { Mail } from './Mail';
 import { Inject, Injectable } from '@nestjs/common';
 import { MAIL_TRANSPORTER_PROVIDER } from './Mail.constants';

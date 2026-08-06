@@ -1,8 +1,8 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import * as R from 'ramda';
-import { IGeneralLedgerSheetQuery } from './GeneralLedger.types';
+import type { IGeneralLedgerSheetQuery } from './GeneralLedger.types';
 import { flatten, isEmpty, uniq } from 'lodash';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { AccountTransaction } from '@/modules/Accounts/models/AccountTransaction.model';
 import { Contact } from '@/modules/Contacts/models/Contact';
@@ -12,7 +12,7 @@ import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { transformToMap } from '@/utils/transform-to-key';
 import { Ledger } from '@/modules/Ledger/Ledger';
 import { TenantModel } from '@/modules/System/models/TenantModel';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class GeneralLedgerRepository {

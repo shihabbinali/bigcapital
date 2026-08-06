@@ -2,7 +2,7 @@
 import * as R from 'ramda';
 import { TOTAL_NODE_TYPES } from './constants';
 import { FinancialSheet } from '../../common/FinancialSheet';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 
 export const ProfitLossSheetBase = <T extends GConstructor<FinancialSheet>>(
   Base: T,
@@ -19,7 +19,7 @@ export const ProfitLossSheetBase = <T extends GConstructor<FinancialSheet>>(
     });
 
     /**
-     * 
+     *
      */
     protected isNodeTypeIn = R.curry((types: string[], node) => {
       return types.indexOf(node.nodeType) !== -1;
@@ -33,9 +33,9 @@ export const ProfitLossSheetBase = <T extends GConstructor<FinancialSheet>>(
     });
 
     /**
-     * 
-     * @param node 
-     * @returns 
+     *
+     * @param node
+     * @returns
      */
     isNodeTotal = (node) => {
       return this.isNodeTypeIn(TOTAL_NODE_TYPES, node);

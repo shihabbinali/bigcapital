@@ -1,6 +1,6 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
-import { ImportFilePreviewPOJO } from './interfaces';
+import type { ImportFilePreviewPOJO } from './interfaces';
 import { ImportFileProcess } from './ImportFileProcess';
 import { ImportAls } from './ImportALS';
 import { TENANCY_DB_CONNECTION } from '../Tenancy/TenancyDB/TenancyDB.constants';
@@ -12,7 +12,7 @@ export class ImportFilePreview {
     private readonly importAls: ImportAls,
 
     @Inject(TENANCY_DB_CONNECTION)
-    private readonly tenantKnex: () => Knex
+    private readonly tenantKnex: () => Knex,
   ) {}
 
   /**
@@ -32,7 +32,9 @@ export class ImportFilePreview {
    * @returns {Promise<ImportFilePreviewPOJO>}
    */
   public async previewAlsRun(importId: string): Promise<ImportFilePreviewPOJO> {
-    const trx = await this.tenantKnex().transaction({ isolationLevel: 'read uncommitted' });
+    const trx = await this.tenantKnex().transaction({
+      isolationLevel: 'read uncommitted',
+    });
 
     const meta = await this.importFile.import(importId, trx);
 

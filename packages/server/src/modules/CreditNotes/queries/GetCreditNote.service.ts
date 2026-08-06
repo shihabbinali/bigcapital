@@ -4,7 +4,7 @@ import { CreditNoteTransformer } from './CreditNoteTransformer';
 import { Inject, Injectable } from '@nestjs/common';
 import { CreditNote } from '../models/CreditNote';
 import { ServiceError } from '@/modules/Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetCreditNoteService {

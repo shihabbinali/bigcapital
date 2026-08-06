@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { TableSheet } from '../../common/TableSheet';
-import { ISalesByItemsReportQuery } from './SalesByItems.types';
+import type { ISalesByItemsReportQuery } from './SalesByItems.types';
 import { SalesByItemsTableInjectable } from './SalesByItemsTableInjectable';
 
 @Injectable()

@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import {
+import type {
   IInventoryValuationItem,
   IInventoryValuationSheetData,
   IInventoryValuationTotal,
@@ -8,7 +8,7 @@ import { ROW_TYPE } from './_constants';
 import { FinancialTable } from '../../common/FinancialTable';
 import { FinancialSheetStructure } from '../../common/FinancialSheetStructure';
 import { FinancialSheet } from '../../common/FinancialSheet';
-import {
+import type {
   ITableColumn,
   ITableColumnAccessor,
   ITableRow,

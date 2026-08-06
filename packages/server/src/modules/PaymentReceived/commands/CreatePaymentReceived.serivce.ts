@@ -1,5 +1,5 @@
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   IPaymentReceivedCreateDTO,
   IPaymentReceivedCreatedPayload,
   IPaymentReceivedCreatingPayload,
@@ -13,7 +13,7 @@ import { events } from '@/common/events/events';
 import { Customer } from '@/modules/Customers/models/Customer';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { Inject, Injectable } from '@nestjs/common';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { CreatePaymentReceivedDto } from '../dtos/PaymentReceived.dto';
 
 @Injectable()

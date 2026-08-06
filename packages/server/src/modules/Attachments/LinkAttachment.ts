@@ -1,12 +1,12 @@
 import { ModuleRef } from '@nestjs/core';
 import * as bluebird from 'bluebird';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import {
   validateLinkModelEntryExists,
   validateLinkModelExists,
 } from './_utils';
 import { ERRORS } from './constants';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { DocumentLink } from '../ChromiumlyTenancy/models/DocumentLink';
 import { Inject, Injectable } from '@nestjs/common';
 import { ServiceError } from '../Items/ServiceError';

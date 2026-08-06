@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
 import * as R from 'ramda';
-import { IPaginationMeta } from '@/interfaces/Model';
+import type { IPaginationMeta } from '@/interfaces/Model';
 import { InventoryAdjustmentTransformer } from '../InventoryAdjustmentTransformer';
 import { InventoryAdjustment } from '../models/InventoryAdjustment';
-import { IInventoryAdjustmentsFilter } from '../types/InventoryAdjustments.types';
+import type { IInventoryAdjustmentsFilter } from '../types/InventoryAdjustments.types';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { DynamicListService } from '@/modules/DynamicListing/DynamicList.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { ISortOrder } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
 
 @Injectable()

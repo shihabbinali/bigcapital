@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { I18nService } from 'nestjs-i18n';
-import { IAPAgingSummaryTable } from './APAgingSummary.types';
+import type { IAPAgingSummaryTable } from './APAgingSummary.types';
 import { APAgingSummaryService } from './APAgingSummaryService';
 import { APAgingSummaryTable } from './APAgingSummaryTable';
 import { APAgingSummaryQueryDto } from './APAgingSummaryQuery.dto';

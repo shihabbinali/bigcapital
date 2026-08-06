@@ -1,15 +1,15 @@
-import {
+import type {
   IVendorEventEditedPayload,
   IVendorEventEditingPayload,
 } from '../types/Vendors.types';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { CreateEditVendorDTOService } from './CreateEditVendorDTO';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { Vendor } from '../models/Vendor';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { EditVendorDto } from '../dtos/EditVendor.dto';
 
 @Injectable()

@@ -1,16 +1,16 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Vendor } from '../models/Vendor';
 import { events } from '@/common/events/events';
-import {
+import type {
   IVendorEventCreatedPayload,
   IVendorEventCreatingPayload,
   IVendorNewDTO,
 } from '../types/Vendors.types';
 import { CreateEditVendorDTOService } from './CreateEditVendorDTO';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { CreateVendorDto } from '../dtos/CreateVendor.dto';
 
 @Injectable()
@@ -35,7 +35,10 @@ export class CreateVendorService {
    * @param  {IVendorNewDTO} vendorDTO
    * @return {Promise<void>}
    */
-  public async createVendor(vendorDTO: CreateVendorDto, trx?: Knex.Transaction) {
+  public async createVendor(
+    vendorDTO: CreateVendorDto,
+    trx?: Knex.Transaction,
+  ) {
     // Transforms create DTO to customer object.
     const vendorObject = await this.transformDTO.transformCreateDTO(vendorDTO);
 

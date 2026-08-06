@@ -1,4 +1,4 @@
-import { TenantJobPayload } from '@/interfaces/Tenant';
+import type { TenantJobPayload } from '@/interfaces/Tenant';
 import { SystemUser } from '../System/models/SystemUser';
 import { BuildOrganizationDto } from './dtos/Organization.dto';
 

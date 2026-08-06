@@ -1,7 +1,7 @@
 import { get, sumBy } from 'lodash';
 import * as R from 'ramda';
-import { ModelObject } from 'objection';
-import {
+import type { ModelObject } from 'objection';
+import type {
   ISalesProfitQuery,
   ISalesProfitRow,
   ISalesProfitTotal,
@@ -79,7 +79,9 @@ export class SalesProfitReport extends FinancialSheet {
    * @param {ModelObject<ItemEntry>} entry
    * @returns {ISalesProfitRow}
    */
-  private entrySectionMapper = (entry: ModelObject<ItemEntry>): ISalesProfitRow => {
+  private entrySectionMapper = (
+    entry: ModelObject<ItemEntry>,
+  ): ISalesProfitRow => {
     const parent = this.getParent(entry);
 
     const quantity = get(entry, 'quantity', 0);
@@ -151,7 +153,9 @@ export class SalesProfitReport extends FinancialSheet {
    * @param {ModelObject<ItemEntry>[]} entries
    * @returns {ISalesProfitRow[]}
    */
-  private rowsMapper = (entries: ModelObject<ItemEntry>[]): ISalesProfitRow[] => {
+  private rowsMapper = (
+    entries: ModelObject<ItemEntry>[],
+  ): ISalesProfitRow[] => {
     return entries.map(this.entrySectionMapper);
   };
 

@@ -2,7 +2,8 @@ import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { cancelSubscription } from '@lemonsqueezy/lemonsqueezy.js';
 import { configureLemonSqueezy } from '../utils';
-import { ERRORS, IOrganizationSubscriptionCancel } from '../types';
+import { ERRORS } from '../types';
+import type { IOrganizationSubscriptionCancel } from '../types';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { PlanSubscription } from '../models/PlanSubscription';
 import { events } from '@/common/events/events';
@@ -23,9 +24,7 @@ export class CancelLemonSubscription {
    * @param {number} subscriptionId - Subscription id.
    * @returns {Promise<void>}
    */
-  public async cancelSubscription(
-    subscriptionSlug: string = 'main',
-  ) {
+  public async cancelSubscription(subscriptionSlug: string = 'main') {
     configureLemonSqueezy();
 
     const tenant = await this.tenancyContext.getTenant();

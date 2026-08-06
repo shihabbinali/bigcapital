@@ -1,10 +1,10 @@
-import * as moment from 'moment';
-import {
+import moment from 'moment';
+import type {
   IFormatNumberSettings,
   INumberFormatQuery,
 } from '../types/Report.types';
 import { formatNumber } from '@/utils/format-number';
-import { IFinancialTableTotal } from '../types/Table.types';
+import type { IFinancialTableTotal } from '../types/Table.types';
 
 export class FinancialSheet {
   public numberFormat: INumberFormatQuery = {

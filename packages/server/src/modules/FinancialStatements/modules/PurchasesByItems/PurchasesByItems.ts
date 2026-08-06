@@ -1,7 +1,7 @@
 import { get, isEmpty, sumBy } from 'lodash';
 import * as R from 'ramda';
 import { allPassedConditionsPass } from '@/utils/all-conditions-passed';
-import {
+import type {
   IPurchasesByItemsItem,
   IPurchasesByItemsReportQuery,
   IPurchasesByItemsSheetData,
@@ -11,9 +11,10 @@ import { FinancialSheet } from '../../common/FinancialSheet';
 import { transformToMapBy } from '@/utils/transform-to-map-by';
 import { Item } from '@/modules/Items/models/Item';
 import { InventoryTransaction } from '@/modules/InventoryCost/models/InventoryTransaction';
-import { IFinancialReportMeta, DEFAULT_REPORT_META } from '../../types/Report.types';
+import type { IFinancialReportMeta } from '../../types/Report.types';
+import { DEFAULT_REPORT_META } from '../../types/Report.types';
 
-export class PurchasesByItems extends FinancialSheet{
+export class PurchasesByItems extends FinancialSheet {
   readonly baseCurrency: string;
   readonly items: Item[];
   readonly itemsTransactions: Map<string, InventoryTransaction[]>;
@@ -111,13 +112,13 @@ export class PurchasesByItems extends FinancialSheet{
       quantityPurchased: meta.quantity,
       purchaseCost: meta.cost,
       averageCostPrice: meta.average,
-      
+
       quantityPurchasedFormatted: this.formatNumber(meta.quantity, {
         money: false,
       }),
       purchaseCostFormatted: this.formatNumber(meta.cost),
       averageCostPriceFormatted: this.formatNumber(meta.average),
-      
+
       currencyCode: this.baseCurrency,
     };
   };
@@ -155,7 +156,7 @@ export class PurchasesByItems extends FinancialSheet{
   private itemsSection = (): IPurchasesByItemsItem[] => {
     return R.compose(
       R.when(this.isItemsPostFilter, this.itemsFilter),
-      this.itemsMapper
+      this.itemsMapper,
     )(this.items);
   };
 

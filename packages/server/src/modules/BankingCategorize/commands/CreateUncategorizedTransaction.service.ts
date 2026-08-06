@@ -1,5 +1,5 @@
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   IUncategorizedTransactionCreatedEventPayload,
   IUncategorizedTransactionCreatingEventPayload,
 } from '../types/BankingCategorize.types';
@@ -8,7 +8,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { UncategorizedBankTransaction } from '../../BankingTransactions/models/UncategorizedBankTransaction';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { UncategorizedBankTransactionDto } from '../dtos/CreateUncategorizedBankTransaction.dto';
 
 @Injectable()

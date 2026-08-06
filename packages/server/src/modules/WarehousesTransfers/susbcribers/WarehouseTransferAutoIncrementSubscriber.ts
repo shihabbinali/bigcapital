@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { events } from '@/common/events/events';
-import { IWarehouseTransferCreated } from '../../Warehouses/Warehouse.types';
+import type { IWarehouseTransferCreated } from '../../Warehouses/Warehouse.types';
 import { WarehouseTransferAutoIncrement } from '../commands/WarehouseTransferAutoIncrement';
 import { OnEvent } from '@nestjs/event-emitter';
 

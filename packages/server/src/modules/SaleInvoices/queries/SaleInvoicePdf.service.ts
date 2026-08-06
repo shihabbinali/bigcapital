@@ -9,8 +9,8 @@ import { ChromiumlyTenancy } from '@/modules/ChromiumlyTenancy/ChromiumlyTenancy
 import { SaleInvoice } from '../models/SaleInvoice';
 import { PdfTemplateModel } from '@/modules/PdfTemplate/models/PdfTemplate';
 import { events } from '@/common/events/events';
-import { InvoicePdfTemplateAttributes } from '../SaleInvoice.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { InvoicePdfTemplateAttributes } from '../SaleInvoice.types';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class SaleInvoicePdf {

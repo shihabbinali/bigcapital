@@ -1,8 +1,8 @@
 import * as R from 'ramda';
-import * as moment from 'moment';
+import moment from 'moment';
 import { defaultTo, sumBy, get } from 'lodash';
 import { I18nService } from 'nestjs-i18n';
-import {
+import type {
   IInventoryDetailsQuery,
   IInventoryDetailsNumber,
   IInventoryDetailsDate,
@@ -12,17 +12,17 @@ import {
   IInventoryDetailsOpening,
   IInventoryDetailsItemTransaction,
 } from './InventoryItemDetails.types';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { Item } from '@/modules/Items/models/Item';
-import {
+import type {
   IFormatNumberSettings,
   INumberFormatQuery,
   IFinancialReportMeta,
-  DEFAULT_REPORT_META,
 } from '../../types/Report.types';
+import { DEFAULT_REPORT_META } from '../../types/Report.types';
 import { InventoryTransaction } from '@/modules/InventoryCost/models/InventoryTransaction';
 import { InventoryItemDetailsRepository } from './InventoryItemDetailsRepository';
-import { TInventoryTransactionDirection } from '@/modules/InventoryCost/types/InventoryCost.types';
+import type { TInventoryTransactionDirection } from '@/modules/InventoryCost/types/InventoryCost.types';
 import { FinancialSheet } from '../../common/FinancialSheet';
 import { filterDeep } from '@/utils/deepdash';
 import { INodeTypes, MAP_CONFIG } from './constant';

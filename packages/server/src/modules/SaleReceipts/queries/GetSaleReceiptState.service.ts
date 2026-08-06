@@ -1,7 +1,7 @@
 import { PdfTemplateModel } from '@/modules/PdfTemplate/models/PdfTemplate';
 import { Inject, Injectable } from '@nestjs/common';
-import { ISaleReceiptState } from '../types/SaleReceipts.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { ISaleReceiptState } from '../types/SaleReceipts.types';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetSaleReceiptState {

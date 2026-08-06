@@ -1,5 +1,5 @@
 import mime from 'mime-types';
-import { Response, NextFunction, Request } from 'express';
+import type { Response, NextFunction, Request } from 'express';
 import {
   ApiBody,
   ApiConsumes,

@@ -1,5 +1,5 @@
-import { Knex } from 'knex';
-import { RemovedTransaction, Transaction } from 'plaid';
+import type { Knex } from 'knex';
+import type { RemovedTransaction, Transaction } from 'plaid';
 
 export interface IPlaidTransactionsSyncedEventPayload {
   // tenantId: number;
@@ -31,9 +31,8 @@ export interface IPlaidItemCreatedEventPayload {
 export const UpdateBankingPlaidTransitionsJob =
   'update-banking-plaid-transitions-job';
 
-  export const UpdateBankingPlaidTransitionsQueueJob =
+export const UpdateBankingPlaidTransitionsQueueJob =
   'update-banking-plaid-transitions-query';
-
 
 export interface PlaidFetchTransitonsEventPayload {
   plaidItemId: string;

@@ -1,4 +1,4 @@
-import { ITableRow } from '../types/Table.types';
+import type { ITableRow } from '../types/Table.types';
 import { flatNestedTree } from '@/utils/deepdash';
 import { repeat } from 'lodash';
 
@@ -16,7 +16,7 @@ export class FinancialTableStructure {
    */
   public static flatNestedTree = (
     obj: ITableRow[],
-    options?: FlatNestTreeOpts
+    options?: FlatNestTreeOpts,
   ): ITableRow[] => {
     const parsedOptions = {
       nestedPrefix: '   ',
@@ -42,7 +42,7 @@ export class FinancialTableStructure {
           cells,
         };
       },
-      parsedOptions
+      parsedOptions,
     );
   };
 }

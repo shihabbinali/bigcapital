@@ -1,13 +1,13 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { CommandItemCategoryValidatorService } from './CommandItemCategoryValidator.service';
 import { ItemCategory } from '../models/ItemCategory.model';
 import { events } from '@/common/events/events';
-import { IItemCategoryDeletedPayload } from '../ItemCategory.interfaces';
+import type { IItemCategoryDeletedPayload } from '../ItemCategory.interfaces';
 import { Item } from '@/modules/Items/models/Item';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DeleteItemCategoryService {

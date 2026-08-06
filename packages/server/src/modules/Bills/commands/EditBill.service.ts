@@ -1,4 +1,4 @@
-import {
+import type {
   IBillEditDTO,
   IBillEditedPayload,
   IBillEditingPayload,
@@ -12,9 +12,9 @@ import { BillDTOTransformer } from './BillDTOTransformer.service';
 import { Bill } from '../models/Bill';
 import { events } from '@/common/events/events';
 import { Vendor } from '@/modules/Vendors/models/Vendor';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { TransactionLandedCostEntriesService } from '@/modules/BillLandedCosts/TransactionLandedCostEntries.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { EditBillDto } from '../dtos/Bill.dto';
 
 @Injectable()
@@ -29,7 +29,7 @@ export class EditBillService {
 
     @Inject(Bill.name) private billModel: TenantModelProxy<typeof Bill>,
     @Inject(Vendor.name) private vendorModel: TenantModelProxy<typeof Vendor>,
-  ) { }
+  ) {}
 
   /**
    * Edits details of the given bill id with associated entries.

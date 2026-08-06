@@ -1,10 +1,10 @@
-import { CreateStripeAccountDTO } from './types';
+import type { CreateStripeAccountDTO } from './types';
 import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { StripePaymentService } from './StripePaymentService';
 import { events } from '@/common/events/events';
 import { PaymentIntegration } from './models/PaymentIntegration.model';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 
 @Injectable()
 export class CreateStripeAccountService {

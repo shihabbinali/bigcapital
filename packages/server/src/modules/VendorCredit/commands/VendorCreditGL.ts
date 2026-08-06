@@ -1,6 +1,6 @@
 import { ItemEntry } from '@/modules/TransactionItemEntry/models/ItemEntry';
 import { VendorCredit } from '../models/VendorCredit';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { AccountNormal } from '@/interfaces/Account';
 import { Ledger } from '@/modules/Ledger/Ledger';
 

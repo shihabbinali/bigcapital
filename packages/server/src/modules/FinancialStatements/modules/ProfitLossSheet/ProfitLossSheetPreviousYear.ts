@@ -1,17 +1,17 @@
 // @ts-nocheck
 import * as R from 'ramda';
 import { sumBy } from 'lodash';
-import {
+import type {
   IProfitLossSheetEquationNode,
   IProfitLossSheetAccountNode,
   IProfitLossSchemaNode,
   IProfitLossSheetNode,
   IProfitLossSheetTotal,
-  IProfitLossSheetQuery,
 } from './ProfitLossSheet.types';
+import type { IProfitLossSheetQuery } from './ProfitLossSheet.types';
 import { ProfitLossSheetRepository } from './ProfitLossSheetRepository';
 import { FinancialPreviousYear } from '../../common/FinancialPreviousYear';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from '../../common/FinancialSheet';
 import { ProfitLossSheetQuery } from './ProfitLossSheetQuery';
 

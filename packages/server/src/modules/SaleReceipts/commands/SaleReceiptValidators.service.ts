@@ -4,7 +4,7 @@ import { SaleReceipt } from '../models/SaleReceipt';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { ACCOUNT_PARENT_TYPE } from '@/constants/accounts';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class SaleReceiptValidators {

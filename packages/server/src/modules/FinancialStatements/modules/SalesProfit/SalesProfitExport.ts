@@ -1,13 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { TableSheet } from '../../common/TableSheet';
-import { ISalesProfitQuery } from './SalesProfit.types';
+import type { ISalesProfitQuery } from './SalesProfit.types';
 import { SalesProfitTableInjectable } from './SalesProfitTableInjectable';
 
 @Injectable()
 export class SalesProfitExport {
-  constructor(
-    private readonly salesProfitTable: SalesProfitTableInjectable,
-  ) {}
+  constructor(private readonly salesProfitTable: SalesProfitTableInjectable) {}
 
   /**
    * Retrieves the sales profit sheet in XLSX format.

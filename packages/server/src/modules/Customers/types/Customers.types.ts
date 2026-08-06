@@ -1,8 +1,8 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Customer } from '../models/Customer';
-import { IContactAddressDTO } from '@/modules/Contacts/types/Contacts.types';
-import { IDynamicListFilter } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
-import { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
+import type { IContactAddressDTO } from '@/modules/Contacts/types/Contacts.types';
+import type { IDynamicListFilter } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
+import type { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
 import { CreateCustomerDto } from '../dtos/CreateCustomer.dto';
 import { CustomerOpeningBalanceEditDto } from '../dtos/CustomerOpeningBalanceEdit.dto';
 import { EditCustomerDto } from '../dtos/EditCustomer.dto';
@@ -129,9 +129,8 @@ export interface ICustomerOpeningBalanceEditedPayload {
   trx: Knex.Transaction;
 }
 
-
 export interface ICustomerActivatingPayload {
-  trx: Knex.Transaction,
+  trx: Knex.Transaction;
   oldCustomer: Customer;
 }
 

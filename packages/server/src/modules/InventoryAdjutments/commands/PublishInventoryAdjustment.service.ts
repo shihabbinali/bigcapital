@@ -1,17 +1,17 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import * as moment from 'moment';
+import moment from 'moment';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { InventoryAdjustment } from '../models/InventoryAdjustment';
-import {
+import type {
   IInventoryAdjustmentEventPublishedPayload,
   IInventoryAdjustmentPublishingPayload,
 } from '../types/InventoryAdjustments.types';
 import { events } from '@/common/events/events';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { ERRORS } from '../constants/InventoryAdjustments.constants';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class PublishInventoryAdjustmentService {

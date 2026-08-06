@@ -1,8 +1,8 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { UncategorizedBankTransaction } from '../models/UncategorizedBankTransaction';
 import { BankTransaction } from '../models/BankTransaction';
 import { CreateBankTransactionDto } from '../dtos/CreateBankTransaction.dto';
-import { INumberFormatQuery } from '@/modules/FinancialStatements/types/Report.types';
+import type { INumberFormatQuery } from '@/modules/FinancialStatements/types/Report.types';
 
 export interface IPendingTransactionRemovingEventPayload {
   uncategorizedTransactionId: number;

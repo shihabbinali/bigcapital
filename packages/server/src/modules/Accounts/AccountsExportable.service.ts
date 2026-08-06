@@ -1,7 +1,8 @@
 import { AccountsApplication } from './AccountsApplication.service';
 import { Exportable } from '../Export/Exportable';
 import { EXPORT_SIZE_LIMIT } from '../Export/constants';
-import { IAccountsFilter, IAccountsStructureType } from './Accounts.types';
+import { IAccountsStructureType } from './Accounts.types';
+import type { IAccountsFilter } from './Accounts.types';
 import { Global, Injectable } from '@nestjs/common';
 import { ExportableService } from '../Export/decorators/ExportableModel.decorator';
 import { Account } from './models/Account.model';
@@ -11,7 +12,7 @@ import { Account } from './models/Account.model';
 @Global()
 export class AccountsExportable extends Exportable {
   /**
-   * @param {AccountsApplication} accountsApplication  
+   * @param {AccountsApplication} accountsApplication
    */
   constructor(private readonly accountsApplication: AccountsApplication) {
     super();

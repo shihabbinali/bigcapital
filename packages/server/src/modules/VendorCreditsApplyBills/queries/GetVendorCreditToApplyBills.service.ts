@@ -3,7 +3,7 @@ import { VendorCreditToApplyBillTransformer } from './VendorCreditToApplyBillTra
 import { VendorCredit } from '@/modules/VendorCredit/models/VendorCredit';
 import { Bill } from '@/modules/Bills/models/Bill';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetVendorCreditToApplyBills {

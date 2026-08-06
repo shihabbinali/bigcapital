@@ -3,7 +3,7 @@ import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectab
 import { SaleInvoice } from '@/modules/SaleInvoices/models/SaleInvoice';
 import { GetCreditNoteService } from '../../CreditNotes/queries/GetCreditNote.service';
 import { CreditNoteWithInvoicesToApplyTransformer } from './CreditNoteWithInvoicesToApplyTransformer';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetCreditNoteAssociatedInvoicesToApply {

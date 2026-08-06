@@ -1,12 +1,12 @@
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { SaleInvoice } from '../models/SaleInvoice';
 import { SaleInvoiceTransformer } from './SaleInvoice.transformer';
 import { CommandSaleInvoiceValidators } from '../commands/CommandSaleInvoiceValidators.service';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { SaleInvoiceResponseDto } from '../dtos/SaleInvoiceResponse.dto';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class GetSaleInvoice {
 
     @Inject(SaleInvoice.name)
     private saleInvoiceModel: TenantModelProxy<typeof SaleInvoice>,
-  ) { }
+  ) {}
 
   /**
    * Retrieve sale invoice with associated entries.

@@ -14,15 +14,17 @@ import { events } from '@/common/events/events';
 import { SaleEstimate } from '../models/SaleEstimate';
 import { mergeAndValidateMailOptions } from '@/modules/MailNotification/utils';
 import {
-  ISaleEstimateMailPresendEvent,
-  SaleEstimateMailOptionsDTO,
   SendSaleEstimateMailJob,
   SendSaleEstimateMailQueue,
 } from '../types/SaleEstimates.types';
-import { SaleEstimateMailOptions } from '../types/SaleEstimates.types';
+import type {
+  ISaleEstimateMailPresendEvent,
+  SaleEstimateMailOptionsDTO,
+} from '../types/SaleEstimates.types';
+import type { SaleEstimateMailOptions } from '../types/SaleEstimates.types';
 import { Mail } from '@/modules/Mail/Mail';
 import { MailTransporter } from '@/modules/Mail/MailTransporter.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { GetSaleEstimateMailTemplateService } from '../queries/GetSaleEstimateMailTemplate.service';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 
@@ -50,7 +52,7 @@ export class SendSaleEstimateMail {
 
     @InjectQueue(SendSaleEstimateMailQueue)
     private readonly sendEstimateMailQueue: Queue,
-  ) { }
+  ) {}
 
   /**
    * Triggers the reminder mail of the given sale estimate.

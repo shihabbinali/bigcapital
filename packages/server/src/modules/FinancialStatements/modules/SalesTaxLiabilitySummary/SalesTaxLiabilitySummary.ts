@@ -1,16 +1,17 @@
 import * as R from 'ramda';
 import { isEmpty, sumBy } from 'lodash';
-import {
+import type {
   SalesTaxLiabilitySummaryQuery,
   SalesTaxLiabilitySummaryRate,
   SalesTaxLiabilitySummaryReportData,
   SalesTaxLiabilitySummaryTotal,
 } from './SalesTaxLiability.types';
 import { FinancialSheet } from '../../common/FinancialSheet';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { TaxRateModel } from '@/modules/TaxRates/models/TaxRate.model';
 import { SalesTaxLiabilitySummaryRepository } from './SalesTaxLiabilitySummaryRepository';
-import { IFinancialReportMeta, DEFAULT_REPORT_META } from '../../types/Report.types';
+import type { IFinancialReportMeta } from '../../types/Report.types';
+import { DEFAULT_REPORT_META } from '../../types/Report.types';
 
 export class SalesTaxLiabilitySummary extends FinancialSheet {
   private query: SalesTaxLiabilitySummaryQuery;

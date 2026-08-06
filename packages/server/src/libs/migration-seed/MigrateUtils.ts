@@ -8,7 +8,7 @@ import {
   getLockTableName,
   getLockTableNameWithSchema,
 } from './TableUtils';
-import { ISeederConfig, MigrateItem } from './interfaces';
+import type { ISeederConfig, MigrateItem } from './interfaces';
 
 /**
  * Get schema-aware schema builder for a given schema nam

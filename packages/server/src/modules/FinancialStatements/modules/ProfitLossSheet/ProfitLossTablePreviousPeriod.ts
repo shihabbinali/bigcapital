@@ -1,11 +1,14 @@
 // @ts-nocheck
 import * as R from 'ramda';
-import { ITableColumn, ITableColumnAccessor } from '../../types/Table.types';
+import type {
+  ITableColumn,
+  ITableColumnAccessor,
+} from '../../types/Table.types';
 import { ProfitLossSheetQuery } from './ProfitLossSheetQuery';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialTablePreviousPeriod } from '../../common/FinancialTablePreviousPeriod';
 import { FinancialSheet } from '../../common/FinancialSheet';
-import { IDateRange } from '../../types/Report.types';
+import type { IDateRange } from '../../types/Report.types';
 
 export const ProfitLossTablePreviousPeriod = <
   T extends GConstructor<FinancialSheet>,

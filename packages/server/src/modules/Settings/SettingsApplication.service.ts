@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { SaveSettingsService } from './commands/SaveSettings.service';
-import { ISettingsDTO } from './Settings.types';
+import type { ISettingsDTO } from './Settings.types';
 import { GetSettingsService } from './queries/GetSettings.service';
 
 @Injectable()

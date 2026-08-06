@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PaymentReceivesApplication } from '../PaymentReceived.application';
-import { IPaymentsReceivedFilter } from '../types/PaymentReceived.types';
+import type { IPaymentsReceivedFilter } from '../types/PaymentReceived.types';
 import { EXPORT_SIZE_LIMIT } from '@/modules/Export/constants';
 import { Exportable } from '@/modules/Export/Exportable';
 import { ExportableService } from '@/modules/Export/decorators/ExportableModel.decorator';
@@ -28,7 +28,7 @@ export class PaymentsReceivedExportable extends Exportable {
       page: 1,
       pageSize: EXPORT_SIZE_LIMIT,
       filterQuery,
-      ...query
+      ...query,
     };
     return this.paymentReceivedApp
       .getPaymentsReceived(parsedQuery)

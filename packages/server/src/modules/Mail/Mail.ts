@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as Mustache from 'mustache';
 import * as path from 'path';
-import { IMailAttachment } from './Mail.types';
+import type { IMailAttachment } from './Mail.types';
 
 export class Mail {
   view: string;

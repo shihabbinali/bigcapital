@@ -1,4 +1,4 @@
-import {
+import type {
   ITrialBalanceSheetQuery,
   ITrialBalanceStatement,
 } from './TrialBalanceSheet.types';
@@ -46,7 +46,10 @@ export class TrialBalanceSheetService {
     const trialBalanceInstance = new TrialBalanceSheet(
       filter,
       this.trialBalanceSheetRepository,
-      { baseCurrency: tenantMetadata.baseCurrency, dateFormat: meta.dateFormat },
+      {
+        baseCurrency: tenantMetadata.baseCurrency,
+        dateFormat: meta.dateFormat,
+      },
     );
     // Trial balance sheet data.
     const trialBalanceSheetData = trialBalanceInstance.reportData();

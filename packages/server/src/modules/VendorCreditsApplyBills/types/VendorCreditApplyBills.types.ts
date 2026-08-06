@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { VendorCredit } from '@/modules/VendorCredit/models/VendorCredit';
 
 export interface IVendorCreditApplyToBillsCreatedPayload {

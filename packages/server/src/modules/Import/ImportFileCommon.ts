@@ -2,8 +2,8 @@ import * as bluebird from 'bluebird';
 import * as R from 'ramda';
 import { first } from 'lodash';
 import { ImportFileDataValidator } from './ImportFileDataValidator';
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   ImportInsertError,
   ImportOperError,
   ImportOperSuccess,
@@ -13,7 +13,7 @@ import { getUniqueImportableValue, trimObject } from './_utils';
 import { ResourceService } from '../Resource/ResourceService';
 import { Injectable } from '@nestjs/common';
 import { ServiceError } from '../Items/ServiceError';
-import { ImportModelShape } from './models/Import';
+import type { ImportModelShape } from './models/Import';
 import { ImportableRegistry } from './ImportableRegistry';
 
 @Injectable()
@@ -22,7 +22,7 @@ export class ImportFileCommon {
     private readonly importFileValidator: ImportFileDataValidator,
     private readonly resource: ResourceService,
     private readonly importableRegistry: ImportableRegistry,
-  ) { }
+  ) {}
 
   /**
    * Imports the given parsed data to the resource storage through registered importable service.

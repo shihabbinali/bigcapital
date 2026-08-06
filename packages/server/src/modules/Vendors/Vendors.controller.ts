@@ -22,10 +22,8 @@ import { CreateVendorDto } from './dtos/CreateVendor.dto';
 import { EditVendorDto } from './dtos/EditVendor.dto';
 import { GetVendorsQueryDto } from './dtos/GetVendorsQuery.dto';
 import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
-import {
-  BulkDeleteVendorsDto,
-  ValidateBulkDeleteVendorsResponseDto,
-} from './dtos/BulkDeleteVendors.dto';
+import { ValidateBulkDeleteVendorsResponseDto } from './dtos/BulkDeleteVendors.dto';
+import { BulkDeleteVendorsDto } from './dtos/BulkDeleteVendors.dto';
 import { RequirePermission } from '@/modules/Roles/RequirePermission.decorator';
 import { PermissionGuard } from '@/modules/Roles/Permission.guard';
 import { AuthorizationGuard } from '@/modules/Roles/Authorization.guard';
@@ -103,9 +101,7 @@ export class VendorsController {
   validateBulkDeleteVendors(
     @Body() bulkDeleteDto: BulkDeleteVendorsDto,
   ): Promise<ValidateBulkDeleteVendorsResponseDto> {
-    return this.vendorsApplication.validateBulkDeleteVendors(
-      bulkDeleteDto.ids,
-    );
+    return this.vendorsApplication.validateBulkDeleteVendors(bulkDeleteDto.ids);
   }
 
   @Post('bulk-delete')

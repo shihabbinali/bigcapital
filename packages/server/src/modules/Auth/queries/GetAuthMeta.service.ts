@@ -1,15 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { IAuthGetMetaPOJO } from '../Auth.interfaces';
+import type { IAuthGetMetaPOJO } from '../Auth.interfaces';
 
 @Injectable()
 export class GetAuthMetaService {
-
-  constructor(
-    private readonly configService: ConfigService,
-  ) {
-
-  }
+  constructor(private readonly configService: ConfigService) {}
   /**
    * Retrieves the authentication meta for SPA.
    * @returns {Promise<IAuthGetMetaPOJO>}

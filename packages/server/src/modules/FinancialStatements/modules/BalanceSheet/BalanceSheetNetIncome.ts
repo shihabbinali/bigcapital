@@ -1,14 +1,14 @@
 // @ts-nocheck
 import * as R from 'ramda';
 import { I18nService } from 'nestjs-i18n';
-import {
-  BALANCE_SHEET_SCHEMA_NODE_TYPE,
+import type {
   IBalanceSheetDataNode,
   IBalanceSheetNetIncomeNode,
   IBalanceSheetSchemaNetIncomeNode,
   IBalanceSheetSchemaNode,
   IBalanceSheetTotalPeriod,
 } from './BalanceSheet.types';
+import { BALANCE_SHEET_SCHEMA_NODE_TYPE } from './BalanceSheet.types';
 import { BalanceSheetComparsionPreviousYear } from './BalanceSheetComparsionPreviousYear';
 import { BalanceSheetComparsionPreviousPeriod } from './BalanceSheetComparsionPreviousPeriod';
 import { FinancialPreviousPeriod } from '../../common/FinancialPreviousPeriod';
@@ -18,7 +18,7 @@ import { BalanceSheetQuery } from './BalanceSheetQuery';
 import { BalanceSheetNetIncomePP } from './BalanceSheetNetIncomePP';
 import { BalanceSheetNetIncomePY } from './BalanceSheetNetIncomePY';
 import { FinancialSheet } from '../../common/FinancialSheet';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 
 export const BalanceSheetNetIncome = <T extends GConstructor<FinancialSheet>>(
   Base: T,

@@ -1,14 +1,24 @@
 {
-  "moduleFileExtensions": ["js", "json", "ts"],
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "ts"
+  ],
   "rootDir": ".",
   "testEnvironment": "node",
   "testRegex": "auth.e2e-spec.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
+  "globals": {
+    "ts-jest": {
+      "tsconfig": "./tsconfig.spec.json"
+    }
+  },
   "moduleNameMapper": {
     "^@/(.*)$": "<rootDir>/../src/$1"
   },
   "maxWorkers": 1,
-  "maxConcurrency": 1
+  "maxConcurrency": 1,
+  "testTimeout": 300000
 }

@@ -1,9 +1,9 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { WarehousesItemsQuantitySync } from './Integrations/WarehousesItemsQuantitySync';
 import { Inject, Injectable } from '@nestjs/common';
-import { IItemWarehouseQuantityChange } from './Warehouse.types';
+import type { IItemWarehouseQuantityChange } from './Warehouse.types';
 import { Item } from '../Items/models/Item';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 
 @Injectable()
 export class CreateInitialWarehousesItemsQuantity {

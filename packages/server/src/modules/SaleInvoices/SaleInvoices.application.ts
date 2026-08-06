@@ -10,7 +10,7 @@ import { SaleInvoicePdf } from './queries/SaleInvoicePdf.service';
 import { GetInvoicePaymentsService } from './queries/GetInvoicePayments.service';
 import { GetSaleInvoiceState } from './queries/GetSaleInvoiceState.service';
 import { GetSaleInvoiceMailState } from './queries/GetSaleInvoiceMailState.service';
-import {
+import type {
   ISaleInvoiceWriteoffDTO,
   SaleInvoiceMailState,
   SendInvoiceMailDTO,
@@ -45,7 +45,7 @@ export class SaleInvoiceApplication {
     private generateShareLinkService: GenerateShareLink,
     private bulkDeleteSaleInvoicesService: BulkDeleteSaleInvoicesService,
     private validateBulkDeleteSaleInvoicesService: ValidateBulkDeleteSaleInvoicesService,
-  ) { }
+  ) {}
 
   /**
    * Creates a new sale invoice with associated GL entries.

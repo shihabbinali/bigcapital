@@ -1,15 +1,15 @@
 // @ts-nocheck
 import * as R from 'ramda';
 import { isEmpty } from 'lodash';
-import * as moment from 'moment';
+import moment from 'moment';
 import { I18nService } from 'nestjs-i18n';
-import {
+import type {
   ICashFlowStatementSection,
-  ICashFlowStatementSectionType,
   IDateRange,
   ICashFlowStatementDOO,
 } from './Cashflow.types';
-import { ITableRow, ITableColumn } from '../../types/Table.types';
+import { ICashFlowStatementSectionType } from './Cashflow.types';
+import type { ITableRow, ITableColumn } from '../../types/Table.types';
 import { dateRangeFromToCollection } from '@/utils/date-range-collection';
 import { tableRowMapper } from '../../utils/Table.utils';
 import { mapValuesDeep } from '@/utils/deepdash';
@@ -347,7 +347,7 @@ export class CashFlowTable {
    * Determines the given column type is the current.
    * @reutrns {boolean}
    */
-  private isDisplayColumnsBy = (displayColumnsType: string): Boolean => {
+  private isDisplayColumnsBy = (displayColumnsType: string): boolean => {
     return this.report.query.displayColumnsType === displayColumnsType;
   };
 
@@ -356,7 +356,7 @@ export class CashFlowTable {
    * @param {string} displayColumnsBy
    * @returns {boolean}
    */
-  private isDisplayColumnsType = (displayColumnsBy: string): Boolean => {
+  private isDisplayColumnsType = (displayColumnsBy: string): boolean => {
     return this.report.query.displayColumnsBy === displayColumnsBy;
   };
 
@@ -366,7 +366,9 @@ export class CashFlowTable {
    */
   public tableColumns = (): ITableColumn[] => {
     return R.compose(
-      R.concat([{ key: 'name', label: this.i18n.t('cash_flow_statement.account_name') }]),
+      R.concat([
+        { key: 'name', label: this.i18n.t('cash_flow_statement.account_name') },
+      ]),
       R.when(
         R.always(this.isDisplayColumnsBy(DISPLAY_COLUMNS_BY.DATE_PERIODS)),
         R.concat(this.datePeriodsColumns()),

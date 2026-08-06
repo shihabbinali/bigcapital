@@ -1,5 +1,5 @@
 import { TableSheet } from '../../common/TableSheet';
-import { IInventoryValuationReportQuery } from './InventoryValuationSheet.types';
+import type { IInventoryValuationReportQuery } from './InventoryValuationSheet.types';
 import { InventoryValuationSheetTableInjectable } from './InventoryValuationSheetTableInjectable';
 import { Injectable } from '@nestjs/common';
 

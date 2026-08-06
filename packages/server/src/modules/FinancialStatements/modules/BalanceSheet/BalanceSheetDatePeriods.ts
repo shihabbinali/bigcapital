@@ -1,15 +1,18 @@
 // @ts-nocheck
 import * as R from 'ramda';
 import { sumBy } from 'lodash';
-import {
-  IBalanceSheetQuery,
+import type {
   IBalanceSheetAccountNode,
   IBalanceSheetTotalPeriod,
   IBalanceSheetCommonNode,
 } from './BalanceSheet.types';
+import type { IBalanceSheetQuery } from './BalanceSheet.types';
 import { FinancialDatePeriods } from '../../common/FinancialDatePeriods';
-import { IDateRange, IFormatNumberSettings } from '../../types/Report.types';
-import { GConstructor } from '@/common/types/Constructor';
+import type {
+  IDateRange,
+  IFormatNumberSettings,
+} from '../../types/Report.types';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from '../../common/FinancialSheet';
 import { BalanceSheetQuery } from './BalanceSheetQuery';
 

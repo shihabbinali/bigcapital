@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { PaymentReceivedIncrement } from '../commands/PaymentReceivedIncrement.service';
-import { IPaymentReceivedCreatedPayload } from '../types/PaymentReceived.types';
+import type { IPaymentReceivedCreatedPayload } from '../types/PaymentReceived.types';
 
 @Injectable()
 export class PaymentReceivedAutoIncrementSubscriber {

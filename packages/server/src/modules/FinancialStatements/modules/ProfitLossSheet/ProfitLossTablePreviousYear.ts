@@ -1,10 +1,13 @@
 // @ts-nocheck
 import * as R from 'ramda';
 import { ProfitLossSheetQuery } from './ProfitLossSheetQuery';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from '../../common/FinancialSheet';
-import { ITableColumn, ITableColumnAccessor } from '../../types/Table.types';
-import { IDateRange } from '../CashFlowStatement/Cashflow.types';
+import type {
+  ITableColumn,
+  ITableColumnAccessor,
+} from '../../types/Table.types';
+import type { IDateRange } from '../CashFlowStatement/Cashflow.types';
 import { FinancialTablePreviousYear } from '../../common/FinancialTablePreviousYear';
 import { FinancialDateRanges } from '../../common/FinancialDateRanges';
 

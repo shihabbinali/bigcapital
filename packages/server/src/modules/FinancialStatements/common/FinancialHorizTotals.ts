@@ -1,6 +1,6 @@
 import * as R from 'ramda';
 import { get, isEmpty } from 'lodash';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from './FinancialSheet';
 
 export const FinancialHorizTotals = <T extends GConstructor<FinancialSheet>>(

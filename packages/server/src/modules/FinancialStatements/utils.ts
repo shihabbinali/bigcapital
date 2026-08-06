@@ -1,5 +1,5 @@
 import { kebabCase } from 'lodash';
-import { ITableRow } from './types/Table.types';
+import type { ITableRow } from './types/Table.types';
 
 export const formatNumber = (balance, { noCents, divideOn1000 }): string => {
   let formattedBalance: number = parseFloat(balance);

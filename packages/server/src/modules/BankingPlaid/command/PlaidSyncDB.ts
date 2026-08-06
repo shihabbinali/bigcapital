@@ -1,8 +1,8 @@
 import * as R from 'ramda';
 import * as bluebird from 'bluebird';
-import * as uniqid from 'uniqid';
+import uniqid from 'uniqid';
 import { entries, groupBy } from 'lodash';
-import {
+import type {
   AccountBase as PlaidAccountBase,
   Item as PlaidItem,
   Institution as PlaidInstitution,
@@ -12,19 +12,19 @@ import {
   transformPlaidAccountToCreateAccount,
   transformPlaidTrxsToCashflowCreate,
 } from '../utils';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { RemovePendingUncategorizedTransaction } from '../../BankingTransactions/commands/RemovePendingUncategorizedTransaction.service';
 import { CreateAccountService } from '../../Accounts/CreateAccount.service';
 import { Account } from '../../Accounts/models/Account.model';
 import { events } from '@/common/events/events';
 import { PlaidItem as PlaidItemModel } from '../models/PlaidItem';
-import { IAccountCreateDTO } from '@/interfaces/Account';
-import { IPlaidTransactionsSyncedEventPayload } from '../types/BankingPlaid.types';
+import type { IAccountCreateDTO } from '@/interfaces/Account';
+import type { IPlaidTransactionsSyncedEventPayload } from '../types/BankingPlaid.types';
 import { UncategorizedBankTransaction } from '../../BankingTransactions/models/UncategorizedBankTransaction';
 import { Inject, Injectable } from '@nestjs/common';
 import { CreateUncategorizedTransactionService } from '@/modules/BankingCategorize/commands/CreateUncategorizedTransaction.service';
-import { TenantModelProxy } from '../../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../../System/models/TenantBaseModel';
 
 const CONCURRENCY_ASYNC = 10;
 

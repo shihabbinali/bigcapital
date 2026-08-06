@@ -1,7 +1,5 @@
-import {
-  PaymentReceivedEmailTemplateProps,
-  renderPaymentReceivedEmailTemplate,
-} from '@bigcapital/email-components';
+import { renderPaymentReceivedEmailTemplate } from '@bigcapital/email-components';
+import type { PaymentReceivedEmailTemplateProps } from '@bigcapital/email-components';
 import { Injectable } from '@nestjs/common';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { GetPdfTemplateService } from '@/modules/PdfTemplate/queries/GetPdfTemplate.service';
@@ -42,7 +40,7 @@ export class GetPaymentReceivedMailTemplate {
 
   /**
    * Retrieves the mail template html content.
-   * @param {number} paymentReceivedId 
+   * @param {number} paymentReceivedId
    * @param {Partial<PaymentReceivedEmailTemplateProps>} overrideAttributes
    * @returns
    */

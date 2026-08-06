@@ -1,11 +1,10 @@
-import {
-  type ExecutionContext,
-  Injectable,
-  type NestInterceptor,
-  type CallHandler,
-  Optional,
+import { Injectable, Optional } from '@nestjs/common';
+import type {
+  ExecutionContext,
+  NestInterceptor,
+  CallHandler,
 } from '@nestjs/common';
-import { type Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { mapKeysDeep } from '@/utils/deepdash';
 
@@ -56,7 +55,7 @@ export const DEFAULT_STRATEGY = {
 
 @Injectable()
 export class SerializeInterceptor implements NestInterceptor<any, any> {
-  constructor(@Optional() readonly strategy = DEFAULT_STRATEGY) { }
+  constructor(@Optional() readonly strategy = DEFAULT_STRATEGY) {}
 
   intercept(
     context: ExecutionContext,

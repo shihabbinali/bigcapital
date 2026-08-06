@@ -1,15 +1,15 @@
 import { Inject, Injectable } from '@nestjs/common';
-import {
+import type {
   ITaxRateActivatedPayload,
   ITaxRateActivatingPayload,
 } from '../TaxRates.types';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { CommandTaxRatesValidators } from './CommandTaxRatesValidator.service';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { TaxRateModel } from '../models/TaxRate.model';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class InactivateTaxRateService {

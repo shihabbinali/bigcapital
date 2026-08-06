@@ -4,9 +4,9 @@ import { DynamicListService } from '@/modules/DynamicListing/DynamicList.service
 import { SaleEstimate } from '../models/SaleEstimate';
 import { Inject, Injectable } from '@nestjs/common';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
-import { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
-import { ISalesEstimatesFilter } from '../types/SaleEstimates.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
+import type { ISalesEstimatesFilter } from '../types/SaleEstimates.types';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetSaleEstimatesService {

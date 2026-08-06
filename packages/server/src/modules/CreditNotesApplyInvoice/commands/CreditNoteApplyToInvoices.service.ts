@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { sumBy } from 'lodash';
-import {
+import type {
   ICreditNoteAppliedToInvoice,
   ICreditNoteAppliedToInvoiceModel,
   IApplyCreditToInvoicesDTO,
@@ -17,7 +17,7 @@ import { ServiceError } from '@/modules/Items/ServiceError';
 import { CreditNote } from '@/modules/CreditNotes/models/CreditNote';
 import { CreditNoteAppliedInvoice } from '../models/CreditNoteAppliedInvoice';
 import { CommandCreditNoteDTOTransform } from '@/modules/CreditNotes/commands/CommandCreditNoteDTOTransform.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { ApplyCreditNoteToInvoicesDto } from '../dtos/ApplyCreditNoteToInvoices.dto';
 
 @Injectable()

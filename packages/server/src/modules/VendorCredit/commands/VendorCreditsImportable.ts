@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { VendorCreditsSampleData } from '../constants';
 import { Injectable } from '@nestjs/common';
 import { CreateVendorCreditService } from './CreateVendorCredit.service';
@@ -11,9 +11,9 @@ import { VendorCredit } from '../models/VendorCredit';
 @ImportableService({ name: VendorCredit.name })
 export class VendorCreditsImportable extends Importable {
   constructor(
-      private readonly createVendorCreditService: CreateVendorCreditService,
+    private readonly createVendorCreditService: CreateVendorCreditService,
   ) {
-    super()
+    super();
   }
 
   /**
@@ -24,11 +24,11 @@ export class VendorCreditsImportable extends Importable {
    */
   public importable(
     createPaymentDTO: CreateVendorCreditDto,
-    trx?: Knex.Transaction
+    trx?: Knex.Transaction,
   ) {
     return this.createVendorCreditService.newVendorCredit(
       createPaymentDTO,
-      trx
+      trx,
     );
   }
 

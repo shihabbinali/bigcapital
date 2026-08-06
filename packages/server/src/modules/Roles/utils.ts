@@ -1,5 +1,5 @@
 import { keyBy } from 'lodash';
-import { ISubjectAbilitiesSchema } from './Roles.types';
+import type { ISubjectAbilitiesSchema } from './Roles.types';
 import { CommandRolePermissionDto } from './dtos/Role.dto';
 import { AbilitySchema } from './AbilitySchema';
 import { ServiceError } from '../Items/ServiceError';

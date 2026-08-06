@@ -1,10 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { NumberFormatQueryDto } from '@/modules/BankingTransactions/dtos/NumberFormatQuery.dto';
-import {
-  FinancialReportTotalDto,
-  FinancialReportMetaDto,
-  FinancialTableDataDto,
-} from '../../dtos/FinancialReportResponse.dto';
+import { FinancialReportTotalDto, FinancialTableDataDto } from '../../dtos/FinancialReportResponse.dto';
+import { FinancialReportMetaDto } from '../../dtos/FinancialReportResponse.dto';
 
 export class PurchasesByItemDto {
   @ApiProperty({ description: 'Item ID', type: Number })
@@ -22,7 +19,10 @@ export class PurchasesByItemDto {
   @ApiProperty({ description: 'Quantity purchased', type: Number })
   quantity: number;
 
-  @ApiProperty({ description: 'Total purchases amount', type: FinancialReportTotalDto })
+  @ApiProperty({
+    description: 'Total purchases amount',
+    type: FinancialReportTotalDto,
+  })
   total: FinancialReportTotalDto;
 
   @ApiPropertyOptional({ description: 'Average cost', type: Number })
@@ -47,7 +47,10 @@ export class PurchasesByItemsQueryResponseDto {
   @ApiProperty({ description: 'End date' })
   toDate: string;
 
-  @ApiProperty({ description: 'Number format settings', type: NumberFormatQueryDto })
+  @ApiProperty({
+    description: 'Number format settings',
+    type: NumberFormatQueryDto,
+  })
   numberFormat: NumberFormatQueryDto;
 
   @ApiProperty({ description: 'Item IDs to include', type: [Number] })
@@ -58,13 +61,22 @@ export class PurchasesByItemsQueryResponseDto {
 }
 
 export class PurchasesByItemsResponseDto {
-  @ApiProperty({ description: 'Query parameters used to generate the report', type: PurchasesByItemsQueryResponseDto })
+  @ApiProperty({
+    description: 'Query parameters used to generate the report',
+    type: PurchasesByItemsQueryResponseDto,
+  })
   query: PurchasesByItemsQueryResponseDto;
 
-  @ApiProperty({ description: 'Purchases by items', type: [PurchasesByItemDto] })
+  @ApiProperty({
+    description: 'Purchases by items',
+    type: [PurchasesByItemDto],
+  })
   data: PurchasesByItemDto[];
 
-  @ApiProperty({ description: 'Report metadata', type: PurchasesByItemsMetaDto })
+  @ApiProperty({
+    description: 'Report metadata',
+    type: PurchasesByItemsMetaDto,
+  })
   meta: PurchasesByItemsMetaDto;
 }
 
@@ -77,12 +89,21 @@ export {
 } from '../../dtos/FinancialReportResponse.dto';
 
 export class PurchasesByItemsTableResponseDto {
-  @ApiProperty({ description: 'Table data structure', type: () => FinancialTableDataDto })
+  @ApiProperty({
+    description: 'Table data structure',
+    type: () => FinancialTableDataDto,
+  })
   table: FinancialTableDataDto;
 
-  @ApiProperty({ description: 'Query parameters used to generate the report', type: PurchasesByItemsQueryResponseDto })
+  @ApiProperty({
+    description: 'Query parameters used to generate the report',
+    type: PurchasesByItemsQueryResponseDto,
+  })
   query: PurchasesByItemsQueryResponseDto;
 
-  @ApiProperty({ description: 'Report metadata', type: PurchasesByItemsMetaDto })
+  @ApiProperty({
+    description: 'Report metadata',
+    type: PurchasesByItemsMetaDto,
+  })
   meta: PurchasesByItemsMetaDto;
 }

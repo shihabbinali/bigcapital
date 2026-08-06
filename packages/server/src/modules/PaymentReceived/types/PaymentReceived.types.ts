@@ -1,14 +1,13 @@
-import { AttachmentLinkDTO } from '@/modules/Attachments/Attachments.types';
-import { Knex } from 'knex';
+import type { AttachmentLinkDTO } from '@/modules/Attachments/Attachments.types';
+import type { Knex } from 'knex';
 import { PaymentReceived } from '../models/PaymentReceived';
-import { IDynamicListFilter } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
-import {
+import type { IDynamicListFilter } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
+import type {
   CommonMailOptions,
   CommonMailOptionsDTO,
 } from '@/modules/MailNotification/MailNotification.types';
-import { TenantJobPayload } from '@/interfaces/Tenant';
+import type { TenantJobPayload } from '@/interfaces/Tenant';
 import { EditPaymentReceivedDto } from '../dtos/PaymentReceived.dto';
-
 
 export interface IPaymentReceivedEntryDTO {
   id?: number;
@@ -17,7 +16,6 @@ export interface IPaymentReceivedEntryDTO {
   invoiceId: number;
   paymentAmount: number;
 }
-
 
 export interface IPaymentReceivedCreateDTO {
   customerId: number;

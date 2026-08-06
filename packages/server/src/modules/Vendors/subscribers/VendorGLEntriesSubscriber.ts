@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { VendorGLEntriesStorage } from '../VendorGLEntriesStorage';
-import {
+import type {
   IVendorEventCreatedPayload,
   IVendorEventDeletedPayload,
   IVendorOpeningBalanceEditedPayload,
@@ -41,10 +41,7 @@ export class VendorsWriteGLOpeningSubscriber {
     vendorId,
     trx,
   }: IVendorEventDeletedPayload) {
-    await this.vendorGLEntriesStorage.revertVendorOpeningBalance(
-      vendorId,
-      trx,
-    );
+    await this.vendorGLEntriesStorage.revertVendorOpeningBalance(vendorId, trx);
   }
 
   /**

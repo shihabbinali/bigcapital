@@ -1,5 +1,5 @@
 import { TableSheetPdf } from '../../common/TableSheetPdf';
-import { ITrialBalanceSheetQuery } from './TrialBalanceSheet.types';
+import type { ITrialBalanceSheetQuery } from './TrialBalanceSheet.types';
 import { TrialBalanceSheetTableInjectable } from './TrialBalanceSheetTableInjectable';
 import { HtmlTableCustomCss } from './_constants';
 import { Injectable } from '@nestjs/common';
@@ -9,7 +9,7 @@ export class TrialBalanceSheetPdfInjectable {
   constructor(
     private readonly trialBalanceSheetTable: TrialBalanceSheetTableInjectable,
     private readonly tableSheetPdf: TableSheetPdf,
-  ) { }
+  ) {}
 
   /**
    * Converts the given trial balance sheet table to pdf.

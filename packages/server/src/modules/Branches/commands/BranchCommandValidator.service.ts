@@ -3,7 +3,7 @@ import { ERRORS } from '../constants';
 import { Branch } from '../models/Branch.model';
 
 import { ServiceError } from '../../Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 @Injectable()
 export class BranchCommandValidator {
   constructor(

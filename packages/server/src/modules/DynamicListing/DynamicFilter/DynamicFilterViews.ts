@@ -1,6 +1,6 @@
 import { omit } from 'lodash';
 import { DynamicFilterRoleAbstractor } from './DynamicFilterRoleAbstractor';
-import { IView } from '@/modules/Views/Views.types';
+import type { IView } from '@/modules/Views/Views.types';
 
 export class DynamicFilterViews extends DynamicFilterRoleAbstractor {
   private viewSlug: string;
@@ -32,7 +32,7 @@ export class DynamicFilterViews extends DynamicFilterRoleAbstractor {
       this.buildFilterQuery(
         this.model,
         this.filterRoles,
-        this.logicExpression
+        this.logicExpression,
       )(builder);
     };
   }

@@ -1,15 +1,15 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { CustomerValidators } from './CustomerValidators.service';
-import {
+import type {
   ICustomerActivatedPayload,
   ICustomerActivatingPayload,
 } from '../types/Customers.types';
 import { Customer } from '@/modules/Customers/models/Customer';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class ActivateCustomer {

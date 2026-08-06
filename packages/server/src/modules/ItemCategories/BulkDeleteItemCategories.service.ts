@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { PromisePool } from '@supercharge/promise-pool';
 import { castArray, uniq } from 'lodash';
 import { DeleteItemCategoryService } from './commands/DeleteItemCategory.service';
@@ -8,7 +8,7 @@ import { DeleteItemCategoryService } from './commands/DeleteItemCategory.service
 export class BulkDeleteItemCategoriesService {
   constructor(
     private readonly deleteItemCategoryService: DeleteItemCategoryService,
-  ) { }
+  ) {}
 
   async bulkDeleteItemCategories(
     itemCategoryIds: number | Array<number>,
@@ -27,4 +27,3 @@ export class BulkDeleteItemCategoriesService {
     }
   }
 }
-

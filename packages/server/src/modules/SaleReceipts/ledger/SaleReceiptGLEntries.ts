@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { LedgerStorageService } from '@/modules/Ledger/LedgerStorage.service';
 import { SaleReceipt } from '../models/SaleReceipt';
 import { AccountRepository } from '@/modules/Accounts/repositories/Account.repository';
 import { SaleReceiptGL } from './SaleReceiptGL';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class SaleReceiptGLEntries {

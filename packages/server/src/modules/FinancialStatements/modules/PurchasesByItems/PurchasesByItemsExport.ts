@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { TableSheet } from '../../common/TableSheet';
 import { PurchasesByItemsTableInjectable } from './PurchasesByItemsTableInjectable';
-import { IPurchasesByItemsReportQuery } from './types/PurchasesByItems.types';
+import type { IPurchasesByItemsReportQuery } from './types/PurchasesByItems.types';
 
 @Injectable()
 export class PurchasesByItemsExport {

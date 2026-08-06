@@ -4,7 +4,7 @@ import { ClsMiddleware } from 'nestjs-cls';
 import * as path from 'path';
 import './utils/moment-mysql';
 import { AppModule } from './modules/App/App.module';
-import { NestExpressApplication } from '@nestjs/platform-express';
+import type { NestExpressApplication } from '@nestjs/platform-express';
 
 global.__public_dirname = path.join(__dirname, '..', 'public');
 global.__static_dirname = path.join(__dirname, '../static');

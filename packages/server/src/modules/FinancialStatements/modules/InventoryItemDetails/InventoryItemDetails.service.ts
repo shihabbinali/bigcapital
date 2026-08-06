@@ -1,6 +1,6 @@
 import { I18nService } from 'nestjs-i18n';
 import { Injectable } from '@nestjs/common';
-import {
+import type {
   IInventoryDetailsQuery,
   IInvetoryItemDetailDOO,
 } from './InventoryItemDetails.types';

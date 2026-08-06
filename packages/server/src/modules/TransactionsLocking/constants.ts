@@ -1,7 +1,5 @@
-import {
-  TransactionsLockingGroup,
-  ITransactionsLockingSchema,
-} from './types/TransactionsLocking.types';
+import type { ITransactionsLockingSchema } from './types/TransactionsLocking.types';
+import { TransactionsLockingGroup } from './types/TransactionsLocking.types';
 
 export const ERRORS = {
   TRANSACTIONS_DATE_LOCKED: 'TRANSACTIONS_DATE_LOCKED',

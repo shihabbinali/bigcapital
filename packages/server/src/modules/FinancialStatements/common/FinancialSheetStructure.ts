@@ -9,7 +9,7 @@ import {
   findValueDeep,
   filterNodesDeep,
 } from '@/utils/deepdash';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from './FinancialSheet';
 
 export const FinancialSheetStructure = <T extends GConstructor<FinancialSheet>>(

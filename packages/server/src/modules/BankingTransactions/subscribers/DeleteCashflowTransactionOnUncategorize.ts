@@ -3,7 +3,7 @@ import { OnEvent } from '@nestjs/event-emitter';
 import { PromisePool } from '@supercharge/promise-pool';
 import { DeleteCashflowTransaction } from '../commands/DeleteCashflowTransaction.service';
 import { events } from '@/common/events/events';
-import { ICashflowTransactionUncategorizedPayload } from '@/modules/BankingCategorize/types/BankingCategorize.types';
+import type { ICashflowTransactionUncategorizedPayload } from '@/modules/BankingCategorize/types/BankingCategorize.types';
 
 @Injectable()
 export class DeleteCashflowTransactionOnUncategorizeSubscriber {
@@ -29,7 +29,7 @@ export class DeleteCashflowTransactionOnUncategorizeSubscriber {
     }
     await this.deleteCashflowTransactionService.deleteCashflowTransaction(
       oldMainUncategorizedTransaction.categorizeRefId,
-      trx
+      trx,
     );
   }
 }

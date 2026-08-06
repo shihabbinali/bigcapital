@@ -1,6 +1,6 @@
 import { castArray, isEmpty } from 'lodash';
 import { ERRORS } from './constants';
-import { CommonMailOptions } from './MailNotification.types';
+import type { CommonMailOptions } from './MailNotification.types';
 import { ServiceError } from '../Items/ServiceError';
 
 /**
@@ -10,7 +10,7 @@ import { ServiceError } from '../Items/ServiceError';
  */
 export function parseMailOptions(
   mailOptions: CommonMailOptions,
-  overridedOptions: Partial<CommonMailOptions>
+  overridedOptions: Partial<CommonMailOptions>,
 ): CommonMailOptions {
   const mergedMessageOptions = {
     ...mailOptions,
@@ -29,7 +29,7 @@ export function parseMailOptions(
 }
 
 export function validateRequiredMailOptions(
-  mailOptions: Partial<CommonMailOptions>
+  mailOptions: Partial<CommonMailOptions>,
 ) {
   if (isEmpty(mailOptions.from)) {
     throw new ServiceError(ERRORS.MAIL_FROM_NOT_FOUND);
@@ -47,7 +47,7 @@ export function validateRequiredMailOptions(
 
 export const mergeAndValidateMailOptions = (
   mailOptions: CommonMailOptions,
-  overridedOptions: Partial<CommonMailOptions>
+  overridedOptions: Partial<CommonMailOptions>,
 ): CommonMailOptions => {
   const parsedMessageOptions = parseMailOptions(mailOptions, overridedOptions);
   validateRequiredMailOptions(parsedMessageOptions);

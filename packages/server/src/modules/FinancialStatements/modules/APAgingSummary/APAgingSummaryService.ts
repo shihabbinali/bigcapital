@@ -1,7 +1,7 @@
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
 import { events } from '@/common/events/events';
-import { IAPAgingSummarySheet } from './APAgingSummary.types';
+import type { IAPAgingSummarySheet } from './APAgingSummary.types';
 import { APAgingSummarySheet } from './APAgingSummarySheet';
 import { APAgingSummaryMeta } from './APAgingSummaryMeta';
 import { getAPAgingSummaryDefaultQuery } from './utils';

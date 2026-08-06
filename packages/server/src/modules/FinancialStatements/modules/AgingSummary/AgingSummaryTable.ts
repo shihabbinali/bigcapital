@@ -1,6 +1,6 @@
 import { I18nService } from 'nestjs-i18n';
 import * as R from 'ramda';
-import {
+import type {
   IAgingPeriod,
   IAgingSummaryContact,
   IAgingSummaryData,
@@ -11,7 +11,7 @@ import { AgingReport } from './AgingReport';
 import { AgingSummaryRowType } from './_constants';
 import { FinancialSheetStructure } from '../../common/FinancialSheetStructure';
 import { FinancialTable } from '../../common/FinancialTable';
-import {
+import type {
   ITableColumn,
   ITableColumnAccessor,
   ITableRow,

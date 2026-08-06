@@ -1,6 +1,6 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
-import {
+import type {
   IVendorCreditEditedPayload,
   IVendorCreditEditingPayload,
 } from '../types/VendorCredit.types';
@@ -11,7 +11,7 @@ import { VendorCredit } from '../models/VendorCredit';
 import { Contact } from '@/modules/Contacts/models/Contact';
 import { events } from '@/common/events/events';
 import { VendorCreditDTOTransformService } from './VendorCreditDTOTransform.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { EditVendorCreditDto } from '../dtos/VendorCredit.dto';
 
 @Injectable()

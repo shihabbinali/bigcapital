@@ -1,7 +1,7 @@
 import * as R from 'ramda';
 import { I18nService } from 'nestjs-i18n';
-import { ITransactionsByCustomersCustomer } from './TransactionsByCustomer.types';
-import { ITableRow, ITableColumn } from '../../types/Table.types';
+import type { ITransactionsByCustomersCustomer } from './TransactionsByCustomer.types';
+import type { ITableRow, ITableColumn } from '../../types/Table.types';
 import { TransactionsByContactsTableRows } from '../TransactionsByContact/TransactionsByContactTableRows';
 import { tableRowMapper } from '../../utils/Table.utils';
 

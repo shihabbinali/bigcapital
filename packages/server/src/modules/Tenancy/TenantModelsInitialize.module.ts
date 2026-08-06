@@ -1,7 +1,7 @@
 import { ContextIdFactory, ModuleRef } from '@nestjs/core';
 import { ClsModule } from 'nestjs-cls';
 import { Global, Module } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { initialize } from 'objection';
 import { TENANCY_DB_CONNECTION } from './TenancyDB/TenancyDB.constants';
 

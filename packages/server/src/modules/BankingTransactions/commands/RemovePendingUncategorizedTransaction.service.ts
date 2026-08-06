@@ -1,6 +1,6 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { ERRORS } from '../constants';
-import {
+import type {
   IPendingTransactionRemovedEventPayload,
   IPendingTransactionRemovingEventPayload,
 } from '../types/BankingTransactions.types';
@@ -10,7 +10,7 @@ import { UncategorizedBankTransaction } from '../models/UncategorizedBankTransac
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class RemovePendingUncategorizedTransaction {

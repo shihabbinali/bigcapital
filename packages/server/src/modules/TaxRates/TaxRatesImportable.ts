@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { CreateTaxRate } from './commands/CreateTaxRate.service';
 import { Importable } from '../Import/Importable';
 import { TaxRatesSampleData } from './TaxRatesImportable.SampleData';

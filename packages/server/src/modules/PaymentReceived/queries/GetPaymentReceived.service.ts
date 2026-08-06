@@ -4,7 +4,7 @@ import { PaymentReceiveTransfromer } from './PaymentReceivedTransformer';
 import { PaymentReceived } from '../models/PaymentReceived';
 import { TransformerInjectable } from '../../Transformer/TransformerInjectable.service';
 import { ServiceError } from '../../Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetPaymentReceivedService {

@@ -1,11 +1,11 @@
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { TenantUser } from '../Tenancy/TenancyModels/models/TenantUser.model';
 import { EditUserDto } from './dtos/EditUser.dto';
 import { UserInvite } from './models/InviteUser.model';
 import { SystemUser } from '../System/models/SystemUser';
 import { InviteUserDto } from './dtos/InviteUser.dto';
 import { TenantModel } from '../System/models/TenantModel';
-import { TenantJobPayload } from '@/interfaces/Tenant';
+import type { TenantJobPayload } from '@/interfaces/Tenant';
 
 export interface ITenantUserEditedPayload {
   userId: number;

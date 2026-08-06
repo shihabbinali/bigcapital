@@ -1,8 +1,8 @@
 // @ts-nocheck
 import * as R from 'ramda';
-import * as moment from 'moment';
+import moment from 'moment';
 import { first, isEmpty } from 'lodash';
-import {
+import type {
   ICashflowAccountTransaction,
   ICashflowAccountTransactionsQuery,
 } from '../../types/BankingTransactions.types';

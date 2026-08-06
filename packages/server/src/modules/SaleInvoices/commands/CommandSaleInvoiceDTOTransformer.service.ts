@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { omit, sumBy } from 'lodash';
 import * as R from 'ramda';
-import * as moment from 'moment';
+import moment from 'moment';
 import '../../../utils/moment-mysql';
 import * as composeAsync from 'async/compose';
 import { Customer } from '@/modules/Customers/models/Customer';
@@ -17,10 +17,7 @@ import { assocItemEntriesDefaultIndex } from '@/utils/associate-item-entries-ind
 import { formatDateFields } from '@/utils/format-date-fields';
 import { ItemEntriesTaxTransactions } from '@/modules/TaxRates/ItemEntriesTaxTransactions.service';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
-import {
-  CreateSaleInvoiceDto,
-  EditSaleInvoiceDto,
-} from '../dtos/SaleInvoice.dto';
+import { CreateSaleInvoiceDto, EditSaleInvoiceDto } from '../dtos/SaleInvoice.dto';
 
 @Injectable()
 export class CommandSaleInvoiceDTOTransformer {
@@ -68,7 +65,9 @@ export class CommandSaleInvoiceDTOTransformer {
 
     // Currency: use customer currency, or fall back to org base currency for walk-ins.
     const tenantMeta = await this.tenancyContext.getTenantMetadata();
-    const currencyCode = customer ? customer.currencyCode : tenantMeta.baseCurrency;
+    const currencyCode = customer
+      ? customer.currencyCode
+      : tenantMeta.baseCurrency;
 
     // Invoice number.
     const invoiceNo =

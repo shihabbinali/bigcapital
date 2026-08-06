@@ -1,7 +1,7 @@
 import { AccountTransaction } from '@/modules/Accounts/models/AccountTransaction.model';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { Inject, Injectable } from '@nestjs/common';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 
 @Injectable()
 export class TransactionsByReferenceRepository {

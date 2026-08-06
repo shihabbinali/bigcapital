@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Account } from './models/Account.model';
 // import { IDynamicListFilterDTO } from '@/interfaces/DynamicFilter';
 

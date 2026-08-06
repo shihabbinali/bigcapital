@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ExpenseTransfromer } from './Expense.transformer';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { Expense } from '../models/Expense.model';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetExpenseService {

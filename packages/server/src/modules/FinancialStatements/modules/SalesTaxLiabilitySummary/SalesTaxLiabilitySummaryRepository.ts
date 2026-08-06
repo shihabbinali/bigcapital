@@ -1,5 +1,5 @@
 import { ACCOUNT_TYPE } from '@/constants/accounts';
-import {
+import type {
   SalesTaxLiabilitySummaryPayableById,
   SalesTaxLiabilitySummarySalesById,
 } from './SalesTaxLiability.types';
@@ -8,8 +8,8 @@ import { keyBy } from 'lodash';
 import { TaxRateModel } from '@/modules/TaxRates/models/TaxRate.model';
 import { AccountTransaction } from '@/modules/Accounts/models/AccountTransaction.model';
 import { Account } from '@/modules/Accounts/models/Account.model';
-import { ModelObject } from 'objection';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { ModelObject } from 'objection';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class SalesTaxLiabilitySummaryRepository {
@@ -17,7 +17,9 @@ export class SalesTaxLiabilitySummaryRepository {
   private readonly taxRateModel: TenantModelProxy<typeof TaxRateModel>;
 
   @Inject(AccountTransaction.name)
-  private readonly accountTransactionModel: TenantModelProxy<typeof AccountTransaction>;
+  private readonly accountTransactionModel: TenantModelProxy<
+    typeof AccountTransaction
+  >;
 
   @Inject(Account.name)
   private readonly accountModel: TenantModelProxy<typeof Account>;

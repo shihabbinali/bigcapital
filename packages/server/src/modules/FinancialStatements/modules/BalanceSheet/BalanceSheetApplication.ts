@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { IBalanceSheetQuery } from './BalanceSheet.types';
+import type { IBalanceSheetQuery } from './BalanceSheet.types';
 import { BalanceSheetExportInjectable } from './BalanceSheetExportInjectable';
 import { BalanceSheetTableInjectable } from './BalanceSheetTableInjectable';
 import { BalanceSheetInjectable } from './BalanceSheetInjectable';

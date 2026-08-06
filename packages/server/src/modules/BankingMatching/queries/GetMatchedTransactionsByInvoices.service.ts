@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { first } from 'lodash';
 import { GetMatchedTransactionInvoicesTransformer } from './GetMatchedTransactionInvoicesTransformer';
-import {
+import type {
   GetMatchedTransactionsFilter,
   IMatchTransactionDTO,
   MatchedTransactionPOJO,
@@ -13,8 +13,8 @@ import { CreatePaymentReceivedService } from '@/modules/PaymentReceived/commands
 import { SaleInvoice } from '@/modules/SaleInvoices/models/SaleInvoice';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { UncategorizedBankTransaction } from '@/modules/BankingTransactions/models/UncategorizedBankTransaction';
-import { IPaymentReceivedCreateDTO } from '@/modules/PaymentReceived/types/PaymentReceived.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { IPaymentReceivedCreateDTO } from '@/modules/PaymentReceived/types/PaymentReceived.types';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetMatchedTransactionsByInvoices extends GetMatchedTransactionsByType {

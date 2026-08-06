@@ -1,8 +1,8 @@
-import {
+import type {
   IFinancialSheetCommonMeta,
   INumberFormatQuery,
 } from '@/modules/FinancialStatements/types/Report.types';
-import { IFinancialTable } from '@/modules/FinancialStatements/types/Table.types';
+import type { IFinancialTable } from '@/modules/FinancialStatements/types/Table.types';
 
 export interface IPurchasesByItemsReportQuery {
   fromDate: Date | string;
@@ -29,7 +29,7 @@ export interface IPurchasesByItemsItem {
 
   averageCostPrice: number;
   averageCostPriceFormatted: string;
-  
+
   quantityPurchased: number;
   quantityPurchasedFormatted: string;
 

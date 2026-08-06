@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { BankTransaction } from '@/modules/BankingTransactions/models/BankTransaction';
 import { CreateExpense } from '@/modules/Expenses/commands/CreateExpense.service';
@@ -6,11 +6,11 @@ import { Inject } from '@nestjs/common';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { Injectable } from '@nestjs/common';
 import { events } from '@/common/events/events';
-import {
+import type {
   ICashflowTransactionCategorizedPayload,
   ICategorizeCashflowTransactioDTO,
 } from '../types/BankingCategorize.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class CategorizeTransactionAsExpense {

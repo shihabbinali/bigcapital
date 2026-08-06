@@ -1,13 +1,13 @@
-import { Knex } from 'knex';
-import { IItemEntryDTO } from '../TransactionItemEntry/ItemEntry.types';
-import { AttachmentLinkDTO } from '../Attachments/Attachments.types';
+import type { Knex } from 'knex';
+import type { IItemEntryDTO } from '../TransactionItemEntry/ItemEntry.types';
+import type { AttachmentLinkDTO } from '../Attachments/Attachments.types';
 import { SaleInvoice } from './models/SaleInvoice';
-import { IDynamicListFilter } from '../DynamicListing/DynamicFilter/DynamicFilter.types';
-import {
+import type { IDynamicListFilter } from '../DynamicListing/DynamicFilter/DynamicFilter.types';
+import type {
   CommonMailOptions,
   CommonMailOptionsDTO,
 } from '../MailNotification/MailNotification.types';
-import { TenantJobPayload } from '@/interfaces/Tenant';
+import type { TenantJobPayload } from '@/interfaces/Tenant';
 import {
   CreateSaleInvoiceDto,
   EditSaleInvoiceDto,

@@ -1,6 +1,6 @@
 import { TableSheetPdf } from '../../common/TableSheetPdf';
 import { GeneralLedgerTableInjectable } from './GeneralLedgerTableInjectable';
-import { IGeneralLedgerSheetQuery } from './GeneralLedger.types';
+import type { IGeneralLedgerSheetQuery } from './GeneralLedger.types';
 import { HtmlTableCustomCss } from './constants';
 import { Injectable } from '@nestjs/common';
 

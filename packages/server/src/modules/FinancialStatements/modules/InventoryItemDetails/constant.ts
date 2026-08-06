@@ -1,5 +1,5 @@
-import * as moment from 'moment';
-import { IInventoryDetailsQuery } from './InventoryItemDetails.types';
+import moment from 'moment';
+import type { IInventoryDetailsQuery } from './InventoryItemDetails.types';
 
 export const HtmlTableCustomCss = `
 table tr.row-type--item td, 

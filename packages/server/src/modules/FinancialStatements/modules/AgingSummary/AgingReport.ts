@@ -1,5 +1,5 @@
-import * as moment from 'moment';
-import { IAgingPeriod } from './AgingSummary.types';
+import moment from 'moment';
+import type { IAgingPeriod } from './AgingSummary.types';
 import { FinancialSheet } from '../../common/FinancialSheet';
 
 export class AgingReport extends FinancialSheet {

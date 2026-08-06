@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import { ITableColumn, ITableData, ITableRow } from '../types/Table.types';
+import type { ITableColumn, ITableData, ITableRow } from '../types/Table.types';
 import { FinancialTableStructure } from './FinancialTableStructure';
 import { tableClassNames } from '../utils';
 import { Injectable } from '@nestjs/common';
@@ -11,9 +11,7 @@ export class TableSheetPdf {
   /**
    * @param {ChromiumlyTenancy} chromiumlyTenancy - The chromiumly tenancy service.
    */
-  constructor(
-    private readonly chromiumlyTenancy: ChromiumlyTenancy,
-  ) { }
+  constructor(private readonly chromiumlyTenancy: ChromiumlyTenancy) {}
 
   /**
    * Converts the table data into a PDF format.

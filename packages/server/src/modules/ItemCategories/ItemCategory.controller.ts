@@ -9,7 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { ItemCategoryApplication } from './ItemCategory.application';
-import { GetItemCategoriesResponse } from './ItemCategory.interfaces';
+import type { GetItemCategoriesResponse } from './ItemCategory.interfaces';
 import {
   ApiExtraModels,
   ApiOperation,

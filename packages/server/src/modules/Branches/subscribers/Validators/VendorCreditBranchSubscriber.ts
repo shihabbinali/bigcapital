@@ -1,4 +1,4 @@
-import {
+import type {
   IVendorCreditCreatingPayload,
   IVendorCreditEditingPayload,
 } from '@/modules/VendorCredit/types/VendorCredit.types';
@@ -11,7 +11,7 @@ import { events } from '@/common/events/events';
 export class VendorCreditBranchValidateSubscriber {
   constructor(
     private readonly validateBranchExistance: ValidateBranchExistance,
-  ) { }
+  ) {}
 
   /**
    * Validate branch existance on estimate creating.

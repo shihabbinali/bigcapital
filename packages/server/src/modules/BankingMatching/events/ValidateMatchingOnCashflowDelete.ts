@@ -2,7 +2,7 @@ import { OnEvent } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
 import { events } from '@/common/events/events';
 import { ValidateTransactionMatched } from '../commands/ValidateTransactionsMatched.service';
-import { ICommandCashflowDeletingPayload } from '@/modules/BankingTransactions/types/BankingTransactions.types';
+import type { ICommandCashflowDeletingPayload } from '@/modules/BankingTransactions/types/BankingTransactions.types';
 
 @Injectable()
 export class ValidateMatchingOnCashflowDeleteSubscriber {

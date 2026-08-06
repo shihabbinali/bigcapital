@@ -8,7 +8,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { Controller, Put, Get, Body, Param } from '@nestjs/common';
 import { TransactionsLockingService } from './commands/CommandTransactionsLockingService';
 import { TransactionsLockingGroup } from './types/TransactionsLocking.types';
-import { ITransactionLockingPartiallyDTO } from './types/TransactionsLocking.types';
+import type { ITransactionLockingPartiallyDTO } from './types/TransactionsLocking.types';
 import { QueryTransactionsLocking } from './queries/QueryTransactionsLocking';
 import {
   CancelTransactionsLockingDto,

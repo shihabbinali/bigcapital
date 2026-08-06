@@ -4,7 +4,7 @@ import { I18nService } from 'nestjs-i18n';
 import { JournalSheet } from './JournalSheet';
 import { JournalSheetMeta } from './JournalSheetMeta';
 import { getJournalSheetDefaultQuery } from './constant';
-import { IJournalReportQuery, IJournalSheet } from './JournalSheet.types';
+import type { IJournalReportQuery, IJournalSheet } from './JournalSheet.types';
 import { events } from '@/common/events/events';
 import { JournalSheetRepository } from './JournalSheetRepository';
 

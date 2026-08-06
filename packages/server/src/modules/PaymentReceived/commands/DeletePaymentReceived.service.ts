@@ -1,15 +1,15 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { events } from '@/common/events/events';
 import { PaymentReceived } from '../models/PaymentReceived';
 import { PaymentReceivedEntry } from '../models/PaymentReceivedEntry';
-import {
+import type {
   IPaymentReceivedDeletingPayload,
   IPaymentReceivedDeletedPayload,
 } from '../types/PaymentReceived.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DeletePaymentReceivedService {
@@ -30,7 +30,7 @@ export class DeletePaymentReceivedService {
     private paymentReceiveEntryModel: TenantModelProxy<
       typeof PaymentReceivedEntry
     >,
-  ) { }
+  ) {}
 
   /**
    * Deletes the given payment receive with associated entries

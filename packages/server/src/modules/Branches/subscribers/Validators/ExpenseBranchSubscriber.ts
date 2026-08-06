@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { ValidateBranchExistance } from '../../integrations/ValidateBranchExistance';
-import {
+import type {
   IExpenseCreatingPayload,
   IExpenseEventEditingPayload,
 } from '@/modules/Expenses/Expenses.types';
@@ -10,7 +10,7 @@ import {
 export class ExpenseBranchValidateSubscriber {
   constructor(
     private readonly validateBranchExistance: ValidateBranchExistance,
-  ) { }
+  ) {}
 
   /**
    * Validate branch existance once expense transaction creating.

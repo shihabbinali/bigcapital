@@ -1,8 +1,8 @@
 import { Model, raw } from 'objection';
 import { castArray } from 'lodash';
-import * as moment from 'moment';
+import moment from 'moment';
 import { getTransactionTypeLabel } from '@/modules/BankingTransactions/utils';
-import { TInventoryTransactionDirection } from '../types/InventoryCost.types';
+import type { TInventoryTransactionDirection } from '../types/InventoryCost.types';
 import { TenantBaseModel } from '@/modules/System/models/TenantBaseModel';
 import { InventoryTransactionMeta } from './InventoryTransactionMeta';
 

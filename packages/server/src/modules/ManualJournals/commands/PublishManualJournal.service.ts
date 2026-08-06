@@ -1,8 +1,8 @@
-import * as moment from 'moment';
-import { Knex } from 'knex';
+import moment from 'moment';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import {
+import type {
   IManualJournalEventPublishedPayload,
   IManualJournalPublishingPayload,
 } from '../types/ManualJournals.types';
@@ -10,7 +10,7 @@ import { CommandManualJournalValidators } from './CommandManualJournalValidators
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { ManualJournal } from '../models/ManualJournal';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class PublishManualJournal {

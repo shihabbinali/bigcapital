@@ -1,13 +1,13 @@
 import * as R from 'ramda';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { SaleInvoiceTransformer } from './SaleInvoice.transformer';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { DynamicListService } from '@/modules/DynamicListing/DynamicList.service';
-import { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
+import type { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
 import { SaleInvoice } from '../models/SaleInvoice';
 import { GetSaleInvoicesQueryDto } from '../dtos/GetSaleInvoicesQuery.dto';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetSaleInvoicesService {
@@ -24,9 +24,7 @@ export class GetSaleInvoicesService {
    * @param {GetSaleInvoicesQueryDto} filterDTO -
    * @returns {Promise<{ data: SaleInvoice[]; pagination: IPaginationMeta; filterMeta: IFilterMeta; }>}
    */
-  public async getSaleInvoices(
-    filterDTO: GetSaleInvoicesQueryDto,
-  ): Promise<{
+  public async getSaleInvoices(filterDTO: GetSaleInvoicesQueryDto): Promise<{
     salesInvoices: SaleInvoice[];
     pagination: IPaginationMeta;
     filterMeta: IFilterMeta;

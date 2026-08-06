@@ -2,7 +2,7 @@ import { AbilitySchema } from '../AbilitySchema';
 import { Injectable } from '@nestjs/common';
 import { I18nService } from 'nestjs-i18n';
 import { cloneDeep } from 'lodash';
-import { ISubjectAbilitiesSchema } from '../Roles.types';
+import type { ISubjectAbilitiesSchema } from '../Roles.types';
 
 @Injectable()
 export class RolePermissionsSchema {

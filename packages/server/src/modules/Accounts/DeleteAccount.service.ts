@@ -1,12 +1,12 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { CommandAccountValidators } from './CommandAccountValidators.service';
 import { Account } from './models/Account.model';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { UnitOfWork } from '../Tenancy/TenancyDB/UnitOfWork.service';
 import { events } from '@/common/events/events';
-import { IAccountEventDeletedPayload } from './Accounts.types';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { IAccountEventDeletedPayload } from './Accounts.types';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { ERRORS } from './constants';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class DeleteAccount {
     private eventEmitter: EventEmitter2,
     private uow: UnitOfWork,
     private validator: CommandAccountValidators,
-  ) { }
+  ) {}
 
   /**
    * Authorize account delete.

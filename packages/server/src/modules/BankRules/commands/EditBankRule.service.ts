@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import {
+import type {
   IBankRuleEventEditedPayload,
   IBankRuleEventEditingPayload,
   IEditBankRuleDTO,
@@ -8,9 +8,9 @@ import { BankRule } from '../models/BankRule';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { EditBankRuleDto } from '../dtos/BankRule.dto';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 
 @Injectable()
 export class EditBankRuleService {

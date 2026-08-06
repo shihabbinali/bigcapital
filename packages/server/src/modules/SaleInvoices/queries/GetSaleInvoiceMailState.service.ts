@@ -3,8 +3,8 @@ import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectab
 import { GetSaleInvoiceMailStateTransformer } from './GetSaleInvoiceMailState.transformer';
 import { SendSaleInvoiceMailCommon } from '../commands/SendInvoiceInvoiceMailCommon.service';
 import { SaleInvoice } from '../models/SaleInvoice';
-import { SaleInvoiceMailState } from '../SaleInvoice.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { SaleInvoiceMailState } from '../SaleInvoice.types';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetSaleInvoiceMailState {

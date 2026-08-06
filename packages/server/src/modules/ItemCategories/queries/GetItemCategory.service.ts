@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ItemCategory } from '../models/ItemCategory.model';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetItemCategoryService {

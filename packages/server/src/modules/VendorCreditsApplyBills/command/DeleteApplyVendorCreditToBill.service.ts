@@ -3,11 +3,11 @@ import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { events } from '@/common/events/events';
-import { IVendorCreditApplyToBillDeletedPayload } from '../types/VendorCreditApplyBills.types';
+import type { IVendorCreditApplyToBillDeletedPayload } from '../types/VendorCreditApplyBills.types';
 import { VendorCredit } from '@/modules/VendorCredit/models/VendorCredit';
 import { ERRORS } from '../VendorCreditsApplyBills.constants';
 import { VendorCreditAppliedBill } from '../models/VendorCreditAppliedBill';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DeleteApplyVendorCreditToBillService {

@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { sumBy } from 'lodash';
-import {
+import type {
   IVendorCreditApplyToBillsCreatedPayload,
   IVendorCreditApplyToInvoicesDTO,
   IVendorCreditApplyToInvoicesModel,
@@ -16,7 +16,7 @@ import { Bill } from '@/modules/Bills/models/Bill';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { events } from '@/common/events/events';
 import { VendorCreditDTOTransformService } from '@/modules/VendorCredit/commands/VendorCreditDTOTransform.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class ApplyVendorCreditToBillsService {

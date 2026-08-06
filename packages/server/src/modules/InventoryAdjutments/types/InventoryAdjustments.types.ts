@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { InventoryAdjustment } from '../models/InventoryAdjustment';
 import { CreateQuickInventoryAdjustmentDto } from '../dtos/CreateQuickInventoryAdjustment.dto';
 

@@ -4,7 +4,7 @@ import { OnEvent } from '@nestjs/event-emitter';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { Inject, Injectable } from '@nestjs/common';
 import { UncategorizedBankTransaction } from '../models/UncategorizedBankTransaction';
-import { ICommandCashflowDeletingPayload } from '../types/BankingTransactions.types';
+import type { ICommandCashflowDeletingPayload } from '../types/BankingTransactions.types';
 
 @Injectable()
 export class PreventDeleteTransactionOnDeleteSubscriber {

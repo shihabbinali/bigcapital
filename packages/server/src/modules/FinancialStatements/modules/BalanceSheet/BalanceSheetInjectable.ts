@@ -1,5 +1,5 @@
 // @ts-nocheck
-import {
+import type {
   IBalanceSheetDOO,
   IBalanceSheetQuery,
 } from './BalanceSheet.types';
@@ -48,7 +48,10 @@ export class BalanceSheetInjectable {
       filter,
       this.balanceSheetRepository,
       this.i18n,
-      { baseCurrency: tenantMetadata.baseCurrency, dateFormat: meta.dateFormat },
+      {
+        baseCurrency: tenantMetadata.baseCurrency,
+        dateFormat: meta.dateFormat,
+      },
     );
     // Balance sheet data.
     const data = balanceSheetInstanace.reportData();

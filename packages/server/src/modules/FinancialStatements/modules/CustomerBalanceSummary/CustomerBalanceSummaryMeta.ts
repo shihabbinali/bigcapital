@@ -1,5 +1,5 @@
-import * as moment from 'moment';
-import {
+import moment from 'moment';
+import type {
   ICustomerBalanceSummaryMeta,
   ICustomerBalanceSummaryQuery,
 } from './CustomerBalanceSummary.types';

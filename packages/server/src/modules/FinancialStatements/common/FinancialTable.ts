@@ -1,8 +1,8 @@
 import * as R from 'ramda';
 import { isEmpty, clone, cloneDeep, omit } from 'lodash';
 import { increment } from '@/utils/increment';
-import { ITableRow, ITableColumn } from '../types/Table.types';
-import { GConstructor } from '@/common/types/Constructor';
+import type { ITableRow, ITableColumn } from '../types/Table.types';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheetStructure } from './FinancialSheetStructure';
 import { I18nService } from 'nestjs-i18n';
 import { FinancialSheet } from './FinancialSheet';
@@ -12,7 +12,7 @@ enum IROW_TYPE {
 }
 
 export const FinancialTable = <T extends GConstructor<FinancialSheet>>(
-  Base: T
+  Base: T,
 ) =>
   class extends R.pipe(FinancialSheetStructure)(Base) {
     public readonly i18n: I18nService;

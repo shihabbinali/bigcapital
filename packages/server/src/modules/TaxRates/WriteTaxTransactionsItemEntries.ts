@@ -1,7 +1,7 @@
 import { sumBy, chain, keyBy } from 'lodash';
-import { Knex } from 'knex';
-import { ModelObject } from 'objection';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { Knex } from 'knex';
+import type { ModelObject } from 'objection';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { TaxRateModel } from './models/TaxRate.model';
 import { Inject, Injectable } from '@nestjs/common';
 import { ItemEntry } from '../TransactionItemEntry/models/ItemEntry';

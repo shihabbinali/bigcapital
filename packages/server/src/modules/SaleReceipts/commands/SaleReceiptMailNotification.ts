@@ -14,7 +14,7 @@ import { SaleReceiptsPdfService } from '../queries/SaleReceiptsPdf.service';
 import { ContactMailNotification } from '@/modules/MailNotification/ContactMailNotification';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import {
+import type {
   ISaleReceiptMailPresend,
   SaleReceiptMailOpts,
   SaleReceiptMailOptsDTO,
@@ -23,7 +23,7 @@ import {
 import { SaleReceipt } from '../models/SaleReceipt';
 import { MailTransporter } from '@/modules/Mail/MailTransporter.service';
 import { Mail } from '@/modules/Mail/Mail';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { GetSaleReceiptMailTemplateService } from '../queries/GetSaleReceiptMailTemplate.service';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 

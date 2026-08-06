@@ -1,13 +1,13 @@
-
-import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
+import { OnEvent } from '@nestjs/event-emitter';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Inject, Injectable } from '@nestjs/common';
-import {
+import type {
   IUserInvitedEventPayload,
   IUserInviteResendEventPayload,
   IUserInviteTenantSyncedEventPayload,
 } from '../Users.types';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { TenantUser } from '@/modules/Tenancy/TenancyModels/models/TenantUser.model';
 import { UserInvite } from '../models/InviteUser.model';
 import { SystemUser } from '@/modules/System/models/SystemUser';
@@ -25,7 +25,7 @@ export class SyncSystemSendInviteSubscriber {
     @Inject(UserInvite.name)
     private readonly inviteModel: typeof UserInvite,
     private readonly eventEmitter: EventEmitter2,
-    private readonly tenancyContext: TenancyContext
+    private readonly tenancyContext: TenancyContext,
   ) {}
 
   /**
@@ -33,7 +33,11 @@ export class SyncSystemSendInviteSubscriber {
    * @param {IUserInvitedEventPayload} payload -
    */
   @OnEvent(events.inviteUser.sendInvite)
-  async syncSendInviteSystem({ inviteToken, user, invitingUser }: IUserInvitedEventPayload) {
+  async syncSendInviteSystem({
+    inviteToken,
+    user,
+    invitingUser,
+  }: IUserInvitedEventPayload) {
     const authorizedUser = await this.tenancyContext.getSystemUser();
     const tenantId = authorizedUser.tenantId;
 
@@ -95,7 +99,10 @@ export class SyncSystemSendInviteSubscriber {
    * Clear invite tokens of the given user id.
    * @param {number} userId - User id.
    */
-  private clearInviteTokensByUserId = async (tenantId: number, userId: number) => {
+  private clearInviteTokensByUserId = async (
+    tenantId: number,
+    userId: number,
+  ) => {
     await this.inviteModel
       .query()
       .where({

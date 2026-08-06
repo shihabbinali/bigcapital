@@ -1,5 +1,5 @@
-import { IDynamicListFilter } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
-import { Knex } from 'knex';
+import type { IDynamicListFilter } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
+import type { Knex } from 'knex';
 
 export interface IBankAccountDisconnectingEventPayload {
   bankAccountId: number;
@@ -17,8 +17,7 @@ export const ERRORS = {
   BANK_ACCOUNT_FEEDS_ALREADY_RESUMED: 'BANK_ACCOUNT_FEEDS_ALREADY_RESUMED',
 };
 
-
-export interface ICashflowAccountsFilter extends IDynamicListFilter{
+export interface ICashflowAccountsFilter extends IDynamicListFilter {
   page: number;
   pageSize: number;
   inactiveMode: boolean;

@@ -3,7 +3,7 @@ import { InjectQueue } from '@nestjs/bullmq';
 import { Queue } from 'bullmq';
 import { events } from '@/common/events/events';
 import { OnEvent } from '@nestjs/event-emitter';
-import {
+import type {
   IUserInviteTenantSyncedEventPayload,
   SendInviteUserMailJobPayload,
 } from '../Users.types';

@@ -3,7 +3,7 @@ import { JournalSheetService } from './JournalSheetService';
 import { JournalSheetTableInjectable } from './JournalSheetTableInjectable';
 import { JournalSheetExportInjectable } from './JournalSheetExport';
 import { JournalSheetPdfInjectable } from './JournalSheetPdfInjectable';
-import { IJournalReportQuery, IJournalTable } from './JournalSheet.types';
+import type { IJournalReportQuery, IJournalTable } from './JournalSheet.types';
 
 @Injectable()
 export class JournalSheetApplication {

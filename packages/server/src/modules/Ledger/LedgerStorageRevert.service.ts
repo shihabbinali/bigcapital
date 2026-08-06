@@ -1,10 +1,10 @@
 import { castArray } from 'lodash';
 import { Injectable, Inject } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Ledger } from './Ledger';
 import { LedgerStorageService } from './LedgerStorage.service';
 import { AccountTransaction } from '../Accounts/models/AccountTransaction.model';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 
 @Injectable()
 export class LedgerRevertService {

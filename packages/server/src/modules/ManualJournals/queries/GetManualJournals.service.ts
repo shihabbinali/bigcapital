@@ -4,9 +4,9 @@ import { Inject, Injectable } from '@nestjs/common';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { DynamicListService } from '@/modules/DynamicListing/DynamicList.service';
 import { ManualJournal } from '../models/ManualJournal';
-import { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
+import type { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
 import { GetManualJournalsQueryDto } from '../dtos/GetManualJournalsQuery.dto';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetManualJournals {

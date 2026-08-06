@@ -1,6 +1,6 @@
 import { CustomerBalanceSummaryExportInjectable } from './CustomerBalanceSummaryExportInjectable';
 import { CustomerBalanceSummaryTableInjectable } from './CustomerBalanceSummaryTableInjectable';
-import { ICustomerBalanceSummaryQuery } from './CustomerBalanceSummary.types';
+import type { ICustomerBalanceSummaryQuery } from './CustomerBalanceSummary.types';
 import { CustomerBalanceSummaryService } from './CustomerBalanceSummaryService';
 import { CustomerBalanceSummaryPdf } from './CustomerBalanceSummaryPdf';
 import { Injectable } from '@nestjs/common';

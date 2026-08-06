@@ -1,9 +1,9 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { LedgerStorageService } from '../../Ledger/LedgerStorage.service';
 import { Ledger } from '../../Ledger/Ledger';
 import { AccountTransaction } from '../../Accounts/models/AccountTransaction.model';
-import { TenantModelProxy } from '../../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../../System/models/TenantBaseModel';
 
 @Injectable()
 export class InventoryCostGLStorage {

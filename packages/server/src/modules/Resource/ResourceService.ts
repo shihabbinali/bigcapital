@@ -5,9 +5,9 @@ import { WarehousesSettings } from '../Warehouses/WarehousesSettings';
 import { Injectable } from '@nestjs/common';
 import { BranchesSettingsService } from '../Branches/BranchesSettings';
 import { ServiceError } from '../Items/ServiceError';
-import { IModelMetaColumn, IModelMetaField2 } from '@/interfaces/Model';
-import { IModelMeta } from '@/interfaces/Model';
-import { IModelMetaField } from '@/interfaces/Model';
+import type { IModelMetaColumn, IModelMetaField2 } from '@/interfaces/Model';
+import type { IModelMeta } from '@/interfaces/Model';
+import type { IModelMetaField } from '@/interfaces/Model';
 import { Features } from '@/common/types/Features';
 import { resourceToModelName } from './_utils';
 
@@ -22,7 +22,7 @@ export class ResourceService {
     private readonly warehousesSettings: WarehousesSettings,
     private readonly moduleRef: ModuleRef,
     private readonly i18nService: I18nService,
-  ) { }
+  ) {}
 
   /**
    * Retrieve resource model object.

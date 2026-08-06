@@ -2,7 +2,7 @@ import { FeaturesConfigureManager } from './FeaturesConfigureManager';
 import { Inject, Injectable } from '@nestjs/common';
 import { SETTINGS_PROVIDER } from '../Settings/Settings.types';
 import { SettingsStore } from '../Settings/SettingsStore';
-import { IFeatureAllItem } from '@/common/types/Features';
+import type { IFeatureAllItem } from '@/common/types/Features';
 import { FeaturesConfigure } from './FeaturesConfigure';
 
 @Injectable()

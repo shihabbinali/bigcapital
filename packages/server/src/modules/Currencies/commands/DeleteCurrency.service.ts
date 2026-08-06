@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { TenantModelProxy } from '../../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../../System/models/TenantBaseModel';
 import { Currency } from '../models/Currency.model';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
@@ -19,7 +19,8 @@ export class DeleteCurrencyService {
    * @return {Promise<void>}
    */
   public async deleteCurrency(currencyCode: string): Promise<void> {
-    const foundCurrency = await this.currencyModel().query()
+    const foundCurrency = await this.currencyModel()
+      .query()
       .findOne('currency_code', currencyCode)
       .throwIfNotFound();
 

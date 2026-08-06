@@ -3,13 +3,11 @@ import * as R from 'ramda';
 import { get } from 'lodash';
 import { ProfitLossSheetBase } from './ProfitLossSheetBase';
 import { ProfitLossSheetQuery } from './ProfitLossSheetQuery';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from '../../common/FinancialSheet';
 import { FinancialFilter } from '../../common/FinancialFilter';
-import {
-  IProfitLossSheetNode,
-  ProfitLossNodeType,
-} from './ProfitLossSheet.types';
+import type { IProfitLossSheetNode } from './ProfitLossSheet.types';
+import { ProfitLossNodeType } from './ProfitLossSheet.types';
 import { ProfitLossSheetRepository } from './ProfitLossSheetRepository';
 
 export const ProfitLossSheetFilter = <T extends GConstructor<FinancialSheet>>(

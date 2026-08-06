@@ -8,7 +8,7 @@ import {
   getSchemaPath,
 } from '@nestjs/swagger';
 import { castArray } from 'lodash';
-import { Response } from 'express';
+import type { Response } from 'express';
 import { AcceptType } from '@/constants/accept-type';
 import { TrialBalanceSheetApplication } from './TrialBalanceSheetApplication';
 import { TrialBalanceSheetQueryDto } from './TrialBalanceSheetQuery.dto';

@@ -1,15 +1,15 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
-import * as moment from 'moment';
+import moment from 'moment';
 import { BaseLandedCostService } from '../BaseLandedCost.service';
 import { BillLandedCost } from '../models/BillLandedCost';
 import { Bill } from '@/modules/Bills/models/Bill';
 import { BillLandedCostEntry } from '../models/BillLandedCostEntry';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { Ledger } from '@/modules/Ledger/Ledger';
 import { LedgerStorageService } from '@/modules/Ledger/LedgerStorage.service';
 import { AccountNormal } from '@/modules/Accounts/Accounts.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class LandedCostGLEntriesService extends BaseLandedCostService {

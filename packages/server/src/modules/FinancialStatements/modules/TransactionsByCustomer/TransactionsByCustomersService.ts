@@ -1,7 +1,7 @@
 import { I18nService } from 'nestjs-i18n';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
-import {
+import type {
   ITransactionsByCustomersFilter,
   ITransactionsByCustomersStatement,
 } from './TransactionsByCustomer.types';

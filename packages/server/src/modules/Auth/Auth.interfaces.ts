@@ -1,4 +1,4 @@
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { SystemUser } from '../System/models/SystemUser';
 import { TenantModel } from '../System/models/TenantModel';
 import { AuthSignupDto } from './dtos/AuthSignup.dto';

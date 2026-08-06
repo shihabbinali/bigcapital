@@ -1,17 +1,17 @@
 import { Inject, Injectable } from '@nestjs/common';
-import {
+import type {
   ISaleEstimateDeletedPayload,
   ISaleEstimateDeletingPayload,
 } from '../types/SaleEstimates.types';
 import { ERRORS } from '../constants';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { SaleEstimate } from '../models/SaleEstimate';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { ItemEntry } from '@/modules/TransactionItemEntry/models/ItemEntry';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DeleteSaleEstimate {
@@ -24,7 +24,7 @@ export class DeleteSaleEstimate {
 
     private readonly eventPublisher: EventEmitter2,
     private readonly uow: UnitOfWork,
-  ) { }
+  ) {}
 
   /**
    * Deletes the given estimate id with associated entries.

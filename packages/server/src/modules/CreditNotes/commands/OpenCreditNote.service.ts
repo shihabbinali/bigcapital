@@ -1,8 +1,8 @@
-import {
+import type {
   ICreditNoteOpenedPayload,
   ICreditNoteOpeningPayload,
 } from '../types/CreditNotes.types';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { ERRORS } from '../constants';
 import { EventEmitter2 } from '@nestjs/event-emitter';
@@ -10,7 +10,7 @@ import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { CreditNote } from '../models/CreditNote';
 import { events } from '@/common/events/events';
 import { ServiceError } from '@/modules/Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class OpenCreditNoteService {

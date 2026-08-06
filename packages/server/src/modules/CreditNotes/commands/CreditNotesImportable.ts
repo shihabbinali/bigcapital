@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Injectable } from '@nestjs/common';
 import { CreateCreditNoteService } from './CreateCreditNote.service';
 import { Importable } from '@/modules/Import/Importable';

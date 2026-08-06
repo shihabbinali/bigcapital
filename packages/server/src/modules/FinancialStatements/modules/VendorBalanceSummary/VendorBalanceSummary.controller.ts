@@ -1,7 +1,7 @@
 import { Controller, Get, Headers, Query, Res } from '@nestjs/common';
-import { IVendorBalanceSummaryQuery } from './VendorBalanceSummary.types';
+import type { IVendorBalanceSummaryQuery } from './VendorBalanceSummary.types';
 import { VendorBalanceSummaryApplication } from './VendorBalanceSummaryApplication';
-import { Response } from 'express';
+import type { Response } from 'express';
 import { AcceptType } from '@/constants/accept-type';
 import {
   ApiExtraModels,
@@ -21,7 +21,10 @@ import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
 @Controller('/reports/vendor-balance-summary')
 @ApiTags('Reports')
 @ApiCommonHeaders()
-@ApiExtraModels(VendorBalanceSummaryResponseDto, VendorBalanceSummaryTableResponseDto)
+@ApiExtraModels(
+  VendorBalanceSummaryResponseDto,
+  VendorBalanceSummaryTableResponseDto,
+)
 export class VendorBalanceSummaryController {
   constructor(
     private readonly vendorBalanceSummaryApp: VendorBalanceSummaryApplication,

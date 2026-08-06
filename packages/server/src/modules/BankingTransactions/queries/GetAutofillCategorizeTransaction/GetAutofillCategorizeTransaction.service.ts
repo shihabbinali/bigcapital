@@ -3,7 +3,7 @@ import { castArray, first, uniq } from 'lodash';
 import { GetAutofillCategorizeTransctionTransformer } from './GetAutofillCategorizeTransactionTransformer';
 import { UncategorizedBankTransaction } from '@/modules/BankingTransactions/models/UncategorizedBankTransaction';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetAutofillCategorizeTransactionService {

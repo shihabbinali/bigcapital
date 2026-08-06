@@ -1,4 +1,4 @@
-import {
+import type {
   ISalesTaxLiabilitySummaryTable,
   SalesTaxLiabilitySummaryQuery,
 } from './SalesTaxLiability.types';

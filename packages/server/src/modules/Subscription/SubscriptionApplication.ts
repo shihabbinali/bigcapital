@@ -6,7 +6,7 @@ import { MarkSubscriptionPaymentFailed } from './commands/MarkSubscriptionPaymen
 import { MarkSubscriptionPaymentSucceed } from './commands/MarkSubscriptionPaymentSuccessed.service';
 import { MarkSubscriptionCanceled } from './commands/MarkSubscriptionCanceled.service';
 import { NewSubscriptionService } from './commands/NewSubscription.service';
-import { SubscriptionPayload } from '@/interfaces/SubscriptionPlan';
+import type { SubscriptionPayload } from '@/interfaces/SubscriptionPlan';
 import { MarkSubscriptionPlanChanged } from './commands/MarkSubscriptionChanged.service';
 import { GetLemonSqueezyCheckoutService } from './queries/GetLemonSqueezyCheckout.service';
 import { GetSubscriptionsService } from './queries/GetSubscriptions.service';

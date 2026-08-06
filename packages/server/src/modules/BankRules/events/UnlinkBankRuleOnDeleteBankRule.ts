@@ -1,4 +1,4 @@
-import { IBankRuleEventDeletingPayload } from '../types';
+import type { IBankRuleEventDeletingPayload } from '../types';
 import { Injectable } from '@nestjs/common';
 import { RevertRecognizedTransactionsService } from '@/modules/BankingTranasctionsRegonize/commands/RevertRecognizedTransactions.service';
 import { events } from '@/common/events/events';

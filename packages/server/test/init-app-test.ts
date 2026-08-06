@@ -1,5 +1,5 @@
-import * as request from 'supertest';
-import { INestApplication, Logger } from '@nestjs/common';
+import request from 'supertest';
+import { Logger, type INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '../src/modules/App/App.module';
 
@@ -32,6 +32,7 @@ beforeAll(async () => {
 afterAll(async () => {
   await app.close();
 });
+jest.setTimeout(300000);
 jest.retryTimes(3, { logErrorsBeforeRetry: true });
 
 export { app, orgainzationId, authenticationToken, AuthorizationHeader };

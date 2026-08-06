@@ -3,9 +3,9 @@ import * as R from 'ramda';
 import { BalanceSheetQuery } from './BalanceSheetQuery';
 import { FinancialTablePreviousPeriod } from '../../common/FinancialTablePreviousPeriod';
 import { FinancialDateRanges } from '../../common/FinancialDateRanges';
-import { IDateRange } from '../../types/Report.types';
-import { ITableColumn } from '../../types/Table.types';
-import { GConstructor } from '@/common/types/Constructor';
+import type { IDateRange } from '../../types/Report.types';
+import type { ITableColumn } from '../../types/Table.types';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from '../../common/FinancialSheet';
 
 export const BalanceSheetTablePreviousPeriod = <

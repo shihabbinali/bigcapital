@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { PdfTemplateModel } from '@/modules/PdfTemplate/models/PdfTemplate';
-import { ISaleEstimateState } from '../types/SaleEstimates.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { ISaleEstimateState } from '../types/SaleEstimates.types';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetSaleEstimateState {

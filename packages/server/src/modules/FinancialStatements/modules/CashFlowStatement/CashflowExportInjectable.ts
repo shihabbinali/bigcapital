@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CashflowTableInjectable } from './CashflowTableInjectable';
-import { ICashFlowStatementQuery } from './Cashflow.types';
+import type { ICashFlowStatementQuery } from './Cashflow.types';
 import { TableSheet } from '../../common/TableSheet';
 
 @Injectable()

@@ -2,7 +2,7 @@ import { OnEvent } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
 import { DeleteCustomerLinkedCreditNoteService } from '@/modules/CreditNotesApplyInvoice/commands/DeleteCustomerLinkedCreditNote.service';
 import { events } from '@/common/events/events';
-import { ICustomerDeletingPayload } from '@/modules/Customers/types/Customers.types';
+import type { ICustomerDeletingPayload } from '@/modules/Customers/types/Customers.types';
 import { ServiceError } from '@/modules/Items/ServiceError';
 
 const ERRORS = {

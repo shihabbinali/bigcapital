@@ -1,7 +1,7 @@
 import * as async from 'async';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { uniq } from 'lodash';
-import {
+import type {
   ILedger,
   ISaveAccountsBalanceQueuePayload,
 } from './types/Ledger.types';
@@ -9,7 +9,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Account } from '../Accounts/models/Account.model';
 import { AccountRepository } from '../Accounts/repositories/Account.repository';
 import { TenancyContext } from '../Tenancy/TenancyContext.service';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 
 @Injectable()
 export class LedegrAccountsStorage {

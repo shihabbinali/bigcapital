@@ -1,11 +1,11 @@
 import { toSafeInteger } from 'lodash';
-import { IItemsQuantityChanges } from '../types/InventoryCost.types';
-import { Knex } from 'knex';
+import type { IItemsQuantityChanges } from '../types/InventoryCost.types';
+import type { Knex } from 'knex';
 import { Inject } from '@nestjs/common';
 import { Item } from '../../Items/models/Item';
 import { Injectable } from '@nestjs/common';
 import { InventoryTransaction } from '../models/InventoryTransaction';
-import { TenantModelProxy } from '../../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../../System/models/TenantBaseModel';
 
 /**
  * Syncs the inventory transactions with inventory items quantity.

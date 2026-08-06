@@ -1,5 +1,5 @@
-import {
-  Injectable,
+import { Injectable } from '@nestjs/common';
+import type {
   NestInterceptor,
   ExecutionContext,
   CallHandler,

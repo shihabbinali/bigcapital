@@ -1,6 +1,7 @@
 import { updateSubscription } from '@lemonsqueezy/lemonsqueezy.js';
 import { configureLemonSqueezy } from '../utils';
-import { ERRORS, IOrganizationSubscriptionResume } from '../types';
+import { ERRORS } from '../types';
+import type { IOrganizationSubscriptionResume } from '../types';
 import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { PlanSubscription } from '../models/PlanSubscription';

@@ -1,12 +1,14 @@
 import { omit } from 'lodash';
 import {
+  TransactionsLockingGroup,
+  TransactionsLockingType,
+} from '../types/TransactionsLocking.types';
+import type {
   ITransactionLockingPartiallyDTO,
   ITransactionMeta,
   ITransactionsLockingAllDTO,
   ITransactionsLockingCanceled,
   ITransactionsLockingPartialUnlocked,
-  TransactionsLockingGroup,
-  TransactionsLockingType,
 } from '../types/TransactionsLocking.types';
 import { TransactionsLockingRepository } from '../TransactionsLockingRepository';
 import { ERRORS } from '../constants';
@@ -26,7 +28,7 @@ export class TransactionsLockingService {
   constructor(
     private readonly transactionsLockingRepo: TransactionsLockingRepository,
     private readonly eventPublisher: EventEmitter2,
-  ) { }
+  ) {}
 
   /**
    * Enable/disable all transacations locking.

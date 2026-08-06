@@ -1,7 +1,7 @@
 import { ExcludeBankTransactionService } from './commands/ExcludeBankTransaction.service';
 import { UnexcludeBankTransactionService } from './commands/UnexcludeBankTransaction.service';
 import { GetExcludedBankTransactionsService } from './queries/GetExcludedBankTransactions';
-import { ExcludedBankTransactionsQuery } from './types/BankTransactionsExclude.types';
+import type { ExcludedBankTransactionsQuery } from './types/BankTransactionsExclude.types';
 import { UnexcludeBankTransactionsService } from './commands/UnexcludeBankTransactions.service';
 import { ExcludeBankTransactionsService } from './commands/ExcludeBankTransactions.service';
 import { Injectable } from '@nestjs/common';

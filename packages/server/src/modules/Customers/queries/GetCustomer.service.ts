@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { CustomerTransfromer } from './CustomerTransformer';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { Customer } from '../models/Customer';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetCustomerService {

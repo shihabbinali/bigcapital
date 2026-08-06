@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Bill } from '@/modules/Bills/models/Bill';
 import { BillPayment } from '../models/BillPayment';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetPaymentBills {

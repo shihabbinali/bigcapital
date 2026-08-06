@@ -1,6 +1,6 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import { merge } from 'lodash';
-import { IProfitLossSheetQuery } from './ProfitLossSheet.types';
+import type { IProfitLossSheetQuery } from './ProfitLossSheet.types';
 
 /**
  * Default sheet filter query.

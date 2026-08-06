@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import * as moment from 'moment';
+import moment from 'moment';
 import { FinancialSheetMeta } from '../../common/FinancialSheetMeta';
-import { IBalanceSheetMeta, IBalanceSheetQuery } from './BalanceSheet.types';
+import type {
+  IBalanceSheetMeta,
+  IBalanceSheetQuery,
+} from './BalanceSheet.types';
 
 @Injectable()
 export class BalanceSheetMetaInjectable {

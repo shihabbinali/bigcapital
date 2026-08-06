@@ -1,9 +1,9 @@
 import { WarehousesDTOValidators } from '../../../Integrations/WarehousesDTOValidators';
 import { OnEvent } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
-import { IVendorCreditEditingPayload } from '@/modules/VendorCredit/types/VendorCredit.types';
+import type { IVendorCreditEditingPayload } from '@/modules/VendorCredit/types/VendorCredit.types';
 import { events } from '@/common/events/events';
-import { IVendorCreditCreatingPayload } from '@/modules/VendorCredit/types/VendorCredit.types';
+import type { IVendorCreditCreatingPayload } from '@/modules/VendorCredit/types/VendorCredit.types';
 
 @Injectable()
 export class VendorCreditWarehousesValidateSubscriber {

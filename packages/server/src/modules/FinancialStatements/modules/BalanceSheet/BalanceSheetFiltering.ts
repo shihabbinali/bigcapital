@@ -1,11 +1,9 @@
 // @ts-nocheck
 import * as R from 'ramda';
 import { get } from 'lodash';
-import {
-  IBalanceSheetDataNode,
-  BALANCE_SHEET_NODE_TYPE,
-} from './BalanceSheet.types';
-import { GConstructor } from '@/common/types/Constructor';
+import type { IBalanceSheetDataNode } from './BalanceSheet.types';
+import { BALANCE_SHEET_NODE_TYPE } from './BalanceSheet.types';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialFilter } from '../../common/FinancialFilter';
 import { BalanceSheetBase } from './BalanceSheetBase';
 import { BalanceSheetRepository } from './BalanceSheetRepository';

@@ -1,9 +1,9 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 // import { IDynamicListFilterDTO } from './DynamicFilter';
 // import { ISystemUser } from './User';
 import { ItemCategory } from './models/ItemCategory.model';
-import { IDynamicListFilter } from '../DynamicListing/DynamicFilter/DynamicFilter.types';
-import { IFilterMeta } from '@/interfaces/Model';
+import type { IDynamicListFilter } from '../DynamicListing/DynamicFilter/DynamicFilter.types';
+import type { IFilterMeta } from '@/interfaces/Model';
 
 export interface IItemCategoryOTD {
   name: string;

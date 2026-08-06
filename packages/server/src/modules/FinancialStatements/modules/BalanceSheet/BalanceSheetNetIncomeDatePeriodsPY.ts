@@ -3,13 +3,13 @@ import * as R from 'ramda';
 import { BalanceSheetComparsionPreviousYear } from './BalanceSheetComparsionPreviousYear';
 import { FinancialPreviousPeriod } from '../../common/FinancialPreviousPeriod';
 import { FinancialHorizTotals } from '../../common/FinancialHorizTotals';
-import {
+import type {
   IBalanceSheetNetIncomeNode,
   IBalanceSheetTotal,
 } from './BalanceSheet.types';
 import { BalanceSheetQuery } from './BalanceSheetQuery';
 import { BalanceSheetRepository } from './BalanceSheetRepository';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from '../../common/FinancialSheet';
 
 export const BalanceSheetNetIncomeDatePeriodsPY = <

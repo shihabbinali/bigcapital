@@ -1,6 +1,6 @@
 import * as async from 'async';
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   ILedger,
   ILedgerEntry,
   ISaleContactsBalanceQueuePayload,
@@ -10,7 +10,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Contact } from '../Contacts/models/Contact';
 import { Account } from '../Accounts/models/Account.model';
 import { TenancyContext } from '../Tenancy/TenancyContext.service';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 
 @Injectable()
 export class LedgerContactsBalanceStorage {

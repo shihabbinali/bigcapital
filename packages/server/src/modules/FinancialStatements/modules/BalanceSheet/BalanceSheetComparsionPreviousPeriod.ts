@@ -1,7 +1,7 @@
 // @ts-nocheck
 import * as R from 'ramda';
 import { sumBy } from 'lodash';
-import {
+import type {
   IBalanceSheetAccountNode,
   IBalanceSheetDataNode,
   IBalanceSheetAggregateNode,
@@ -10,7 +10,7 @@ import {
 } from './BalanceSheet.types';
 import { FinancialPreviousPeriod } from '../../common/FinancialPreviousPeriod';
 import { FinancialHorizTotals } from '../../common/FinancialHorizTotals';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from '../../common/FinancialSheet';
 import { BalanceSheetQuery } from './BalanceSheetQuery';
 import { BalanceSheetRepository } from './BalanceSheetRepository';

@@ -2,7 +2,7 @@ import { Queue } from 'bullmq';
 import { ClsService } from 'nestjs-cls';
 import Redis from 'ioredis';
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { UnitOfWork } from '../../Tenancy/TenancyDB/UnitOfWork.service';
 import { Item } from '../../Items/models/Item';
 import { SETTINGS_PROVIDER } from '../../Settings/Settings.types';
@@ -12,7 +12,7 @@ import {
   ComputeItemCostQueueJob,
 } from '../types/InventoryCost.types';
 import { InventoryAverageCostMethodService } from './InventoryAverageCostMethod.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { InjectQueue } from '@nestjs/bullmq';
 import { RedisService } from '@liaoliaots/nestjs-redis';
 

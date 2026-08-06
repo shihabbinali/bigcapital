@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { RefundVendorCredit } from '../models/RefundVendorCredit';
 import { VendorCredit } from '@/modules/VendorCredit/models/VendorCredit';
 

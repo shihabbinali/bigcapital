@@ -1,7 +1,7 @@
 import { I18nService } from 'nestjs-i18n';
 import { sumBy, chain, get, head } from 'lodash';
-import * as moment from 'moment';
-import {
+import moment from 'moment';
+import type {
   IJournalReportEntriesGroup,
   IJournalReportQuery,
   IJournalSheetEntry,
@@ -9,9 +9,10 @@ import {
 } from './JournalSheet.types';
 import { FinancialSheet } from '../../common/FinancialSheet';
 import { JournalSheetRepository } from './JournalSheetRepository';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { getTransactionTypeLabel } from '@/modules/BankingTransactions/utils';
-import { IFinancialReportMeta, DEFAULT_REPORT_META } from '../../types/Report.types';
+import type { IFinancialReportMeta } from '../../types/Report.types';
+import { DEFAULT_REPORT_META } from '../../types/Report.types';
 
 export class JournalSheet extends FinancialSheet {
   readonly query: IJournalReportQuery;

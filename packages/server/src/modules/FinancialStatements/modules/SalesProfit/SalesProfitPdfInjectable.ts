@@ -1,4 +1,4 @@
-import { ISalesProfitQuery } from './SalesProfit.types';
+import type { ISalesProfitQuery } from './SalesProfit.types';
 import { SalesProfitTableInjectable } from './SalesProfitTableInjectable';
 import { TableSheetPdf } from '../../common/TableSheetPdf';
 import { HtmlTableCustomCss } from './constants';

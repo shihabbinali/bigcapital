@@ -2,11 +2,13 @@ import { Queue } from 'bullmq';
 import { InjectQueue } from '@nestjs/bullmq';
 import { Injectable } from '@nestjs/common';
 import {
+  OrganizationBuildQueue,
+  OrganizationBuildQueueJob,
+} from '../Organization.types';
+import type {
   BuildOrganizationResult,
   IOrganizationBuildEventPayload,
   IOrganizationBuiltEventPayload,
-  OrganizationBuildQueue,
-  OrganizationBuildQueueJob,
   OrganizationBuildQueueJobPayload,
 } from '../Organization.types';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';

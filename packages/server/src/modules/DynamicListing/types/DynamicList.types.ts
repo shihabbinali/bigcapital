@@ -1,9 +1,9 @@
-import { ISortOrder } from '@/interfaces/Model';
+import type { ISortOrder } from '@/interfaces/Model';
 import { BaseModel } from '@/models/Model';
-import { ICustomViewBaseModel } from '@/modules/CustomViews/CustomViewBaseModel';
-import { IFilterRole } from '../DynamicFilter/DynamicFilter.types';
-import { IMetadataModel } from '../models/MetadataModel';
-import { ISearchableBaseModel } from '../models/SearchableBaseModel';
+import type { ICustomViewBaseModel } from '@/modules/CustomViews/CustomViewBaseModel';
+import type { IFilterRole } from '../DynamicFilter/DynamicFilter.types';
+import type { IMetadataModel } from '../models/MetadataModel';
+import type { ISearchableBaseModel } from '../models/SearchableBaseModel';
 
 export interface IDynamicListFilter {
   customViewId?: number;

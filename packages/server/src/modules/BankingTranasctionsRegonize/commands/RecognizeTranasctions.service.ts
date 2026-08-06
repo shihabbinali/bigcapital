@@ -1,14 +1,14 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { castArray, isEmpty } from 'lodash';
 import { PromisePool } from '@supercharge/promise-pool';
 import { bankRulesMatchTransaction } from '../_utils';
-import { RecognizeTransactionsCriteria } from '../_types';
+import type { RecognizeTransactionsCriteria } from '../_types';
 import { BankRule } from '@/modules/BankRules/models/BankRule';
 import { RecognizedBankTransaction } from '../models/RecognizedBankTransaction';
 import { UncategorizedBankTransaction } from '@/modules/BankingTransactions/models/UncategorizedBankTransaction';
 import { transformToMapBy } from '@/utils/transform-to-map-by';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class RecognizeTranasctionsService {

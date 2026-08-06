@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { omit } from 'lodash';
 import { BranchesSettingsService } from '../../BranchesSettings';
-import { IManualJournalDTO } from '@/modules/ManualJournals/types/ManualJournals.types';
+import type { IManualJournalDTO } from '@/modules/ManualJournals/types/ManualJournals.types';
 
 @Injectable()
 export class ManualJournalBranchesDTOTransformer {

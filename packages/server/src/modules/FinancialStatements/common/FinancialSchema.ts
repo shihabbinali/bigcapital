@@ -1,6 +1,6 @@
 import * as R from 'ramda';
 import { FinancialSheetStructure } from './FinancialSheetStructure';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from './FinancialSheet';
 
 export const FinancialSchema = <T extends GConstructor<FinancialSheet>>(

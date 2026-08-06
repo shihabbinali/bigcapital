@@ -1,12 +1,13 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Injectable, Inject } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { IItemDTO, IItemEventEditedPayload } from '@/interfaces/Item';
+import { IItemDTO } from '@/interfaces/Item';
+import type { IItemEventEditedPayload } from '@/interfaces/Item';
 import { events } from '@/common/events/events';
 import { ItemsValidators } from './ItemValidator.service';
 import { Item } from './models/Item';
 import { UnitOfWork } from '../Tenancy/TenancyDB/UnitOfWork.service';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { EditItemDto } from './dtos/Item.dto';
 
 @Injectable()

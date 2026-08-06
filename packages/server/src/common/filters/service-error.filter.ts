@@ -1,10 +1,6 @@
-import {
-  ExceptionFilter,
-  Catch,
-  ArgumentsHost,
-  HttpStatus,
-} from '@nestjs/common';
-import { Response } from 'express';
+import { Catch, HttpStatus } from '@nestjs/common';
+import type { ExceptionFilter, ArgumentsHost } from '@nestjs/common';
+import type { Response } from 'express';
 import { ServiceError } from '@/modules/Items/ServiceError';
 
 @Catch(ServiceError)
@@ -21,8 +17,8 @@ export class ServiceErrorFilter implements ExceptionFilter {
           type: exception.errorType,
           message: exception.message,
           payload: exception.payload,
-        }
-      ]
+        },
+      ],
     });
   }
 }

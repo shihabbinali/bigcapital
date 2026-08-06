@@ -4,7 +4,8 @@ import {
   getCashflowAccountTransactionsTypes,
   getCashflowTransactionType,
 } from '../utils';
-import { CASHFLOW_DIRECTION, CASHFLOW_TRANSACTION_TYPE } from '../constants';
+import { CASHFLOW_TRANSACTION_TYPE } from '../constants';
+import { CASHFLOW_DIRECTION } from '../constants';
 import { BankTransactionLine } from './BankTransactionLine';
 import { Account } from '@/modules/Accounts/models/Account.model';
 

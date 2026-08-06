@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { ValidateTransactionMatched } from '../commands/ValidateTransactionsMatched.service';
-import { IBillPaymentEventDeletedPayload } from '@/modules/BillPayments/types/BillPayments.types';
+import type { IBillPaymentEventDeletedPayload } from '@/modules/BillPayments/types/BillPayments.types';
 import { events } from '@/common/events/events';
 
 @Injectable()

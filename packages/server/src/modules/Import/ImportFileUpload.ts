@@ -9,7 +9,7 @@ import {
 import { ResourceService } from '../Resource/ResourceService';
 import { ImportFileCommon } from './ImportFileCommon';
 import { ImportFileDataValidator } from './ImportFileDataValidator';
-import { ImportFileUploadPOJO } from './interfaces';
+import type { ImportFileUploadPOJO } from './interfaces';
 import { parseSheetData } from './sheet_utils';
 import { ImportModel } from './models/Import';
 import { TenancyContext } from '../Tenancy/TenancyContext.service';
@@ -24,7 +24,7 @@ export class ImportFileUploadService {
 
     @Inject(ImportModel.name)
     private readonly importModel: typeof ImportModel,
-  ) { }
+  ) {}
 
   /**
    * Imports the specified file for the given resource.
@@ -84,7 +84,10 @@ export class ImportFileUploadService {
     } catch (error) {
       throw error;
     }
-    const _params = await this.importFileCommon.transformParams(resource, params);
+    const _params = await this.importFileCommon.transformParams(
+      resource,
+      params,
+    );
     const paramsStringified = JSON.stringify(_params);
 
     const tenant = await this.tenancyContext.getTenant();

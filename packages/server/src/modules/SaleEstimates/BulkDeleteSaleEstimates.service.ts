@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { PromisePool } from '@supercharge/promise-pool';
 import { castArray, uniq } from 'lodash';
 import { DeleteSaleEstimate } from './commands/DeleteSaleEstimate.service';
 
 @Injectable()
 export class BulkDeleteSaleEstimatesService {
-  constructor(private readonly deleteSaleEstimateService: DeleteSaleEstimate) { }
+  constructor(private readonly deleteSaleEstimateService: DeleteSaleEstimate) {}
 
   async bulkDeleteSaleEstimates(
     saleEstimateIds: number | Array<number>,
@@ -33,4 +33,3 @@ export class BulkDeleteSaleEstimatesService {
     }
   }
 }
-

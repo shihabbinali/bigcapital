@@ -1,21 +1,21 @@
 // @ts-nocheck
 import { Inject, Injectable, Scope } from '@nestjs/common';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { castArray } from 'lodash';
 import * as R from 'ramda';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { isEmpty } from 'lodash';
-import * as moment from 'moment';
+import moment from 'moment';
 import { transformToMapBy } from '@/utils/transform-to-map-by';
 import { ProfitLossSheetQuery } from './ProfitLossSheetQuery';
 import { Ledger } from '@/modules/Ledger/Ledger';
-import { IProfitLossSheetQuery } from './ProfitLossSheet.types';
+import type { IProfitLossSheetQuery } from './ProfitLossSheet.types';
 import { IAccountTransactionsGroupBy } from '../BalanceSheet/BalanceSheet.types';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { FinancialDatePeriods } from '../../common/FinancialDatePeriods';
 import { AccountTransaction } from '@/modules/Accounts/models/AccountTransaction.model';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class ProfitLossSheetRepository extends R.compose(FinancialDatePeriods)(

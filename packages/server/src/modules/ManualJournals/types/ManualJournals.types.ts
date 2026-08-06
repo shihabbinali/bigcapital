@@ -1,11 +1,11 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 // import { IDynamicListFilterDTO } from './DynamicFilter';
 // import { ISystemUser } from './User';
 // import { IAccount } from './Account';
 // import { AttachmentLinkDTO } from './Attachments';
 import { ManualJournal } from '../models/ManualJournal';
-import { AttachmentLinkDTO } from '@/modules/Attachments/Attachments.types';
-import { IDynamicListFilter } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
+import type { AttachmentLinkDTO } from '@/modules/Attachments/Attachments.types';
+import type { IDynamicListFilter } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
 
 export interface IManualJournalEntryDTO {
   index: number;
@@ -14,7 +14,7 @@ export interface IManualJournalEntryDTO {
   accountId: number;
   note: string;
   contactId?: number;
-  branchId?: number
+  branchId?: number;
   projectId?: number;
 }
 

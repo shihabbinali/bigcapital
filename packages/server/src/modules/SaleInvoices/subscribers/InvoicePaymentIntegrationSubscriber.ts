@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
-import { PaymentIntegrationTransactionLinkDeleteEventPayload } from '../SaleInvoice.types';
-import { PaymentIntegrationTransactionLinkEventPayload } from '../SaleInvoice.types';
-import { PaymentIntegrationTransactionLink } from '../SaleInvoice.types';
+import { OnEvent } from '@nestjs/event-emitter';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import type { PaymentIntegrationTransactionLinkDeleteEventPayload } from '../SaleInvoice.types';
+import type { PaymentIntegrationTransactionLinkEventPayload } from '../SaleInvoice.types';
+import type { PaymentIntegrationTransactionLink } from '../SaleInvoice.types';
 import { omit } from 'lodash';
-import {
+import type {
   ISaleInvoiceCreatedPayload,
   ISaleInvoiceDeletingPayload,
 } from '../SaleInvoice.types';

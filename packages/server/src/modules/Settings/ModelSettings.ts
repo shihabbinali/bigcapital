@@ -1,5 +1,5 @@
 import { get } from 'lodash';
-import {
+import type {
   IModelMeta,
   IModelMetaField,
   IModelMetaDefaultSort,

@@ -1,4 +1,5 @@
-import { Command, CommandRunner } from 'nest-commander';
+import { Command } from 'nest-commander';
+import { CommandRunner } from 'nest-commander';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ClsMiddleware } from 'nestjs-cls';
@@ -6,11 +7,12 @@ import * as path from 'path';
 import * as fs from 'fs';
 import '@/utils/moment-mysql';
 import { AppModule } from '@/modules/App/App.module';
-import { NestExpressApplication } from '@nestjs/platform-express';
+import type { NestExpressApplication } from '@nestjs/platform-express';
 
 @Command({
   name: 'openapi:export',
-  description: 'Export the OpenAPI document from the NestJS app to shared/sdk-ts/openapi.json',
+  description:
+    'Export the OpenAPI document from the NestJS app to shared/sdk-ts/openapi.json',
 })
 export class OpenApiExportCommand extends CommandRunner {
   async run(): Promise<void> {
@@ -36,7 +38,10 @@ export class OpenApiExportCommand extends CommandRunner {
     const document = SwaggerModule.createDocument(app, config);
     await app.close();
 
-    const outputPath = path.resolve(process.cwd(), '../../shared/sdk-ts/openapi.json');
+    const outputPath = path.resolve(
+      process.cwd(),
+      '../../shared/sdk-ts/openapi.json',
+    );
     fs.mkdirSync(path.dirname(outputPath), { recursive: true });
     fs.writeFileSync(outputPath, JSON.stringify(document, null, 2), 'utf-8');
     console.log(`OpenAPI spec written to ${outputPath}`);

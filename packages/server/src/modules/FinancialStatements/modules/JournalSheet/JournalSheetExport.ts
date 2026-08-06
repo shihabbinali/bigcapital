@@ -1,4 +1,4 @@
-import { IJournalReportQuery } from './JournalSheet.types';
+import type { IJournalReportQuery } from './JournalSheet.types';
 import { JournalSheetTableInjectable } from './JournalSheetTableInjectable';
 import { Injectable } from '@nestjs/common';
 import { TableSheet } from '../../common/TableSheet';

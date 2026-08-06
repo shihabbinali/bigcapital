@@ -1,14 +1,14 @@
 import { Exportable } from '@/modules/Export/Exportable';
 import { Injectable } from '@nestjs/common';
 import { SaleInvoiceApplication } from '../SaleInvoices.application';
-import { ISalesInvoicesFilter } from '../SaleInvoice.types';
+import type { ISalesInvoicesFilter } from '../SaleInvoice.types';
 import { EXPORT_SIZE_LIMIT } from '@/modules/Export/constants';
 import { ExportableService } from '@/modules/Export/decorators/ExportableModel.decorator';
 import { SaleInvoice } from '../models/SaleInvoice';
 
 @Injectable()
 @ExportableService({ name: SaleInvoice.name })
-export class SaleInvoicesExportable extends Exportable{
+export class SaleInvoicesExportable extends Exportable {
   constructor(
     private readonly saleInvoicesApplication: SaleInvoiceApplication,
   ) {

@@ -1,5 +1,5 @@
 import { CreditNote } from '@/modules/CreditNotes/models/CreditNote';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { CreditNoteAppliedInvoice } from '../models/CreditNoteAppliedInvoice';
 
 export interface ICreditNoteApplyInvoiceDTO {

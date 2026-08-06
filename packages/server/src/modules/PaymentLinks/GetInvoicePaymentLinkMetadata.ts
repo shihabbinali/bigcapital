@@ -1,7 +1,7 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import { ClsService } from 'nestjs-cls';
 import { Inject, Injectable } from '@nestjs/common';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { SaleInvoice } from '../SaleInvoices/models/SaleInvoice';
 import { TransformerInjectable } from '../Transformer/TransformerInjectable.service';
 import { PaymentLink } from './models/PaymentLink';

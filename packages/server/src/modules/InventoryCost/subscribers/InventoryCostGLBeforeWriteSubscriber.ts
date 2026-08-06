@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import { IInventoryCostLotsGLEntriesWriteEvent } from '../types/InventoryCost.types';
+import type { IInventoryCostLotsGLEntriesWriteEvent } from '../types/InventoryCost.types';
 import { InventoryCostGLStorage } from '../commands/InventoryCostGLStorage.service';
 
 @Injectable()

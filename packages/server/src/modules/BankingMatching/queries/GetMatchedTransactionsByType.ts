@@ -1,5 +1,5 @@
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   GetMatchedTransactionsFilter,
   IMatchTransactionDTO,
   MatchedTransactionPOJO,
@@ -8,13 +8,11 @@ import {
 import PromisePool from '@supercharge/promise-pool';
 import { MatchedBankTransaction } from '../models/MatchedBankTransaction';
 import { Inject } from '@nestjs/common';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 export abstract class GetMatchedTransactionsByType {
   @Inject(MatchedBankTransaction.name)
-  matchedBankTransactionModel: TenantModelProxy<
-    typeof MatchedBankTransaction
-  >;
+  matchedBankTransactionModel: TenantModelProxy<typeof MatchedBankTransaction>;
 
   /**
    * Retrieves the matched transactions.

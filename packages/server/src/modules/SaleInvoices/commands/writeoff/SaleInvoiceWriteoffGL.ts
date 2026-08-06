@@ -1,6 +1,6 @@
 import { SaleInvoice } from '../../models/SaleInvoice';
-import { ILedger } from '@/modules/Ledger/types/Ledger.types';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedger } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { AccountNormal } from '@/interfaces/Account';
 import { Ledger } from '@/modules/Ledger/Ledger';
 

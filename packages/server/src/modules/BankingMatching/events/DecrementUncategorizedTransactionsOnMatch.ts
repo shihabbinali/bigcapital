@@ -1,12 +1,12 @@
 import PromisePool from '@supercharge/promise-pool';
 import { OnEvent } from '@nestjs/event-emitter';
 import { Inject, Injectable } from '@nestjs/common';
-import {
+import type {
   IBankTransactionMatchedEventPayload,
   IBankTransactionUnmatchedEventPayload,
 } from '../types';
 import { Account } from '@/modules/Accounts/models/Account.model';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { UncategorizedBankTransaction } from '@/modules/BankingTransactions/models/UncategorizedBankTransaction';
 import { events } from '@/common/events/events';
 

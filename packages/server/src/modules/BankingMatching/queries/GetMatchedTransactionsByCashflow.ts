@@ -1,11 +1,11 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { GetMatchedTransactionsByType } from './GetMatchedTransactionsByType';
 import { GetMatchedTransactionCashflowTransformer } from './GetMatchedTransactionCashflowTransformer';
-import { GetMatchedTransactionsFilter } from '../types';
+import type { GetMatchedTransactionsFilter } from '../types';
 import { BankTransaction } from '@/modules/BankingTransactions/models/BankTransaction';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { Inject, Injectable } from '@nestjs/common';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetMatchedTransactionsByCashflow extends GetMatchedTransactionsByType {

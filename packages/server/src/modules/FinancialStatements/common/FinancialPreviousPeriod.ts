@@ -1,13 +1,11 @@
 import { sumBy } from 'lodash';
-import {
-  IFinancialDatePeriodsUnit,
-  IFinancialNodeWithPreviousPeriod,
-} from '../types/Report.types';
+import type { IFinancialNodeWithPreviousPeriod } from '../types/Report.types';
+import { IFinancialDatePeriodsUnit } from '../types/Report.types';
 import * as R from 'ramda';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from './FinancialSheet';
 import { FinancialDatePeriods } from './FinancialDatePeriods';
-import { IProfitLossSheetAccountNode } from '../modules/ProfitLossSheet/ProfitLossSheet.types';
+import type { IProfitLossSheetAccountNode } from '../modules/ProfitLossSheet/ProfitLossSheet.types';
 
 export const FinancialPreviousPeriod = <T extends GConstructor<FinancialSheet>>(
   Base: T,

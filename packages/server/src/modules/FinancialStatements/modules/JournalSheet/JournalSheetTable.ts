@@ -1,7 +1,7 @@
 import * as R from 'ramda';
 import { first } from 'lodash';
 import { I18nService } from 'nestjs-i18n';
-import {
+import type {
   IJournalReportEntriesGroup,
   IJournalReportQuery,
   IJournalSheetEntry,
@@ -11,14 +11,14 @@ import { ROW_TYPE } from './types';
 import { FinancialTable } from '../../common/FinancialTable';
 import { FinancialSheetStructure } from '../../common/FinancialSheetStructure';
 import { FinancialSheet } from '../../common/FinancialSheet';
-import {
+import type {
   IColumnMapperMeta,
   ITableColumn,
   ITableColumnAccessor,
   ITableRow,
 } from '../../types/Table.types';
 import { tableRowMapper } from '../../utils/Table.utils';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 
 export class JournalSheetTable extends R.pipe(
   FinancialTable,

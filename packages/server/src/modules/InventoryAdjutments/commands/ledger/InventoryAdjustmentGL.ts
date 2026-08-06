@@ -1,7 +1,7 @@
 import * as R from 'ramda';
 import { InventoryAdjustment } from '../../models/InventoryAdjustment';
 import { InventoryAdjustmentEntry } from '../../models/InventoryAdjustmentEntry';
-import { ILedgerEntry } from '../../../Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '../../../Ledger/types/Ledger.types';
 import { AccountNormal } from '@/interfaces/Account';
 import { Ledger } from '../../../Ledger/Ledger';
 

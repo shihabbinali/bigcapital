@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { GetPdfTemplateTransformer } from './GetPdfTemplate.transformer';
 import { PdfTemplateModel } from '../models/PdfTemplate';
 import { TransformerInjectable } from '../../Transformer/TransformerInjectable.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { GetAttachmentPresignedUrl } from '@/modules/Attachments/GetAttachmentPresignedUrl';
 
 @Injectable()

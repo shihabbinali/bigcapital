@@ -1,11 +1,11 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { VendorCreditTransformer } from './VendorCreditTransformer';
 import { ERRORS } from '../constants';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { VendorCredit } from '../models/VendorCredit';
 import { ServiceError } from '@/modules/Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetVendorCreditService {

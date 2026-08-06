@@ -1,10 +1,10 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Injectable } from '@nestjs/common';
 import { GetRecognizedTransactionsService } from './GetRecongizedTransactions';
 import { GetRecognizedTransactionService } from './queries/GetRecognizedTransaction.service';
 import { RevertRecognizedTransactionsService } from './commands/RevertRecognizedTransactions.service';
-import { IGetRecognizedTransactionsQuery } from '../BankingTransactions/types/BankingTransactions.types';
-import { RevertRecognizedTransactionsCriteria } from './_types';
+import type { IGetRecognizedTransactionsQuery } from '../BankingTransactions/types/BankingTransactions.types';
+import type { RevertRecognizedTransactionsCriteria } from './_types';
 
 @Injectable()
 export class RecognizedTransactionsApplication {

@@ -1,10 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { NumberFormatQueryDto } from '@/modules/BankingTransactions/dtos/NumberFormatQuery.dto';
-import {
-  FinancialReportTotalDto,
-  FinancialReportMetaDto,
-  FinancialTableDataDto,
-} from '../../dtos/FinancialReportResponse.dto';
+import { FinancialReportTotalDto, FinancialTableDataDto } from '../../dtos/FinancialReportResponse.dto';
+import { FinancialReportMetaDto } from '../../dtos/FinancialReportResponse.dto';
 
 export class APAgingPeriodDto {
   @ApiProperty({ description: 'From period date' })
@@ -29,7 +26,10 @@ export class APAgingVendorDto {
   @ApiProperty({ description: 'Vendor name' })
   vendorName: string;
 
-  @ApiProperty({ description: 'Current balance', type: FinancialReportTotalDto })
+  @ApiProperty({
+    description: 'Current balance',
+    type: FinancialReportTotalDto,
+  })
   current: FinancialReportTotalDto;
 
   @ApiProperty({ description: 'Aging periods', type: [APAgingPeriodTotalDto] })
@@ -68,7 +68,10 @@ export class APAgingSummaryQueryResponseDto {
   @ApiProperty({ description: 'Number of aging periods', type: Number })
   agingPeriods: number;
 
-  @ApiProperty({ description: 'Number format settings', type: NumberFormatQueryDto })
+  @ApiProperty({
+    description: 'Number format settings',
+    type: NumberFormatQueryDto,
+  })
   numberFormat: NumberFormatQueryDto;
 
   @ApiProperty({ description: 'Vendor IDs to include', type: [Number] })
@@ -82,7 +85,10 @@ export class APAgingSummaryQueryResponseDto {
 }
 
 export class APAgingSummaryResponseDto {
-  @ApiProperty({ description: 'Aging summary data', type: APAgingSummaryDataDto })
+  @ApiProperty({
+    description: 'Aging summary data',
+    type: APAgingSummaryDataDto,
+  })
   data: APAgingSummaryDataDto;
 
   @ApiProperty({ description: 'Report metadata', type: APAgingSummaryMetaDto })
@@ -98,10 +104,16 @@ export {
 } from '../../dtos/FinancialReportResponse.dto';
 
 export class APAgingSummaryTableResponseDto {
-  @ApiProperty({ description: 'Table data structure', type: () => FinancialTableDataDto })
+  @ApiProperty({
+    description: 'Table data structure',
+    type: () => FinancialTableDataDto,
+  })
   table: FinancialTableDataDto;
 
-  @ApiProperty({ description: 'Query parameters used to generate the report', type: APAgingSummaryQueryResponseDto })
+  @ApiProperty({
+    description: 'Query parameters used to generate the report',
+    type: APAgingSummaryQueryResponseDto,
+  })
   query: APAgingSummaryQueryResponseDto;
 
   @ApiProperty({ description: 'Report metadata', type: APAgingSummaryMetaDto })

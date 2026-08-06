@@ -1,10 +1,10 @@
 import { pick } from 'lodash';
 import { Inject, Injectable } from '@nestjs/common';
-import {
+import type {
   ITenantUserActivatedPayload,
   ITenantUserEditedPayload,
   ITenantUserInactivatedPayload,
-} from '../Users.types'
+} from '../Users.types';
 import { OnEvent } from '@nestjs/event-emitter';
 import { SystemUser } from '@/modules/System/models/SystemUser';
 import { events } from '@/common/events/events';

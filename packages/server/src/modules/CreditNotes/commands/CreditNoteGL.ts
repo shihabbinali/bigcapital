@@ -1,4 +1,4 @@
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { CreditNote } from '../models/CreditNote';
 import { AccountNormal } from '@/interfaces/Account';
 import { Ledger } from '@/modules/Ledger/Ledger';
@@ -111,8 +111,7 @@ export class CreditNoteGL {
     index: number,
   ): ILedgerEntry {
     const commonEntry = this.creditNoteCommonEntry;
-    const hasCost =
-      entry.costAmount > 0 && entry.item?.type !== 'inventory';
+    const hasCost = entry.costAmount > 0 && entry.item?.type !== 'inventory';
     const incomeBase = hasCost ? entry.margin : entry.totalExcludingTax;
     const totalLocal = incomeBase * this.creditNoteModel.exchangeRate;
 
@@ -211,7 +210,13 @@ export class CreditNoteGL {
     const discountEntry = this.discountEntry;
     const adjustmentEntry = this.adjustmentEntry;
 
-    return [AREntry, discountEntry, adjustmentEntry, ...itemsEntries, ...costEntries];
+    return [
+      AREntry,
+      discountEntry,
+      adjustmentEntry,
+      ...itemsEntries,
+      ...costEntries,
+    ];
   }
 
   /**

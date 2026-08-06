@@ -1,5 +1,5 @@
 import { CashflowExportInjectable } from './CashflowExportInjectable';
-import { ICashFlowStatementQuery } from './Cashflow.types';
+import type { ICashFlowStatementQuery } from './Cashflow.types';
 import { CashFlowStatementService } from './CashFlowService';
 import { CashflowTableInjectable } from './CashflowTableInjectable';
 import { CashflowTablePdfInjectable } from './CashflowTablePdfInjectable';

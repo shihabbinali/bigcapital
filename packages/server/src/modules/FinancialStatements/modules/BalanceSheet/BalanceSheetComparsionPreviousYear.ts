@@ -1,14 +1,14 @@
 // @ts-nocheck
 import * as R from 'ramda';
 import { sumBy, isEmpty } from 'lodash';
-import {
+import type {
   IBalanceSheetAccountNode,
   IBalanceSheetCommonNode,
   IBalanceSheetDataNode,
   IBalanceSheetTotal,
 } from './BalanceSheet.types';
 import { FinancialPreviousYear } from '../../common/FinancialPreviousYear';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from '../../common/FinancialSheet';
 import { BalanceSheetQuery } from './BalanceSheetQuery';
 import { BalanceSheetRepository } from './BalanceSheetRepository';

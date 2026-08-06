@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import type { Response } from 'express';
 import {
   Body,
   Controller,
@@ -14,7 +14,7 @@ import {
   Res,
   UseGuards,
 } from '@nestjs/common';
-import {
+import type {
   ISaleInvoiceWriteoffDTO,
   SaleInvoiceMailState,
   SendInvoiceMailDTO,
@@ -40,10 +40,8 @@ import { PaginatedResponseDto } from '@/common/dtos/PaginatedResults.dto';
 import { SaleInvoiceStateResponseDto } from './dtos/SaleInvoiceState.dto';
 import { GenerateSaleInvoiceSharableLinkResponseDto } from './dtos/GenerateSaleInvoiceSharableLinkResponse.dto';
 import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
-import {
-  BulkDeleteDto,
-  ValidateBulkDeleteResponseDto,
-} from '@/common/dtos/BulkDelete.dto';
+import { ValidateBulkDeleteResponseDto } from '@/common/dtos/BulkDelete.dto';
+import { BulkDeleteDto } from '@/common/dtos/BulkDelete.dto';
 import { RequirePermission } from '@/modules/Roles/RequirePermission.decorator';
 import { PermissionGuard } from '@/modules/Roles/Permission.guard';
 import { AuthorizationGuard } from '@/modules/Roles/Authorization.guard';
@@ -60,7 +58,7 @@ import { SaleInvoiceAction } from './SaleInvoice.types';
 @ApiExtraModels(ValidateBulkDeleteResponseDto)
 @UseGuards(AuthorizationGuard, PermissionGuard)
 export class SaleInvoicesController {
-  constructor(private saleInvoiceApplication: SaleInvoiceApplication) { }
+  constructor(private saleInvoiceApplication: SaleInvoiceApplication) {}
 
   @Post('validate-bulk-delete')
   @RequirePermission(SaleInvoiceAction.Delete, AbilitySubject.SaleInvoice)

@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ItemWarehouseQuantity } from '../models/ItemWarehouseQuantity';
 import { Item } from '@/modules/Items/models/Item';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetItemWarehouses {

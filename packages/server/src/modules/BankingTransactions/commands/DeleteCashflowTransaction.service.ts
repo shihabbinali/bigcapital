@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { ERRORS } from '../constants';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Inject, Injectable } from '@nestjs/common';
@@ -7,11 +7,11 @@ import { BankTransactionLine } from '../models/BankTransactionLine';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { events } from '@/common/events/events';
-import {
+import type {
   ICommandCashflowDeletedPayload,
   ICommandCashflowDeletingPayload,
 } from '../types/BankingTransactions.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DeleteCashflowTransaction {

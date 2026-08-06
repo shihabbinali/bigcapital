@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { merge } from 'lodash';
 import * as R from 'ramda';
-import { IProfitLossSheetQuery } from './ProfitLossSheet.types';
+import type { IProfitLossSheetQuery } from './ProfitLossSheet.types';
 import { FinancialDateRanges } from '../../common/FinancialDateRanges';
 import { IFinancialDatePeriodsUnit } from '../../types/Report.types';
 import { DISPLAY_COLUMNS_BY } from './constants';

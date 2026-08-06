@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { InventoryAdjustmentsGLEntries } from '../commands/ledger/InventoryAdjustmentsGLEntries';
-import {
+import type {
   IInventoryAdjustmentDeletingPayload,
   IInventoryAdjustmentEventPublishedPayload,
 } from '../types/InventoryAdjustments.types';
-import { IInventoryAdjustmentEventCreatedPayload } from '../types/InventoryAdjustments.types';
+import type { IInventoryAdjustmentEventCreatedPayload } from '../types/InventoryAdjustments.types';
 import { events } from '@/common/events/events';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class InventoryAdjustmentsGLSubscriber {
 
   /**
    * Handles writing increment inventory adjustment GL entries.
-   * @param {IInventoryAdjustmentEventCreatedPayload} payload - 
+   * @param {IInventoryAdjustmentEventCreatedPayload} payload -
    */
   @OnEvent(events.inventoryAdjustment.onQuickCreated)
   @OnEvent(events.inventoryAdjustment.onPublished)

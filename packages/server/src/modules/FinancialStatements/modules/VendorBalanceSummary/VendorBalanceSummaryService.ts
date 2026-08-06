@@ -1,6 +1,6 @@
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
-import {
+import type {
   IVendorBalanceSummaryQuery,
   IVendorBalanceSummaryStatement,
 } from './VendorBalanceSummary.types';
@@ -20,7 +20,7 @@ export class VendorBalanceSummaryService {
 
   /**
    * Retrieve the statment of customer balance summary report.
-   * @param {IVendorBalanceSummaryQuery} query - 
+   * @param {IVendorBalanceSummaryQuery} query -
    * @return {Promise<IVendorBalanceSummaryStatement>}
    */
   public async vendorBalanceSummary(

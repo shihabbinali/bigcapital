@@ -1,5 +1,5 @@
-import { Transaction } from 'objection';
-import { Knex } from 'knex';
+import type { Transaction } from 'objection';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { IsolationLevel } from './TransactionsHooks';
 import { TENANCY_DB_CONNECTION } from '@/modules/Tenancy/TenancyDB/TenancyDB.constants';

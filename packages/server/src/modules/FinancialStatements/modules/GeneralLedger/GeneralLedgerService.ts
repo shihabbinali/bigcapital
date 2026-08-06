@@ -6,7 +6,7 @@ import { Injectable } from '@nestjs/common';
 import { GeneralLedgerSheet } from './GeneralLedger';
 import { events } from '@/common/events/events';
 import { getGeneralLedgerReportQuery } from './_utils';
-import {
+import type {
   IGeneralLedgerMeta,
   IGeneralLedgerSheetQuery,
 } from './GeneralLedger.types';

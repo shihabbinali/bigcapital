@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { VendorCreditsApplicationService } from '../VendorCreditsApplication.service';
 import { Exportable } from '@/modules/Export/Exportable';
-import { IVendorCreditsQueryDTO } from '../types/VendorCredit.types';
+import type { IVendorCreditsQueryDTO } from '../types/VendorCredit.types';
 import { ExportableService } from '@/modules/Export/decorators/ExportableModel.decorator';
 import { VendorCredit } from '../models/VendorCredit';
 

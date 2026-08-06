@@ -1,10 +1,10 @@
 import { Inject, Injectable, Scope } from '@nestjs/common';
-import { ICashflowAccountTransactionsQuery } from '../../types/BankingTransactions.types';
+import type { ICashflowAccountTransactionsQuery } from '../../types/BankingTransactions.types';
 import {
   groupMatchedBankTransactions,
   groupUncategorizedTransactions,
 } from './_utils';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { AccountTransaction } from '@/modules/Accounts/models/AccountTransaction.model';
 import { UncategorizedBankTransaction } from '../../models/UncategorizedBankTransaction';
 import { MatchedBankTransaction } from '@/modules/BankingMatching/models/MatchedBankTransaction';

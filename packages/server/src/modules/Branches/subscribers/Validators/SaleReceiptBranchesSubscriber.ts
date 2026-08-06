@@ -1,4 +1,4 @@
-import {
+import type {
   ISaleReceiptCreatingPayload,
   ISaleReceiptEditingPayload,
 } from '@/modules/SaleReceipts/types/SaleReceipts.types';
@@ -11,7 +11,7 @@ import { events } from '@/common/events/events';
 export class SaleReceiptBranchValidateSubscriber {
   constructor(
     private readonly validateBranchExistance: ValidateBranchExistance,
-  ) { }
+  ) {}
 
   /**
    * Validate branch existance on estimate creating.

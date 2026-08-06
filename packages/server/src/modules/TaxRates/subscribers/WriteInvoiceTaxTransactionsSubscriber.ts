@@ -1,11 +1,11 @@
-import {
+import type {
   ISaleInvoiceDeletedPayload,
   ISaleInvoiceEditedPayload,
 } from '@/modules/SaleInvoices/SaleInvoice.types';
 import { OnEvent } from '@nestjs/event-emitter';
 import { WriteTaxTransactionsItemEntries } from '../WriteTaxTransactionsItemEntries';
 import { events } from '@/common/events/events';
-import { ISaleInvoiceCreatedPayload } from '@/modules/SaleInvoices/SaleInvoice.types';
+import type { ISaleInvoiceCreatedPayload } from '@/modules/SaleInvoices/SaleInvoice.types';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

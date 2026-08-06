@@ -1,5 +1,5 @@
 import { TableSheetPdf } from '../../common/TableSheetPdf';
-import { IBalanceSheetQuery } from './BalanceSheet.types';
+import type { IBalanceSheetQuery } from './BalanceSheet.types';
 import { BalanceSheetTableInjectable } from './BalanceSheetTableInjectable';
 import { HtmlTableCustomCss } from './constants';
 import { Injectable } from '@nestjs/common';
@@ -9,7 +9,7 @@ export class BalanceSheetPdfInjectable {
   constructor(
     private readonly balanceSheetTable: BalanceSheetTableInjectable,
     private readonly tableSheetPdf: TableSheetPdf,
-  ) { }
+  ) {}
 
   /**
    * Converts the given balance sheet table to pdf.

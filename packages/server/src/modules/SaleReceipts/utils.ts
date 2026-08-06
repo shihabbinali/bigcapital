@@ -1,12 +1,9 @@
 // @ts-nocheck
-import {
-  ISaleReceipt,
-  ISaleReceiptBrandingTemplateAttributes,
-} from '@/interfaces';
+import { ISaleReceipt, ISaleReceiptBrandingTemplateAttributes } from '@/interfaces';
 import { contactAddressTextFormat } from '@/utils/address-text-format';
 
 export const transformReceiptToBrandingTemplateAttributes = (
-  saleReceipt: ISaleReceipt
+  saleReceipt: ISaleReceipt,
 ): Partial<ISaleReceiptBrandingTemplateAttributes> => {
   return {
     total: saleReceipt.totalFormatted,
@@ -27,13 +24,18 @@ export const transformReceiptToBrandingTemplateAttributes = (
       : 'Discount',
     customerNote: saleReceipt.receiptMessage,
     termsConditions: saleReceipt.termsConditions,
-    customerAddress: contactAddressTextFormat(saleReceipt.customer, undefined, saleReceipt.customerName),
+    customerAddress: contactAddressTextFormat(
+      saleReceipt.customer,
+      undefined,
+      saleReceipt.customerName,
+    ),
   };
 };
 
 export const transformReceiptToMailDataArgs = (saleReceipt: any) => {
   return {
-    'Customer Name': saleReceipt.customer?.displayName || saleReceipt.customerName || '',
+    'Customer Name':
+      saleReceipt.customer?.displayName || saleReceipt.customerName || '',
     'Receipt Number': saleReceipt.receiptNumber,
     'Receipt Date': saleReceipt.formattedReceiptDate,
     'Receipt Amount': saleReceipt.formattedAmount,

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
-import {
+import type {
   IAllocatedLandedCostCreatedPayload,
   IAllocatedLandedCostDeletedPayload,
 } from '../types/BillLandedCosts.types';

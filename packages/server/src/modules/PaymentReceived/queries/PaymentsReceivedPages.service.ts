@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { omit } from 'lodash';
-import { IPaymentReceivePageEntry } from '../types/PaymentReceived.types';
+import type { IPaymentReceivePageEntry } from '../types/PaymentReceived.types';
 import { ERRORS } from '../constants';
 import { SaleInvoice } from '@/modules/SaleInvoices/models/SaleInvoice';
 import { PaymentReceived } from '../models/PaymentReceived';
 import { ServiceError } from '@/modules/Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 /**
  * Payment receives edit/new pages service.
@@ -18,7 +18,7 @@ export class PaymentsReceivedPagesService {
 
     @Inject(PaymentReceived.name)
     private readonly paymentReceived: TenantModelProxy<typeof PaymentReceived>,
-  ) { }
+  ) {}
 
   /**
    * Retrive page invoices entries from the given sale invoices models.

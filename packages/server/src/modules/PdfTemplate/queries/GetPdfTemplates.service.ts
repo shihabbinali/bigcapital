@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { GetPdfTemplatesTransformer } from './GetPdfTemplates.transformer';
 import { PdfTemplateModel } from '../models/PdfTemplate';
 import { TransformerInjectable } from '../../Transformer/TransformerInjectable.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetPdfTemplates {

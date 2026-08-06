@@ -1,10 +1,10 @@
-import {
+import type {
   IFinancialSheetBranchesQuery,
   IFinancialSheetCommonMeta,
   IFormatNumberSettings,
   INumberFormatQuery,
 } from '../../types/Report.types';
-import { IFinancialTable } from '../../types/Table.types';
+import type { IFinancialTable } from '../../types/Table.types';
 
 // Balance sheet schema nodes types.
 export enum BALANCE_SHEET_SCHEMA_NODE_TYPE {

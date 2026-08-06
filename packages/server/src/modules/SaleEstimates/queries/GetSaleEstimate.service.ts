@@ -5,7 +5,7 @@ import { SaleEstimateValidators } from '../commands/SaleEstimateValidators.servi
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { SaleEstimate } from '../models/SaleEstimate';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetSaleEstimate {

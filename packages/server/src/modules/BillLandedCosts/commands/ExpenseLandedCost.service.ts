@@ -1,8 +1,8 @@
 import { Expense } from '@/modules/Expenses/models/Expense.model';
 import { Injectable } from '@nestjs/common';
 import { isEmpty } from 'lodash';
-import { ModelObject } from 'objection';
-import {
+import type { ModelObject } from 'objection';
+import type {
   ILandedCostTransaction,
   ILandedCostTransactionEntry,
 } from '../types/BillLandedCosts.types';

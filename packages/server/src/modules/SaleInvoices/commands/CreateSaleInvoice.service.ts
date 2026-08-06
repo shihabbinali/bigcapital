@@ -1,7 +1,7 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   ISaleInvoiceCreatedPayload,
   ISaleInvoiceCreatingPaylaod,
 } from '../SaleInvoice.types';
@@ -15,7 +15,7 @@ import { SaleInvoice } from '../models/SaleInvoice';
 import { SaleEstimate } from '@/modules/SaleEstimates/models/SaleEstimate';
 import { Customer } from '@/modules/Customers/models/Customer';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { CreateSaleInvoiceDto } from '../dtos/SaleInvoice.dto';
 
 @Injectable()

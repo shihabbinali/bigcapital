@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { TableSheetPdf } from '../../common/TableSheetPdf';
 import { PurchasesByItemsTableInjectable } from './PurchasesByItemsTableInjectable';
-import { IPurchasesByItemsReportQuery } from './types/PurchasesByItems.types';
+import type { IPurchasesByItemsReportQuery } from './types/PurchasesByItems.types';
 import { HtmlTableCustomCss } from './_types';
 
 @Injectable()
@@ -16,9 +16,7 @@ export class PurchasesByItemsPdf {
    * @param {IBalanceSheetQuery} query - Balance sheet query.
    * @returns {Promise<Buffer>}
    */
-  public async pdf(
-    query: IPurchasesByItemsReportQuery,
-  ): Promise<Buffer> {
+  public async pdf(query: IPurchasesByItemsReportQuery): Promise<Buffer> {
     const table = await this.purchasesByItemsTable.table(query);
 
     return this.tableSheetPdf.convertToPdf(

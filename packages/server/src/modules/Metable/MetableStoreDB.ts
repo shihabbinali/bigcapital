@@ -1,4 +1,4 @@
-import { IMetadata, IMetableStoreStorage } from './types';
+import type { IMetadata, IMetableStoreStorage } from './types';
 import { MetableStore } from './MetableStore';
 import { MetableConfig } from './MetableConfig';
 import { EntityRepository } from '@/common/repository/EntityRepository';
@@ -14,7 +14,7 @@ export class MetableDBStore
   VALUE_COLUMN: string;
   TYPE_COLUMN: string;
   extraQuery: Function;
-  loaded: Boolean;
+  loaded: boolean;
   config: MetableConfig;
   extraColumns: Array<string>;
 

@@ -1,10 +1,10 @@
-import * as moment from 'moment';
-import {
+import type * as moment from 'moment';
+import type {
   IFinancialSheetBranchesQuery,
   IFinancialSheetCommonMeta,
   INumberFormatQuery,
 } from '../../types/Report.types';
-import { IFinancialTable } from '../../types/Table.types';
+import type { IFinancialTable } from '../../types/Table.types';
 
 export enum ProfitLossAggregateNodeId {
   INCOME = 'INCOME',

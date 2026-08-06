@@ -1,7 +1,7 @@
 import * as R from 'ramda';
-import { ILedger } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedger } from '@/modules/Ledger/types/Ledger.types';
 import { AccountNormal } from '@/modules/Accounts/Accounts.types';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { ItemEntry } from '@/modules/TransactionItemEntry/models/ItemEntry';
 import { Ledger } from '@/modules/Ledger/Ledger';
 import { SaleInvoice } from '../models/SaleInvoice';
@@ -115,8 +115,7 @@ export class InvoiceGL {
   private getInvoiceItemEntry = R.curry(
     (entry: ItemEntry, index: number): ILedgerEntry => {
       const commonEntry = this.invoiceGLCommonEntry;
-      const hasCost =
-        entry.costAmount > 0 && entry.item?.type !== 'inventory';
+      const hasCost = entry.costAmount > 0 && entry.item?.type !== 'inventory';
       const incomeBase = hasCost ? entry.margin : entry.totalExcludingTax;
       const localAmount = incomeBase * this.saleInvoice.exchangeRate;
 
@@ -194,7 +193,7 @@ export class InvoiceGL {
       accountNormal: AccountNormal.CREDIT,
       index: 1,
     } as ILedgerEntry;
-  };
+  }
 
   /**
    * Retrieves the invoice adjustment GL entry.
@@ -212,20 +211,19 @@ export class InvoiceGL {
       accountNormal: AccountNormal.CREDIT,
       index: 1,
     };
-  };
+  }
 
   /**
    * Retrieves the invoice GL entries.
    * @returns {ILedgerEntry[]}
    */
   public getInvoiceGLEntries = (): ILedgerEntry[] => {
-    const creditEntries = this.saleInvoice.entries.map(
-      (entry, index) => this.getInvoiceItemEntry(entry, index),
+    const creditEntries = this.saleInvoice.entries.map((entry, index) =>
+      this.getInvoiceItemEntry(entry, index),
     );
     const costEntries = this.saleInvoice.entries
       .filter(
-        (entry) =>
-          entry.costAmount > 0 && entry.item?.type !== 'inventory',
+        (entry) => entry.costAmount > 0 && entry.item?.type !== 'inventory',
       )
       .map((entry, index) => this.getInvoiceCostEntry(entry, index));
     const taxEntries = this.saleInvoice.entries

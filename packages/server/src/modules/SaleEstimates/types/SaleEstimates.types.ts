@@ -1,12 +1,12 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 // import { CommonMailOptions, CommonMailOptionsDTO } from './Mailable';
 // import { AttachmentLinkDTO } from './Attachments';
 import { SaleEstimate } from '../models/SaleEstimate';
-import { IItemEntryDTO } from '@/modules/TransactionItemEntry/ItemEntry.types';
-import { AttachmentLinkDTO } from '@/modules/Attachments/Attachments.types';
-import { IDynamicListFilter } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
-import { CommonMailOptionsDTO } from '@/modules/MailNotification/MailNotification.types';
-import { CommonMailOptions } from '@/modules/MailNotification/MailNotification.types';
+import type { IItemEntryDTO } from '@/modules/TransactionItemEntry/ItemEntry.types';
+import type { AttachmentLinkDTO } from '@/modules/Attachments/Attachments.types';
+import type { IDynamicListFilter } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
+import type { CommonMailOptionsDTO } from '@/modules/MailNotification/MailNotification.types';
+import type { CommonMailOptions } from '@/modules/MailNotification/MailNotification.types';
 import { EditSaleEstimateDto } from '../dtos/SaleEstimate.dto';
 
 export const SendSaleEstimateMailQueue = 'SendSaleEstimateMailQueue';

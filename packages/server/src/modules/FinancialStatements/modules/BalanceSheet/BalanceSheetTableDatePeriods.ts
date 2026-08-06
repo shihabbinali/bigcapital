@@ -1,10 +1,13 @@
 // @ts-nocheck
 import * as R from 'ramda';
-import * as moment from 'moment';
-import { ITableColumn, ITableColumnAccessor } from '../../types/Table.types';
+import moment from 'moment';
+import type {
+  ITableColumn,
+  ITableColumnAccessor,
+} from '../../types/Table.types';
 import { FinancialDatePeriods } from '../../common/FinancialDatePeriods';
 import { IDateRange } from '../CashFlow/Cashflow.types';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from '../../common/FinancialSheet';
 
 export const BalanceSheetTableDatePeriods = <

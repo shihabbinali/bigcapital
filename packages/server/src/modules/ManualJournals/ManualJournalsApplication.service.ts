@@ -4,10 +4,7 @@ import { EditManualJournal } from './commands/EditManualJournal.service';
 import { PublishManualJournal } from './commands/PublishManualJournal.service';
 import { GetManualJournal } from './queries/GetManualJournal.service';
 import { DeleteManualJournalService } from './commands/DeleteManualJournal.service';
-import {
-  CreateManualJournalDto,
-  EditManualJournalDto,
-} from './dtos/ManualJournal.dto';
+import { CreateManualJournalDto, EditManualJournalDto } from './dtos/ManualJournal.dto';
 import { GetManualJournalsQueryDto } from './dtos/GetManualJournalsQuery.dto';
 import { GetManualJournals } from './queries/GetManualJournals.service';
 import { BulkDeleteManualJournalsService } from './BulkDeleteManualJournals.service';
@@ -25,7 +22,7 @@ export class ManualJournalsApplication {
     private getManualJournalsService: GetManualJournals,
     private bulkDeleteManualJournalsService: BulkDeleteManualJournalsService,
     private validateBulkDeleteManualJournalsService: ValidateBulkDeleteManualJournalsService,
-  ) { }
+  ) {}
 
   /**
    * Make journal entries.

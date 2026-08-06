@@ -1,4 +1,4 @@
-import {
+import type {
   IPurchasesByItemsReportQuery,
   IPurchasesByItemsTable,
 } from './types/PurchasesByItems.types';

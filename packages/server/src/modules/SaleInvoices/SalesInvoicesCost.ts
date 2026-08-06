@@ -1,14 +1,14 @@
 import { Mutex } from 'async-mutex';
 import { chain } from 'lodash';
-import * as moment from 'moment';
-import { Knex } from 'knex';
+import moment from 'moment';
+import type { Knex } from 'knex';
 import { Injectable } from '@nestjs/common';
 import { UnitOfWork } from '../Tenancy/TenancyDB/UnitOfWork.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { InventoryTransaction } from '../InventoryCost/models/InventoryTransaction';
-import { IInventoryCostLotsGLEntriesWriteEvent } from '../InventoryCost/types/InventoryCost.types';
+import type { IInventoryCostLotsGLEntriesWriteEvent } from '../InventoryCost/types/InventoryCost.types';
 import { InventoryComputeCostService } from '../InventoryCost/commands/InventoryComputeCost.service';
 
 @Injectable()

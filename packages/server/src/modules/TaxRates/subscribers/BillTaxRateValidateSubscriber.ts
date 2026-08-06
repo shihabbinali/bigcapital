@@ -2,8 +2,8 @@ import { OnEvent } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { CommandTaxRatesValidators } from '../commands/CommandTaxRatesValidator.service';
 import { Injectable } from '@nestjs/common';
-import { IBillCreatingPayload } from '@/modules/Bills/Bills.types';
-import { IBillEditingPayload } from '@/modules/Bills/Bills.types';
+import type { IBillCreatingPayload } from '@/modules/Bills/Bills.types';
+import type { IBillEditingPayload } from '@/modules/Bills/Bills.types';
 
 @Injectable()
 export class BillTaxRateValidateSubscriber {

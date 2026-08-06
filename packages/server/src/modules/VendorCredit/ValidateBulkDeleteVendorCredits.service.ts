@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { TENANCY_DB_CONNECTION } from '../Tenancy/TenancyDB/TenancyDB.constants';
 import { DeleteVendorCreditService } from './commands/DeleteVendorCredit.service';
 
@@ -9,7 +9,7 @@ export class ValidateBulkDeleteVendorCreditsService {
     private readonly deleteVendorCreditService: DeleteVendorCreditService,
     @Inject(TENANCY_DB_CONNECTION)
     private readonly tenantKnex: () => Knex,
-  ) { }
+  ) {}
 
   public async validateBulkDeleteVendorCredits(
     vendorCreditIds: number[],
@@ -53,4 +53,3 @@ export class ValidateBulkDeleteVendorCreditsService {
     }
   }
 }
-

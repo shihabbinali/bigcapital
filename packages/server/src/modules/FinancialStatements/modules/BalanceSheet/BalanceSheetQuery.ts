@@ -1,10 +1,8 @@
 // @ts-nocheck
 import { merge } from 'lodash';
 import * as R from 'ramda';
-import {
-  IBalanceSheetQuery,
-  IFinancialDatePeriodsUnit,
-} from './BalanceSheet.types';
+import type { IBalanceSheetQuery } from './BalanceSheet.types';
+import { IFinancialDatePeriodsUnit } from './BalanceSheet.types';
 import { FinancialDateRanges } from '../../common/FinancialDateRanges';
 import { DISPLAY_COLUMNS_BY } from './constants';
 

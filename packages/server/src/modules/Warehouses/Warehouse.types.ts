@@ -1,7 +1,7 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Warehouse } from './models/Warehouse.model';
 import { WarehouseTransfer } from '../WarehousesTransfers/models/WarehouseTransfer';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 
 export interface IWarehouse {
   id?: number;
@@ -140,8 +140,7 @@ export interface IItemWarehouseQuantityChange {
   amount: number;
 }
 
-export interface IWarehousesActivatePayload {
-}
+export interface IWarehousesActivatePayload {}
 export interface IWarehousesActivatedPayload {
   primaryWarehouse: Warehouse;
 }

@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { CreditNote } from '../../CreditNotes/models/CreditNote';
 import { ERRORS } from '../../CreditNotes/constants';
 import { ServiceError } from '@/modules/Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DeleteCustomerLinkedCreditNoteService {

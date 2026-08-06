@@ -2,21 +2,21 @@ import { Injectable } from '@nestjs/common';
 import { events } from '@/common/events/events';
 import { OnEvent } from '@nestjs/event-emitter';
 import { ConfigService } from '@nestjs/config';
-import {
+import type {
   IAuthSendedResetPassword,
   IAuthSignedUpEventPayload,
   ISignUpConfigmResendedEventPayload,
 } from '../Auth.interfaces';
 import { Queue } from 'bullmq';
 import { InjectQueue } from '@nestjs/bullmq';
-import { SendResetPasswordMailJobPayload } from '../processors/SendResetPasswordMail.processor';
+import type { SendResetPasswordMailJobPayload } from '../processors/SendResetPasswordMail.processor';
 import {
   SendResetPasswordMailJob,
   SendResetPasswordMailQueue,
   SendSignupVerificationMailJob,
   SendSignupVerificationMailQueue,
 } from '../Auth.constants';
-import { SendSignupVerificationMailJobPayload } from '../processors/SendSignupVerificationMail.processor';
+import type { SendSignupVerificationMailJobPayload } from '../processors/SendSignupVerificationMail.processor';
 
 @Injectable()
 export class AuthMailSubscriber {

@@ -22,10 +22,8 @@ import { CreateExpenseDto, EditExpenseDto } from './dtos/Expense.dto';
 import { PaginatedResponseDto } from '@/common/dtos/PaginatedResults.dto';
 import { ExpenseResponseDto } from './dtos/ExpenseResponse.dto';
 import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
-import {
-  BulkDeleteDto,
-  ValidateBulkDeleteResponseDto,
-} from '@/common/dtos/BulkDelete.dto';
+import { ValidateBulkDeleteResponseDto } from '@/common/dtos/BulkDelete.dto';
+import { BulkDeleteDto } from '@/common/dtos/BulkDelete.dto';
 import { RequirePermission } from '@/modules/Roles/RequirePermission.decorator';
 import { PermissionGuard } from '@/modules/Roles/Permission.guard';
 import { AuthorizationGuard } from '@/modules/Roles/Authorization.guard';
@@ -42,7 +40,7 @@ import { ExpenseAction } from './Expenses.types';
 @ApiCommonHeaders()
 @UseGuards(AuthorizationGuard, PermissionGuard)
 export class ExpensesController {
-  constructor(private readonly expensesApplication: ExpensesApplication) { }
+  constructor(private readonly expensesApplication: ExpensesApplication) {}
 
   @Post('validate-bulk-delete')
   @RequirePermission(ExpenseAction.Delete, AbilitySubject.Expense)
@@ -72,9 +70,7 @@ export class ExpensesController {
     status: 200,
     description: 'Expenses deleted successfully',
   })
-  public bulkDeleteExpenses(
-    @Body() bulkDeleteDto: BulkDeleteDto,
-  ) {
+  public bulkDeleteExpenses(@Body() bulkDeleteDto: BulkDeleteDto) {
     return this.expensesApplication.bulkDeleteExpenses(bulkDeleteDto.ids, {
       skipUndeletable: bulkDeleteDto.skipUndeletable ?? false,
     });

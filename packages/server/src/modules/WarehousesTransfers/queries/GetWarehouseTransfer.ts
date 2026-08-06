@@ -1,9 +1,9 @@
 import { WarehouseTransferTransformer } from './WarehouseTransferTransfomer';
 import { Inject, Injectable } from '@nestjs/common';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { WarehouseTransfer } from '../models/WarehouseTransfer';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 
 @Injectable()
 export class GetWarehouseTransfer {

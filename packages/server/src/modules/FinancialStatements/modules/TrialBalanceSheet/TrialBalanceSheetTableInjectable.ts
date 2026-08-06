@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {
+import type {
   ITrialBalanceSheetQuery,
   ITrialBalanceSheetTable,
 } from './TrialBalanceSheet.types';

@@ -1,6 +1,6 @@
 import { Ledger } from '@/modules/Ledger/Ledger';
 import { ManualJournal } from '../models/ManualJournal';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { ManualJournalEntry } from '../models/ManualJournalEntry';
 
 export class ManualJournalGL {

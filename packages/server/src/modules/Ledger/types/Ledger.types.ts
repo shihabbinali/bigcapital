@@ -1,5 +1,5 @@
-import { Knex } from 'knex';
-import * as moment from 'moment';
+import type { Knex } from 'knex';
+import type * as moment from 'moment';
 
 export interface ILedger {
   entries: ILedgerEntry[];

@@ -1,7 +1,6 @@
-
-import { IFinancialSheetCommonMeta } from '../../types/Report.types';
-import { IFinancialTable } from '../../types/Table.types';
-import {
+import type { IFinancialSheetCommonMeta } from '../../types/Report.types';
+import type { IFinancialTable } from '../../types/Table.types';
+import type {
   ITransactionsByContactsAmount,
   ITransactionsByContactsTransaction,
   ITransactionsByContactsFilter,
@@ -36,7 +35,7 @@ export interface ITransactionsByVendorsStatement {
 export interface ITransactionsByVendorsService {
   transactionsByVendors(
     tenantId: number,
-    filter: ITransactionsByVendorsFilter
+    filter: ITransactionsByVendorsFilter,
   ): Promise<ITransactionsByVendorsStatement>;
 }
 

@@ -1,12 +1,12 @@
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   IWarehouseTransferDeletedPayload,
   IWarehouseTransferDeletePayload,
 } from '@/modules/Warehouses/Warehouse.types';
 import { Inject, Injectable } from '@nestjs/common';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { events } from '@/common/events/events';
 import { WarehouseTransfer } from '../models/WarehouseTransfer';
 import { WarehouseTransferEntry } from '../models/WarehouseTransferEntry';

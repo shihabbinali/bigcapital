@@ -3,9 +3,9 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { AccountTransaction } from '@/modules/Accounts/models/AccountTransaction.model';
 import { Customer } from '@/modules/Customers/models/Customer';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { ACCOUNT_TYPE } from '@/constants/accounts';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class CustomerBalanceSummaryRepository {

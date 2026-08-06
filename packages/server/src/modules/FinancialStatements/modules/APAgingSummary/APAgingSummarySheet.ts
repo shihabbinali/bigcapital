@@ -1,20 +1,21 @@
 import { sum, isEmpty } from 'lodash';
 import * as R from 'ramda';
-import {
+import type {
   IAPAgingSummaryData,
   IAPAgingSummaryVendor,
   IAPAgingSummaryColumns,
   IAPAgingSummaryTotal,
 } from './APAgingSummary.types';
 import { AgingSummaryReport } from '../AgingSummary/AgingSummary';
-import { IAgingPeriod } from '../AgingSummary/AgingSummary.types';
-import { ModelObject } from 'objection';
+import type { IAgingPeriod } from '../AgingSummary/AgingSummary.types';
+import type { ModelObject } from 'objection';
 import { Vendor } from '@/modules/Vendors/models/Vendor';
 import { allPassedConditionsPass } from '@/utils/all-conditions-passed';
 import { APAgingSummaryRepository } from './APAgingSummaryRepository';
 import { Bill } from '@/modules/Bills/models/Bill';
 import { APAgingSummaryQueryDto } from './APAgingSummaryQuery.dto';
-import { IFinancialReportMeta, DEFAULT_REPORT_META } from '../../types/Report.types';
+import type { IFinancialReportMeta } from '../../types/Report.types';
+import { DEFAULT_REPORT_META } from '../../types/Report.types';
 
 export class APAgingSummarySheet extends AgingSummaryReport {
   readonly repository: APAgingSummaryRepository;

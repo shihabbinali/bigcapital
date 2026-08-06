@@ -1,5 +1,5 @@
 import { TableSheetPdf } from '../../common/TableSheetPdf';
-import { ICustomerBalanceSummaryQuery } from './CustomerBalanceSummary.types';
+import type { ICustomerBalanceSummaryQuery } from './CustomerBalanceSummary.types';
 import { CustomerBalanceSummaryTableInjectable } from './CustomerBalanceSummaryTableInjectable';
 import { HtmlTableCustomCss } from './constants';
 import { Injectable } from '@nestjs/common';

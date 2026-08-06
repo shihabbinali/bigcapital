@@ -2,10 +2,10 @@ import { LedgerStorageService } from '@/modules/Ledger/LedgerStorage.service';
 import { Inject, Injectable } from '@nestjs/common';
 import { RefundCreditNote } from '../models/RefundCreditNote';
 import { Ledger } from '@/modules/Ledger/Ledger';
-import { Knex } from 'knex';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { Knex } from 'knex';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { Account } from '@/modules/Accounts/models/Account.model';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { AccountNormal } from '@/interfaces/Account';
 
 @Injectable()
@@ -123,15 +123,15 @@ export class RefundCreditNoteGLEntries {
     trx?: Knex.Transaction,
   ) => {
     // Retrieve the refund with associated credit note.
-    const refundCreditNote = await this.refundCreditNoteModel().query(trx)
+    const refundCreditNote = await this.refundCreditNoteModel()
+      .query(trx)
       .findById(refundCreditNoteId)
       .withGraphFetched('creditNote');
 
     // Receivable account A/R.
-    const receivableAccount = await this.accountModel().query().findOne(
-      'slug',
-      'accounts-receivable',
-    );
+    const receivableAccount = await this.accountModel()
+      .query()
+      .findOne('slug', 'accounts-receivable');
     // Retrieve refund credit GL entries.
     const refundGLEntries = this.getRefundCreditGLEntries(
       refundCreditNote,

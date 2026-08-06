@@ -1,8 +1,8 @@
 import { forEach } from 'lodash';
 import { DynamicFilterAbstractor } from './DynamicFilterAbstractor';
-import { IFilterRole } from './DynamicFilter.types';
+import type { IFilterRole } from './DynamicFilter.types';
 import { DynamicFilterRoleAbstractor } from './DynamicFilterRoleAbstractor';
-import { MetableModel } from '../types/DynamicList.types';
+import type { MetableModel } from '../types/DynamicList.types';
 
 export class DynamicFilter<R extends {}> extends DynamicFilterAbstractor {
   public model: MetableModel;

@@ -1,6 +1,6 @@
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { defaultTo, sumBy, get } from 'lodash';
-import {
+import type {
   IAgingPeriod,
   IAgingPeriodTotal,
   IAgingAmount,
@@ -12,8 +12,8 @@ import { Customer } from '@/modules/Customers/models/Customer';
 import { Vendor } from '@/modules/Vendors/models/Vendor';
 import { Bill } from '@/modules/Bills/models/Bill';
 import { SaleInvoice } from '@/modules/SaleInvoices/models/SaleInvoice';
-import { IFormatNumberSettings } from '@/utils/format-number';
-import { IARAgingSummaryCustomer } from '../ARAgingSummary/ARAgingSummary.types';
+import type { IFormatNumberSettings } from '@/utils/format-number';
+import type { IARAgingSummaryCustomer } from '../ARAgingSummary/ARAgingSummary.types';
 
 export abstract class AgingSummaryReport extends AgingReport {
   readonly contacts: ModelObject<Customer | Vendor>[];

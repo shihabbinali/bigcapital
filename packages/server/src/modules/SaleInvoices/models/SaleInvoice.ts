@@ -1,15 +1,15 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import * as R from 'ramda';
 import { Model, raw } from 'objection';
 import { castArray } from 'lodash';
-import { MomentInput, unitOfTime } from 'moment';
+import type { MomentInput, unitOfTime } from 'moment';
 import { defaultTo } from 'ramda';
 import { TaxRateTransaction } from '@/modules/TaxRates/models/TaxRateTransaction.model';
 import { ItemEntry } from '@/modules/TransactionItemEntry/models/ItemEntry';
 import { Document } from '@/modules/ChromiumlyTenancy/models/Document';
 import { DiscountType } from '@/common/types/Discount';
 import { Account } from '@/modules/Accounts/models/Account.model';
-import { ISearchRole } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
+import type { ISearchRole } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
 import { TenantBaseModel } from '@/modules/System/models/TenantBaseModel';
 import { TransactionPaymentServiceEntry } from '@/modules/PaymentServices/models/TransactionPaymentServiceEntry.model';
 import { InjectAttachable } from '@/modules/Attachments/decorators/InjectAttachable.decorator';

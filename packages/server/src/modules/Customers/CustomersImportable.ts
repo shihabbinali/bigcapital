@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { CustomersSampleData } from './_SampleData';
 import { Injectable } from '@nestjs/common';
 import { Importable } from '../Import/Importable';

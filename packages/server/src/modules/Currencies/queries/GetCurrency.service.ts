@@ -1,4 +1,4 @@
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { Currency } from '../models/Currency.model';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { CurrencyTransformer } from '../Currency.transformer';

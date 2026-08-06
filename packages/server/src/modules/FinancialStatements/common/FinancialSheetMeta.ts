@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { IFinancialSheetCommonMeta } from '../types/Report.types';
+import type { IFinancialSheetCommonMeta } from '../types/Report.types';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { InventoryComputeCostService } from '@/modules/InventoryCost/commands/InventoryComputeCost.service';
 

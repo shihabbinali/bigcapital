@@ -1,11 +1,11 @@
 import * as R from 'ramda';
+import type { IProfitLossSchemaNode } from './ProfitLossSheet.types';
 import {
   ProfitLossAggregateNodeId,
   ProfitLossNodeType,
-  IProfitLossSchemaNode,
 } from './ProfitLossSheet.types';
 import { ACCOUNT_TYPE } from '@/constants/accounts';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSchema } from '../../common/FinancialSchema';
 import { FinancialSheet } from '../../common/FinancialSheet';
 

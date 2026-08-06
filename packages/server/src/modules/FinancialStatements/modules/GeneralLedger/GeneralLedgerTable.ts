@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import {
+import type {
   IGeneralLedgerMeta,
   IGeneralLedgerSheetAccount,
   IGeneralLedgerSheetAccountTransaction,
@@ -10,7 +10,7 @@ import { FinancialSheet } from '../../common/FinancialSheet';
 import { FinancialSheetStructure } from '../../common/FinancialSheetStructure';
 import { FinancialTable } from '../../common/FinancialTable';
 import { ROW_TYPE } from './utils';
-import {
+import type {
   IColumnMapperMeta,
   ITableColumn,
   ITableColumnAccessor,

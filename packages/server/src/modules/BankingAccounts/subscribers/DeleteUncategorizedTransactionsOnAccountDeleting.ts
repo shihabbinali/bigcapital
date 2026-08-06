@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import { IAccountEventDeletePayload } from '@/interfaces/Account';
+import type { IAccountEventDeletePayload } from '@/interfaces/Account';
 import { RevertRecognizedTransactionsService } from '@/modules/BankingTranasctionsRegonize/commands/RevertRecognizedTransactions.service';
 import { UncategorizedBankTransaction } from '@/modules/BankingTransactions/models/UncategorizedBankTransaction';
 import { DeleteBankRulesService } from '@/modules/BankRules/commands/DeleteBankRules.service';
 import { BankRule } from '@/modules/BankRules/models/BankRule';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DeleteUncategorizedTransactionsOnAccountDeleting {

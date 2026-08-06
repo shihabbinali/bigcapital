@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { ImportInsertError, ResourceMetaFieldsMap } from './interfaces';
+import type { ImportInsertError, ResourceMetaFieldsMap } from './interfaces';
 import { ERRORS, convertFieldsToYupValidation } from './_utils';
-import { IModelMeta } from '@/interfaces/Model';
+import type { IModelMeta } from '@/interfaces/Model';
 import { ServiceError } from '../Items/ServiceError';
 
 @Injectable()
@@ -25,7 +25,7 @@ export class ImportFileDataValidator {
    */
   public async validateData(
     importableFields: ResourceMetaFieldsMap,
-    data: Record<string, any>
+    data: Record<string, any>,
   ): Promise<void | ImportInsertError[]> {
     const YupSchema = convertFieldsToYupValidation(importableFields);
     const _data = { ...data };

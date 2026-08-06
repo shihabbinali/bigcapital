@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { RefundCreditNote } from '../models/RefundCreditNote';
 import { RefundCreditNoteTransformer } from '../../CreditNotes/queries/RefundCreditNoteTransformer';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetRefundCreditNoteTransaction {

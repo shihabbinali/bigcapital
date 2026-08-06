@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { GetSaleInvoice } from '../SaleInvoices/queries/GetSaleInvoice.service';
 import { CreatePaymentReceivedService } from '../PaymentReceived/commands/CreatePaymentReceived.serivce';
 import { UnitOfWork } from '../Tenancy/TenancyDB/UnitOfWork.service';
@@ -12,7 +12,7 @@ export class CreatePaymentReceiveStripePayment {
     private readonly createPaymentReceivedService: CreatePaymentReceivedService,
     private readonly uow: UnitOfWork,
     private readonly accountRepository: AccountRepository,
-  ) { }
+  ) {}
 
   /**
    * Creates a payment received transaction associated to the given invoice.
@@ -27,8 +27,10 @@ export class CreatePaymentReceiveStripePayment {
         await this.accountRepository.findOrCreateStripeClearing({}, trx);
 
       // Retrieves the given invoice to create payment transaction associated to it.
-      const invoice =
-        await this.getSaleInvoiceService.getSaleInvoice(saleInvoiceId, trx);
+      const invoice = await this.getSaleInvoiceService.getSaleInvoice(
+        saleInvoiceId,
+        trx,
+      );
 
       const paymentReceivedDTO = {
         customerId: invoice.customerId,

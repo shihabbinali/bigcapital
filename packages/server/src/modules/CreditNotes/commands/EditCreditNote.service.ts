@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
-import {
+import type {
   ICreditNoteEditedPayload,
   ICreditNoteEditingPayload,
 } from '../types/CreditNotes.types';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { CreditNote } from '../models/CreditNote';
 import { Contact } from '../../Contacts/models/Contact';
 import { ItemsEntriesService } from '../../Items/ItemsEntries.service';
@@ -11,7 +11,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { UnitOfWork } from '../../Tenancy/TenancyDB/UnitOfWork.service';
 import { events } from '@/common/events/events';
 import { CommandCreditNoteDTOTransform } from './CommandCreditNoteDTOTransform.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { EditCreditNoteDto } from '../dtos/CreditNote.dto';
 
 @Injectable()

@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import * as FormData from 'form-data';
-import { PageProperties, PdfFormat } from '@/libs/chromiumly/_types';
+import FormData from 'form-data';
+import { PdfFormat } from '@/libs/chromiumly/_types';
+import type { PageProperties } from '@/libs/chromiumly/_types';
 import { Chromiumly } from '@/libs/chromiumly/Chromiumly';
 import { GotenbergUtils } from '@/libs/chromiumly/GotenbergUtils';
 import { ConverterUtils } from '@/libs/chromiumly/ConvertUtils';

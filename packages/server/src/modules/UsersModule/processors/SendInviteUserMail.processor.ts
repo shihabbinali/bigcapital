@@ -1,12 +1,14 @@
-import { Processor, WorkerHost } from '@nestjs/bullmq';
+import { Processor } from '@nestjs/bullmq';
+import { WorkerHost } from '@nestjs/bullmq';
 import { Job } from 'bullmq';
 import { Scope } from '@nestjs/common';
-import { ClsService, UseCls } from 'nestjs-cls';
+import { UseCls } from 'nestjs-cls';
+import { ClsService } from 'nestjs-cls';
 import {
   SendInviteUserMailJob,
   SendInviteUserMailQueue,
 } from '../Users.constants';
-import { SendInviteUserMailJobPayload } from '../Users.types';
+import type { SendInviteUserMailJobPayload } from '../Users.types';
 import { SendInviteUsersMailMessage } from '../commands/SendInviteUsersMailMessage.service';
 
 @Processor({

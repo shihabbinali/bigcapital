@@ -1,7 +1,7 @@
 import * as R from 'ramda';
-import { ILedger } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedger } from '@/modules/Ledger/types/Ledger.types';
 import { AccountNormal } from '@/modules/Accounts/Accounts.types';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { ExpenseCategory } from '../models/ExpenseCategory.model';
 import { Ledger } from '@/modules/Ledger/Ledger';
 import { Expense } from '../models/Expense.model';

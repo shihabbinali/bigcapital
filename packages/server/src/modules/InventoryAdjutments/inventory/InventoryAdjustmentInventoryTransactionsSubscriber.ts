@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import {
+import type {
   IInventoryAdjustmentEventCreatedPayload,
   IInventoryAdjustmentEventPublishedPayload,
 } from '../types/InventoryAdjustments.types';
-import { IInventoryAdjustmentEventDeletedPayload } from '../types/InventoryAdjustments.types';
+import type { IInventoryAdjustmentEventDeletedPayload } from '../types/InventoryAdjustments.types';
 import { InventoryAdjustmentInventoryTransactions } from './InventoryAdjustmentInventoryTransactions';
 import { events } from '@/common/events/events';
 import { OnEvent } from '@nestjs/event-emitter';

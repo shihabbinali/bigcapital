@@ -1,6 +1,6 @@
 import { castArray, difference } from 'lodash';
 import { Inject, Injectable } from '@nestjs/common';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { DocumentModel } from './models/Document.model';
 import { ServiceError } from '../Items/ServiceError';
 

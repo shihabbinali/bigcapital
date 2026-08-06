@@ -1,11 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { DeleteObjectCommand, S3Client } from '@aws-sdk/client-s3';
-import { Knex } from 'knex';
+import { DeleteObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client } from '@aws-sdk/client-s3';
+import type { Knex } from 'knex';
 import { ConfigService } from '@nestjs/config';
 import { UnitOfWork } from '../Tenancy/TenancyDB/UnitOfWork.service';
 import { S3_CLIENT } from '../S3/S3.module';
 import { DocumentModel } from './models/Document.model';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { DocumentLinkModel } from './models/DocumentLink.model';
 
 @Injectable()

@@ -1,8 +1,8 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { BillsApplication } from '../Bills.application';
 import { Injectable } from '@nestjs/common';
 import { Exportable } from '@/modules/Export/Exportable';
-import { IBillsFilter } from '../Bills.types';
+import type { IBillsFilter } from '../Bills.types';
 import { EXPORT_SIZE_LIMIT } from '@/modules/Export/constants';
 import { ExportableService } from '@/modules/Export/decorators/ExportableModel.decorator';
 import { Bill } from '../models/Bill';

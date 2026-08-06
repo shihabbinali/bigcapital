@@ -41,7 +41,8 @@ export class ItemEntryDto {
   @ToNumber()
   @IsNumber()
   @ApiProperty({
-    description: 'The cost rate of the item entry (for service items with variable cost)',
+    description:
+      'The cost rate of the item entry (for service items with variable cost)',
     required: false,
     example: 0,
   })

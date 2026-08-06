@@ -7,7 +7,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { CommandRolePermissionDto } from '../dtos/Role.dto';
 import { ERRORS } from '../constants';
 import { getInvalidPermissions } from '../utils';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetRoleService {

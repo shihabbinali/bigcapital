@@ -1,7 +1,7 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import {
+import type {
   ISaleEstimateDTO,
   ISaleEstimateEditedPayload,
   ISaleEstimateEditingPayload,
@@ -13,7 +13,7 @@ import { events } from '@/common/events/events';
 import { SaleEstimate } from '../models/SaleEstimate';
 import { ItemsEntriesService } from '@/modules/Items/ItemsEntries.service';
 import { Customer } from '@/modules/Customers/models/Customer';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { EditSaleEstimateDto } from '../dtos/SaleEstimate.dto';
 
 @Injectable()

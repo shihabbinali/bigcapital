@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { difference, sumBy } from 'lodash';
-import {
+import type {
   IPaymentReceivedEditDTO,
   IPaymentReceivedEntryDTO,
 } from '../types/PaymentReceived.types';
@@ -11,7 +11,7 @@ import { Account } from '@/modules/Accounts/models/Account.model';
 import { SaleInvoice } from '@/modules/SaleInvoices/models/SaleInvoice';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { ACCOUNT_TYPE } from '@/constants/accounts';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { EditPaymentReceivedDto } from '../dtos/PaymentReceived.dto';
 
 @Injectable()
@@ -32,7 +32,7 @@ export class PaymentReceivedValidators {
 
     @Inject(Account.name)
     private readonly accountModel: TenantModelProxy<typeof Account>,
-  ) { }
+  ) {}
 
   /**
    * Validates the payment existance.

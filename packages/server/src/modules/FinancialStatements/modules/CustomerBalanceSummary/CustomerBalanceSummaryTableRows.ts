@@ -1,12 +1,12 @@
 import * as R from 'ramda';
 import { I18nService } from 'nestjs-i18n';
-import {
+import type {
   ICustomerBalanceSummaryData,
   ICustomerBalanceSummaryCustomer,
   ICustomerBalanceSummaryTotal,
   ICustomerBalanceSummaryQuery,
 } from './CustomerBalanceSummary.types';
-import {
+import type {
   IColumnMapperMeta,
   ITableColumn,
   ITableRow,

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {
+import type {
   IAgingSummaryMeta,
   IAgingSummaryQuery,
 } from '../AgingSummary/AgingSummary.types';

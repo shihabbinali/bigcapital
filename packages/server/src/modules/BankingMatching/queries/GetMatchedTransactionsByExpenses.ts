@@ -1,11 +1,15 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { GetMatchedTransactionsFilter, MatchedTransactionPOJO, MatchedTransactionsPOJO } from '../types';
+import type {
+  GetMatchedTransactionsFilter,
+  MatchedTransactionPOJO,
+  MatchedTransactionsPOJO,
+} from '../types';
 import { GetMatchedTransactionsByType } from './GetMatchedTransactionsByType';
 import { GetMatchedTransactionExpensesTransformer } from './GetMatchedTransactionExpensesTransformer';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { Expense } from '@/modules/Expenses/models/Expense.model';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
-import { Knex } from 'knex';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { Knex } from 'knex';
 import { TENANCY_DB_CONNECTION } from '@/modules/Tenancy/TenancyDB/TenancyDB.constants';
 import { initialize } from 'objection';
 
@@ -22,7 +26,6 @@ export class GetMatchedTransactionsByExpenses extends GetMatchedTransactionsByTy
 
     @Inject('TENANT_MODELS_INIT')
     private readonly tenantModelsInit: () => Promise<boolean>,
-    
   ) {
     super();
   }

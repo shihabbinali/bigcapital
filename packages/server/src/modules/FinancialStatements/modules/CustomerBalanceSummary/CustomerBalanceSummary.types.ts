@@ -1,6 +1,6 @@
-import { IFinancialSheetCommonMeta } from '../../types/Report.types';
-import { IFinancialTable } from '../../types/Table.types';
-import {
+import type { IFinancialSheetCommonMeta } from '../../types/Report.types';
+import type { IFinancialTable } from '../../types/Table.types';
+import type {
   IContactBalanceSummaryQuery,
   IContactBalanceSummaryAmount,
   IContactBalanceSummaryPercentage,
@@ -50,7 +50,7 @@ export interface ICustomerBalanceSummaryStatement {
 export interface ICustomerBalanceSummaryService {
   customerBalanceSummary(
     tenantId: number,
-    query: ICustomerBalanceSummaryQuery
+    query: ICustomerBalanceSummaryQuery,
   ): Promise<ICustomerBalanceSummaryStatement>;
 }
 

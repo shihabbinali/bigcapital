@@ -1,5 +1,12 @@
-import { Controller, Get, Headers, Query, Res, UseGuards } from '@nestjs/common';
-import { Response } from 'express';
+import {
+  Controller,
+  Get,
+  Headers,
+  Query,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
+import type { Response } from 'express';
 import { AcceptType } from '@/constants/accept-type';
 import { JournalSheetApplication } from './JournalSheetApplication';
 import {

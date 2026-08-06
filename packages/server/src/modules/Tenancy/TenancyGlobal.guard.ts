@@ -1,11 +1,6 @@
 import { isEmpty } from 'lodash';
-import {
-  Injectable,
-  CanActivate,
-  ExecutionContext,
-  UnauthorizedException,
-  SetMetadata,
-} from '@nestjs/common';
+import { Injectable, UnauthorizedException, SetMetadata } from '@nestjs/common';
+import type { CanActivate, ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { IS_PUBLIC_ROUTE } from '../Auth/Auth.constants';
 import { getAuthApiKey } from '../Auth/Auth.utils';

@@ -1,16 +1,16 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { CommandExpenseValidator } from './CommandExpenseValidator.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { Expense } from '../models/Expense.model';
 import { ExpenseCategory } from '../models/ExpenseCategory.model';
 import { events } from '@/common/events/events';
-import {
+import type {
   IExpenseEventDeletePayload,
   IExpenseDeletingPayload,
 } from '../interfaces/Expenses.interface';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DeleteExpense {

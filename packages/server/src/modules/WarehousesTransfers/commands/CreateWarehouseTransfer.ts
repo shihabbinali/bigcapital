@@ -1,7 +1,7 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { omit, get, isNumber } from 'lodash';
 import * as R from 'ramda';
-import {
+import type {
   ICreateWarehouseTransferDTO,
   IWarehouseTransferCreate,
   IWarehouseTransferCreated,
@@ -10,15 +10,15 @@ import {
 import { CommandWarehouseTransfer } from './CommandWarehouseTransfer';
 import { WarehouseTransferAutoIncrement } from './WarehouseTransferAutoIncrement';
 import { WarehouseTransfer } from '../models/WarehouseTransfer';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { ItemsEntriesService } from '@/modules/Items/ItemsEntries.service';
 import { InventoryItemCostService } from '@/modules/InventoryCost/commands/InventoryCosts.service';
 import { Inject, Injectable } from '@nestjs/common';
 import { events } from '@/common/events/events';
-import { IInventoryItemCostMeta } from '@/modules/InventoryCost/types/InventoryCost.types';
-import { ModelObject } from 'objection';
+import type { IInventoryItemCostMeta } from '@/modules/InventoryCost/types/InventoryCost.types';
+import type { ModelObject } from 'objection';
 import { WarehouseTransferEntry } from '../models/WarehouseTransferEntry';
 import {
   CreateWarehouseTransferDto,

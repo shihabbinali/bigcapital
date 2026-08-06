@@ -1,12 +1,12 @@
 import { sumBy, defaultTo } from 'lodash';
-import {
+import type {
   ITransactionsByContactsTransaction,
   ITransactionsByContactsAmount,
   ITransactionsByContactsFilter,
   ITransactionsByContactsContact,
 } from './TransactionsByContact.types';
 import { FinancialSheet } from '../../common/FinancialSheet';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { I18nService } from 'nestjs-i18n';
 import { allPassedConditionsPass } from '@/utils/all-conditions-passed';
 import { TransactionsByContactRepository } from './TransactionsByContactRepository';

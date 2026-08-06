@@ -1,10 +1,10 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { VendorCreditGL } from './VendorCreditGL';
 import { LedgerStorageService } from '@/modules/Ledger/LedgerStorage.service';
 import { Inject, Injectable } from '@nestjs/common';
 import { AccountRepository } from '@/modules/Accounts/repositories/Account.repository';
 import { VendorCredit } from '../models/VendorCredit';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class VendorCreditGLEntries {

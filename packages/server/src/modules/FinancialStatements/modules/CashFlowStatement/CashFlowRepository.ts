@@ -1,13 +1,13 @@
 // @ts-nocheck
 import { Inject, Injectable } from '@nestjs/common';
-import * as moment from 'moment';
-import { Knex } from 'knex';
+import moment from 'moment';
+import type { Knex } from 'knex';
 import { isEmpty } from 'lodash';
-import { ModelObject } from 'objection';
-import { ICashFlowStatementQuery } from './Cashflow.types';
+import type { ModelObject } from 'objection';
+import type { ICashFlowStatementQuery } from './Cashflow.types';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { AccountTransaction } from '@/modules/Accounts/models/AccountTransaction.model';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class CashFlowRepository {

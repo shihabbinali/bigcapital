@@ -9,7 +9,7 @@ import { GenerateShareLink } from './GenerateInvoicePaymentLink.service';
 import { Inject, Injectable } from '@nestjs/common';
 import { SaleInvoice } from '../models/SaleInvoice';
 import { ContactMailNotification } from '@/modules/MailNotification/ContactMailNotification';
-import { SaleInvoiceMailOptions } from '../SaleInvoice.types';
+import type { SaleInvoiceMailOptions } from '../SaleInvoice.types';
 
 @Injectable()
 export class SendSaleInvoiceMailCommon {
@@ -106,7 +106,8 @@ export class SendSaleInvoiceMailCommon {
 
     return {
       ...commonArgs,
-      'Customer Name': invoice.customer?.displayName || invoice.customerName || '',
+      'Customer Name':
+        invoice.customer?.displayName || invoice.customerName || '',
       'Invoice Number': invoice.invoiceNo,
       'Invoice Due Amount': invoice.dueAmountFormatted,
       'Invoice Due Date': invoice.dueDateFormatted,

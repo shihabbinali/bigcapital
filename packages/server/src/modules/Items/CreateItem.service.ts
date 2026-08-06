@@ -1,13 +1,14 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { defaultTo } from 'lodash';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Inject, Injectable, Scope } from '@nestjs/common';
-import { IItemDTO, IItemEventCreatedPayload } from '@/interfaces/Item';
+import { IItemDTO } from '@/interfaces/Item';
+import type { IItemEventCreatedPayload } from '@/interfaces/Item';
 import { events } from '@/common/events/events';
 import { ItemsValidators } from './ItemValidator.service';
 import { Item } from './models/Item';
 import { UnitOfWork } from '../Tenancy/TenancyDB/UnitOfWork.service';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { CreateItemDto } from './dtos/Item.dto';
 
 @Injectable({ scope: Scope.REQUEST })

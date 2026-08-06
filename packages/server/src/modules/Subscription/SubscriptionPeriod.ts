@@ -1,5 +1,5 @@
-import * as moment from 'moment';
-import { unitOfTime } from 'moment';
+import moment from 'moment';
+import type { unitOfTime } from 'moment';
 
 export class SubscriptionPeriod {
   private start: Date;
@@ -16,7 +16,7 @@ export class SubscriptionPeriod {
   constructor(
     interval: unitOfTime.DurationConstructor = 'month',
     count: number,
-    start?: Date
+    start?: Date,
   ) {
     this.interval = interval;
     this.count = count;

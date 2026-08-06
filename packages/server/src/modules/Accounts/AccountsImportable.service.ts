@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Injectable } from '@nestjs/common';
 import { Importable } from '../Import/Importable';
 import { AccountsSampleData } from './AccountsImportable.SampleData';
@@ -23,10 +23,7 @@ export class AccountsImportable extends Importable {
     createAccountDTO: CreateAccountDTO,
     trx?: Knex.Transaction,
   ) {
-    return this.createAccountService.createAccount(
-      createAccountDTO,
-      trx,
-    );
+    return this.createAccountService.createAccount(createAccountDTO, trx);
   }
 
   /**

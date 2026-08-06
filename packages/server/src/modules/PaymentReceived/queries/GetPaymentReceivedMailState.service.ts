@@ -3,8 +3,8 @@ import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectab
 import { GetPaymentReceivedMailStateTransformer } from './GetPaymentReceivedMailState.transformer';
 import { SendPaymentReceiveMailNotification } from '../commands/PaymentReceivedMailNotification';
 import { PaymentReceived } from '../models/PaymentReceived';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
-import { PaymentReceiveMailOpts } from '../types/PaymentReceived.types';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { PaymentReceiveMailOpts } from '../types/PaymentReceived.types';
 
 @Injectable()
 export class GetPaymentReceivedMailState {

@@ -1,6 +1,7 @@
 import { Scope } from '@nestjs/common';
 import { Job } from 'bullmq';
-import { Processor, WorkerHost } from '@nestjs/bullmq';
+import { Processor } from '@nestjs/bullmq';
+import { WorkerHost } from '@nestjs/bullmq';
 import { SendSignupVerificationMailQueue } from '../Auth.constants';
 import { MailTransporter } from '@/modules/Mail/MailTransporter.service';
 import { AuthenticationMailMesssages } from '../AuthMailMessages.esrvice';

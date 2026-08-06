@@ -2,13 +2,13 @@ import { ValidateBranchExistance } from '../../integrations/ValidateBranchExista
 import { OnEvent } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
 import { events } from '@/common/events/events';
-import { IRefundVendorCreditCreatingPayload } from '@/modules/VendorCreditsRefund/types/VendorCreditRefund.types';
+import type { IRefundVendorCreditCreatingPayload } from '@/modules/VendorCreditsRefund/types/VendorCreditRefund.types';
 
 @Injectable()
 export class VendorCreditRefundBranchValidateSubscriber {
   constructor(
     private readonly validateBranchExistance: ValidateBranchExistance,
-  ) { }
+  ) {}
 
   /**
    * Validate branch existance on refund credit note creating.

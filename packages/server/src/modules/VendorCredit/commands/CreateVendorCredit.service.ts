@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   IVendorCreditCreatedPayload,
   IVendorCreditCreatingPayload,
 } from '@/modules/VendorCredit/types/VendorCredit.types';
@@ -11,7 +11,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { ItemsEntriesService } from '@/modules/Items/ItemsEntries.service';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { VendorCreditDTOTransformService } from './VendorCreditDTOTransform.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { CreateVendorCreditDto } from '../dtos/VendorCredit.dto';
 
 @Injectable()

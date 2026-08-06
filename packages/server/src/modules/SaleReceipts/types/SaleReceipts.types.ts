@@ -1,9 +1,12 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { SaleReceipt } from '../models/SaleReceipt';
-import { CommonMailOptionsDTO } from '@/modules/MailNotification/MailNotification.types';
-import { CommonMailOptions } from '@/modules/MailNotification/MailNotification.types';
-import { TenantJobPayload } from '@/interfaces/Tenant';
-import { CreateSaleReceiptDto, EditSaleReceiptDto } from '../dtos/SaleReceipt.dto';
+import type { CommonMailOptionsDTO } from '@/modules/MailNotification/MailNotification.types';
+import type { CommonMailOptions } from '@/modules/MailNotification/MailNotification.types';
+import type { TenantJobPayload } from '@/interfaces/Tenant';
+import {
+  CreateSaleReceiptDto,
+  EditSaleReceiptDto,
+} from '../dtos/SaleReceipt.dto';
 
 export interface ISalesReceiptsFilter {
   filterQuery?: (query: any) => void;

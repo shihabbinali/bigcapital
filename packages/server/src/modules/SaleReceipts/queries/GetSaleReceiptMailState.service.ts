@@ -1,7 +1,7 @@
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { Inject, Injectable } from '@nestjs/common';
 import { SaleReceiptMailNotification } from '../commands/SaleReceiptMailNotification';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { SaleReceipt } from '../models/SaleReceipt';
 import { GetSaleReceiptMailStateTransformer } from './GetSaleReceiptMailState.transformer';
 
@@ -12,7 +12,7 @@ export class GetSaleReceiptMailStateService {
     private readonly receiptMail: SaleReceiptMailNotification,
 
     @Inject(SaleReceipt.name)
-    private readonly saleReceiptModel: TenantModelProxy<typeof SaleReceipt>
+    private readonly saleReceiptModel: TenantModelProxy<typeof SaleReceipt>,
   ) {}
 
   /**
@@ -20,7 +20,8 @@ export class GetSaleReceiptMailStateService {
    * @param {number} saleReceiptId
    */
   public async getMailState(saleReceiptId: number) {
-    const saleReceipt = await this.saleReceiptModel().query()
+    const saleReceipt = await this.saleReceiptModel()
+      .query()
       .findById(saleReceiptId)
       .withGraphFetched('entries.item')
       .withGraphFetched('customer')

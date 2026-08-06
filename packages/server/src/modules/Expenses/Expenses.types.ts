@@ -1,7 +1,7 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Expense } from './models/Expense.model';
 import { SystemUser } from '../System/models/SystemUser';
-import { IFilterRole } from '../DynamicListing/DynamicFilter/DynamicFilter.types';
+import type { IFilterRole } from '../DynamicListing/DynamicFilter/DynamicFilter.types';
 import { CreateExpenseDto, EditExpenseDto } from './dtos/Expense.dto';
 import { CreateExpense } from './commands/CreateExpense.service';
 

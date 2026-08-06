@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { GetInvoicePaymentLinkMetadata } from './GetInvoicePaymentLinkMetadata';
 import { CreateInvoiceCheckoutSession } from './CreateInvoiceCheckoutSession';
 import { GetPaymentLinkInvoicePdf } from './GetPaymentLinkInvoicePdf';
-import { StripeInvoiceCheckoutSessionPOJO } from '../StripePayment/StripePayment.types';
+import type { StripeInvoiceCheckoutSessionPOJO } from '../StripePayment/StripePayment.types';
 
 @Injectable()
 export class PaymentLinksApplication {

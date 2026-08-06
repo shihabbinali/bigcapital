@@ -1,8 +1,8 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import { sumBy } from 'lodash';
 import { BillPayment } from '../models/BillPayment';
 import { AccountNormal } from '@/interfaces/Account';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { Ledger } from '@/modules/Ledger/Ledger';
 
 export class BillPaymentGL {
@@ -176,7 +176,7 @@ export class BillPaymentGL {
     const exGainLossEntries = this.paymentExGainOrLossEntries;
 
     return [paymentEntry, payableEntry, ...exGainLossEntries];
-  };
+  }
 
   /**
    * Retrieves the bill payment ledger.

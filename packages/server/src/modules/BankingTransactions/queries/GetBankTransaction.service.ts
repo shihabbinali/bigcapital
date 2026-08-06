@@ -4,7 +4,7 @@ import { BankTransaction } from '../models/BankTransaction';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { BankTransactionTransformer } from './BankTransactionTransformer';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetBankTransactionService {

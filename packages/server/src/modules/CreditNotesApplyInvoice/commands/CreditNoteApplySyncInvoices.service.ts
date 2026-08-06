@@ -1,10 +1,10 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Injectable, Inject } from '@nestjs/common';
 import * as Bluebird from 'bluebird';
-import { ICreditNoteAppliedToInvoice } from '../types/CreditNoteApplyInvoice.types';
+import type { ICreditNoteAppliedToInvoice } from '../types/CreditNoteApplyInvoice.types';
 import { SaleInvoice } from '@/modules/SaleInvoices/models/SaleInvoice';
 import { CreditNoteAppliedInvoice } from '../models/CreditNoteAppliedInvoice';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class CreditNoteApplySyncInvoicesCreditedAmount {

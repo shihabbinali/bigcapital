@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Branch } from '../models/Branch.model';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetBranchesService {
@@ -12,7 +12,7 @@ export class GetBranchesService {
   /**
    * Retrieves branches list.
    * @returns
- */
+   */
   public getBranches = async () => {
     const branches = await this.branch().query().orderBy('name', 'DESC');
 

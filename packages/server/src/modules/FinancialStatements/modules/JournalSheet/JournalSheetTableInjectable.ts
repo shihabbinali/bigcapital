@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { I18nService } from 'nestjs-i18n';
 import { JournalSheetService } from './JournalSheetService';
-import { IJournalReportQuery, IJournalTable } from './JournalSheet.types';
+import type { IJournalReportQuery, IJournalTable } from './JournalSheet.types';
 import { JournalSheetTable } from './JournalSheetTable';
 
 @Injectable()

@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { ServiceError } from '@/modules/Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { TenantUser } from '@/modules/Tenancy/TenancyModels/models/TenantUser.model';
 import { ERRORS } from '../Users.constants';
-import { ITenantUserInactivatedPayload } from '../Users.types';
+import type { ITenantUserInactivatedPayload } from '../Users.types';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { events } from '@/common/events/events';
 

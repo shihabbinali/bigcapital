@@ -2,7 +2,7 @@ import { chain, difference } from 'lodash';
 import { Inject, Injectable } from '@nestjs/common';
 import { ERRORS } from './constants';
 import { ServiceError } from '@/modules/Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { Warehouse } from '../models/Warehouse.model';
 
 @Injectable()

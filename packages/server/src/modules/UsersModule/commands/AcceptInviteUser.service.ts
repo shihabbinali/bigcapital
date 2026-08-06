@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
-import * as moment from 'moment';
+import moment from 'moment';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { ClsService } from 'nestjs-cls';
-import {
+import type {
   IAcceptInviteEventPayload,
   ICheckInviteEventPayload,
 } from '../Users.types';
@@ -13,12 +13,12 @@ import { TenantModel } from '@/modules/System/models/TenantModel';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { ERRORS } from '../Users.constants';
 import { UserInvite } from '../models/InviteUser.model';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { InviteUserDto } from '../dtos/InviteUser.dto';
 
 interface InviteAcceptResponseDto {
-  inviteToken: { email: string, token: string, createdAt: Date };
-  orgName: string 
+  inviteToken: { email: string; token: string; createdAt: Date };
+  orgName: string;
 }
 
 @Injectable()
@@ -92,9 +92,7 @@ export class AcceptInviteUserService {
    * @param {string} token - the given token string.
    * @throws {ServiceError}
    */
-  public async checkInvite(
-    token: string,
-  ): Promise<InviteAcceptResponseDto> {
+  public async checkInvite(token: string): Promise<InviteAcceptResponseDto> {
     const inviteToken = await this.getInviteTokenOrThrowError(token);
 
     // Find the tenant that associated to the given token.

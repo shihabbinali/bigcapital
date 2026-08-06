@@ -1,10 +1,10 @@
 import { I18nService } from 'nestjs-i18n';
-import { IAPAgingSummaryData } from './APAgingSummary.types';
+import type { IAPAgingSummaryData } from './APAgingSummary.types';
 import { AgingSummaryTable } from '../AgingSummary/AgingSummaryTable';
-import { ITableColumnAccessor } from '../../types/Table.types';
-import { IAgingSummaryQuery } from '../AgingSummary/AgingSummary.types';
-import { ITableColumn } from '../../types/Table.types';
-import { ITableRow } from '../../types/Table.types';
+import type { ITableColumnAccessor } from '../../types/Table.types';
+import type { IAgingSummaryQuery } from '../AgingSummary/AgingSummary.types';
+import type { ITableColumn } from '../../types/Table.types';
+import type { ITableRow } from '../../types/Table.types';
 
 export class APAgingSummaryTable extends AgingSummaryTable {
   readonly report: IAPAgingSummaryData;

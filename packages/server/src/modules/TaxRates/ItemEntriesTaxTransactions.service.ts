@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { keyBy, sumBy } from 'lodash';
 import { ItemEntry } from '@/modules/TransactionItemEntry/models/ItemEntry';
 import { TaxRateModel } from './models/TaxRate.model';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 
 @Injectable()
 export class ItemEntriesTaxTransactions {

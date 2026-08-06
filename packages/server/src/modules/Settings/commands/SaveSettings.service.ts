@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { pick } from 'lodash';
 import { SettingsStore } from '../SettingsStore';
-import { IOptionDTO, ISettingsDTO, SETTINGS_PROVIDER } from '../Settings.types';
+import { SETTINGS_PROVIDER } from '../Settings.types';
+import type { IOptionDTO, ISettingsDTO } from '../Settings.types';
 
 @Injectable()
 export class SaveSettingsService {

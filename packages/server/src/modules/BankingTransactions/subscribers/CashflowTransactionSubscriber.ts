@@ -3,7 +3,7 @@ import { OnEvent } from '@nestjs/event-emitter';
 import { BankTransactionAutoIncrement } from '../commands/BankTransactionAutoIncrement.service';
 import { BankTransactionGLEntriesService } from '../commands/BankTransactionGLEntries';
 import { events } from '@/common/events/events';
-import {
+import type {
   ICommandCashflowCreatedPayload,
   ICommandCashflowDeletedPayload,
 } from '../types/BankingTransactions.types';

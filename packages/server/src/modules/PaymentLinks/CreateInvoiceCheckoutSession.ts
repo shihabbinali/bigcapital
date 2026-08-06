@@ -1,10 +1,10 @@
 import { StripePaymentService } from '../StripePayment/StripePaymentService';
 import { Inject, Injectable } from '@nestjs/common';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { SaleInvoice } from '../SaleInvoices/models/SaleInvoice';
 import { PaymentLink } from './models/PaymentLink';
-import { StripeInvoiceCheckoutSessionPOJO } from '../StripePayment/StripePayment.types';
-import { ModelObject } from 'objection';
+import type { StripeInvoiceCheckoutSessionPOJO } from '../StripePayment/StripePayment.types';
+import type { ModelObject } from 'objection';
 import { ConfigService } from '@nestjs/config';
 
 const origin = 'http://localhost';

@@ -1,12 +1,12 @@
 import { TableSheetPdf } from '../../common/TableSheetPdf';
-import { ITransactionsByCustomersFilter } from './TransactionsByCustomer.types';
+import type { ITransactionsByCustomersFilter } from './TransactionsByCustomer.types';
 import { TransactionsByCustomersTableInjectable } from './TransactionsByCustomersTableInjectable';
 
 export class TransactionsByCustomersPdf {
   constructor(
     private readonly transactionsByCustomersTable: TransactionsByCustomersTableInjectable,
     private readonly tableSheetPdf: TableSheetPdf,
-  ) { }
+  ) {}
 
   /**
    * Retrieves the transactions by customers in PDF format.

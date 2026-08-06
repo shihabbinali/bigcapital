@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { BillPaymentEntry } from '@/modules/BillPayments/models/BillPaymentEntry';
 import { BillPaymentTransactionTransformer } from '@/modules/BillPayments/queries/BillPaymentTransactionTransformer';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetBillPaymentTransactionsService {

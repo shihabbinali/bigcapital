@@ -10,7 +10,10 @@ import {
   Query,
 } from '@nestjs/common';
 import { PdfTemplateApplication } from './PdfTemplate.application';
-import { ICreateInvoicePdfTemplateDTO, IEditPdfTemplateDTO } from './types';
+import type {
+  ICreateInvoicePdfTemplateDTO,
+  IEditPdfTemplateDTO,
+} from './types';
 import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
 
 @Controller('pdf-templates')

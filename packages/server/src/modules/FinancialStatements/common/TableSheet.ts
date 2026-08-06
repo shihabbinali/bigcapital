@@ -1,5 +1,5 @@
 import * as xlsx from 'xlsx';
-import { ITableData } from '../types/Table.types';
+import type { ITableData } from '../types/Table.types';
 import { FinancialTableStructure } from './FinancialTableStructure';
 
 interface ITableSheet {

@@ -1,9 +1,9 @@
 import { OnEvent } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { WarehousesDTOValidators } from '../../../Integrations/WarehousesDTOValidators';
-import { IBillEditingPayload } from '@/modules/Bills/Bills.types';
+import type { IBillEditingPayload } from '@/modules/Bills/Bills.types';
 import { Injectable } from '@nestjs/common';
-import { IBillCreatingPayload } from '@/modules/Bills/Bills.types';
+import type { IBillCreatingPayload } from '@/modules/Bills/Bills.types';
 
 @Injectable()
 export class BillWarehousesValidateSubscriber {

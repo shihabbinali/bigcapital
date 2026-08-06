@@ -1,18 +1,16 @@
-import {
+import { Inject, mixin, Optional } from '@nestjs/common';
+import type {
   CallHandler,
   ExecutionContext,
-  Inject,
-  mixin,
   NestInterceptor,
-  Optional,
   Type,
 } from '@nestjs/common';
-import * as multer from 'multer';
+import multer from 'multer';
 import { Observable } from 'rxjs';
 import { MULTER_MODULE_OPTIONS } from '../constants/files.constants';
 import { transformException } from '../constants/multer.utils';
-import { MulterModuleOptions } from '@nestjs/platform-express';
-import { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer-options.interface';
+import type { MulterModuleOptions } from '@nestjs/platform-express';
+import type { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer-options.interface';
 
 type MulterInstance = any;
 /**
@@ -29,12 +27,11 @@ export function FileInterceptor(
     constructor(
       @Optional()
       @Inject(MULTER_MODULE_OPTIONS)
-      options: (() => MulterModuleOptions | MulterModuleOptions) = () => ({}),
+      options: () => MulterModuleOptions | MulterModuleOptions = () => ({}),
     ) {
-      const resolvedOptions = typeof localOptions === 'function' 
-        ? localOptions(this)
-        : localOptions;
-        
+      const resolvedOptions =
+        typeof localOptions === 'function' ? localOptions(this) : localOptions;
+
       this.multer = (multer as any)({
         ...(typeof options === 'function' ? options() : options),
         ...resolvedOptions,

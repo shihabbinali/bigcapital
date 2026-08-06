@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   ICreateTaxRateDTO,
   ITaxRateCreatedPayload,
   ITaxRateCreatingPayload,
@@ -10,7 +10,7 @@ import { TaxRateModel } from '../models/TaxRate.model';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { CreateTaxRateDto } from '../dtos/TaxRate.dto';
 
 @Injectable()

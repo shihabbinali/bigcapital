@@ -1,17 +1,17 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { PlaidSyncDb } from './PlaidSyncDB';
-import { PlaidFetchedTransactionsUpdates } from '../types/BankingPlaid.types';
+import type { PlaidFetchedTransactionsUpdates } from '../types/BankingPlaid.types';
 import { PlaidItem } from '../models/PlaidItem';
 import { Inject, Injectable } from '@nestjs/common';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
-import {
-  CountryCode,
-  PlaidApi,
+import { CountryCode } from 'plaid';
+import { PlaidApi } from 'plaid';
+import type {
   Transaction as PlaidTransaction,
   RemovedTransaction,
 } from 'plaid';
 import { PLAID_CLIENT } from '@/modules/Plaid/Plaid.module';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class PlaidUpdateTransactions {

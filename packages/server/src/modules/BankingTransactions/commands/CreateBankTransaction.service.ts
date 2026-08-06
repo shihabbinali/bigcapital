@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { pick } from 'lodash';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import * as composeAsync from 'async/compose';
 import { CASHFLOW_TRANSACTION_TYPE } from '../constants';
 import { transformCashflowTransactionType } from '../utils';
@@ -12,11 +12,11 @@ import { BranchTransactionDTOTransformer } from '@/modules/Branches/integrations
 import { events } from '@/common/events/events';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { BankTransaction } from '../models/BankTransaction';
-import {
+import type {
   ICommandCashflowCreatedPayload,
   ICommandCashflowCreatingPayload,
 } from '../types/BankingTransactions.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { CreateBankTransactionDto } from '../dtos/CreateBankTransaction.dto';
 import { formatDateFields } from '@/utils/format-date-fields';
 

@@ -1,6 +1,6 @@
 import { ImportFileUploadService } from './ImportFileUpload';
 import { ImportFileMapping } from './ImportFileMapping';
-import { ImportMappingAttr } from './interfaces';
+import type { ImportMappingAttr } from './interfaces';
 import { ImportFileProcess } from './ImportFileProcess';
 import { ImportFilePreview } from './ImportFilePreview';
 import { ImportSampleService } from './ImportSample';

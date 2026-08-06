@@ -2,8 +2,8 @@ import { Inject, Injectable } from '@nestjs/common';
 import { GetRecognizedTransactionTransformer } from './queries/GetRecognizedTransactionTransformer';
 import { UncategorizedBankTransaction } from '../BankingTransactions/models/UncategorizedBankTransaction';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
-import { IGetRecognizedTransactionsQuery } from '../BankingTransactions/types/BankingTransactions.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { IGetRecognizedTransactionsQuery } from '../BankingTransactions/types/BankingTransactions.types';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetRecognizedTransactionsService {
@@ -11,7 +11,9 @@ export class GetRecognizedTransactionsService {
     private readonly transformer: TransformerInjectable,
 
     @Inject(UncategorizedBankTransaction.name)
-    private readonly uncategorizedBankTransactionModel: TenantModelProxy<typeof UncategorizedBankTransaction>,
+    private readonly uncategorizedBankTransactionModel: TenantModelProxy<
+      typeof UncategorizedBankTransaction
+    >,
   ) {}
 
   /**
@@ -26,7 +28,8 @@ export class GetRecognizedTransactionsService {
       ...filter,
     };
     const { results, pagination } =
-      await this.uncategorizedBankTransactionModel().query()
+      await this.uncategorizedBankTransactionModel()
+        .query()
         .onBuild((q) => {
           q.withGraphFetched('recognizedTransaction.assignAccount');
           q.withGraphFetched('recognizedTransaction.bankRule');

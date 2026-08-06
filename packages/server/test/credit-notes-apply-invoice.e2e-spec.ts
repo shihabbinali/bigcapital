@@ -1,4 +1,4 @@
-import * as request from 'supertest';
+import request from 'supertest';
 import { app, AuthorizationHeader, orgainzationId } from './init-app-test';
 
 describe('Credit Notes Apply Invoice (e2e)', () => {

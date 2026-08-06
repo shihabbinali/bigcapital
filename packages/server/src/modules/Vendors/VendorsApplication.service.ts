@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { CreateVendorService } from './commands/CreateVendor.service';
 import { EditVendorService } from './commands/EditVendor.service';
 import { DeleteVendorService } from './commands/DeleteVendor.service';

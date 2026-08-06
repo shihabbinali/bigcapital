@@ -2,11 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { ValidateBranchExistance } from '../../integrations/ValidateBranchExistance';
-import {
+import type {
   ICustomerOpeningBalanceEditingPayload,
   ICustomerEventCreatingPayload,
 } from '@/modules/Customers/types/Customers.types';
-import {
+import type {
   IVendorEventCreatingPayload,
   IVendorOpeningBalanceEditingPayload,
 } from '@/modules/Vendors/types/Vendors.types';

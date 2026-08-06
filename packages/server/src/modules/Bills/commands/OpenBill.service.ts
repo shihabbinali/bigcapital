@@ -1,14 +1,14 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import { Inject, Injectable } from '@nestjs/common';
 import { ERRORS } from '../Bills.constants';
 import { BillsValidators } from './BillsValidators.service';
-import { IBillOpenedPayload, IBillOpeningPayload } from '../Bills.types';
+import type { IBillOpenedPayload, IBillOpeningPayload } from '../Bills.types';
 import { Bill } from '../models/Bill';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class OpenBillService {

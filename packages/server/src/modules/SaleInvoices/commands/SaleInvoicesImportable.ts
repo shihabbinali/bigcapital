@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { CreateSaleInvoice } from './CreateSaleInvoice.service';
 import { Importable } from '@/modules/Import/Importable';
 import { CreateSaleInvoiceDto } from '../dtos/SaleInvoice.dto';

@@ -1,4 +1,4 @@
-import { PathLike } from 'fs';
+import type { PathLike } from 'fs';
 
 export type PageSize = {
   width: number; // Paper width, in inches (default 8.5)

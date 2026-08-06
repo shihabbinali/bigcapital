@@ -1,7 +1,7 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Inject, Injectable } from '@nestjs/common';
-import {
+import type {
   ISaleInvoiceWriteoffCreatePayload,
   ISaleInvoiceWriteoffDTO,
   ISaleInvoiceWrittenOffCanceledPayload,
@@ -13,7 +13,7 @@ import { CommandSaleInvoiceValidators } from './CommandSaleInvoiceValidators.ser
 import { SaleInvoice } from '../models/SaleInvoice';
 import { events } from '@/common/events/events';
 import { ServiceError } from '../../Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class WriteoffSaleInvoice {

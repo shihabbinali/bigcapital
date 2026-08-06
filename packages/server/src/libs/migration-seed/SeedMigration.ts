@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import * as Bluebird from 'bluebird';
 import { getTable, getTableName, getLockTableName } from './TableUtils';
 import getMergedConfig from './SeederConfig';
@@ -9,7 +9,11 @@ import {
   listCompleted,
   ensureMigrationTables,
 } from './MigrateUtils';
-import { MigrateItem, SeedMigrationContext, ISeederConfig } from './interfaces';
+import type {
+  MigrateItem,
+  SeedMigrationContext,
+  ISeederConfig,
+} from './interfaces';
 import { FsMigrations } from './FsMigrations';
 
 export class SeedMigration {

@@ -3,14 +3,14 @@ import * as R from 'ramda';
 import { defaultTo, toArray } from 'lodash';
 import { I18nService } from 'nestjs-i18n';
 import { FinancialSheetStructure } from '../../common/FinancialSheetStructure';
-import {
-  BALANCE_SHEET_SCHEMA_NODE_TYPE,
+import type {
   IBalanceSheetAccountNode,
   IBalanceSheetAccountsNode,
   IBalanceSheetDataNode,
   IBalanceSheetSchemaAccountNode,
   IBalanceSheetSchemaNode,
 } from './BalanceSheet.types';
+import { BALANCE_SHEET_SCHEMA_NODE_TYPE } from './BalanceSheet.types';
 import { BalanceSheetNetIncome } from './BalanceSheetNetIncome';
 import { BalanceSheetFiltering } from './BalanceSheetFiltering';
 import { BalanceSheetDatePeriods } from './BalanceSheetDatePeriods';
@@ -21,8 +21,8 @@ import { BalanceSheetSchema } from './BalanceSheetSchema';
 import { BalanceSheetBase } from './BalanceSheetBase';
 import { BalanceSheetQuery } from './BalanceSheetQuery';
 import { BalanceSheetRepository } from './BalanceSheetRepository';
-import { GConstructor } from '@/common/types/Constructor';
-import { INumberFormatQuery } from '../../types/Report.types';
+import type { GConstructor } from '@/common/types/Constructor';
+import type { INumberFormatQuery } from '../../types/Report.types';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { flatToNestedArray } from '@/utils/flat-to-nested-array';
 import { FinancialSheet } from '../../common/FinancialSheet';

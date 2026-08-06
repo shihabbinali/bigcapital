@@ -1,5 +1,5 @@
 import { Features } from '@/common/types/Features';
-import { IFeatureConfiugration } from '@/common/types/Features';
+import type { IFeatureConfiugration } from '@/common/types/Features';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 

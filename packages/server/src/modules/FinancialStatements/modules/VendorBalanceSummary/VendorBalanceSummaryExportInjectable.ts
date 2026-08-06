@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { IVendorBalanceSummaryQuery } from './VendorBalanceSummary.types';
+import type { IVendorBalanceSummaryQuery } from './VendorBalanceSummary.types';
 import { VendorBalanceSummaryTableInjectable } from './VendorBalanceSummaryTableInjectable';
 import { TableSheet } from '../../common/TableSheet';
 

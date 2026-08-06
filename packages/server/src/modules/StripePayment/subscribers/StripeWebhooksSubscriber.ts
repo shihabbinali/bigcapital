@@ -2,13 +2,13 @@ import { Inject, Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { ClsService } from 'nestjs-cls';
 import { CreatePaymentReceiveStripePayment } from '../CreatePaymentReceivedStripePayment';
-import {
+import type {
   StripeCheckoutSessionCompletedEventPayload,
   StripeWebhookEventPayload,
 } from '../StripePayment.types';
 import { events } from '@/common/events/events';
 import { PaymentIntegration } from '../models/PaymentIntegration.model';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { TenantModel } from '@/modules/System/models/TenantModel';
 import { SystemUser } from '@/modules/System/models/SystemUser';
 
@@ -28,7 +28,7 @@ export class StripeWebhooksSubscriber {
 
     @Inject(TenantModel.name)
     private readonly tenantModel: typeof TenantModel,
-  ) { }
+  ) {}
 
   /**
    * Handles the checkout session completed webhook event.

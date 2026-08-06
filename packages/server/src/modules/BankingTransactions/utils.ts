@@ -1,15 +1,15 @@
 import { upperFirst, camelCase, first, sumBy, isObject } from 'lodash';
+import type { ICashflowTransactionTypeMeta } from './constants';
+import { CASHFLOW_TRANSACTION_TYPE } from './constants';
 import {
-  CASHFLOW_TRANSACTION_TYPE,
   CASHFLOW_TRANSACTION_TYPE_META,
   CashflowTransactionTypes,
   ERRORS,
-  ICashflowTransactionTypeMeta,
   TransactionTypes,
 } from './constants';
-import { ICashflowNewCommandDTO } from './types/BankingTransactions.types';
+import type { ICashflowNewCommandDTO } from './types/BankingTransactions.types';
 import { UncategorizedBankTransaction } from './models/UncategorizedBankTransaction';
-import { ICategorizeCashflowTransactioDTO } from '../BankingCategorize/types/BankingCategorize.types';
+import type { ICategorizeCashflowTransactioDTO } from '../BankingCategorize/types/BankingCategorize.types';
 import { ServiceError } from '../Items/ServiceError';
 
 /**

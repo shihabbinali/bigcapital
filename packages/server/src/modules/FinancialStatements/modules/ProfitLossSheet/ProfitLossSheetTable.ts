@@ -1,15 +1,17 @@
 // @ts-nocheck
 import * as R from 'ramda';
-import {
+import type {
   IProfitLossSheetQuery,
   IProfitLossSheetAccountsNode,
-  ProfitLossNodeType,
-  ProfitLossSheetRowType,
   IProfitLossSheetNode,
   IProfitLossSheetEquationNode,
   IProfitLossSheetAccountNode,
 } from './ProfitLossSheet.types';
 import {
+  ProfitLossNodeType,
+  ProfitLossSheetRowType,
+} from './ProfitLossSheet.types';
+import type {
   ITableColumn,
   ITableColumnAccessor,
   ITableRow,

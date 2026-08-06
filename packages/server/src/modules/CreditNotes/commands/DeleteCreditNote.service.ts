@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   ICreditNoteDeletedPayload,
   ICreditNoteDeletingPayload,
 } from '../types/CreditNotes.types';
@@ -13,7 +13,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { ItemEntry } from '@/modules/TransactionItemEntry/models/ItemEntry';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DeleteCreditNoteService {

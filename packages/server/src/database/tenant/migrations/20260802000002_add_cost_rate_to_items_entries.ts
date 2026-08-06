@@ -5,7 +5,11 @@
 exports.up = function (knex) {
   return knex.schema
     .alterTable('items_entries', (table) => {
-      table.decimal('cost_rate', 15, 5).notNullable().defaultTo(0).after('rate');
+      table
+        .decimal('cost_rate', 15, 5)
+        .notNullable()
+        .defaultTo(0)
+        .after('rate');
     })
     .then(() => {
       // Backfill cost_rate from the linked item's cost price for service/non-inventory items.

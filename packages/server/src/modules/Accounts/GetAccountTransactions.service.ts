@@ -1,4 +1,4 @@
-import {
+import type {
   IAccountsTransactionsFilter,
   IGetAccountTransactionPOJO,
 } from './Accounts.types';
@@ -7,7 +7,7 @@ import { AccountTransaction } from './models/AccountTransaction.model';
 import { Account } from './models/Account.model';
 import { Inject, Injectable } from '@nestjs/common';
 import { TransformerInjectable } from '../Transformer/TransformerInjectable.service';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { GetAccountTransactionResponseDto } from './dtos/GetAccountTransactionResponse.dto';
 
 @Injectable()

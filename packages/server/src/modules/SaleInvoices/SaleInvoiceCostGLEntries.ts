@@ -1,13 +1,13 @@
 import * as R from 'ramda';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { InventoryCostLotTracker } from '../InventoryCost/models/InventoryCostLotTracker';
 import { LedgerStorageService } from '../Ledger/LedgerStorage.service';
 import { groupInventoryTransactionsByTypeId } from '../InventoryCost/utils';
 import { Ledger } from '../Ledger/Ledger';
 import { AccountNormal } from '@/interfaces/Account';
-import { ILedgerEntry } from '../Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '../Ledger/types/Ledger.types';
 import { increment } from '@/utils/increment';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class SaleInvoiceCostGLEntries {
     private readonly inventoryCostLotTracker: TenantModelProxy<
       typeof InventoryCostLotTracker
     >,
-  ) { }
+  ) {}
 
   /**
    * Writes journal entries from sales invoices.

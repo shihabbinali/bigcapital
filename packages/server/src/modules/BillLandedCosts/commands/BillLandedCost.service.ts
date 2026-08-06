@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import {
+import type {
   ILandedCostTransactionEntry,
   ILandedCostTransaction,
 } from '../types/BillLandedCosts.types';
@@ -7,7 +7,7 @@ import { Injectable } from '@nestjs/common';
 import { Bill } from '@/modules/Bills/models/Bill';
 import { ItemEntry } from '@/modules/TransactionItemEntry/models/ItemEntry';
 import { Item } from '@/modules/Items/models/Item';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 
 @Injectable()
 export class BillLandedCost {

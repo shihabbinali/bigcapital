@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { PaymentReceivedValidators } from '../commands/PaymentReceivedValidators.service';
 import { SaleInvoice } from '../../SaleInvoices/models/SaleInvoice';
 import { PaymentReceived } from '../models/PaymentReceived';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetPaymentReceivedInvoices {

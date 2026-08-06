@@ -1,10 +1,6 @@
-import {
-  ExceptionFilter,
-  Catch,
-  ArgumentsHost,
-  HttpStatus,
-} from '@nestjs/common';
-import { Response } from 'express';
+import { Catch, HttpStatus } from '@nestjs/common';
+import type { ExceptionFilter, ArgumentsHost } from '@nestjs/common';
+import type { Response } from 'express';
 import { ModelHasRelationsError } from '../exceptions/ModelHasRelations.exception';
 
 @Catch(ModelHasRelationsError)

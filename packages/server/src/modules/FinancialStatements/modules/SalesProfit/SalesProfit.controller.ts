@@ -1,14 +1,14 @@
-import {
-  Controller,
-  Get,
-  Headers,
-  Query,
-  Res,
-} from '@nestjs/common';
+import { Controller, Get, Headers, Query, Res } from '@nestjs/common';
 import { AcceptType } from '@/constants/accept-type';
 import { SalesProfitApplication } from './SalesProfitApplication';
-import { Response } from 'express';
-import { ApiExtraModels, ApiOperation, ApiResponse, ApiTags, getSchemaPath } from '@nestjs/swagger';
+import type { Response } from 'express';
+import {
+  ApiExtraModels,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+  getSchemaPath,
+} from '@nestjs/swagger';
 import { SalesProfitQueryDto } from './SalesProfitQuery.dto';
 import {
   SalesProfitResponseDto,

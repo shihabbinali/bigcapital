@@ -2,14 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { JournalSheetTableInjectable } from './JournalSheetTableInjectable';
 import { HtmlTableCustomCss } from './constant';
 import { TableSheetPdf } from '../../common/TableSheetPdf';
-import { IJournalReportQuery } from './JournalSheet.types';
+import type { IJournalReportQuery } from './JournalSheet.types';
 
 @Injectable()
 export class JournalSheetPdfInjectable {
   constructor(
     private readonly journalSheetTable: JournalSheetTableInjectable,
     private readonly tableSheetPdf: TableSheetPdf,
-  ) { }
+  ) {}
 
   /**
    * Converts the given journal sheet table to pdf.

@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import type { Response } from 'express';
 import {
   ApiExtraModels,
   ApiOperation,
@@ -22,9 +22,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { PaymentReceivesApplication } from './PaymentReceived.application';
-import {
-  PaymentReceiveMailOptsDTO,
-} from './types/PaymentReceived.types';
+import type { PaymentReceiveMailOptsDTO } from './types/PaymentReceived.types';
 import { GetPaymentsReceivedQueryDto } from './dtos/GetPaymentsReceivedQuery.dto';
 import {
   CreatePaymentReceivedDto,
@@ -35,10 +33,8 @@ import { PaymentReceivedResponseDto } from './dtos/PaymentReceivedResponse.dto';
 import { PaginatedResponseDto } from '@/common/dtos/PaginatedResults.dto';
 import { PaymentReceivedStateResponseDto } from './dtos/PaymentReceivedStateResponse.dto';
 import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
-import {
-  BulkDeleteDto,
-  ValidateBulkDeleteResponseDto,
-} from '@/common/dtos/BulkDelete.dto';
+import { ValidateBulkDeleteResponseDto } from '@/common/dtos/BulkDelete.dto';
+import { BulkDeleteDto } from '@/common/dtos/BulkDelete.dto';
 import { RequirePermission } from '@/modules/Roles/RequirePermission.decorator';
 import { PermissionGuard } from '@/modules/Roles/Permission.guard';
 import { AuthorizationGuard } from '@/modules/Roles/Authorization.guard';
@@ -54,7 +50,7 @@ import { PaymentReceiveAction } from './types/PaymentReceived.types';
 @ApiCommonHeaders()
 @UseGuards(AuthorizationGuard, PermissionGuard)
 export class PaymentReceivesController {
-  constructor(private paymentReceivesApplication: PaymentReceivesApplication) { }
+  constructor(private paymentReceivesApplication: PaymentReceivesApplication) {}
 
   @Post(':id/mail')
   @HttpCode(200)
@@ -155,9 +151,7 @@ export class PaymentReceivesController {
       ],
     },
   })
-  public getPaymentsReceived(
-    @Query() filterDTO: GetPaymentsReceivedQueryDto,
-  ) {
+  public getPaymentsReceived(@Query() filterDTO: GetPaymentsReceivedQueryDto) {
     return this.paymentReceivesApplication.getPaymentsReceived(filterDTO);
   }
 
@@ -190,9 +184,7 @@ export class PaymentReceivesController {
     status: 200,
     description: 'Payments received deleted successfully.',
   })
-  public bulkDeletePaymentsReceived(
-    @Body() bulkDeleteDto: BulkDeleteDto,
-  ) {
+  public bulkDeletePaymentsReceived(@Body() bulkDeleteDto: BulkDeleteDto) {
     return this.paymentReceivesApplication.bulkDeletePaymentReceives(
       bulkDeleteDto.ids,
       { skipUndeletable: bulkDeleteDto.skipUndeletable ?? false },
@@ -246,9 +238,10 @@ export class PaymentReceivesController {
     @Res({ passthrough: true }) res: Response,
   ) {
     if (acceptHeader?.includes(AcceptType.ApplicationPdf)) {
-      const [pdfContent, filename] = await this.paymentReceivesApplication.getPaymentReceivePdf(
-        paymentReceiveId,
-      );
+      const [pdfContent, filename] =
+        await this.paymentReceivesApplication.getPaymentReceivePdf(
+          paymentReceiveId,
+        );
       res.set({
         'Content-Type': 'application/pdf',
         'Content-Length': pdfContent.length,

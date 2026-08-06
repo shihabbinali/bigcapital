@@ -1,10 +1,10 @@
 import * as R from 'ramda';
 import { Injectable } from '@nestjs/common';
-import * as validator from 'is-my-json-valid';
-import { IFilterRole } from './DynamicFilter/DynamicFilter.types';
+import validator from 'is-my-json-valid';
+import type { IFilterRole } from './DynamicFilter/DynamicFilter.types';
 import { DynamicFilterAdvancedFilter } from './DynamicFilter/DynamicFilterAdvancedFilter';
 import { DynamicFilterRoleAbstractor } from './DynamicFilter/DynamicFilterRoleAbstractor';
-import { MetableModel } from './types/DynamicList.types';
+import type { MetableModel } from './types/DynamicList.types';
 import { ServiceError } from '../Items/ServiceError';
 import { ERRORS } from './constants';
 

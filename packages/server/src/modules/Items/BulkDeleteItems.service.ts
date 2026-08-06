@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { PromisePool } from '@supercharge/promise-pool';
 import { castArray, uniq } from 'lodash';
 import { DeleteItemService } from './DeleteItem.service';
 
 @Injectable()
 export class BulkDeleteItemsService {
-  constructor(private readonly deleteItemService: DeleteItemService) { }
+  constructor(private readonly deleteItemService: DeleteItemService) {}
 
   /**
    * Deletes multiple items.
@@ -38,4 +38,3 @@ export class BulkDeleteItemsService {
     }
   }
 }
-

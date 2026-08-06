@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { v4 as uuidv4 } from 'uuid';
@@ -8,7 +8,7 @@ import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectab
 import { events } from '@/common/events/events';
 import { PaymentLink } from '@/modules/PaymentLinks/models/PaymentLink';
 import { SaleInvoice } from '../models/SaleInvoice';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { ConfigService } from '@nestjs/config';
 
@@ -26,7 +26,7 @@ export class GenerateShareLink {
 
     @Inject(PaymentLink.name)
     private paymentLinkModel: typeof PaymentLink,
-  ) { }
+  ) {}
 
   /**
    * Generates private or public payment link for the given sale invoice.
@@ -79,7 +79,7 @@ export class GenerateShareLink {
         new GeneratePaymentLinkTransformer(),
         {
           baseUrl: this.configService.get('app.baseUrl'),
-        }
+        },
       );
     });
   }

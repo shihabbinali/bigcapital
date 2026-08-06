@@ -4,10 +4,10 @@ import {
   validateLinkModelEntryExists,
   validateLinkModelExists,
 } from './_utils';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { DocumentLinkModel } from './models/DocumentLink.model';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { DocumentModel } from './models/Document.model';
 import { getAttachableModelsMap } from './decorators/InjectAttachable.decorator';
 import { ModuleRef } from '@nestjs/core';
@@ -47,10 +47,13 @@ export class UnlinkAttachment {
     const foundLinkModel = await LinkModel().query(trx).findById(modelId);
     validateLinkModelEntryExists(foundLinkModel);
 
-    const document = await this.documentModel().query(trx).findOne('key', filekey);
+    const document = await this.documentModel()
+      .query(trx)
+      .findOne('key', filekey);
 
     // Delete the document link.
-    await this.documentLinkModel().query(trx)
+    await this.documentLinkModel()
+      .query(trx)
       .where('modelRef', modelRef)
       .where('modelId', modelId)
       .where('documentId', document.id)

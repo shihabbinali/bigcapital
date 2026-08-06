@@ -1,5 +1,5 @@
 import { TableSheetPdf } from '../../common/TableSheetPdf';
-import { IProfitLossSheetQuery } from './ProfitLossSheet.types';
+import type { IProfitLossSheetQuery } from './ProfitLossSheet.types';
 import { ProfitLossSheetTableInjectable } from './ProfitLossSheetTableInjectable';
 import { HtmlTableCustomCss } from './constants';
 import { Injectable } from '@nestjs/common';

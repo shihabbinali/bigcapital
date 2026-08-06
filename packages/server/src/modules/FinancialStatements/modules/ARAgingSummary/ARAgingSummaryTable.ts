@@ -1,7 +1,7 @@
-import { IARAgingSummaryData } from './ARAgingSummary.types';
+import type { IARAgingSummaryData } from './ARAgingSummary.types';
 import { AgingSummaryTable } from '../AgingSummary/AgingSummaryTable';
-import { IAgingSummaryQuery } from '../AgingSummary/AgingSummary.types';
-import { ITableColumnAccessor, ITableRow } from '../../types/Table.types';
+import type { IAgingSummaryQuery } from '../AgingSummary/AgingSummary.types';
+import type { ITableColumnAccessor, ITableRow } from '../../types/Table.types';
 
 export class ARAgingSummaryTable extends AgingSummaryTable {
   readonly report: IARAgingSummaryData;

@@ -1,6 +1,6 @@
 import { Model, raw } from 'objection';
-import * as moment from 'moment';
-import { unitOfTime } from 'moment';
+import moment from 'moment';
+import type { unitOfTime } from 'moment';
 import { isEmpty, castArray } from 'lodash';
 import { BaseModel } from '@/models/Model';
 import { Account } from './Account.model';

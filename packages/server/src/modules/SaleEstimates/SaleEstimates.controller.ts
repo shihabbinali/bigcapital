@@ -22,23 +22,21 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { SaleEstimatesApplication } from './SaleEstimates.application';
-import { SaleEstimateMailOptionsDTO } from './types/SaleEstimates.types';
+import type { SaleEstimateMailOptionsDTO } from './types/SaleEstimates.types';
 import { SaleEstimate } from './models/SaleEstimate';
 import {
   CreateSaleEstimateDto,
   EditSaleEstimateDto,
 } from './dtos/SaleEstimate.dto';
 import { AcceptType } from '@/constants/accept-type';
-import { Response } from 'express';
+import type { Response } from 'express';
 import { SaleEstimateResponseDto } from './dtos/SaleEstimateResponse.dto';
 import { GetSaleEstimatesQueryDto } from './dtos/GetSaleEstimatesQuery.dto';
 import { PaginatedResponseDto } from '@/common/dtos/PaginatedResults.dto';
 import { SaleEstiamteStateResponseDto } from './dtos/SaleEstimateStateResponse.dto';
 import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
-import {
-  BulkDeleteDto,
-  ValidateBulkDeleteResponseDto,
-} from '@/common/dtos/BulkDelete.dto';
+import { ValidateBulkDeleteResponseDto } from '@/common/dtos/BulkDelete.dto';
+import { BulkDeleteDto } from '@/common/dtos/BulkDelete.dto';
 import { RequirePermission } from '@/modules/Roles/RequirePermission.decorator';
 import { PermissionGuard } from '@/modules/Roles/Permission.guard';
 import { AuthorizationGuard } from '@/modules/Roles/Authorization.guard';
@@ -97,7 +95,7 @@ export class SaleEstimatesController {
    */
   constructor(
     private readonly saleEstimatesApplication: SaleEstimatesApplication,
-  ) { }
+  ) {}
 
   @Post()
   @RequirePermission(SaleEstimateAction.Create, AbilitySubject.SaleEstimate)
@@ -250,7 +248,10 @@ export class SaleEstimatesController {
   }
 
   @Post(':id/notify-sms')
-  @RequirePermission(SaleEstimateAction.NotifyBySms, AbilitySubject.SaleEstimate)
+  @RequirePermission(
+    SaleEstimateAction.NotifyBySms,
+    AbilitySubject.SaleEstimate,
+  )
   @ApiOperation({ summary: 'Notify the given sale estimate by SMS.' })
   @ApiParam({
     name: 'id',

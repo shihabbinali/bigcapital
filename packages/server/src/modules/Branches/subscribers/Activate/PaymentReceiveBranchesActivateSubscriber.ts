@@ -1,7 +1,7 @@
 import { events } from '@/common/events/events';
 import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
-import { IBranchesActivatedPayload } from '../../Branches.types';
+import type { IBranchesActivatedPayload } from '../../Branches.types';
 import { PaymentReceiveActivateBranches } from '../../integrations/Sales/PaymentReceiveBranchesActivate';
 
 @Injectable()
@@ -22,7 +22,7 @@ export class PaymentReceiveActivateBranchesSubscriber {
   }: IBranchesActivatedPayload) {
     await this.paymentsActivateBranches.updatePaymentsWithBranch(
       primaryBranch.id,
-      trx
+      trx,
     );
-  };
+  }
 }

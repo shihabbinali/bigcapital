@@ -1,9 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Bill } from '../../Bills/models/Bill';
 import { entriesAmountDiff } from '@/utils/entries-amount-diff';
-import Objection, { ModelObject } from 'objection';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type Objection from 'objection';
+import type { ModelObject } from 'objection';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { BillPaymentEntryDto } from '../dtos/BillPayment.dto';
 import { BillPaymentEntry } from '../models/BillPaymentEntry';
 

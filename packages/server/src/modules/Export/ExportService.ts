@@ -7,11 +7,12 @@ import { Errors, ExportFormat } from './common';
 import { flatDataCollections, getDataAccessor } from './utils';
 import { ExportPdf } from './ExportPdf';
 import { ExportAls } from './ExportAls';
-import { IModelMeta, IModelMetaColumn } from '@/interfaces/Model';
+import type { IModelMeta, IModelMetaColumn } from '@/interfaces/Model';
 import { ServiceError } from '../Items/ServiceError';
 import { ResourceService } from '../Resource/ResourceService';
 import { getExportableService } from './decorators/ExportableModel.decorator';
-import { ContextIdFactory, ModuleRef } from '@nestjs/core';
+import { ContextIdFactory } from '@nestjs/core';
+import { ModuleRef } from '@nestjs/core';
 import { I18nService } from 'nestjs-i18n';
 
 @Injectable()
@@ -149,7 +150,9 @@ export class ExportResourceService {
             const group = parent;
             return [
               {
-                name: this.i18nService.t(value.name, { defaultValue: value.name }),
+                name: this.i18nService.t(value.name, {
+                  defaultValue: value.name,
+                }),
                 type: value.type || 'text',
                 accessor: value.accessor || key,
                 group,
@@ -166,24 +169,31 @@ export class ExportResourceService {
       columns: { [key: string]: IModelMetaColumn },
       parent = '',
     ) => {
-      return Object.entries(columns)
-        // @ts-expect-error
-        .filter(([_, value]) => value.printable !== false)
-        .flatMap(([key, value]) => {
-          if (value.type === 'collection' && value.collectionOf === 'object') {
-            return processColumns(value.columns, key);
-          } else {
-            const group = parent;
-            return [
-              {
-                name: this.i18nService.t(value.name, { defaultValue: value.name }),
-                type: value.type || 'text',
-                accessor: value.accessor || key,
-                group,
-              },
-            ];
-          }
-        });
+      return (
+        Object.entries(columns)
+          // @ts-expect-error
+          .filter(([_, value]) => value.printable !== false)
+          .flatMap(([key, value]) => {
+            if (
+              value.type === 'collection' &&
+              value.collectionOf === 'object'
+            ) {
+              return processColumns(value.columns, key);
+            } else {
+              const group = parent;
+              return [
+                {
+                  name: this.i18nService.t(value.name, {
+                    defaultValue: value.name,
+                  }),
+                  type: value.type || 'text',
+                  accessor: value.accessor || key,
+                  group,
+                },
+              ];
+            }
+          })
+      );
     };
     return processColumns(resourceMeta.columns);
   }

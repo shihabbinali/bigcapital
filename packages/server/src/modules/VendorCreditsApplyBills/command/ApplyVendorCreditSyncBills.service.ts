@@ -1,9 +1,9 @@
 import * as Bluebird from 'bluebird';
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
-import { IVendorCreditAppliedBill } from '../types/VendorCreditApplyBills.types';
+import type { Knex } from 'knex';
+import type { IVendorCreditAppliedBill } from '../types/VendorCreditApplyBills.types';
 import { Bill } from '@/modules/Bills/models/Bill';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class ApplyVendorCreditSyncBillsService {

@@ -1,7 +1,10 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import { Injectable } from '@nestjs/common';
 import { FinancialSheetMeta } from '../../common/FinancialSheetMeta';
-import { IJournalReportQuery, IJournalSheetMeta } from './JournalSheet.types';
+import type {
+  IJournalReportQuery,
+  IJournalSheetMeta,
+} from './JournalSheet.types';
 
 @Injectable()
 export class JournalSheetMeta {
@@ -9,12 +12,10 @@ export class JournalSheetMeta {
 
   /**
    * Retrieves the journal sheet meta.
-   * @param {IJournalReportQuery} query - 
+   * @param {IJournalReportQuery} query -
    * @returns {Promise<IJournalSheetMeta>}
    */
-  public async meta(
-    query: IJournalReportQuery,
-  ): Promise<IJournalSheetMeta> {
+  public async meta(query: IJournalReportQuery): Promise<IJournalSheetMeta> {
     const common = await this.financialSheetMeta.meta();
 
     const formattedToDate = moment(query.toDate).format(common.dateFormat);

@@ -4,7 +4,7 @@ import { ERRORS } from './constants';
 import { DynamicFilterSortBy } from './DynamicFilter';
 import { ServiceError } from '../Items/ServiceError';
 import { DynamicFilterAbstractor } from './DynamicFilter/DynamicFilterAbstractor';
-import { MetableModel } from './types/DynamicList.types';
+import type { MetableModel } from './types/DynamicList.types';
 
 @Injectable()
 export class DynamicListSortBy extends DynamicFilterAbstractor {

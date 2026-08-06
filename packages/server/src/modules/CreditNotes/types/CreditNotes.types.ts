@@ -1,8 +1,8 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { CreditNote } from '../models/CreditNote';
-import { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
-import { IDynamicListFilter } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
+import type { IDynamicListFilter } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { CreateCreditNoteDto, EditCreditNoteDto } from '../dtos/CreditNote.dto';
 
 export enum CreditNoteAction {

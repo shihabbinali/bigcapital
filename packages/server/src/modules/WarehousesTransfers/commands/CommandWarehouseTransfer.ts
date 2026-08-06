@@ -1,8 +1,8 @@
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { Inject, Injectable } from '@nestjs/common';
 import { ERRORS } from '../constants';
 import { WarehouseTransfer } from '../models/WarehouseTransfer';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { Item } from '@/modules/Items/models/Item';
 import { Warehouse } from '@/modules/Warehouses/models/Warehouse.model';

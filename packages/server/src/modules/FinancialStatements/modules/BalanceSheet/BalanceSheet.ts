@@ -1,7 +1,7 @@
 // @ts-nocheck
 import * as R from 'ramda';
 import { I18nService } from 'nestjs-i18n';
-import {
+import type {
   IBalanceSheetQuery,
   IBalanceSheetSchemaNode,
   IBalanceSheetDataNode,
@@ -19,7 +19,11 @@ import { BalanceSheetFiltering } from './BalanceSheetFiltering';
 import { BalanceSheetNetIncome } from './BalanceSheetNetIncome';
 import { BalanceSheetAggregators } from './BalanceSheetAggregators';
 import { BalanceSheetAccounts } from './BalanceSheetAccounts';
-import { INumberFormatQuery, IFinancialReportMeta, DEFAULT_REPORT_META } from '../../types/Report.types';
+import type {
+  INumberFormatQuery,
+  IFinancialReportMeta,
+} from '../../types/Report.types';
+import { DEFAULT_REPORT_META } from '../../types/Report.types';
 import { FinancialSheet } from '../../common/FinancialSheet';
 
 export class BalanceSheet extends R.pipe(

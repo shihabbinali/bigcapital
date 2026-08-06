@@ -1,5 +1,5 @@
 import { events } from '@/common/events/events';
-import { ISaleInvoiceCreatedPayload } from '@/modules/SaleInvoices/SaleInvoice.types';
+import type { ISaleInvoiceCreatedPayload } from '@/modules/SaleInvoices/SaleInvoice.types';
 import { OnEvent } from '@nestjs/event-emitter';
 import { STRIPE_INTEGRAION_CONNECTED } from '../event-tracker';
 import { EventTrackerService } from '../EventTracker.service';

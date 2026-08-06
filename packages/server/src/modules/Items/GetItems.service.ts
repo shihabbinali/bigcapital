@@ -3,9 +3,9 @@ import { Inject, Injectable } from '@nestjs/common';
 import { TransformerInjectable } from '../Transformer/TransformerInjectable.service';
 import { DynamicListService } from '../DynamicListing/DynamicList.service';
 import { Item } from './models/Item';
-import { IItemsFilter } from './types/Items.types';
+import type { IItemsFilter } from './types/Items.types';
 import { ItemTransformer } from './Item.transformer';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { ISortOrder } from '../DynamicListing/DynamicFilter/DynamicFilter.types';
 import { GetItemsQueryDto } from './dtos/GetItemsQuery.dto';
 

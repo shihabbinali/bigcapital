@@ -1,6 +1,6 @@
 // @ts-nocheck
-import * as _ from 'lodash';
-import * as addDeepdash from 'deepdash';
+import _ from 'lodash';
+import addDeepdash from 'deepdash';
 
 const {
   condense,
@@ -39,7 +39,7 @@ const mapValuesDeepReverse = (nodes, callback, config?) => {
     const children = _.get(
       clonedNodes,
       `${pathString}.${config.childrenPath}`,
-      []
+      [],
     );
     const mappedNode = callback(node, children);
 
@@ -75,8 +75,8 @@ const filterNodesDeep = (predicate, nodes) => {
         childrenPath: 'children',
         pathFormat: 'array',
         callbackAfterIterate: true,
-      }
-    )
+      },
+    ),
   );
 };
 
@@ -97,7 +97,7 @@ const flatNestedTree = (obj, mapper, options) => {
       childrenPath: 'children',
       pathFormat: 'array',
       ...options,
-    }
+    },
   );
 };
 

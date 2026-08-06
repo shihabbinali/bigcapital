@@ -1,4 +1,5 @@
-import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { GetObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client } from '@aws-sdk/client-s3';
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { S3_CLIENT } from '../S3/S3.module';
@@ -11,7 +12,7 @@ export class GetAttachment {
     @Inject(S3_CLIENT)
     private readonly s3: S3Client,
   ) {}
-  
+
   /**
    * Retrieves data of the given document key.
    * @param {string} filekey

@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { RefundCreditNote } from '../models/RefundCreditNote';
 import { CreditNote } from '@/modules/CreditNotes/models/CreditNote';
 import { CreditNoteRefundDto } from '../dto/CreditNoteRefund.dto';

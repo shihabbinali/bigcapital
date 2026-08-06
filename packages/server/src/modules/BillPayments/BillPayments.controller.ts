@@ -19,10 +19,7 @@ import {
   ApiTags,
   getSchemaPath,
 } from '@nestjs/swagger';
-import {
-  CreateBillPaymentDto,
-  EditBillPaymentDto,
-} from './dtos/BillPayment.dto';
+import { CreateBillPaymentDto, EditBillPaymentDto } from './dtos/BillPayment.dto';
 import { GetBillPaymentsFilterDto } from './dtos/GetBillPaymentsFilter.dto';
 import { BillPaymentsPages } from './commands/BillPaymentsPages.service';
 import { BillPaymentResponseDto } from './dtos/BillPaymentResponse.dto';

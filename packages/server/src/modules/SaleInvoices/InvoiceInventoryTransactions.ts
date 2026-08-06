@@ -1,7 +1,7 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Injectable } from '@nestjs/common';
 import { ItemsEntriesService } from '../Items/ItemsEntries.service';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { SaleInvoice } from './models/SaleInvoice';
 
 @Injectable()
@@ -25,7 +25,7 @@ export class InvoiceInventoryTransactions {
     saleInvoice: ModelObject<SaleInvoice>,
     override?: boolean,
     trx?: Knex.Transaction,
-): Promise<void> {
+  ): Promise<void> {
     // Loads the inventory items entries of the given sale invoice.
     const inventoryEntries =
       await this.itemsEntriesService.filterInventoryEntries(

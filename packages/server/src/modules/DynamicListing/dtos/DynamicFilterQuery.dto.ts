@@ -1,7 +1,8 @@
 import { ToNumber } from '@/common/decorators/Validators';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsArray, IsOptional, IsString } from 'class-validator';
-import { IFilterRole, ISortOrder } from '../DynamicFilter/DynamicFilter.types';
+import { ISortOrder } from '../DynamicFilter/DynamicFilter.types';
+import type { IFilterRole } from '../DynamicFilter/DynamicFilter.types';
 
 export class DynamicFilterQueryDto {
   @ApiPropertyOptional({ description: 'Custom view ID', type: Number })

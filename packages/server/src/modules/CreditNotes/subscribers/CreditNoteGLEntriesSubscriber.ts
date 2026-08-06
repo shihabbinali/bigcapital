@@ -1,4 +1,4 @@
-import {
+import type {
   ICreditNoteCreatedPayload,
   ICreditNoteDeletedPayload,
   ICreditNoteEditedPayload,
@@ -73,6 +73,9 @@ export class CreditNoteGLEntriesSubscriber {
     // Can't continue if the credit note is not published yet.
     if (!creditNote.isPublished) return;
 
-    await this.creditNoteGLEntries.editVendorCreditGLEntries(creditNote.id, trx);
+    await this.creditNoteGLEntries.editVendorCreditGLEntries(
+      creditNote.id,
+      trx,
+    );
   }
 }

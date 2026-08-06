@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { TableSheetPdf } from '../../common/TableSheetPdf';
-import { ITransactionsByVendorsFilter } from './TransactionsByVendor.types';
+import type { ITransactionsByVendorsFilter } from './TransactionsByVendor.types';
 import { TransactionsByVendorTableInjectable } from './TransactionsByVendorTableInjectable';
 import { HtmlTableCustomCss } from './constants';
 
@@ -9,7 +9,7 @@ export class TransactionsByVendorsPdf {
   constructor(
     private readonly transactionsByVendorTable: TransactionsByVendorTableInjectable,
     private readonly tableSheetPdf: TableSheetPdf,
-  ) { }
+  ) {}
 
   /**
    * Converts the given balance sheet table to pdf.

@@ -1,7 +1,7 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import { Injectable } from '@nestjs/common';
 import { FinancialSheetMeta } from '../../common/FinancialSheetMeta';
-import {
+import type {
   ISalesProfitQuery,
   ISalesProfitSheetMeta,
 } from './SalesProfit.types';
@@ -18,7 +18,9 @@ export class SalesProfitMeta {
   public async meta(query: ISalesProfitQuery): Promise<ISalesProfitSheetMeta> {
     const commonMeta = await this.financialSheetMeta.meta();
     const formattedToDate = moment(query.toDate).format(commonMeta.dateFormat);
-    const formattedFromDate = moment(query.fromDate).format(commonMeta.dateFormat);
+    const formattedFromDate = moment(query.fromDate).format(
+      commonMeta.dateFormat,
+    );
     const formattedDateRange = `From ${formattedFromDate} | To ${formattedToDate}`;
 
     const sheetName = 'Sales Profit';

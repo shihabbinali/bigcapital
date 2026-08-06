@@ -1,8 +1,8 @@
 import { contactAddressTextFormat } from '@/utils/address-text-format';
-import { EstimatePdfBrandingAttributes } from './constants';
+import type { EstimatePdfBrandingAttributes } from './constants';
 
 export const transformEstimateToPdfTemplate = (
-  estimate
+  estimate,
 ): Partial<EstimatePdfBrandingAttributes> => {
   return {
     expirationDate: estimate.formattedExpirationDate,

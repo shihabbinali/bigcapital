@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { Knex, knex } from 'knex';
+import { knex } from 'knex';
+import type { Knex } from 'knex';
 import { knexSnakeCaseMappers } from 'objection';
 import { TenantDBAlreadyExists } from './exceptions/TenantDBAlreadyExists';
 import { sanitizeDatabaseName } from '@/utils/sanitize-database-name';
@@ -23,7 +24,7 @@ export class TenantDBManager {
 
     @Inject(SystemKnexConnection)
     private readonly systemKnex: Knex,
-  ) { }
+  ) {}
 
   /**
    * Retrieves the tenant database name.
@@ -45,8 +46,8 @@ export class TenantDBManager {
 
     const results = await this.systemKnex.raw(
       'SELECT * FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = "' +
-      databaseName +
-      '"',
+        databaseName +
+        '"',
     );
     return results[0].length > 0;
   }

@@ -1,7 +1,7 @@
 import { OnEvent } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
 import { InitialCurrenciesSeedService } from '../commands/InitialCurrenciesSeed.service';
-import { IOrganizationBuildEventPayload } from '@/modules/Organization/Organization.types';
+import type { IOrganizationBuildEventPayload } from '@/modules/Organization/Organization.types';
 import { events } from '@/common/events/events';
 
 @Injectable()

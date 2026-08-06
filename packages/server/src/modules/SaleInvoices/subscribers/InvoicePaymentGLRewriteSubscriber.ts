@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import { ISaleInvoiceEditingPayload } from '../SaleInvoice.types';
+import type { ISaleInvoiceEditingPayload } from '../SaleInvoice.types';
 import { InvoicePaymentsGLEntriesRewrite } from '../InvoicePaymentsGLRewrite';
 
 @Injectable()

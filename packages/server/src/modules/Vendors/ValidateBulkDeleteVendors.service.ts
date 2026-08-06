@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { TENANCY_DB_CONNECTION } from '../Tenancy/TenancyDB/TenancyDB.constants';
 import { DeleteVendorService } from './commands/DeleteVendor.service';
 import { ModelHasRelationsError } from '@/common/exceptions/ModelHasRelations.exception';
@@ -58,4 +58,3 @@ export class ValidateBulkDeleteVendorsService {
     }
   }
 }
-

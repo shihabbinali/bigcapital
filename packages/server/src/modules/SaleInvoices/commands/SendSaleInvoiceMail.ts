@@ -6,12 +6,12 @@ import { SendSaleInvoiceMailCommon } from './SendInvoiceInvoiceMailCommon.servic
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { mergeAndValidateMailOptions } from '@/modules/MailNotification/utils';
-import {
+import type {
   SaleInvoiceMailOptions,
   SendInvoiceMailDTO,
   SendSaleInvoiceMailJobPayload,
 } from '../SaleInvoice.types';
-import { ISaleInvoiceMailSend } from '../SaleInvoice.types';
+import type { ISaleInvoiceMailSend } from '../SaleInvoice.types';
 import { Mail } from '@/modules/Mail/Mail';
 import { MailTransporter } from '@/modules/Mail/MailTransporter.service';
 import { SendSaleInvoiceMailJob, SendSaleInvoiceQueue } from '../constants';
@@ -33,7 +33,7 @@ export class SendSaleInvoiceMail {
     private readonly tenancyContect: TenancyContext,
 
     @InjectQueue(SendSaleInvoiceQueue) private readonly sendInvoiceQueue: Queue,
-  ) { }
+  ) {}
 
   /**
    * Sends the invoice mail of the given sale invoice.

@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { VendorsSampleData } from './_SampleData';
 import { Injectable } from '@nestjs/common';
 import { Importable } from '../Import/Importable';
@@ -7,9 +7,7 @@ import { CreateVendorDto } from './dtos/CreateVendor.dto';
 
 @Injectable()
 export class VendorsImportable extends Importable {
-  constructor(
-    private readonly createVendorService: CreateVendorService,
-  ) {
+  constructor(private readonly createVendorService: CreateVendorService) {
     super();
   }
 
@@ -20,7 +18,7 @@ export class VendorsImportable extends Importable {
    */
   public async importable(
     createDTO: CreateVendorDto,
-    trx?: Knex.Transaction<any, any[]>
+    trx?: Knex.Transaction<any, any[]>,
   ): Promise<void> {
     await this.createVendorService.createVendor(createDTO, trx);
   }

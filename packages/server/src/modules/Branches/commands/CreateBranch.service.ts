@@ -1,11 +1,14 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
-import { IBranchCreatedPayload, IBranchCreatePayload } from '../Branches.types';
+import type { Knex } from 'knex';
+import type {
+  IBranchCreatedPayload,
+  IBranchCreatePayload,
+} from '../Branches.types';
 import { UnitOfWork } from '../../Tenancy/TenancyDB/UnitOfWork.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Branch } from '../models/Branch.model';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { CreateBranchDto } from '../dtos/Branch.dto';
 
 @Injectable()

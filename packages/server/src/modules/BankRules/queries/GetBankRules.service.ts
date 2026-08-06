@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { GetBankRulesTransformer } from './GetBankRulesTransformer';
 import { BankRule } from '../models/BankRule';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetBankRulesService {

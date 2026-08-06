@@ -1,5 +1,5 @@
-import { IManualJournalDTO } from '@/modules/ManualJournals/types/ManualJournals.types';
-import { IManualJournalEntryDTO } from '@/modules/ManualJournals/types/ManualJournals.types';
+import type { IManualJournalDTO } from '@/modules/ManualJournals/types/ManualJournals.types';
+import type { IManualJournalEntryDTO } from '@/modules/ManualJournals/types/ManualJournals.types';
 import { ERRORS } from './constants';
 import { Injectable } from '@nestjs/common';
 import { ServiceError } from '@/modules/Items/ServiceError';

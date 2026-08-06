@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import {
+import type {
   ISalesByItemsItem,
   ISalesByItemsSheetData,
   ISalesByItemsTotal,
@@ -8,7 +8,7 @@ import { ROW_TYPE } from './constants';
 import { FinancialTable } from '../../common/FinancialTable';
 import { FinancialSheetStructure } from '../../common/FinancialSheetStructure';
 import { FinancialSheet } from '../../common/FinancialSheet';
-import { ITableColumn, ITableRow } from '../../types/Table.types';
+import type { ITableColumn, ITableRow } from '../../types/Table.types';
 import { tableRowMapper } from '../../utils/Table.utils';
 
 export class SalesByItemsTable extends R.pipe(
@@ -83,7 +83,7 @@ export class SalesByItemsTable extends R.pipe(
     const totalRow = this.totalMap(this.data.total);
 
     return R.compose(
-      R.when(R.always(R.not(R.isEmpty(itemsRows))), R.append(totalRow))
+      R.when(R.always(R.not(R.isEmpty(itemsRows))), R.append(totalRow)),
     )([...itemsRows]) as ITableRow[];
   }
 

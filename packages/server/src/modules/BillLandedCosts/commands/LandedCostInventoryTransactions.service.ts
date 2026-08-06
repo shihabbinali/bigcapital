@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
-import { IBillLandedCostTransaction } from '../types/BillLandedCosts.types';
+import type { Knex } from 'knex';
+import type { IBillLandedCostTransaction } from '../types/BillLandedCosts.types';
 import { Bill } from '@/modules/Bills/models/Bill';
 import { mergeLocatedWithBillEntries } from '../utils';
 import { InventoryTransactionsService } from '@/modules/InventoryCost/commands/InventoryTransactions.service';

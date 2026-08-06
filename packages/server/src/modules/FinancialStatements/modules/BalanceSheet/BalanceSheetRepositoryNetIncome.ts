@@ -1,11 +1,11 @@
 // @ts-nocheck
 import * as R from 'ramda';
 import { FinancialDatePeriods } from '../../common/FinancialDatePeriods';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { Account } from '@/modules/Accounts/models/Account.model';
-import { ILedger } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedger } from '@/modules/Ledger/types/Ledger.types';
 import { ACCOUNT_PARENT_TYPE } from '@/constants/accounts';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from '../../common/FinancialSheet';
 
 export const BalanceSheetRepositoryNetIncome = <

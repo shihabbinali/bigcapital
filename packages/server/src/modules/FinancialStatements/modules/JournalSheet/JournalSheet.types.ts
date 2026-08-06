@@ -1,5 +1,5 @@
-import { IFinancialSheetCommonMeta } from '../../types/Report.types';
-import { IFinancialTable } from '../../types/Table.types';
+import type { IFinancialSheetCommonMeta } from '../../types/Report.types';
+import type { IFinancialTable } from '../../types/Table.types';
 
 export interface IJournalReportQuery {
   fromDate: Date | string;

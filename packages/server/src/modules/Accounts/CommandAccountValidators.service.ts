@@ -9,7 +9,7 @@ import { AccountRepository } from './repositories/Account.repository';
 import { AccountTypesUtils } from './utils/AccountType.utils';
 import { CreateAccountDTO } from './CreateAccount.dto';
 import { EditAccountDTO } from './EditAccount.dto';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 
 @Injectable({ scope: Scope.REQUEST })
 export class CommandAccountValidators {
@@ -17,7 +17,7 @@ export class CommandAccountValidators {
     @Inject(Account.name)
     private readonly accountModel: TenantModelProxy<typeof Account>,
     private readonly accountRepository: AccountRepository,
-  ) { }
+  ) {}
 
   /**
    * Throws error if the account was prefined.

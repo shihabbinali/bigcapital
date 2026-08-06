@@ -5,7 +5,7 @@ import { AccountRepository } from './repositories/Account.repository';
 import { TransformerInjectable } from '../Transformer/TransformerInjectable.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { AccountResponseDto } from './dtos/AccountResponse.dto';
 
 @Injectable()

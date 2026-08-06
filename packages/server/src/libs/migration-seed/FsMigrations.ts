@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { sortBy } from 'lodash';
 import { promisify } from 'util';
-import { MigrateItem } from './interfaces';
+import type { MigrateItem } from './interfaces';
 import { importWebpackSeedModule } from './Utils';
 import { DEFAULT_LOAD_EXTENSIONS } from './constants';
 import { filterMigrations } from './MigrateUtils';

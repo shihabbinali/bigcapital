@@ -4,7 +4,7 @@ import {
   BALANCE_SHEET_SCHEMA_NODE_TYPE,
 } from './BalanceSheet.types';
 import { FinancialSchema } from '../../common/FinancialSchema';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { ACCOUNT_TYPE } from '@/constants/accounts';
 import { FinancialSheet } from '../../common/FinancialSheet';
 

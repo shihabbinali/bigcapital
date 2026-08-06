@@ -3,7 +3,7 @@ import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectab
 import { TaxRateTransformer } from './TaxRate.transformer';
 import { TaxRateModel } from '../models/TaxRate.model';
 import { CommandTaxRatesValidators } from '../commands/CommandTaxRatesValidator.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetTaxRateService {

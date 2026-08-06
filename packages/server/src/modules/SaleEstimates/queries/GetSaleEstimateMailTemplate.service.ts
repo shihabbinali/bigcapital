@@ -1,8 +1,6 @@
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
-import {
-  renderEstimateEmailTemplate,
-  EstimatePaymentEmailProps,
-} from '@bigcapital/email-components';
+import { renderEstimateEmailTemplate } from '@bigcapital/email-components';
+import type { EstimatePaymentEmailProps } from '@bigcapital/email-components';
 import { Injectable } from '@nestjs/common';
 import { GetSaleEstimate } from './GetSaleEstimate.service';
 import { GetPdfTemplateService } from '@/modules/PdfTemplate/queries/GetPdfTemplate.service';

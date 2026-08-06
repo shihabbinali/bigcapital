@@ -1,4 +1,5 @@
-import { Command, CommandRunner } from 'nest-commander';
+import { Command } from 'nest-commander';
+import { CommandRunner } from 'nest-commander';
 
 @Command({
   name: 'system:seed:latest',

@@ -1,6 +1,6 @@
 import { ACCOUNT_TYPE } from '@/constants/accounts';
+import type { ICashFlowSchemaSection } from './Cashflow.types';
 import {
-  ICashFlowSchemaSection,
   CASH_FLOW_SECTION_ID,
   ICashFlowStatementSectionType,
 } from './Cashflow.types';

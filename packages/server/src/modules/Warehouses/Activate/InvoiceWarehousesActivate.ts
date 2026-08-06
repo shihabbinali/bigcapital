@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Warehouse } from '../models/Warehouse.model';
 import { SaleInvoice } from '@/modules/SaleInvoices/models/SaleInvoice';
 import { ItemEntry } from '@/modules/TransactionItemEntry/models/ItemEntry';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class InvoicesActivateWarehouses {

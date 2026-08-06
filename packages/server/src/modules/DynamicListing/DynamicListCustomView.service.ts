@@ -3,8 +3,8 @@ import { ERRORS } from './constants';
 import { DynamicFilterViews } from './DynamicFilter';
 import { ServiceError } from '../Items/ServiceError';
 import { DynamicListServiceAbstract } from './DynamicListServiceAbstract';
-import { IView } from '../Views/Views.types';
-import { MetableModel } from './types/DynamicList.types';
+import type { IView } from '../Views/Views.types';
+import type { MetableModel } from './types/DynamicList.types';
 
 @Injectable()
 export class DynamicListCustomView extends DynamicListServiceAbstract {

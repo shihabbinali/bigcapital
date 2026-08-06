@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ITaxRateEditedPayload } from '../TaxRates.types';
+import type { ITaxRateEditedPayload } from '../TaxRates.types';
 import { runAfterTransaction } from '@/modules/Tenancy/TenancyDB/TransactionsHooks';
 import { events } from '@/common/events/events';
 import { SyncItemTaxRateOnEditTaxRate } from '../SyncItemTaxRateOnEditTaxRate';

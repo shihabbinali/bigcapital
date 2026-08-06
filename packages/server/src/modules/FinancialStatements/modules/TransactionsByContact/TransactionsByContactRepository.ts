@@ -1,5 +1,5 @@
 import { Ledger } from '@/modules/Ledger/Ledger';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 
 export class TransactionsByContactRepository {
   /**

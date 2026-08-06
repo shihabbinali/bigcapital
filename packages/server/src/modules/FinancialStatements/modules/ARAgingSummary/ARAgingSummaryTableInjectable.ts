@@ -1,7 +1,7 @@
 import { ARAgingSummaryTable } from './ARAgingSummaryTable';
 import { ARAgingSummaryService } from './ARAgingSummaryService';
 import { Injectable } from '@nestjs/common';
-import { IARAgingSummaryTable } from './ARAgingSummary.types';
+import type { IARAgingSummaryTable } from './ARAgingSummary.types';
 import { ARAgingSummaryQueryDto } from './ARAgingSummaryQuery.dto';
 
 @Injectable()

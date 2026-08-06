@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import {
+import type {
   IVendorCreditCreatedPayload,
   IVendorCreditCreatingPayload,
   IVendorCreditDeletingPayload,

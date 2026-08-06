@@ -1,14 +1,18 @@
 import * as R from 'ramda';
 import { isEmpty } from 'lodash';
-import { ModelObject } from 'objection';
-import {
+import type { ModelObject } from 'objection';
+import type {
   IVendorBalanceSummaryVendor,
   IVendorBalanceSummaryQuery,
   IVendorBalanceSummaryData,
 } from './VendorBalanceSummary.types';
 import { ContactBalanceSummaryReport } from '../ContactBalanceSummary/ContactBalanceSummary';
 import { Vendor } from '@/modules/Vendors/models/Vendor';
-import { INumberFormatQuery, IFinancialReportMeta, DEFAULT_REPORT_META } from '../../types/Report.types';
+import type {
+  INumberFormatQuery,
+  IFinancialReportMeta,
+} from '../../types/Report.types';
+import { DEFAULT_REPORT_META } from '../../types/Report.types';
 import { VendorBalanceSummaryRepository } from './VendorBalanceSummaryRepository';
 import { Ledger } from '@/modules/Ledger/Ledger';
 
@@ -21,8 +25,8 @@ export class VendorBalanceSummaryReport extends ContactBalanceSummaryReport {
 
   /**
    * Constructor method.
-   * @param {VendorBalanceSummaryRepository} repository - 
-   * @param {IVendorBalanceSummaryQuery} filter - 
+   * @param {VendorBalanceSummaryRepository} repository -
+   * @param {IVendorBalanceSummaryQuery} filter -
    */
   constructor(
     repository: VendorBalanceSummaryRepository,
@@ -38,7 +42,6 @@ export class VendorBalanceSummaryReport extends ContactBalanceSummaryReport {
     this.filter = filter;
     this.numberFormat = this.filter.numberFormat;
     this.dateFormat = meta.dateFormat || DEFAULT_REPORT_META.dateFormat;
-
   }
 
   /**

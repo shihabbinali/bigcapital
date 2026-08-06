@@ -1,15 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import {
-  IItemCategoryOTD,
-} from './ItemCategory.interfaces';
+import type { IItemCategoryOTD } from './ItemCategory.interfaces';
 import { GetItemCategoriesQueryDto } from './dtos/GetItemCategoriesQuery.dto';
 import { CreateItemCategoryService } from './commands/CreateItemCategory.service';
 import { DeleteItemCategoryService } from './commands/DeleteItemCategory.service';
 import { EditItemCategoryService } from './commands/EditItemCategory.service';
 import { GetItemCategoryService } from './queries/GetItemCategory.service';
 import { GetItemCategoriesService } from './queries/GetItemCategories.service';
-import { CreateItemCategoryDto, EditItemCategoryDto } from './dtos/ItemCategory.dto';
-import { Knex } from 'knex';
+import {
+  CreateItemCategoryDto,
+  EditItemCategoryDto,
+} from './dtos/ItemCategory.dto';
+import type { Knex } from 'knex';
 
 @Injectable()
 export class ItemCategoryApplication {

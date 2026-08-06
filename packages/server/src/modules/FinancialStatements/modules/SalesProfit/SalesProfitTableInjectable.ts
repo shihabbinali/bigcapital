@@ -1,4 +1,4 @@
-import { ISalesProfitQuery } from './SalesProfit.types';
+import type { ISalesProfitQuery } from './SalesProfit.types';
 import { SalesProfitReportService } from './SalesProfitService';
 import { SalesProfitTable } from './SalesProfitTable';
 import { Injectable } from '@nestjs/common';

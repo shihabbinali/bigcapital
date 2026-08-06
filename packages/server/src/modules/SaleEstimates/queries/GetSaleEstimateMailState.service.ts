@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { SaleEstimate } from '../models/SaleEstimate';
 import { SendSaleEstimateMail } from '../commands/SendSaleEstimateMail';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
@@ -12,7 +12,7 @@ export class GetSaleEstimateMailStateService {
     private readonly transformer: TransformerInjectable,
 
     @Inject(SaleEstimate.name)
-    private readonly saleEstimateModel: TenantModelProxy<typeof SaleEstimate>
+    private readonly saleEstimateModel: TenantModelProxy<typeof SaleEstimate>,
   ) {}
 
   /**
@@ -21,25 +21,22 @@ export class GetSaleEstimateMailStateService {
    * @param {number} saleEstimateId
    * @returns {Promise<SaleEstimateMailState>}
    */
-  async getEstimateMailState(
-    saleEstimateId: number
-  ) {
-    const saleEstimate = await this.saleEstimateModel().query()
+  async getEstimateMailState(saleEstimateId: number) {
+    const saleEstimate = await this.saleEstimateModel()
+      .query()
       .findById(saleEstimateId)
       .withGraphFetched('customer')
       .withGraphFetched('entries.item')
       .withGraphFetched('pdfTemplate')
       .throwIfNotFound();
 
-    const mailOptions = await this.estimateMail.getMailOptions(
-      saleEstimateId
-    );
+    const mailOptions = await this.estimateMail.getMailOptions(saleEstimateId);
     const transformed = await this.transformer.transform(
       saleEstimate,
       new GetSaleEstimateMailStateTransformer(),
       {
         mailOptions,
-      }
+      },
     );
     return transformed;
   }

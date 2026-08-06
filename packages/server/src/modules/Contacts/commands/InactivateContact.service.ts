@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { Contact } from '../models/Contact';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { ERRORS } from '../Contacts.constants';
 
 @Injectable()

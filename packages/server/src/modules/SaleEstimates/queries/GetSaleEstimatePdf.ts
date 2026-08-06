@@ -2,13 +2,13 @@ import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { GetSaleEstimate } from './GetSaleEstimate.service';
 import { transformEstimateToPdfTemplate } from '../utils';
-import { EstimatePdfBrandingAttributes } from '../constants';
+import type { EstimatePdfBrandingAttributes } from '../constants';
 import { SaleEstimatePdfTemplate } from '@/modules/SaleInvoices/queries/SaleEstimatePdfTemplate.service';
 import { ChromiumlyTenancy } from '@/modules/ChromiumlyTenancy/ChromiumlyTenancy.service';
 import { PdfTemplateModel } from '@/modules/PdfTemplate/models/PdfTemplate';
 import { events } from '@/common/events/events';
 import { SaleEstimate } from '../models/SaleEstimate';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { renderEstimatePaperTemplateHtml } from '@bigcapital/pdf-templates';
 
 @Injectable()
@@ -26,7 +26,7 @@ export class GetSaleEstimatePdf {
 
     @Inject(SaleEstimate.name)
     private readonly saleEstimateModel: TenantModelProxy<typeof SaleEstimate>,
-  ) { }
+  ) {}
 
   /**
    * Retrieve sale estimate html content.
@@ -50,8 +50,7 @@ export class GetSaleEstimatePdf {
 
     // Retrieves the sale estimate html.
     const htmlContent = await this.saleEstimateHtml(saleEstimateId);
-    const buffer =
-      await this.chromiumlyTenancy.convertHtmlContent(htmlContent);
+    const buffer = await this.chromiumlyTenancy.convertHtmlContent(htmlContent);
 
     const eventPayload = { saleEstimateId };
 

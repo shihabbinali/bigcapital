@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Injectable } from '@nestjs/common';
 import { CreateInitialWarehouse } from './CreateInitialWarehouse.service';
 import { WarehousesSettings } from '../WarehousesSettings';

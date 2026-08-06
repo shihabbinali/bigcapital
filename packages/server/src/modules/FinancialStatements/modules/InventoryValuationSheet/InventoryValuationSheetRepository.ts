@@ -1,12 +1,12 @@
 import { isEmpty } from 'lodash';
 import { Inject, Injectable, Scope } from '@nestjs/common';
-import { IInventoryValuationReportQuery } from './InventoryValuationSheet.types';
+import type { IInventoryValuationReportQuery } from './InventoryValuationSheet.types';
 import { InventoryCostLotTracker } from '@/modules/InventoryCost/models/InventoryCostLotTracker';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { Item } from '@/modules/Items/models/Item';
 import { transformToMap } from '@/utils/transform-to-key';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class InventoryValuationSheetRepository {
@@ -97,10 +97,10 @@ export class InventoryValuationSheetRepository {
       .onBuild((q) => {
         q.where('type', 'inventory');
 
-      if (this.filter.itemsIds.length > 0) {
-        q.whereIn('id', this.filter.itemsIds);
-      }
-    });
+        if (this.filter.itemsIds.length > 0) {
+          q.whereIn('id', this.filter.itemsIds);
+        }
+      });
     this.inventoryItems = inventoryItems;
   }
 

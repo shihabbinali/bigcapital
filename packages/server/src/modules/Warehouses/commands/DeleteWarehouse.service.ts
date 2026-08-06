@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import {
+import type {
   IWarehouseDeletedPayload,
   IWarehouseDeletePayload,
 } from '../Warehouse.types';
@@ -10,7 +10,7 @@ import { ERRORS } from '../contants';
 import { Warehouse } from '../models/Warehouse.model';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DeleteWarehouseService {

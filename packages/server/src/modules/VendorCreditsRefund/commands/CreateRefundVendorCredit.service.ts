@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import * as R from 'ramda';
 import * as composeAsync from 'async/compose';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import {
+import type {
   IRefundVendorCreditCreatedPayload,
   IRefundVendorCreditCreatingPayload,
 } from '../types/VendorCreditRefund.types';
@@ -12,11 +12,11 @@ import { VendorCredit } from '@/modules/VendorCredit/models/VendorCredit';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { RefundVendorCredit } from '../models/RefundVendorCredit';
 import { BranchTransactionDTOTransformer } from '@/modules/Branches/integrations/BranchTransactionDTOTransform';
-import { IVendorCreditCreatePayload } from '@/modules/VendorCredit/types/VendorCredit.types';
+import type { IVendorCreditCreatePayload } from '@/modules/VendorCredit/types/VendorCredit.types';
 import { events } from '@/common/events/events';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { ERRORS } from '../constants';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { RefundVendorCreditDto } from '../dtos/RefundVendorCredit.dto';
 
 @Injectable()

@@ -2,10 +2,10 @@ import { LedgerStorageService } from '@/modules/Ledger/LedgerStorage.service';
 import { Inject, Injectable } from '@nestjs/common';
 import { RefundVendorCredit } from '../models/RefundVendorCredit';
 import { Ledger } from '@/modules/Ledger/Ledger';
-import { Knex } from 'knex';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { Knex } from 'knex';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { Account } from '@/modules/Accounts/models/Account.model';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { AccountNormal } from '@/interfaces/Account';
 import { AccountRepository } from '@/modules/Accounts/repositories/Account.repository';
 
@@ -22,7 +22,7 @@ export class RefundVendorCreditGLEntries {
     private readonly refundVendorCreditModel: TenantModelProxy<
       typeof RefundVendorCredit
     >,
-  ) { }
+  ) {}
 
   /**
    * Retrieves the refund vendor credit common GL entry.
@@ -65,9 +65,8 @@ export class RefundVendorCreditGLEntries {
     refundVendorCredit: RefundVendorCredit,
     APAccountId: number,
   ): ILedgerEntry => {
-    const commonEntry = this.getRefundVendorCreditCommonGLEntry(
-      refundVendorCredit,
-    );
+    const commonEntry =
+      this.getRefundVendorCreditCommonGLEntry(refundVendorCredit);
 
     return {
       ...commonEntry,
@@ -87,9 +86,8 @@ export class RefundVendorCreditGLEntries {
   private getRefundVendorCreditGLDepositEntry = (
     refundVendorCredit: RefundVendorCredit,
   ): ILedgerEntry => {
-    const commonEntry = this.getRefundVendorCreditCommonGLEntry(
-      refundVendorCredit,
-    );
+    const commonEntry =
+      this.getRefundVendorCreditCommonGLEntry(refundVendorCredit);
 
     return {
       ...commonEntry,
@@ -114,9 +112,8 @@ export class RefundVendorCreditGLEntries {
       refundVendorCredit,
       APAccountId,
     );
-    const depositEntry = this.getRefundVendorCreditGLDepositEntry(
-      refundVendorCredit,
-    );
+    const depositEntry =
+      this.getRefundVendorCreditGLDepositEntry(refundVendorCredit);
 
     return [payableEntry, depositEntry];
   }

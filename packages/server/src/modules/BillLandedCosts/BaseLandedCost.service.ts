@@ -1,12 +1,12 @@
 import { Inject } from '@nestjs/common';
 import { difference, sumBy } from 'lodash';
-import {
+import type {
   ILandedCostTransaction,
   ILandedCostTransactionEntry,
   LandedCostTransactionModel,
   LandedCostTransactionType,
 } from './types/BillLandedCosts.types';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { BillLandedCost } from './models/BillLandedCost';
 import { ServiceError } from '../Items/ServiceError';
 import { CONFIG, ERRORS } from './utils';

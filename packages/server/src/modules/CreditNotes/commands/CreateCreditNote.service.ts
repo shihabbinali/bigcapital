@@ -1,6 +1,6 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
-import {
+import type {
   ICreditNoteCreatedPayload,
   ICreditNoteCreatingPayload,
 } from '../types/CreditNotes.types';
@@ -11,7 +11,7 @@ import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { ItemsEntriesService } from '@/modules/Items/ItemsEntries.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { CreateCreditNoteDto } from '../dtos/CreditNote.dto';
 
 @Injectable()

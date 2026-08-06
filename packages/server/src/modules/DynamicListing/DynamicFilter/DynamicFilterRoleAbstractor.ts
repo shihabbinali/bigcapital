@@ -1,14 +1,14 @@
 // @ts-nocheck
-import * as moment from 'moment';
+import moment from 'moment';
 import * as R from 'ramda';
-import { IFilterRole, IDynamicFilter } from './DynamicFilter.types';
+import type { IFilterRole, IDynamicFilter } from './DynamicFilter.types';
 import { Parser } from '@/libs/logic-evaluation/Parser';
 import { Lexer } from '@/libs/logic-evaluation/Lexer';
 import { DynamicFilterQueryParser } from './DynamicFilterQueryParser';
 import { COMPARATOR_TYPE, FIELD_TYPE } from './constants';
 import { BaseModel } from '@/models/Model';
-import { MetableModel } from '../types/DynamicList.types';
-import { Knex } from 'knex';
+import type { MetableModel } from '../types/DynamicList.types';
+import type { Knex } from 'knex';
 
 export abstract class DynamicFilterRoleAbstractor implements IDynamicFilter {
   public filterRoles: IFilterRole[] = [];

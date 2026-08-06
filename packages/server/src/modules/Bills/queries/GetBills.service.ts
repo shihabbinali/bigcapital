@@ -3,10 +3,10 @@ import * as R from 'ramda';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { DynamicListService } from '@/modules/DynamicListing/DynamicList.service';
 import { Bill } from '../models/Bill';
-import { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
+import type { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
 import { BillTransformer } from './Bill.transformer';
 import { GetBillsQueryDto } from '../dtos/GetBillsQuery.dto';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetBillsService {

@@ -1,13 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { TenantUser } from '@/modules/Tenancy/TenancyModels/models/TenantUser.model';
-import { ITenantUserEditedPayload } from '../Users.types';
+import type { ITenantUserEditedPayload } from '../Users.types';
 import { EditUserDto } from '../dtos/EditUser.dto';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { ERRORS } from '../Users.constants';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { SystemUser } from '@/modules/System/models/SystemUser';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 
@@ -18,7 +18,7 @@ export class EditUserService {
     private readonly tenantUserModel: TenantModelProxy<typeof TenantUser>,
     private readonly eventEmitter: EventEmitter2,
     private readonly tenancyContext: TenancyContext,
-  ) { }
+  ) {}
 
   /**
    * Creates a new user.

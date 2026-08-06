@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
-import { IAccountEventActivatedPayload } from './Accounts.types';
+import type { Knex } from 'knex';
+import type { IAccountEventActivatedPayload } from './Accounts.types';
 import { Account } from './models/Account.model';
 import { AccountRepository } from './repositories/Account.repository';
 import { UnitOfWork } from '../Tenancy/TenancyDB/UnitOfWork.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 
 @Injectable()
 export class ActivateAccount {

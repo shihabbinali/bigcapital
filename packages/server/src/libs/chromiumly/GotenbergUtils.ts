@@ -1,4 +1,4 @@
-import * as FormData from 'form-data';
+import type * as FormData from 'form-data';
 import { Axios } from 'axios';
 
 export class GotenbergUtils {

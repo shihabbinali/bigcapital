@@ -1,8 +1,8 @@
-import { ModelObject } from 'objection';
-import { Knex } from 'knex';
+import type { ModelObject } from 'objection';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import {
+import type {
   IBankRuleEventCreatedPayload,
   IBankRuleEventCreatingPayload,
 } from '../types';
@@ -10,7 +10,7 @@ import { UnitOfWork } from '../../Tenancy/TenancyDB/UnitOfWork.service';
 import { events } from '@/common/events/events';
 import { BankRule } from '../models/BankRule';
 import { CreateBankRuleDto } from '../dtos/BankRule.dto';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class CreateBankRuleService {

@@ -29,10 +29,8 @@ import { GetAccountTransactionResponseDto } from './dtos/GetAccountTransactionRe
 import { GetAccountTransactionsQueryDto } from './dtos/GetAccountTransactionsQuery.dto';
 import { GetAccountsQueryDto } from './dtos/GetAccountsQuery.dto';
 import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
-import {
-  BulkDeleteDto,
-  ValidateBulkDeleteResponseDto,
-} from '@/common/dtos/BulkDelete.dto';
+import { ValidateBulkDeleteResponseDto } from '@/common/dtos/BulkDelete.dto';
+import { BulkDeleteDto } from '@/common/dtos/BulkDelete.dto';
 import { RequirePermission } from '@/modules/Roles/RequirePermission.decorator';
 import { PermissionGuard } from '@/modules/Roles/Permission.guard';
 import { AuthorizationGuard } from '@/modules/Roles/Authorization.guard';
@@ -48,7 +46,7 @@ import { AccountAction } from './Accounts.types';
 @ApiCommonHeaders()
 @UseGuards(AuthorizationGuard, PermissionGuard)
 export class AccountsController {
-  constructor(private readonly accountsApplication: AccountsApplication) { }
+  constructor(private readonly accountsApplication: AccountsApplication) {}
 
   @Post('validate-bulk-delete')
   @HttpCode(200)

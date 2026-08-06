@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { AccountRepository } from '@/modules/Accounts/repositories/Account.repository';
 import { LedgerStorageService } from '@/modules/Ledger/LedgerStorage.service';
 import { SaleInvoice } from '../../models/SaleInvoice';
 import { SaleInvoiceWriteoffGL } from './SaleInvoiceWriteoffGL';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class SaleInvoiceWriteoffGLStorage {

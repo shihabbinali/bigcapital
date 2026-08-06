@@ -3,8 +3,8 @@ import { SubscriptionPeriod } from '../SubscriptionPeriod';
 import { PlanSubscription } from '../models/PlanSubscription';
 import { Inject, Injectable } from '@nestjs/common';
 import { SystemKnexConnection } from '@/modules/System/SystemDB/SystemDB.constants';
-import { Knex } from 'knex';
-import { PartialModelObject } from 'objection';
+import type { Knex } from 'knex';
+import type { PartialModelObject } from 'objection';
 
 @Injectable()
 export class PlanSubscriptionRepository extends TenantRepository {

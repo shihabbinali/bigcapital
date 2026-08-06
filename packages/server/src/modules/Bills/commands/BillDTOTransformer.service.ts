@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { omit, sumBy } from 'lodash';
-import * as moment from 'moment';
+import moment from 'moment';
 import * as R from 'ramda';
 import * as composeAsync from 'async/compose';
 import { formatDateFields } from '@/utils/format-date-fields';
@@ -13,7 +13,7 @@ import { ItemEntriesTaxTransactions } from '@/modules/TaxRates/ItemEntriesTaxTra
 import { Bill } from '../models/Bill';
 import { assocItemEntriesDefaultIndex } from '@/utils/associate-item-entries-index';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { CreateBillDto } from '../dtos/Bill.dto';
 
 @Injectable()

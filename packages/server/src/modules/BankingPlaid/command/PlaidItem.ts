@@ -6,8 +6,8 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { SystemPlaidItem } from '../models/SystemPlaidItem';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
-import { IPlaidItemCreatedEventPayload } from '../types/BankingPlaid.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { IPlaidItemCreatedEventPayload } from '../types/BankingPlaid.types';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { PlaidItemDto } from '../dtos/PlaidItem.dto';
 
 @Injectable()

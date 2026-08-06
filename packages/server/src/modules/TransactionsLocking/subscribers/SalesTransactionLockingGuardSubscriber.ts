@@ -2,42 +2,42 @@ import { events } from '@/common/events/events';
 import { SalesTransactionLockingGuard } from '../guards/SalesTransactionLockingGuard';
 import { OnEvent } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
-import {
+import type {
   ISaleInvoiceCreatingPaylaod,
   ISaleInvoiceDeletePayload,
   ISaleInvoiceEditingPayload,
   ISaleInvoiceWriteoffCreatePayload,
   ISaleInvoiceWrittenOffCancelPayload,
 } from '@/modules/SaleInvoices/SaleInvoice.types';
-import {
+import type {
   IPaymentReceivedCreatingPayload,
   IPaymentReceivedEditingPayload,
   IPaymentReceivedDeletingPayload,
 } from '@/modules/PaymentReceived/types/PaymentReceived.types';
-import {
+import type {
   ISaleEstimateCreatingPayload,
   ISaleEstimateDeletingPayload,
 } from '@/modules/SaleEstimates/types/SaleEstimates.types';
-import { ISaleEstimateEditingPayload } from '@/modules/SaleEstimates/types/SaleEstimates.types';
-import { IRefundCreditNoteDeletingPayload } from '@/modules/CreditNoteRefunds/types/CreditNoteRefunds.types';
-import { IRefundCreditNoteCreatingPayload } from '@/modules/CreditNoteRefunds/types/CreditNoteRefunds.types';
-import {
+import type { ISaleEstimateEditingPayload } from '@/modules/SaleEstimates/types/SaleEstimates.types';
+import type { IRefundCreditNoteDeletingPayload } from '@/modules/CreditNoteRefunds/types/CreditNoteRefunds.types';
+import type { IRefundCreditNoteCreatingPayload } from '@/modules/CreditNoteRefunds/types/CreditNoteRefunds.types';
+import type {
   ICreditNoteCreatingPayload,
   ICreditNoteDeletingPayload,
 } from '@/modules/CreditNotes/types/CreditNotes.types';
-import { ICreditNoteEditingPayload } from '@/modules/CreditNotes/types/CreditNotes.types';
-import {
+import type { ICreditNoteEditingPayload } from '@/modules/CreditNotes/types/CreditNotes.types';
+import type {
   ISaleReceiptCreatingPayload,
   ISaleReceiptDeletingPayload,
   ISaleReceiptEditingPayload,
 } from '@/modules/SaleReceipts/types/SaleReceipts.types';
-import { ISaleReceiptEventClosingPayload } from '@/modules/SaleReceipts/types/SaleReceipts.types';
+import type { ISaleReceiptEventClosingPayload } from '@/modules/SaleReceipts/types/SaleReceipts.types';
 
 @Injectable()
 export class SalesTransactionLockingGuardSubscriber {
   constructor(
     public readonly salesLockingGuard: SalesTransactionLockingGuard,
-  ) { }
+  ) {}
 
   /**
    * ---------------------------------------------

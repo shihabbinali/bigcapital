@@ -1,5 +1,6 @@
-import { Knex } from 'knex';
-import { Ability, RawRuleOf, ForcedSubject } from '@casl/ability';
+import type { Knex } from 'knex';
+import type { RawRuleOf, ForcedSubject } from '@casl/ability';
+import { Ability } from '@casl/ability';
 import { CreateRoleDto, EditRoleDto } from './dtos/Role.dto';
 import { Role } from './models/Role.model';
 
@@ -13,18 +14,17 @@ export const actions = [
 export const subjects = ['Article', 'all'] as const;
 
 export type Abilities = [
-  typeof actions[number],
+  (typeof actions)[number],
   (
-    | typeof subjects[number]
-    | ForcedSubject<Exclude<typeof subjects[number], 'all'>>
-  )
+    | (typeof subjects)[number]
+    | ForcedSubject<Exclude<(typeof subjects)[number], 'all'>>
+  ),
 ];
 
 export type AppAbility = Ability<Abilities>;
 
 export const createAbility = (rules: RawRuleOf<AppAbility>[]) =>
   new Ability<Abilities>(rules);
-
 
 export interface ISubjectAbilitySchema {
   key: string;
@@ -60,7 +60,7 @@ export enum AbilitySubject {
   CreditNote = 'CreditNode',
   VendorCredit = 'VendorCredit',
   Project = 'Project',
-  TaxRate = 'TaxRate'
+  TaxRate = 'TaxRate',
 }
 
 export interface IRoleCreatedPayload {

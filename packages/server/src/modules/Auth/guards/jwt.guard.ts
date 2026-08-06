@@ -1,4 +1,5 @@
-import { ExecutionContext, Injectable, SetMetadata } from '@nestjs/common';
+import { Injectable, SetMetadata } from '@nestjs/common';
+import type { ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 import { ClsService } from 'nestjs-cls';

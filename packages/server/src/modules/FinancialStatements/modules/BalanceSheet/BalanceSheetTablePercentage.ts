@@ -1,8 +1,8 @@
 // @ts-nocheck
 import * as R from 'ramda';
 import { I18nService } from 'nestjs-i18n';
-import { ITableColumn } from '../../types/Table.types';
-import { GConstructor } from '@/common/types/Constructor';
+import type { ITableColumn } from '../../types/Table.types';
+import type { GConstructor } from '@/common/types/Constructor';
 import { BalanceSheetQuery } from './BalanceSheetQuery';
 import { FinancialSheet } from '../../common/FinancialSheet';
 

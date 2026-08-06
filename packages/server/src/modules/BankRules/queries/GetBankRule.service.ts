@@ -3,7 +3,7 @@ import { GetBankRuleTransformer } from './GetBankRuleTransformer';
 import { TransformerInjectable } from '../../Transformer/TransformerInjectable.service';
 import { BankRule } from '../models/BankRule';
 import { GetBankRulesTransformer } from './GetBankRulesTransformer';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetBankRuleService {

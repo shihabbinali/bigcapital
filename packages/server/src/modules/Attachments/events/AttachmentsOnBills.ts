@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import {
+import type {
   IBIllEventDeletedPayload,
   IBillCreatedPayload,
   IBillCreatingPayload,
@@ -15,9 +15,9 @@ import { events } from '@/common/events/events';
 @Injectable()
 export class AttachmentsOnBills {
   /**
-   * @param {LinkAttachment} linkAttachmentService 
-   * @param {UnlinkAttachment} unlinkAttachmentService 
-   * @param {ValidateAttachments} validateDocuments 
+   * @param {LinkAttachment} linkAttachmentService
+   * @param {UnlinkAttachment} unlinkAttachmentService
+   * @param {ValidateAttachments} validateDocuments
    */
   constructor(
     private readonly linkAttachmentService: LinkAttachment,

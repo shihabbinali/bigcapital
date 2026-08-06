@@ -1,6 +1,6 @@
 // @ts-nocheck
 import * as R from 'ramda';
-import {
+import type {
   IBalanceSheetNetIncomeNode,
   IBalanceSheetTotalPeriod,
 } from './BalanceSheet.types';
@@ -12,7 +12,7 @@ import { BalanceSheetRepository } from './BalanceSheetRepository';
 import { BalanceSheetNetIncomePP } from './BalanceSheetNetIncomePP';
 import { BalanceSheetNetIncomePY } from './BalanceSheetNetIncomePY';
 import { FinancialSheet } from '../../common/FinancialSheet';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 
 export const BalanceSheetNetIncomeDatePeriods = <
   T extends GConstructor<FinancialSheet>,

@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { CreateSaleEstimate } from './commands/CreateSaleEstimate.service';
 import { SaleEstimatesSampleData } from './constants';
 import { Injectable } from '@nestjs/common';
@@ -9,10 +9,8 @@ import { SaleEstimate } from './models/SaleEstimate';
 
 @Injectable()
 @ImportableService({ name: SaleEstimate.name })
-export class SaleEstimatesImportable extends Importable{
-  constructor(
-    private readonly createEstimateService: CreateSaleEstimate
-  ) {
+export class SaleEstimatesImportable extends Importable {
+  constructor(private readonly createEstimateService: CreateSaleEstimate) {
     super();
   }
 
@@ -23,12 +21,9 @@ export class SaleEstimatesImportable extends Importable{
    */
   public importable(
     createEstimateDTO: CreateSaleEstimateDto,
-    trx?: Knex.Transaction
+    trx?: Knex.Transaction,
   ) {
-    return this.createEstimateService.createEstimate(
-      createEstimateDTO,
-      trx
-    );
+    return this.createEstimateService.createEstimate(createEstimateDTO, trx);
   }
 
   /**

@@ -1,4 +1,4 @@
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { PlaidItem } from '../models/PlaidItem';
 import { PlaidUpdateTransactions } from './PlaidUpdateTransactions';
 import { Inject, Injectable } from '@nestjs/common';

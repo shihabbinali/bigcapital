@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { CategorizeBankTransaction } from './commands/CategorizeBankTransaction';
 import { UncategorizeBankTransactionService } from './commands/UncategorizeBankTransaction.service';
 import { UncategorizeBankTransactionsBulk } from './commands/UncategorizeBankTransactionsBulk.service';
@@ -6,7 +6,7 @@ import { UncategorizedBankTransactionDto } from './dtos/CreateUncategorizedBankT
 import { CategorizeBankTransactionDto } from './dtos/CategorizeBankTransaction.dto';
 import { CategorizeTransactionAsExpense } from './commands/CategorizeTransactionAsExpense';
 import { CreateUncategorizedTransactionService } from './commands/CreateUncategorizedTransaction.service';
-import { ICategorizeCashflowTransactioDTO } from './types/BankingCategorize.types';
+import type { ICategorizeCashflowTransactioDTO } from './types/BankingCategorize.types';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

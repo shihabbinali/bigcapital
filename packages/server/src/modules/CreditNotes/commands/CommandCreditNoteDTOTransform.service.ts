@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { omit } from 'lodash';
-import * as moment from 'moment';
+import moment from 'moment';
 import * as composeAsync from 'async/compose';
 import * as R from 'ramda';
 import { ERRORS } from '../constants';
@@ -13,11 +13,7 @@ import { assocItemEntriesDefaultIndex } from '@/utils/associate-item-entries-ind
 import { formatDateFields } from '@/utils/format-date-fields';
 import { CreditNoteAutoIncrementService } from './CreditNoteAutoIncrement.service';
 import { CreditNote } from '../models/CreditNote';
-import {
-  CreateCreditNoteDto,
-  CreditNoteEntryDto,
-  EditCreditNoteDto,
-} from '../dtos/CreditNote.dto';
+import { CreateCreditNoteDto, CreditNoteEntryDto, EditCreditNoteDto } from '../dtos/CreditNote.dto';
 
 @Injectable()
 export class CommandCreditNoteDTOTransform {
@@ -34,7 +30,7 @@ export class CommandCreditNoteDTOTransform {
     private readonly warehouseDTOTransform: WarehouseTransactionDTOTransform,
     private readonly brandingTemplatesTransformer: BrandingTemplateDTOTransformer,
     private readonly creditNoteAutoIncrement: CreditNoteAutoIncrementService,
-  ) { }
+  ) {}
 
   /**
    * Transforms the credit/edit DTO to model.
@@ -71,10 +67,9 @@ export class CommandCreditNoteDTOTransform {
       autoNextNumber;
 
     const initialDTO = {
-      ...formatDateFields(
-        omit(creditNoteDTO, ['open', 'attachments']),
-        ['creditNoteDate'],
-      ),
+      ...formatDateFields(omit(creditNoteDTO, ['open', 'attachments']), [
+        'creditNoteDate',
+      ]),
       creditNoteNumber,
       amount,
       currencyCode: customerCurrencyCode,
@@ -82,8 +77,8 @@ export class CommandCreditNoteDTOTransform {
       entries,
       ...(creditNoteDTO.open &&
         !oldCreditNote?.openedAt && {
-        openedAt: moment().toMySqlDateTime(),
-      }),
+          openedAt: moment().toMySqlDateTime(),
+        }),
       refundedAmount: 0,
       invoicesAmount: 0,
     };

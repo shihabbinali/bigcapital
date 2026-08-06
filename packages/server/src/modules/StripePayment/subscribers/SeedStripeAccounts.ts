@@ -3,8 +3,8 @@ import { Inject, Injectable } from '@nestjs/common';
 import { events } from '@/common/events/events';
 import { AccountRepository } from '@/modules/Accounts/repositories/Account.repository';
 import { PaymentIntegration } from '../models/PaymentIntegration.model';
-import { StripeOAuthCodeGrantedEventPayload } from '../types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { StripeOAuthCodeGrantedEventPayload } from '../types';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class SeedStripeAccountsOnOAuthGrantedSubscriber {

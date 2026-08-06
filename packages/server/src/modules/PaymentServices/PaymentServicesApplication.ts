@@ -1,7 +1,8 @@
 import { GetPaymentServicesSpecificInvoice } from './queries/GetPaymentServicesSpecificInvoice';
 import { DeletePaymentMethodService } from './commands/DeletePaymentMethodService';
 import { EditPaymentMethodService } from './commands/EditPaymentMethodService';
-import { EditPaymentMethodDTO, GetPaymentMethodsPOJO } from './types';
+import { EditPaymentMethodDTO } from './types';
+import type { GetPaymentMethodsPOJO } from './types';
 import { GetPaymentMethodsStateService } from './queries/GetPaymentMethodsState';
 import { GetPaymentMethodService } from './queries/GetPaymentService';
 import { Injectable } from '@nestjs/common';

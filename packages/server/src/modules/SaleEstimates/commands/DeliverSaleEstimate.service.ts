@@ -1,8 +1,8 @@
-import { Knex } from 'knex';
-import * as moment from 'moment';
+import type { Knex } from 'knex';
+import moment from 'moment';
 import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import {
+import type {
   ISaleEstimateEventDeliveredPayload,
   ISaleEstimateEventDeliveringPayload,
 } from '../types/SaleEstimates.types';
@@ -11,7 +11,7 @@ import { SaleEstimate } from '../models/SaleEstimate';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { events } from '@/common/events/events';
 import { ServiceError } from '@/modules/Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DeliverSaleEstimateService {

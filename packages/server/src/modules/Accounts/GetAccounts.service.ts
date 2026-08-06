@@ -1,13 +1,14 @@
 import { Inject, Injectable } from '@nestjs/common';
 import * as R from 'ramda';
-import { IAccountsFilter, IAccountsStructureType } from './Accounts.types';
+import { IAccountsStructureType } from './Accounts.types';
+import type { IAccountsFilter } from './Accounts.types';
 import { DynamicListService } from '../DynamicListing/DynamicList.service';
 import { AccountTransformer } from './Account.transformer';
 import { TransformerInjectable } from '../Transformer/TransformerInjectable.service';
 import { Account } from './models/Account.model';
 import { AccountRepository } from './repositories/Account.repository';
-import { IFilterMeta } from '@/interfaces/Model';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { IFilterMeta } from '@/interfaces/Model';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { GetAccountsQueryDto } from './dtos/GetAccountsQuery.dto';
 
 @Injectable()
@@ -19,7 +20,7 @@ export class GetAccountsService {
 
     @Inject(Account.name)
     private readonly accountModel: TenantModelProxy<typeof Account>,
-  ) { }
+  ) {}
 
   /**
    * Retrieve accounts datatable list.

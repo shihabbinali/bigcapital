@@ -1,5 +1,5 @@
 import { TableSheet } from '../../common/TableSheet';
-import { SalesTaxLiabilitySummaryQuery } from './SalesTaxLiability.types';
+import type { SalesTaxLiabilitySummaryQuery } from './SalesTaxLiability.types';
 import { SalesTaxLiabilitySummaryTableInjectable } from './SalesTaxLiabilitySummaryTableInjectable';
 import { Injectable } from '@nestjs/common';
 

@@ -1,5 +1,5 @@
-import { IFinancialSheetCommonMeta } from '../../types/Report.types';
-import { INumberFormatQuery } from '../../types/Report.types';
+import type { IFinancialSheetCommonMeta } from '../../types/Report.types';
+import type { INumberFormatQuery } from '../../types/Report.types';
 
 export interface IAgingPeriodTotal extends IAgingPeriod {
   total: IAgingAmount;

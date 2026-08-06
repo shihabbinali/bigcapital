@@ -1,10 +1,10 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import { defaultTo, sumBy, uniqBy } from 'lodash';
-import { ILedger } from './types/Ledger.types';
-import { ILedgerEntry } from './types/Ledger.types';
+import type { ILedger } from './types/Ledger.types';
+import type { ILedgerEntry } from './types/Ledger.types';
 import { AccountTransaction } from '../Accounts/models/AccountTransaction.model';
-import { IAccountTransaction } from '@/interfaces/Account';
-import { ModelObject } from 'objection';
+import type { IAccountTransaction } from '@/interfaces/Account';
+import type { ModelObject } from 'objection';
 
 export class Ledger implements ILedger {
   readonly entries: ILedgerEntry[];
@@ -229,7 +229,9 @@ export class Ledger implements ILedger {
    * @param   {IAccountTransaction[]} entries
    * @returns {ILedgerEntry[]}
    */
-  static mappingTransactions(entries: ModelObject<AccountTransaction>[]): ILedgerEntry[] {
+  static mappingTransactions(
+    entries: ModelObject<AccountTransaction>[],
+  ): ILedgerEntry[] {
     return entries.map(this.mapTransaction);
   }
 

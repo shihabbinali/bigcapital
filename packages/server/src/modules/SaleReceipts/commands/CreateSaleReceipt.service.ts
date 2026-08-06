@@ -1,6 +1,6 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   ISaleReceiptCreatedPayload,
   ISaleReceiptCreatingPayload,
 } from '../types/SaleReceipts.types';
@@ -12,7 +12,7 @@ import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { SaleReceipt } from '../models/SaleReceipt';
 import { Customer } from '@/modules/Customers/models/Customer';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { CreateSaleReceiptDto } from '../dtos/SaleReceipt.dto';
 
 @Injectable()
@@ -38,7 +38,7 @@ export class CreateSaleReceipt {
 
     @Inject(Customer.name)
     private readonly customerModel: TenantModelProxy<typeof Customer>,
-  ) { }
+  ) {}
 
   /**
    * Creates a new sale receipt with associated entries.

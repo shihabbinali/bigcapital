@@ -1,13 +1,13 @@
 import { Job } from 'bullmq';
-import { Processor, WorkerHost } from '@nestjs/bullmq';
+import { Processor } from '@nestjs/bullmq';
+import { WorkerHost } from '@nestjs/bullmq';
 import { Scope } from '@nestjs/common';
-import { ClsService, UseCls } from 'nestjs-cls';
+import { UseCls } from 'nestjs-cls';
+import { ClsService } from 'nestjs-cls';
 import { RecognizeTranasctionsService } from '../commands/RecognizeTranasctions.service';
 import { RevertRecognizedTransactionsService } from '../commands/RevertRecognizedTransactions.service';
-import {
-  RecognizeUncategorizedTransactionsJobPayload,
-  RecognizeUncategorizedTransactionsQueue,
-} from '../_types';
+import { RecognizeUncategorizedTransactionsQueue } from '../_types';
+import type { RecognizeUncategorizedTransactionsJobPayload } from '../_types';
 
 @Processor({
   name: RecognizeUncategorizedTransactionsQueue,

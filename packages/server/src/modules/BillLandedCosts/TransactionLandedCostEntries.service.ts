@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ServiceError } from '../Items/ServiceError';
 import { transformToMap } from '@/utils/transform-to-key';
-import {
+import type {
   ICommonLandedCostEntry,
   ICommonLandedCostEntryDTO,
 } from './types/BillLandedCosts.types';

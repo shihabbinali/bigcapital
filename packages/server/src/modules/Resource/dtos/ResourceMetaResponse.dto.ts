@@ -1,5 +1,5 @@
 import { ApiProperty, getSchemaPath } from '@nestjs/swagger';
-import { IModelMetaDefaultSort } from '@/interfaces/Model';
+import type { IModelMetaDefaultSort } from '@/interfaces/Model';
 
 export class ModelMetaDefaultSortDto implements IModelMetaDefaultSort {
   @ApiProperty({

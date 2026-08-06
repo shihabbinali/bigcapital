@@ -1,10 +1,8 @@
 // @ts-nocheck
 import * as R from 'ramda';
-import { GConstructor } from '@/common/types/Constructor';
-import {
-  IProfitLossSheetNode,
-  ProfitLossAggregateNodeId,
-} from './ProfitLossSheet.types';
+import type { GConstructor } from '@/common/types/Constructor';
+import type { IProfitLossSheetNode } from './ProfitLossSheet.types';
+import { ProfitLossAggregateNodeId } from './ProfitLossSheet.types';
 import { FinancialHorizTotals } from '../../common/FinancialHorizTotals';
 import { FinancialSheet } from '../../common/FinancialSheet';
 import { ProfitLossSheetQuery } from './ProfitLossSheetQuery';

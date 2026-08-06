@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Model } from 'objection';
 import { Global, Module } from '@nestjs/common';
 import { PlanSubscription } from '@/modules/Subscription/models/PlanSubscription';

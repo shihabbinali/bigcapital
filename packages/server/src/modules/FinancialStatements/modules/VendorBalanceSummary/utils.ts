@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+import moment from 'moment';
 
 export const getVendorBalanceSummaryDefaultQuery = () => {
   return {
@@ -14,4 +14,4 @@ export const getVendorBalanceSummaryDefaultQuery = () => {
     noneZero: false,
     noneTransactions: true,
   };
-}
+};

@@ -1,7 +1,7 @@
 import * as R from 'ramda';
 import { isEmpty, sum } from 'lodash';
-import { IAgingPeriod } from '../AgingSummary/AgingSummary.types';
-import {
+import type { IAgingPeriod } from '../AgingSummary/AgingSummary.types';
+import type {
   IARAgingSummaryCustomer,
   IARAgingSummaryData,
   IARAgingSummaryColumns,
@@ -9,12 +9,13 @@ import {
 } from './ARAgingSummary.types';
 import { AgingSummaryReport } from '../AgingSummary/AgingSummary';
 import { allPassedConditionsPass } from '@/utils/all-conditions-passed';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { ARAgingSummaryRepository } from './ARAgingSummaryRepository';
 import { Customer } from '@/modules/Customers/models/Customer';
 import { SaleInvoice } from '@/modules/SaleInvoices/models/SaleInvoice';
 import { ARAgingSummaryQueryDto } from './ARAgingSummaryQuery.dto';
-import { IFinancialReportMeta, DEFAULT_REPORT_META } from '../../types/Report.types';
+import type { IFinancialReportMeta } from '../../types/Report.types';
+import { DEFAULT_REPORT_META } from '../../types/Report.types';
 
 export class ARAgingSummarySheet extends AgingSummaryReport {
   readonly query: ARAgingSummaryQueryDto;

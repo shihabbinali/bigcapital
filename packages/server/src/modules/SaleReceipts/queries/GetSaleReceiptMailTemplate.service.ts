@@ -1,7 +1,5 @@
-import {
-  ReceiptEmailTemplateProps,
-  renderReceiptEmailTemplate,
-} from '@bigcapital/email-components';
+import { renderReceiptEmailTemplate } from '@bigcapital/email-components';
+import type { ReceiptEmailTemplateProps } from '@bigcapital/email-components';
 import { Injectable } from '@nestjs/common';
 import { GetSaleReceipt } from './GetSaleReceipt.service';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';

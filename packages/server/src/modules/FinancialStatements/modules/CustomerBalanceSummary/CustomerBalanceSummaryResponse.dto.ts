@@ -1,10 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { NumberFormatQueryDto } from '@/modules/BankingTransactions/dtos/NumberFormatQuery.dto';
-import {
-  FinancialReportTotalDto,
-  FinancialReportMetaDto,
-  FinancialTableDataDto,
-} from '../../dtos/FinancialReportResponse.dto';
+import { FinancialReportTotalDto, FinancialTableDataDto } from '../../dtos/FinancialReportResponse.dto';
+import { FinancialReportMetaDto } from '../../dtos/FinancialReportResponse.dto';
 
 export class CustomerBalanceDto {
   @ApiProperty({ description: 'Customer ID', type: Number })
@@ -13,16 +10,28 @@ export class CustomerBalanceDto {
   @ApiProperty({ description: 'Customer name' })
   customerName: string;
 
-  @ApiPropertyOptional({ description: 'Opening balance', type: FinancialReportTotalDto })
+  @ApiPropertyOptional({
+    description: 'Opening balance',
+    type: FinancialReportTotalDto,
+  })
   openingBalance?: FinancialReportTotalDto;
 
-  @ApiProperty({ description: 'Closing balance', type: FinancialReportTotalDto })
+  @ApiProperty({
+    description: 'Closing balance',
+    type: FinancialReportTotalDto,
+  })
   closingBalance: FinancialReportTotalDto;
 
-  @ApiPropertyOptional({ description: 'Total debit', type: FinancialReportTotalDto })
+  @ApiPropertyOptional({
+    description: 'Total debit',
+    type: FinancialReportTotalDto,
+  })
   totalDebit?: FinancialReportTotalDto;
 
-  @ApiPropertyOptional({ description: 'Total credit', type: FinancialReportTotalDto })
+  @ApiPropertyOptional({
+    description: 'Total credit',
+    type: FinancialReportTotalDto,
+  })
   totalCredit?: FinancialReportTotalDto;
 }
 
@@ -38,7 +47,10 @@ export class CustomerBalanceSummaryQueryResponseDto {
   @ApiProperty({ description: 'As-of date' })
   asDate: string;
 
-  @ApiProperty({ description: 'Number format settings', type: NumberFormatQueryDto })
+  @ApiProperty({
+    description: 'Number format settings',
+    type: NumberFormatQueryDto,
+  })
   numberFormat: NumberFormatQueryDto;
 
   @ApiProperty({ description: 'Customer IDs to include', type: [Number] })
@@ -52,13 +64,19 @@ export class CustomerBalanceSummaryQueryResponseDto {
 }
 
 export class CustomerBalanceSummaryResponseDto {
-  @ApiProperty({ description: 'Query parameters used to generate the report', type: CustomerBalanceSummaryQueryResponseDto })
+  @ApiProperty({
+    description: 'Query parameters used to generate the report',
+    type: CustomerBalanceSummaryQueryResponseDto,
+  })
   query: CustomerBalanceSummaryQueryResponseDto;
 
   @ApiProperty({ description: 'Customer balances', type: [CustomerBalanceDto] })
   data: CustomerBalanceDto[];
 
-  @ApiProperty({ description: 'Report metadata', type: CustomerBalanceSummaryMetaDto })
+  @ApiProperty({
+    description: 'Report metadata',
+    type: CustomerBalanceSummaryMetaDto,
+  })
   meta: CustomerBalanceSummaryMetaDto;
 }
 
@@ -71,12 +89,21 @@ export {
 } from '../../dtos/FinancialReportResponse.dto';
 
 export class CustomerBalanceSummaryTableResponseDto {
-  @ApiProperty({ description: 'Table data structure', type: () => FinancialTableDataDto })
+  @ApiProperty({
+    description: 'Table data structure',
+    type: () => FinancialTableDataDto,
+  })
   table: FinancialTableDataDto;
 
-  @ApiProperty({ description: 'Query parameters used to generate the report', type: CustomerBalanceSummaryQueryResponseDto })
+  @ApiProperty({
+    description: 'Query parameters used to generate the report',
+    type: CustomerBalanceSummaryQueryResponseDto,
+  })
   query: CustomerBalanceSummaryQueryResponseDto;
 
-  @ApiProperty({ description: 'Report metadata', type: CustomerBalanceSummaryMetaDto })
+  @ApiProperty({
+    description: 'Report metadata',
+    type: CustomerBalanceSummaryMetaDto,
+  })
   meta: CustomerBalanceSummaryMetaDto;
 }

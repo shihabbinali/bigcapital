@@ -1,7 +1,7 @@
 import * as R from 'ramda';
-import { ILedger } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedger } from '@/modules/Ledger/types/Ledger.types';
 import { AccountNormal } from '@/modules/Accounts/Accounts.types';
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { Ledger } from '@/modules/Ledger/Ledger';
 import { SaleReceipt } from '../models/SaleReceipt';
 import { ItemEntry } from '@/modules/TransactionItemEntry/models/ItemEntry';
@@ -82,8 +82,7 @@ export class SaleReceiptGL {
   private getReceiptIncomeItemEntry = R.curry(
     (entry: ItemEntry, index: number): ILedgerEntry => {
       const commonEntry = this.getIncomeGLCommonEntry();
-      const hasCost =
-        entry.costAmount > 0 && entry.item?.type !== 'inventory';
+      const hasCost = entry.costAmount > 0 && entry.item?.type !== 'inventory';
       const incomeBase = hasCost ? entry.margin : entry.totalExcludingTax;
       const totalLocal = incomeBase * this.saleReceipt.exchangeRate;
 

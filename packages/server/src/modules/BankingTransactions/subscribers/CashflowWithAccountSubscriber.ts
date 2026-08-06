@@ -3,7 +3,7 @@ import { events } from '@/common/events/events';
 
 import { ValidateDeleteBankAccountTransactions } from '../commands/ValidateDeleteBankAccountTransactions.service';
 import { OnEvent } from '@nestjs/event-emitter';
-import { IAccountEventDeletePayload } from '@/interfaces/Account';
+import type { IAccountEventDeletePayload } from '@/interfaces/Account';
 
 @Injectable()
 export class CashflowWithAccountSubscriber {
@@ -20,7 +20,7 @@ export class CashflowWithAccountSubscriber {
     oldAccount,
   }: IAccountEventDeletePayload) {
     await this.validateDeleteBankAccount.validateAccountHasNoCashflowEntries(
-      oldAccount.id
+      oldAccount.id,
     );
-  };
+  }
 }

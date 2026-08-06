@@ -1,4 +1,4 @@
-import { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
+import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { PaymentReceived } from '../models/PaymentReceived';
 import { sumBy } from 'lodash';
 import { AccountNormal } from '@/interfaces/Account';

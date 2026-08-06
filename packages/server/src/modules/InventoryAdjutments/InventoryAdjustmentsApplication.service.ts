@@ -2,14 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { DeleteInventoryAdjustmentService } from './commands/DeleteInventoryAdjustment.service';
 import { PublishInventoryAdjustmentService } from './commands/PublishInventoryAdjustment.service';
 import { CreateQuickInventoryAdjustmentService } from './commands/CreateQuickInventoryAdjustment.service';
-import {
+import type {
   IInventoryAdjustmentsFilter,
   IQuickInventoryAdjustmentDTO,
 } from './types/InventoryAdjustments.types';
 import { InventoryAdjustment } from './models/InventoryAdjustment';
 import { GetInventoryAdjustmentService } from './queries/GetInventoryAdjustment.service';
 import { GetInventoryAdjustmentsService } from './queries/GetInventoryAdjustments.service';
-import { IPaginationMeta } from '@/interfaces/Model';
+import type { IPaginationMeta } from '@/interfaces/Model';
 import { CreateQuickInventoryAdjustmentDto } from './dtos/CreateQuickInventoryAdjustment.dto';
 
 @Injectable()

@@ -1,4 +1,4 @@
-import * as request from 'supertest';
+import request from 'supertest';
 import { app, AuthorizationHeader, orgainzationId } from './init-app-test';
 
 describe('Transactions Locking (e2e)', () => {

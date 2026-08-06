@@ -1,7 +1,8 @@
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Body, Controller, Get, Put, UseGuards } from '@nestjs/common';
 import { SettingsApplicationService } from './SettingsApplication.service';
-import { ISettingsDTO, PreferencesAction } from './Settings.types';
+import { PreferencesAction } from './Settings.types';
+import type { ISettingsDTO } from './Settings.types';
 import { RequirePermission } from '@/modules/Roles/RequirePermission.decorator';
 import { PermissionGuard } from '@/modules/Roles/Permission.guard';
 import { AuthorizationGuard } from '@/modules/Roles/Authorization.guard';

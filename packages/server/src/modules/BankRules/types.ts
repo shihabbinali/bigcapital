@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { BankRule } from './models/BankRule';
 import { CreateBankRuleDto, EditBankRuleDto } from './dtos/BankRule.dto';
 

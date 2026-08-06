@@ -1,5 +1,5 @@
 import { TableSheet } from '../../common/TableSheet';
-import { ITransactionsByCustomersFilter } from './TransactionsByCustomer.types';
+import type { ITransactionsByCustomersFilter } from './TransactionsByCustomer.types';
 import { TransactionsByCustomersTableInjectable } from './TransactionsByCustomersTableInjectable';
 import { Injectable } from '@nestjs/common';
 

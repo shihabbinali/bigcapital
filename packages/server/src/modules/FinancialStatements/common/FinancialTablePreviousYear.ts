@@ -1,8 +1,8 @@
 // @ts-nocheck
-import * as moment from 'moment';
-import { ITableColumn, ITableColumnAccessor } from '../types/Table.types';
-import { IDateRange } from '../types/Report.types';
-import { GConstructor } from '@/common/types/Constructor';
+import moment from 'moment';
+import type { ITableColumn, ITableColumnAccessor } from '../types/Table.types';
+import type { IDateRange } from '../types/Report.types';
+import type { GConstructor } from '@/common/types/Constructor';
 import { I18nService } from 'nestjs-i18n';
 import { FinancialSheet } from './FinancialSheet';
 

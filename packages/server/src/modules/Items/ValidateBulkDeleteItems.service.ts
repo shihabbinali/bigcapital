@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { TENANCY_DB_CONNECTION } from '../Tenancy/TenancyDB/TenancyDB.constants';
 import { DeleteItemService } from './DeleteItem.service';
 import { ModelHasRelationsError } from '@/common/exceptions/ModelHasRelations.exception';
@@ -10,7 +10,7 @@ export class ValidateBulkDeleteItemsService {
     private readonly deleteItemService: DeleteItemService,
     @Inject(TENANCY_DB_CONNECTION)
     private readonly tenantKnex: () => Knex,
-  ) { }
+  ) {}
 
   /**
    * Validates which items from the provided IDs can be deleted.
@@ -71,4 +71,3 @@ export class ValidateBulkDeleteItemsService {
     }
   }
 }
-

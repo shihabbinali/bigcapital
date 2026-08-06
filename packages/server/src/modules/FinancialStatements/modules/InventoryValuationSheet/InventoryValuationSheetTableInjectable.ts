@@ -1,5 +1,5 @@
 import { InventoryValuationSheetService } from './InventoryValuationSheetService';
-import {
+import type {
   IInventoryValuationReportQuery,
   IInventoryValuationTable,
 } from './InventoryValuationSheet.types';

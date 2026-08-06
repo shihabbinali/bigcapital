@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { omit, sumBy } from 'lodash';
-import * as moment from 'moment';
+import moment from 'moment';
 import * as R from 'ramda';
 import * as composeAsync from 'async/compose';
 import { BranchTransactionDTOTransformer } from '@/modules/Branches/integrations/BranchTransactionDTOTransform';

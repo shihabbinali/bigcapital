@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CashFlowTable } from './CashFlowTable';
 import { CashFlowStatementService } from './CashFlowService';
 import { I18nService } from 'nestjs-i18n';
-import {
+import type {
   ICashFlowStatementQuery,
   ICashFlowStatementTable,
 } from './Cashflow.types';
@@ -16,7 +16,7 @@ export class CashflowTableInjectable {
 
   /**
    * Retrieves the cash flow table.
-   * @param {ICashFlowStatementQuery} query - 
+   * @param {ICashFlowStatementQuery} query -
    * @returns {Promise<ICashFlowStatementTable>}
    */
   public async table(

@@ -1,8 +1,8 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { PlaidApi } from 'plaid';
-import {
-  ERRORS,
+import { ERRORS } from '../types/BankAccounts.types';
+import type {
   IBankAccountDisconnectedEventPayload,
   IBankAccountDisconnectingEventPayload,
 } from '../types/BankAccounts.types';
@@ -14,7 +14,7 @@ import { ServiceError } from '@/modules/Items/ServiceError';
 import { events } from '@/common/events/events';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { PLAID_CLIENT } from '@/modules/Plaid/Plaid.module';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DisconnectBankAccountService {

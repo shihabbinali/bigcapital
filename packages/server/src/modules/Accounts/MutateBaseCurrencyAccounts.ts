@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Account } from './models/Account.model';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 
 @Injectable()
 export class MutateBaseCurrencyAccounts {

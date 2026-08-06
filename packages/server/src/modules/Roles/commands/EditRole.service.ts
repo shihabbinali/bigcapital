@@ -1,10 +1,10 @@
-import { Knex } from 'knex';
-import { IRoleEditedPayload } from '../Roles.types';
+import type { Knex } from 'knex';
+import type { IRoleEditedPayload } from '../Roles.types';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { EditRoleDto } from '../dtos/Role.dto';
 import { Inject, Injectable } from '@nestjs/common';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { Role } from '../models/Role.model';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { validateInvalidPermissions } from '../utils';
@@ -17,7 +17,7 @@ export class EditRoleService {
 
     @Inject(Role.name)
     private readonly roleModel: TenantModelProxy<typeof Role>,
-  ) { }
+  ) {}
 
   /**
    * Edits details of the given role on the storage.

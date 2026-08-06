@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
-import * as moment from 'moment';
-import {
+import type { Knex } from 'knex';
+import moment from 'moment';
+import type {
   ISaleInvoiceDeliveringPayload,
   ISaleInvoiceEventDeliveredPayload,
 } from '../SaleInvoice.types';
@@ -12,7 +12,7 @@ import { events } from '@/common/events/events';
 import { ERRORS } from '../constants';
 import { SaleInvoice } from '../models/SaleInvoice';
 import { ServiceError } from '@/modules/Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DeliverSaleInvoice {

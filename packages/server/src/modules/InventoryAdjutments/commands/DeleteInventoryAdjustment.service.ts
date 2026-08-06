@@ -1,15 +1,15 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import {
+import type {
   IInventoryAdjustmentDeletingPayload,
   IInventoryAdjustmentEventDeletedPayload,
 } from '../types/InventoryAdjustments.types';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { InventoryAdjustmentEntry } from '../models/InventoryAdjustmentEntry';
 import { InventoryAdjustment } from '../models/InventoryAdjustment';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DeleteInventoryAdjustmentService {

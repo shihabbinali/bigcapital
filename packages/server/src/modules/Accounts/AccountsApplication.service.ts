@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Injectable } from '@nestjs/common';
 import { CreateAccountService } from './CreateAccount.service';
 import { DeleteAccount } from './DeleteAccount.service';
@@ -10,9 +10,9 @@ import { GetAccount } from './GetAccount.service';
 import { ActivateAccount } from './ActivateAccount.service';
 import { GetAccountTypesService } from './GetAccountTypes.service';
 import { GetAccountTransactionsService } from './GetAccountTransactions.service';
-import { IAccountsTransactionsFilter } from './Accounts.types';
+import type { IAccountsTransactionsFilter } from './Accounts.types';
 import { GetAccountsService } from './GetAccounts.service';
-import { IFilterMeta } from '@/interfaces/Model';
+import type { IFilterMeta } from '@/interfaces/Model';
 import { GetAccountTransactionResponseDto } from './dtos/GetAccountTransactionResponse.dto';
 import { GetAccountsQueryDto } from './dtos/GetAccountsQuery.dto';
 import { BulkDeleteAccountsService } from './BulkDeleteAccounts.service';
@@ -42,7 +42,7 @@ export class AccountsApplication {
     private readonly getAccountsService: GetAccountsService,
     private readonly bulkDeleteAccountsService: BulkDeleteAccountsService,
     private readonly validateBulkDeleteAccountsService: ValidateBulkDeleteAccountsService,
-  ) { }
+  ) {}
 
   /**
    * Creates a new account.

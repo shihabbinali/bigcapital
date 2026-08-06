@@ -1,9 +1,10 @@
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { TenantUser } from '@/modules/Tenancy/TenancyModels/models/TenantUser.model';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
-import { Inject } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { UserTransformer } from './User.transformer';
 
+@Injectable()
 export class GetUsersService {
   constructor(
     @Inject(TenantUser.name)
@@ -18,9 +19,6 @@ export class GetUsersService {
   public async getUsers() {
     const users = await this.tenantUserModel().query().withGraphFetched('role');
 
-    return this.transformerInjectable.transform(
-      users,
-      new UserTransformer(),
-    );
+    return this.transformerInjectable.transform(users, new UserTransformer());
   }
 }

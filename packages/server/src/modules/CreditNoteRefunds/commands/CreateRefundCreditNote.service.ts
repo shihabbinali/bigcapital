@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   ICreditNoteRefundDTO,
   IRefundCreditNoteCreatedPayload,
   IRefundCreditNoteCreatingPayload,
@@ -12,7 +12,7 @@ import { RefundCreditNote } from '@/modules/CreditNoteRefunds/models/RefundCredi
 import { CommandCreditNoteDTOTransform } from '@/modules/CreditNotes/commands/CommandCreditNoteDTOTransform.service';
 import { CreditNote } from '@/modules/CreditNotes/models/CreditNote';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { CreditNoteRefundDto } from '../dto/CreditNoteRefund.dto';
 
 @Injectable()

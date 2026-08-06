@@ -1,11 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { includes, camelCase, upperFirst, sumBy } from 'lodash';
 import { getCashflowTransactionType } from '../utils';
-import {
-  CASHFLOW_DIRECTION,
-  CASHFLOW_TRANSACTION_TYPE,
-  ERRORS,
-} from '../constants';
+import { CASHFLOW_DIRECTION, ERRORS } from '../constants';
+import { CASHFLOW_TRANSACTION_TYPE } from '../constants';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { BankTransaction } from '../models/BankTransaction';
@@ -19,14 +16,14 @@ export class CommandBankTransactionValidator {
    */
   public validateCreditAccountWithCashflowType = (
     creditAccount: Account,
-    cashflowTransactionType: CASHFLOW_TRANSACTION_TYPE
+    cashflowTransactionType: CASHFLOW_TRANSACTION_TYPE,
   ): void => {
     const transactionTypeMeta = getCashflowTransactionType(
-      cashflowTransactionType
+      cashflowTransactionType,
     );
     const noneCashflowAccount = !includes(
       transactionTypeMeta.creditType,
-      creditAccount.accountType
+      creditAccount.accountType,
     );
     if (noneCashflowAccount) {
       throw new ServiceError(ERRORS.CREDIT_ACCOUNTS_HAS_INVALID_TYPE);
@@ -40,7 +37,7 @@ export class CommandBankTransactionValidator {
    */
   public validateCashflowTransactionType = (transactionType: string) => {
     const transformedType = upperFirst(
-      camelCase(transactionType)
+      camelCase(transactionType),
     ) as CASHFLOW_TRANSACTION_TYPE;
 
     // Retrieve the given transaction type meta.
@@ -58,7 +55,7 @@ export class CommandBankTransactionValidator {
    * @param {CashflowTransaction} cashflowTransaction
    */
   public validateTransactionShouldCategorized(
-    cashflowTransaction: BankTransaction
+    cashflowTransaction: BankTransaction,
   ) {
     if (!cashflowTransaction.uncategorize) {
       throw new ServiceError(ERRORS.TRANSACTION_ALREADY_CATEGORIZED);
@@ -70,7 +67,7 @@ export class CommandBankTransactionValidator {
    * @param {CashflowTransaction} cashflowTransaction
    */
   public validateTransactionsShouldNotCategorized(
-    cashflowTransactions: Array<UncategorizedBankTransaction>
+    cashflowTransactions: Array<UncategorizedBankTransaction>,
   ) {
     const categorized = cashflowTransactions.filter((t) => t.categorized);
 
@@ -89,14 +86,14 @@ export class CommandBankTransactionValidator {
    */
   public validateUncategorizeTransactionType(
     uncategorizeTransactions: Array<UncategorizedBankTransaction>,
-    transactionType: string
+    transactionType: string,
   ) {
     const amount = sumBy(uncategorizeTransactions, 'amount');
     const isDepositTransaction = amount > 0;
     const isWithdrawalTransaction = amount <= 0;
 
     const type = getCashflowTransactionType(
-      transactionType as CASHFLOW_TRANSACTION_TYPE
+      transactionType as CASHFLOW_TRANSACTION_TYPE,
     );
     if (
       (type.direction === CASHFLOW_DIRECTION.IN && isDepositTransaction) ||

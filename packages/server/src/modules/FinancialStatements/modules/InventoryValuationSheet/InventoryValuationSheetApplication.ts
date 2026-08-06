@@ -1,4 +1,4 @@
-import {
+import type {
   IInventoryValuationReportQuery,
   IInventoryValuationSheet,
   IInventoryValuationTable,

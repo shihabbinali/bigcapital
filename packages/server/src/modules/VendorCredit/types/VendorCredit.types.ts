@@ -1,10 +1,10 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { VendorCredit } from '../models/VendorCredit';
-import { AttachmentLinkDTO } from '@/modules/Attachments/Attachments.types';
-import { IRefundVendorCreditDTO } from '@/modules/VendorCreditsRefund/types/VendorCreditRefund.types';
-import { IItemEntryDTO } from '@/modules/TransactionItemEntry/ItemEntry.types';
+import type { AttachmentLinkDTO } from '@/modules/Attachments/Attachments.types';
+import type { IRefundVendorCreditDTO } from '@/modules/VendorCreditsRefund/types/VendorCreditRefund.types';
+import type { IItemEntryDTO } from '@/modules/TransactionItemEntry/ItemEntry.types';
 import { DiscountType } from '@/common/types/Discount';
-import { IDynamicListFilter } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
+import type { IDynamicListFilter } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
 import {
   CreateVendorCreditDto,
   EditVendorCreditDto,

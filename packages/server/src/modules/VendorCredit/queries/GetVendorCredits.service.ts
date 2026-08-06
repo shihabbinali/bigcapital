@@ -5,7 +5,7 @@ import { DynamicListService } from '@/modules/DynamicListing/DynamicList.service
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { VendorCredit } from '../models/VendorCredit';
 import { GetVendorCreditsQueryDto } from '../dtos/GetVendorCreditsQuery.dto';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetVendorCreditsService {

@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import * as R from 'ramda';
 import { I18nService } from 'nestjs-i18n';
-import {
+import type {
   ICashFlowStatementQuery,
   ICashFlowStatementDOO,
 } from './Cashflow.types';
@@ -96,7 +96,10 @@ export class CashFlowStatementService {
       netIncomeLedger,
       filter,
       this.i18n,
-      { baseCurrency: tenant.metadata.baseCurrency, dateFormat: meta.dateFormat },
+      {
+        baseCurrency: tenant.metadata.baseCurrency,
+        dateFormat: meta.dateFormat,
+      },
     );
 
     return {

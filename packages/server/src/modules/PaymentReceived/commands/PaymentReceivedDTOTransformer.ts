@@ -2,7 +2,7 @@ import * as R from 'ramda';
 import { Inject, Injectable } from '@nestjs/common';
 import { omit, sumBy } from 'lodash';
 import * as composeAsync from 'async/compose';
-import {
+import type {
   IPaymentReceivedCreateDTO,
   IPaymentReceivedEditDTO,
 } from '../types/PaymentReceived.types';
@@ -14,7 +14,7 @@ import { PaymentReceived } from '../models/PaymentReceived';
 import { assocItemEntriesDefaultIndex } from '@/utils/associate-item-entries-index';
 import { Customer } from '@/modules/Customers/models/Customer';
 import { formatDateFields } from '@/utils/format-date-fields';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class PaymentReceiveDTOTransformer {

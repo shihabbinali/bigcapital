@@ -9,7 +9,7 @@ import {
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ToNumber } from '@/common/decorators/Validators';
-import { LandedCostTransactionType } from '../types/BillLandedCosts.types';
+import type { LandedCostTransactionType } from '../types/BillLandedCosts.types';
 
 export class AllocateBillLandedCostItemDto {
   @IsInt()

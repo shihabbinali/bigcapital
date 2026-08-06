@@ -1,11 +1,11 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
-import * as moment from 'moment';
+import moment from 'moment';
 import * as composeAsync from 'async/compose';
 import { omit } from 'lodash';
 import { events } from '@/common/events/events';
 import { InventoryAdjustment } from '../models/InventoryAdjustment';
-import {
+import type {
   IInventoryAdjustmentCreatingPayload,
   IInventoryAdjustmentEventCreatedPayload,
   IQuickInventoryAdjustmentDTO,
@@ -20,7 +20,7 @@ import { WarehouseTransactionDTOTransform } from '@/modules/Warehouses/Integrati
 import { CreateQuickInventoryAdjustmentDto } from '../dtos/CreateQuickInventoryAdjustment.dto';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { ERRORS } from '../constants/InventoryAdjustments.constants';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class CreateQuickInventoryAdjustmentService {

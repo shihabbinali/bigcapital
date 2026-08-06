@@ -1,9 +1,9 @@
-import { Inject } from '@nestjs/common';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import { Inject, Injectable } from '@nestjs/common';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { FeaturesManager } from '../Features/FeaturesManager';
 import { ConfigService } from '@nestjs/config';
 import { TenancyContext } from '../Tenancy/TenancyContext.service';
-import { IFeatureAllItem } from '@/common/types/Features';
+import type { IFeatureAllItem } from '@/common/types/Features';
 import { TenantUser } from '../Tenancy/TenancyModels/models/TenantUser.model';
 
 interface IRoleAbility {
@@ -17,6 +17,7 @@ interface IDashboardBootMeta {
   isBigcapitalCloud: boolean;
 }
 
+@Injectable()
 export class DashboardService {
   constructor(
     private readonly featuresManager: FeaturesManager,

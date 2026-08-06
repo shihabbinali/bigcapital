@@ -2,7 +2,7 @@ import { SalesTaxLiabilitySummaryRepository } from './SalesTaxLiabilitySummaryRe
 import { SalesTaxLiabilitySummary } from './SalesTaxLiabilitySummary';
 import { SalesTaxLiabilitySummaryMeta } from './SalesTaxLiabilitySummaryMeta';
 import { Injectable } from '@nestjs/common';
-import { SalesTaxLiabilitySummaryQuery } from './SalesTaxLiability.types';
+import type { SalesTaxLiabilitySummaryQuery } from './SalesTaxLiability.types';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 
 @Injectable()
@@ -30,7 +30,10 @@ export class SalesTaxLiabilitySummaryService {
     const taxLiabilitySummary = new SalesTaxLiabilitySummary(
       query,
       this.repository,
-      { baseCurrency: tenantMetadata.baseCurrency, dateFormat: meta.dateFormat },
+      {
+        baseCurrency: tenantMetadata.baseCurrency,
+        dateFormat: meta.dateFormat,
+      },
     );
 
     return {

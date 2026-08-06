@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import * as moment from 'moment';
-import { Knex } from 'knex';
-import {
+import moment from 'moment';
+import type { Knex } from 'knex';
+import type {
   ISaleReceiptEventClosedPayload,
   ISaleReceiptEventClosingPayload,
 } from '../types/SaleReceipts.types';
@@ -10,7 +10,7 @@ import { SaleReceipt } from '../models/SaleReceipt';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class CloseSaleReceipt {

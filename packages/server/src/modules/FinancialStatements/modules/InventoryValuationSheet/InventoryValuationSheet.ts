@@ -1,7 +1,7 @@
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { sumBy, get, isEmpty } from 'lodash';
 import * as R from 'ramda';
-import {
+import type {
   IInventoryValuationReportQuery,
   IInventoryValuationItem,
   IInventoryValuationStatement,
@@ -12,7 +12,8 @@ import { InventoryCostLotTracker } from '@/modules/InventoryCost/models/Inventor
 import { FinancialSheet } from '../../common/FinancialSheet';
 import { InventoryValuationSheetRepository } from './InventoryValuationSheetRepository';
 import { allPassedConditionsPass } from '@/utils/all-conditions-passed';
-import { IFinancialReportMeta, DEFAULT_REPORT_META } from '../../types/Report.types';
+import type { IFinancialReportMeta } from '../../types/Report.types';
+import { DEFAULT_REPORT_META } from '../../types/Report.types';
 
 export class InventoryValuationSheet extends FinancialSheet {
   readonly query: IInventoryValuationReportQuery;
@@ -75,7 +76,10 @@ export class InventoryValuationSheet extends FinancialSheet {
     cost: number;
     quantity: number;
   } {
-    return this.getItemTransaction(this.repository.OUTInventoryCostLots, itemId);
+    return this.getItemTransaction(
+      this.repository.OUTInventoryCostLots,
+      itemId,
+    );
   }
 
   /**
@@ -197,7 +201,9 @@ export class InventoryValuationSheet extends FinancialSheet {
    * @param {IItem[]} items
    * @returns {IInventoryValuationItem[]}
    */
-  private itemsMapper = (items: ModelObject<Item>[]): IInventoryValuationItem[] => {
+  private itemsMapper = (
+    items: ModelObject<Item>[],
+  ): IInventoryValuationItem[] => {
     return this.repository.inventoryItems.map(this.itemMapper.bind(this));
   };
 

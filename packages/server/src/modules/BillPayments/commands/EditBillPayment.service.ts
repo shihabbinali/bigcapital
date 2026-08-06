@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { BillPaymentValidators } from './BillPaymentValidators.service';
-import {
+import type {
   IBillPaymentEditingPayload,
   IBillPaymentEventEditedPayload,
 } from '../types/BillPayments.types';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { BillPayment } from '../models/BillPayment';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
@@ -12,7 +12,7 @@ import { CommandBillPaymentDTOTransformer } from './CommandBillPaymentDTOTransfo
 import { Vendor } from '@/modules/Vendors/models/Vendor';
 import { events } from '@/common/events/events';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { EditBillPaymentDto } from '../dtos/BillPayment.dto';
 
 @Injectable()
@@ -29,7 +29,7 @@ export class EditBillPayment {
 
     @Inject(Vendor.name)
     private readonly vendorModel: TenantModelProxy<typeof Vendor>,
-  ) { }
+  ) {}
 
   /**
    * Edits the details of the given bill payment.

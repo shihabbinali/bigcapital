@@ -1,6 +1,6 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Bill } from '@/modules/Bills/models/Bill';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { Expense } from '@/modules/Expenses/models/Expense.model';
 
 export interface ILandedCostItemDTO {
@@ -123,7 +123,6 @@ export interface IAllocatedLandedCostCreatedPayload {
 
 export interface IBillAssociatedLandedCostTransactions {}
 
-
 interface ICommonEntry {
   id?: number;
   amount: number;
@@ -142,7 +141,6 @@ interface ICommonEntryDTO {
 export interface ICommonLandedCostEntryDTO extends ICommonEntryDTO {
   landedCost?: boolean;
 }
-
 
 export type LandedCostTransactionType = 'Bill' | 'Expense';
 export type LandedCostTransactionModel = Bill | Expense;

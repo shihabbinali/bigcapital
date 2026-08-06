@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Role } from '../models/Role.model';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { RoleTransformer } from './RoleTransformer';
 

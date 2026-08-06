@@ -1,8 +1,8 @@
-import { Knex } from 'knex';
-import { IItemEntryDTO } from '../TransactionItemEntry/ItemEntry.types';
-import { AttachmentLinkDTO } from '../Attachments/Attachments.types';
+import type { Knex } from 'knex';
+import type { IItemEntryDTO } from '../TransactionItemEntry/ItemEntry.types';
+import type { AttachmentLinkDTO } from '../Attachments/Attachments.types';
 import { Bill } from './models/Bill';
-import { IDynamicListFilter } from '../DynamicListing/DynamicFilter/DynamicFilter.types';
+import type { IDynamicListFilter } from '../DynamicListing/DynamicFilter/DynamicFilter.types';
 import { CreateBillDto, EditBillDto } from './dtos/Bill.dto';
 
 export interface IBillDTO {

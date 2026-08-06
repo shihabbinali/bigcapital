@@ -1,4 +1,4 @@
-import {
+import type {
   IInventoryDetailsQuery,
   IInvetoryItemDetailsTable,
 } from './InventoryItemDetails.types';

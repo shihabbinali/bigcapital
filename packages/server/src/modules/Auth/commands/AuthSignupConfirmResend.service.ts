@@ -4,7 +4,7 @@ import { SystemUser } from '@/modules/System/models/SystemUser';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { ERRORS } from '../Auth.constants';
 import { events } from '@/common/events/events';
-import { ISignUpConfigmResendedEventPayload } from '../Auth.interfaces';
+import type { ISignUpConfigmResendedEventPayload } from '../Auth.interfaces';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 
 @Injectable()

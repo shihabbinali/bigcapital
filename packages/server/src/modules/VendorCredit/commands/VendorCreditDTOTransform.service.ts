@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import { omit } from 'lodash';
 import * as R from 'ramda';
 import * as composeAsync from 'async/compose';
@@ -12,11 +12,7 @@ import { formatDateFields } from '@/utils/format-date-fields';
 import { VendorCreditAutoIncrementService } from './VendorCreditAutoIncrement.service';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { Injectable } from '@nestjs/common';
-import {
-  CreateVendorCreditDto,
-  EditVendorCreditDto,
-  VendorCreditEntryDto,
-} from '../dtos/VendorCredit.dto';
+import { CreateVendorCreditDto, EditVendorCreditDto, VendorCreditEntryDto } from '../dtos/VendorCredit.dto';
 
 @Injectable()
 export class VendorCreditDTOTransformService {
@@ -31,7 +27,7 @@ export class VendorCreditDTOTransformService {
     private branchDTOTransform: BranchTransactionDTOTransformer,
     private warehouseDTOTransform: WarehouseTransactionDTOTransform,
     private vendorCreditAutoIncrement: VendorCreditAutoIncrementService,
-  ) { }
+  ) {}
 
   /**
    * Transforms the credit/edit vendor credit DTO to model.
@@ -71,10 +67,9 @@ export class VendorCreditDTOTransformService {
       autoNextNumber;
 
     const initialDTO = {
-      ...formatDateFields(
-        omit(vendorCreditDTO, ['open', 'attachments']),
-        ['vendorCreditDate'],
-      ),
+      ...formatDateFields(omit(vendorCreditDTO, ['open', 'attachments']), [
+        'vendorCreditDate',
+      ]),
       amount,
       currencyCode: vendorCurrencyCode,
       exchangeRate: vendorCreditDTO.exchangeRate || 1,
@@ -82,8 +77,8 @@ export class VendorCreditDTOTransformService {
       entries,
       ...(vendorCreditDTO.open &&
         !oldVendorCredit?.openedAt && {
-        openedAt: moment().toMySqlDateTime(),
-      }),
+          openedAt: moment().toMySqlDateTime(),
+        }),
     };
     return composeAsync(
       this.branchDTOTransform.transformDTO<VendorCredit>,

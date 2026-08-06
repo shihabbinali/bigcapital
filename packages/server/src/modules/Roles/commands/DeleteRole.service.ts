@@ -1,6 +1,6 @@
-import { Knex } from 'knex';
-import { IRoleDeletedPayload } from '../Roles.types';
-import { TenantModelProxy } from '../../System/models/TenantBaseModel';
+import type { Knex } from 'knex';
+import type { IRoleDeletedPayload } from '../Roles.types';
+import type { TenantModelProxy } from '../../System/models/TenantBaseModel';
 import { Role } from '../models/Role.model';
 import { RolePermission } from '../models/RolePermission.model';
 import { EventEmitter2 } from '@nestjs/event-emitter';

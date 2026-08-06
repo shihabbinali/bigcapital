@@ -1,10 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { NumberFormatQueryDto } from '@/modules/BankingTransactions/dtos/NumberFormatQuery.dto';
-import {
-  FinancialReportTotalDto,
-  FinancialReportMetaDto,
-  FinancialTableDataDto,
-} from '../../dtos/FinancialReportResponse.dto';
+import { FinancialReportTotalDto, FinancialTableDataDto } from '../../dtos/FinancialReportResponse.dto';
+import { FinancialReportMetaDto } from '../../dtos/FinancialReportResponse.dto';
 
 export class GeneralLedgerTransactionDto {
   @ApiProperty({ description: 'Transaction date' })
@@ -84,13 +81,22 @@ export class GeneralLedgerAccountDto {
   @ApiPropertyOptional({ description: 'Parent account ID', type: Number })
   parentAccountId: number | null;
 
-  @ApiProperty({ description: 'Opening balance', type: FinancialReportTotalDto })
+  @ApiProperty({
+    description: 'Opening balance',
+    type: FinancialReportTotalDto,
+  })
   openingBalance: FinancialReportTotalDto;
 
-  @ApiProperty({ description: 'Account transactions', type: [GeneralLedgerTransactionDto] })
+  @ApiProperty({
+    description: 'Account transactions',
+    type: [GeneralLedgerTransactionDto],
+  })
   transactions: GeneralLedgerTransactionDto[];
 
-  @ApiProperty({ description: 'Closing balance', type: FinancialReportTotalDto })
+  @ApiProperty({
+    description: 'Closing balance',
+    type: FinancialReportTotalDto,
+  })
   closingBalance: FinancialReportTotalDto;
 }
 
@@ -115,7 +121,10 @@ export class GeneralLedgerQueryResponseDto {
   @ApiProperty({ description: 'Accounting basis', enum: ['cash', 'accrual'] })
   basis: string;
 
-  @ApiProperty({ description: 'Number format settings', type: NumberFormatQueryDto })
+  @ApiProperty({
+    description: 'Number format settings',
+    type: NumberFormatQueryDto,
+  })
   numberFormat: NumberFormatQueryDto;
 
   @ApiProperty({ description: 'Exclude zero balance accounts' })
@@ -126,10 +135,16 @@ export class GeneralLedgerQueryResponseDto {
 }
 
 export class GeneralLedgerResponseDto {
-  @ApiProperty({ description: 'Query parameters used to generate the report', type: GeneralLedgerQueryResponseDto })
+  @ApiProperty({
+    description: 'Query parameters used to generate the report',
+    type: GeneralLedgerQueryResponseDto,
+  })
   query: GeneralLedgerQueryResponseDto;
 
-  @ApiProperty({ description: 'General ledger data', type: [GeneralLedgerAccountDto] })
+  @ApiProperty({
+    description: 'General ledger data',
+    type: [GeneralLedgerAccountDto],
+  })
   data: GeneralLedgerAccountDto[];
 
   @ApiProperty({ description: 'Report metadata', type: GeneralLedgerMetaDto })
@@ -145,10 +160,16 @@ export {
 } from '../../dtos/FinancialReportResponse.dto';
 
 export class GeneralLedgerTableResponseDto {
-  @ApiProperty({ description: 'Table data structure', type: () => FinancialTableDataDto })
+  @ApiProperty({
+    description: 'Table data structure',
+    type: () => FinancialTableDataDto,
+  })
   table: FinancialTableDataDto;
 
-  @ApiProperty({ description: 'Query parameters used to generate the report', type: GeneralLedgerQueryResponseDto })
+  @ApiProperty({
+    description: 'Query parameters used to generate the report',
+    type: GeneralLedgerQueryResponseDto,
+  })
   query: GeneralLedgerQueryResponseDto;
 
   @ApiProperty({ description: 'Report metadata', type: GeneralLedgerMetaDto })

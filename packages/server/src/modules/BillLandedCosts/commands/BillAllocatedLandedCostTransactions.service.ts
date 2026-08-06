@@ -2,11 +2,11 @@ import { Inject, Injectable } from '@nestjs/common';
 import { I18nService } from 'nestjs-i18n';
 import { omit } from 'lodash';
 import * as R from 'ramda';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { Bill } from '@/modules/Bills/models/Bill';
 import { BillLandedCost } from '../models/BillLandedCost';
-import { IBillLandedCostTransaction } from '../types/BillLandedCosts.types';
-import { ModelObject } from 'objection';
+import type { IBillLandedCostTransaction } from '../types/BillLandedCosts.types';
+import type { ModelObject } from 'objection';
 import { formatNumber } from '@/utils/format-number';
 
 @Injectable()
@@ -21,7 +21,7 @@ export class BillAllocatedLandedCostTransactions {
     private readonly billLandedCostModel: TenantModelProxy<
       typeof BillLandedCost
     >,
-  ) { }
+  ) {}
 
   /**
    * Retrieve the bill associated landed cost transactions.
@@ -80,8 +80,8 @@ export class BillAllocatedLandedCostTransactions {
     const allocationMethodFormattedKey = transaction.allocationMethodFormatted;
     const allocationMethodFormatted = allocationMethodFormattedKey
       ? this.i18nService.t(allocationMethodFormattedKey, {
-        defaultValue: allocationMethodFormattedKey,
-      })
+          defaultValue: allocationMethodFormattedKey,
+        })
       : '';
 
     return {

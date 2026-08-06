@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
-import {
+import type { Knex } from 'knex';
+import type {
   IBillDTO,
   IBillCreatedPayload,
   IBillCreatingPayload,
@@ -13,7 +13,7 @@ import { ItemsEntriesService } from '@/modules/Items/ItemsEntries.service';
 import { Bill } from '../models/Bill';
 import { Vendor } from '@/modules/Vendors/models/Vendor';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { CreateBillDto } from '../dtos/Bill.dto';
 
 @Injectable()

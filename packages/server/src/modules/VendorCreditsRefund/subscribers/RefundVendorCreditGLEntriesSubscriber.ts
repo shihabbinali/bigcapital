@@ -1,6 +1,6 @@
 import { events } from '@/common/events/events';
 import { RefundVendorCreditGLEntries } from '../commands/RefundVendorCreditGLEntries';
-import {
+import type {
   IRefundVendorCreditCreatedPayload,
   IRefundVendorCreditDeletedPayload,
 } from '../types/VendorCreditRefund.types';
@@ -11,7 +11,7 @@ import { OnEvent } from '@nestjs/event-emitter';
 export class RefundVendorCreditGLEntriesSubscriber {
   constructor(
     private readonly refundVendorCreditGLEntries: RefundVendorCreditGLEntries,
-  ) { }
+  ) {}
 
   /**
    * Writes refund vendor credit GL entries once the transaction created.
@@ -45,4 +45,3 @@ export class RefundVendorCreditGLEntriesSubscriber {
     );
   }
 }
-

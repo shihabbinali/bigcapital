@@ -1,10 +1,10 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { LedgerStorageService } from '@/modules/Ledger/LedgerStorage.service';
 import { AccountRepository } from '@/modules/Accounts/repositories/Account.repository';
 import { VendorGLEntries } from './VendorGLEntries';
 import { Vendor } from './models/Vendor';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class VendorGLEntriesStorage {
@@ -15,7 +15,7 @@ export class VendorGLEntriesStorage {
 
     @Inject(Vendor.name)
     private readonly vendorModel: TenantModelProxy<typeof Vendor>,
-  ) { }
+  ) {}
 
   /**
    * Vendor opening balance journals.
@@ -26,22 +26,17 @@ export class VendorGLEntriesStorage {
     vendorId: number,
     trx?: Knex.Transaction,
   ) => {
-    const vendor = await this.vendorModel()
-      .query(trx)
-      .findById(vendorId);
+    const vendor = await this.vendorModel().query(trx).findById(vendorId);
 
     // Finds the expense account.
-    const expenseAccount = await this.accountRepository.findOrCreateOtherExpensesAccount(
+    const expenseAccount =
+      await this.accountRepository.findOrCreateOtherExpensesAccount({}, trx);
+    // Find or create the A/P account.
+    const APAccount = await this.accountRepository.findOrCreateAccountsPayable(
+      vendor.currencyCode,
       {},
       trx,
     );
-    // Find or create the A/P account.
-    const APAccount =
-      await this.accountRepository.findOrCreateAccountsPayable(
-        vendor.currencyCode,
-        {},
-        trx,
-      );
     // Retrieves the vendor opening balance ledger.
     const ledger = this.vendorGLEntries.getOpeningBalanceLedger(
       APAccount.id,

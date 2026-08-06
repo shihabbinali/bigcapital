@@ -1,6 +1,6 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import { FinancialSheetMeta } from '../../common/FinancialSheetMeta';
-import {
+import type {
   IInventoryValuationSheetMeta,
   IInventoryValuationReportQuery,
 } from './InventoryValuationSheet.types';

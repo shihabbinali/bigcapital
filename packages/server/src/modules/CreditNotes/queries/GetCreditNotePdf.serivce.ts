@@ -7,9 +7,9 @@ import { CreditNote } from '../models/CreditNote';
 import { ChromiumlyTenancy } from '@/modules/ChromiumlyTenancy/ChromiumlyTenancy.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { PdfTemplateModel } from '@/modules/PdfTemplate/models/PdfTemplate';
-import { CreditNotePdfTemplateAttributes } from '../types/CreditNotes.types';
+import type { CreditNotePdfTemplateAttributes } from '../types/CreditNotes.types';
 import { events } from '@/common/events/events';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetCreditNotePdf {
@@ -34,7 +34,7 @@ export class GetCreditNotePdf {
     private readonly pdfTemplateModel: TenantModelProxy<
       typeof PdfTemplateModel
     >,
-  ) { }
+  ) {}
 
   /**
    * Retrieves credit note html content.

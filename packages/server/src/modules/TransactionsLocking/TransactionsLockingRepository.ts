@@ -1,10 +1,8 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import { isUndefined } from 'lodash';
-import {
-  ITransactionMeta,
-  TransactionsLockingGroup,
-  TransactionsLockingType,
-} from './types/TransactionsLocking.types';
+import { TransactionsLockingGroup } from './types/TransactionsLocking.types';
+import { TransactionsLockingType } from './types/TransactionsLocking.types';
+import type { ITransactionMeta } from './types/TransactionsLocking.types';
 import { Inject, Injectable } from '@nestjs/common';
 import { SettingsStore } from '../Settings/SettingsStore';
 import { SETTINGS_PROVIDER } from '../Settings/Settings.types';

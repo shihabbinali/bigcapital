@@ -1,4 +1,4 @@
-import { Response, NextFunction } from 'express';
+import type { Response, NextFunction } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { defaultTo } from 'lodash';
 import {
@@ -22,7 +22,7 @@ import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
 @ApiTags('Import')
 @ApiCommonHeaders()
 export class ImportController {
-  constructor(private readonly importResourceApp: ImportResourceApplication) { }
+  constructor(private readonly importResourceApp: ImportResourceApplication) {}
 
   /**
    * Imports xlsx/csv to the given resource type.

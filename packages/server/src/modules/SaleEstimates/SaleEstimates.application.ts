@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateSaleEstimate } from './commands/CreateSaleEstimate.service';
-import {
+import type {
   ISalesEstimatesFilter,
   SaleEstimateMailOptionsDTO,
 } from './types/SaleEstimates.types';
@@ -39,7 +39,7 @@ export class SaleEstimatesApplication {
     private readonly getSaleEstimateMailStateService: GetSaleEstimateMailStateService,
     private readonly bulkDeleteSaleEstimatesService: BulkDeleteSaleEstimatesService,
     private readonly validateBulkDeleteSaleEstimatesService: ValidateBulkDeleteSaleEstimatesService,
-  ) { }
+  ) {}
 
   /**
    * Create a sale estimate.

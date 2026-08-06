@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { PromisePool } from '@supercharge/promise-pool';
 import { castArray, uniq } from 'lodash';
 import { DeleteCreditNoteService } from './commands/DeleteCreditNote.service';
@@ -8,7 +8,7 @@ import { DeleteCreditNoteService } from './commands/DeleteCreditNote.service';
 export class BulkDeleteCreditNotesService {
   constructor(
     private readonly deleteCreditNoteService: DeleteCreditNoteService,
-  ) { }
+  ) {}
 
   async bulkDeleteCreditNotes(
     creditNoteIds: number | Array<number>,
@@ -35,4 +35,3 @@ export class BulkDeleteCreditNotesService {
     }
   }
 }
-

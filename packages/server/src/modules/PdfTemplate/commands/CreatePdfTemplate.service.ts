@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
-import { ICreateInvoicePdfTemplateDTO } from '../types';
+import type { ICreateInvoicePdfTemplateDTO } from '../types';
 import { UnitOfWork } from '../../Tenancy/TenancyDB/UnitOfWork.service';
 import { PdfTemplateModel } from '../models/PdfTemplate';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class CreatePdfTemplateService {

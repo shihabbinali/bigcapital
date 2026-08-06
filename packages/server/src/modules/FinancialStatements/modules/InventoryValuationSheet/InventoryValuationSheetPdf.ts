@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { TableSheetPdf } from '../../common/TableSheetPdf';
-import { IInventoryValuationReportQuery } from './InventoryValuationSheet.types';
+import type { IInventoryValuationReportQuery } from './InventoryValuationSheet.types';
 import { InventoryValuationSheetTableInjectable } from './InventoryValuationSheetTableInjectable';
 import { HtmlTableCustomCss } from './_constants';
 

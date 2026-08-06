@@ -1,7 +1,7 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import { Injectable } from '@nestjs/common';
 import { FinancialSheetMeta } from '../../common/FinancialSheetMeta';
-import {
+import type {
   ITransactionsByCustomersFilter,
   ITransactionsByCustomersMeta,
 } from './TransactionsByCustomer.types';
@@ -21,7 +21,9 @@ export class TransactionsByCustomersMeta {
     const commonMeta = await this.financialSheetMeta.meta();
 
     const formattedToDate = moment(query.toDate).format(commonMeta.dateFormat);
-    const formattedFromDate = moment(query.fromDate).format(commonMeta.dateFormat);
+    const formattedFromDate = moment(query.fromDate).format(
+      commonMeta.dateFormat,
+    );
     const formattedDateRange = `From ${formattedFromDate} | To ${formattedToDate}`;
 
     return {

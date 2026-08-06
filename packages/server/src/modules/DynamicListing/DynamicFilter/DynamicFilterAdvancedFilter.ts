@@ -1,4 +1,4 @@
-import { IFilterRole } from './DynamicFilter.types';
+import type { IFilterRole } from './DynamicFilter.types';
 import { DynamicFilterFilterRoles } from './DynamicFilterFilterRoles';
 
 export class DynamicFilterAdvancedFilter extends DynamicFilterFilterRoles {

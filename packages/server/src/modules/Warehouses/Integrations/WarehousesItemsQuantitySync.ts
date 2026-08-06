@@ -1,10 +1,10 @@
 import { InventoryTransaction } from '@/modules/InventoryCost/models/InventoryTransaction';
 import { Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { omit } from 'lodash';
-import { IItemWarehouseQuantityChange } from '../Warehouse.types';
+import type { IItemWarehouseQuantityChange } from '../Warehouse.types';
 import { WarehousesItemsQuantity } from './WarehousesItemsQuantity';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { ItemWarehouseQuantity } from '../models/ItemWarehouseQuantity';
 
 @Injectable()

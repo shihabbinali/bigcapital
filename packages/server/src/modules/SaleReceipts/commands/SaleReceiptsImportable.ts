@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { CreateSaleReceipt } from './CreateSaleReceipt.service';
 import { Importable } from '@/modules/Import/Importable';
 import { CreateSaleReceiptDto } from '../dtos/SaleReceipt.dto';
@@ -21,10 +21,7 @@ export class SaleReceiptsImportable extends Importable {
     createAccountDTO: CreateSaleReceiptDto,
     trx?: Knex.Transaction,
   ) {
-    return this.createReceiptService.createSaleReceipt(
-      createAccountDTO,
-      trx,
-    );
+    return this.createReceiptService.createSaleReceipt(createAccountDTO, trx);
   }
 
   /**

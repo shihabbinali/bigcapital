@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import {
+import type {
   IVendorCreditOpenedPayload,
   IVendorCreditOpeningPayload,
   IVendorCreditOpenPayload,
@@ -10,8 +10,8 @@ import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { VendorCredit } from '../models/VendorCredit';
 import { events } from '@/common/events/events';
 import { ServiceError } from '@/modules/Items/ServiceError';
-import { Knex } from 'knex';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { Knex } from 'knex';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class OpenVendorCreditService {

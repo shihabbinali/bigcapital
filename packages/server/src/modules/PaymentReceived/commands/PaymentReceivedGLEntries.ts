@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { PaymentReceivedGL } from './PaymentReceivedGL';
 import { PaymentReceived } from '../models/PaymentReceived';
 import { LedgerStorageService } from '@/modules/Ledger/LedgerStorage.service';
@@ -8,7 +8,7 @@ import { Injectable } from '@nestjs/common';
 import { Inject } from '@nestjs/common';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { Account } from '@/modules/Accounts/models/Account.model';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class PaymentReceivedGLEntries {

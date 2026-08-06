@@ -1,7 +1,7 @@
 // @ts-nocheck
 import * as R from 'ramda';
 import { sumBy } from 'lodash';
-import {
+import type {
   IProfitLossHorizontalDatePeriodNode,
   IProfitLossSchemaNode,
   IProfitLossSheetAccountNode,
@@ -10,7 +10,7 @@ import {
   IProfitLossSheetNode,
 } from './ProfitLossSheet.types';
 import { ProfitLossSheetQuery } from './ProfitLossSheetQuery';
-import { GConstructor } from '@/common/types/Constructor';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from '../../common/FinancialSheet';
 import { FinancialPreviousPeriod } from '../../common/FinancialPreviousPeriod';
 import { ProfitLossSheetRepository } from './ProfitLossSheetRepository';

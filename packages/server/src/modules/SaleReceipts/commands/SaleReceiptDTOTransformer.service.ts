@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import * as R from 'ramda';
 import { sumBy, omit } from 'lodash';
 import * as composeAsync from 'async/compose';
-import * as moment from 'moment';
+import moment from 'moment';
 import { SaleReceiptIncrement } from './SaleReceiptIncrement.service';
 import { ItemsEntriesService } from '@/modules/Items/ItemsEntries.service';
 import { BranchTransactionDTOTransformer } from '@/modules/Branches/integrations/BranchTransactionDTOTransform';
@@ -15,7 +15,7 @@ import { assocItemEntriesDefaultIndex } from '@/utils/associate-item-entries-ind
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { SaleReceipt } from '../models/SaleReceipt';
 import { Customer } from '@/modules/Customers/models/Customer';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import {
   CreateSaleReceiptDto,
   EditSaleReceiptDto,

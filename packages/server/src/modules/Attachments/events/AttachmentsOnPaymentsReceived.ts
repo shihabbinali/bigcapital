@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import {
+import type {
   IPaymentReceivedCreatedPayload,
   IPaymentReceivedCreatingPayload,
   IPaymentReceivedDeletingPayload,

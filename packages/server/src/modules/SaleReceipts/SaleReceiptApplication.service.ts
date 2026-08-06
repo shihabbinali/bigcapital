@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Injectable } from '@nestjs/common';
 import { CreateSaleReceipt } from './commands/CreateSaleReceipt.service';
 import { GetSaleReceiptState } from './queries/GetSaleReceiptState.service';
@@ -7,7 +7,7 @@ import { CloseSaleReceipt } from './commands/CloseSaleReceipt.service';
 import { DeleteSaleReceipt } from './commands/DeleteSaleReceipt.service';
 import { GetSaleReceipt } from './queries/GetSaleReceipt.service';
 import { EditSaleReceipt } from './commands/EditSaleReceipt.service';
-import {
+import type {
   ISaleReceiptState,
   SaleReceiptMailOpts,
   SaleReceiptMailOptsDTO,
@@ -15,7 +15,7 @@ import {
 import { GetSaleReceiptsQueryDto } from './dtos/GetSaleReceiptsQuery.dto';
 import { GetSaleReceiptsService } from './queries/GetSaleReceipts.service';
 import { SaleReceipt } from './models/SaleReceipt';
-import { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
+import type { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
 import { SaleReceiptMailNotification } from './commands/SaleReceiptMailNotification';
 import {
   CreateSaleReceiptDto,
@@ -40,7 +40,7 @@ export class SaleReceiptApplication {
     private getSaleReceiptMailStateService: GetSaleReceiptMailStateService,
     private bulkDeleteSaleReceiptsService: BulkDeleteSaleReceiptsService,
     private validateBulkDeleteSaleReceiptsService: ValidateBulkDeleteSaleReceiptsService,
-  ) { }
+  ) {}
 
   /**
    * Creates a new sale receipt with associated entries.
@@ -182,9 +182,7 @@ export class SaleReceiptApplication {
    * Retrieves the mail state of the given sale receipt.
    * @param {number} saleReceiptId
    */
-  public getSaleReceiptMail(
-    saleReceiptId: number,
-  ): Promise<ISaleReceiptState> {
+  public getSaleReceiptMail(saleReceiptId: number): Promise<ISaleReceiptState> {
     return this.getSaleReceiptMailStateService.getMailState(saleReceiptId);
   }
 }

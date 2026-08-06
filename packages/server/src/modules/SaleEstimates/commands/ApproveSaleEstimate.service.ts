@@ -1,17 +1,17 @@
 import { Inject, Injectable } from '@nestjs/common';
-import {
+import type {
   ISaleEstimateApprovedEvent,
   ISaleEstimateApprovingEvent,
 } from '../types/SaleEstimates.types';
 import { ERRORS } from '../constants';
-import { Knex } from 'knex';
-import * as moment from 'moment';
+import type { Knex } from 'knex';
+import moment from 'moment';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { SaleEstimate } from '../models/SaleEstimate';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { ServiceError } from '@/modules/Items/ServiceError';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class ApproveSaleEstimateService {

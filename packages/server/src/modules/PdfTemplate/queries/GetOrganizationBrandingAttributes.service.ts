@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CommonOrganizationBrandingAttributes } from '../types';
+import type { CommonOrganizationBrandingAttributes } from '../types';
 import { TenancyContext } from '../../Tenancy/TenancyContext.service';
 import { GetAttachmentPresignedUrl } from '@/modules/Attachments/GetAttachmentPresignedUrl';
 

@@ -1,9 +1,8 @@
 // @ts-nocheck
 import * as R from 'ramda';
-import { ModelObject } from 'objection';
+import type { ModelObject } from 'objection';
 import { I18nService } from 'nestjs-i18n';
-import {
-  ProfitLossNodeType,
+import type {
   IProfitLossSheetEquationNode,
   IProfitLossEquationSchemaNode,
   IProfitLossSheetAccountsNode,
@@ -13,6 +12,7 @@ import {
   IProfitLossSheetAccountNode,
   IProfitLossSheetQuery,
 } from './ProfitLossSheet.types';
+import { ProfitLossNodeType } from './ProfitLossSheet.types';
 import { ProfitLossShema } from './ProfitLossSchema';
 import { ProfitLossSheetPercentage } from './ProfitLossSheetPercentage';
 import { ProfitLossSheetQuery } from './ProfitLossSheetQuery';
@@ -28,7 +28,8 @@ import { FinancialSheetStructure } from '../../common/FinancialSheetStructure';
 import { FinancialSheet } from '../../common/FinancialSheet';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { flatToNestedArray } from '@/utils/flat-to-nested-array';
-import { IFinancialReportMeta, DEFAULT_REPORT_META } from '../../types/Report.types';
+import type { IFinancialReportMeta } from '../../types/Report.types';
+import { DEFAULT_REPORT_META } from '../../types/Report.types';
 
 export default class ProfitLossSheet extends R.pipe(
   ProfitLossSheetPreviousYear,

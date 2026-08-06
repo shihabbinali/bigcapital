@@ -2,8 +2,8 @@
 import * as R from 'ramda';
 import { get } from 'lodash';
 import { BalanceSheetQuery } from './BalanceSheetQuery';
-import { IBalanceSheetDataNode } from './BalanceSheet.types';
-import { GConstructor } from '@/common/types/Constructor';
+import type { IBalanceSheetDataNode } from './BalanceSheet.types';
+import type { GConstructor } from '@/common/types/Constructor';
 import { FinancialSheet } from '../../common/FinancialSheet';
 
 export const BalanceSheetPercentage = <T extends GConstructor<FinancialSheet>>(

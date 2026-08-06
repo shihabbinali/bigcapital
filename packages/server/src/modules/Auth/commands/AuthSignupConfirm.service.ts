@@ -3,7 +3,7 @@ import { SystemUser } from '@/modules/System/models/SystemUser';
 import { Inject, Injectable } from '@nestjs/common';
 import { ERRORS } from '../Auth.constants';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import {
+import type {
   IAuthSignUpVerifiedEventPayload,
   IAuthSignUpVerifingEventPayload,
 } from '../Auth.interfaces';

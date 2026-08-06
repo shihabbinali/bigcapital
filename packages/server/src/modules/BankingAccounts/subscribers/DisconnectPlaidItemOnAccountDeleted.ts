@@ -1,12 +1,12 @@
 import { OnEvent } from '@nestjs/event-emitter';
 import { Inject, Injectable } from '@nestjs/common';
-import { IAccountEventDeletedPayload } from '@/interfaces/Account';
+import type { IAccountEventDeletedPayload } from '@/interfaces/Account';
 import { events } from '@/common/events/events';
 import { PlaidItem } from '@/modules/BankingPlaid/models/PlaidItem';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { PlaidApi } from 'plaid';
 import { PLAID_CLIENT } from '@/modules/Plaid/Plaid.module';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DisconnectPlaidItemOnAccountDeleted {

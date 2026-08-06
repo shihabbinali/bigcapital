@@ -1,9 +1,9 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { LedgerStorageService } from '@/modules/Ledger/LedgerStorage.service';
 import { BankTransaction } from '../models/BankTransaction';
 import { BankTransactionGL } from './BankTransactionGL';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class BankTransactionGLEntriesService {
@@ -11,7 +11,9 @@ export class BankTransactionGLEntriesService {
     private readonly ledgerStorage: LedgerStorageService,
 
     @Inject(BankTransaction.name)
-    private readonly bankTransactionModel: TenantModelProxy<typeof BankTransaction>,
+    private readonly bankTransactionModel: TenantModelProxy<
+      typeof BankTransaction
+    >,
   ) {}
 
   /**

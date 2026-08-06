@@ -1,13 +1,13 @@
 import { castArray, isEmpty } from 'lodash';
 import { Injectable } from '@nestjs/common';
-import { IDynamicListFilter } from './DynamicFilter/DynamicFilter.types';
+import type { IDynamicListFilter } from './DynamicFilter/DynamicFilter.types';
 import { DynamicListSortBy } from './DynamicListSortBy.service';
 import { DynamicListSearch } from './DynamicListSearch.service';
 import { DynamicListCustomView } from './DynamicListCustomView.service';
 import { DynamicListFilterRoles } from './DynamicListFilterRoles.service';
 import { DynamicFilter } from './DynamicFilter';
-import { MetableModel } from './types/DynamicList.types';
-import { IFilterMeta } from '@/interfaces/Model';
+import type { MetableModel } from './types/DynamicList.types';
+import type { IFilterMeta } from '@/interfaces/Model';
 
 @Injectable()
 export class DynamicListService {
@@ -16,7 +16,7 @@ export class DynamicListService {
     private dynamicListSearch: DynamicListSearch,
     private dynamicListSortBy: DynamicListSortBy,
     private dynamicListView: DynamicListCustomView,
-  ) { }
+  ) {}
 
   /**
    * Parses filter DTO.
@@ -31,9 +31,9 @@ export class DynamicListService {
       // Merges the default properties with filter object.
       ...(model.defaultSort
         ? {
-          sortOrder: model.defaultSort.sortOrder,
-          columnSortBy: model.defaultSort.sortOrder,
-        }
+            sortOrder: model.defaultSort.sortOrder,
+            columnSortBy: model.defaultSort.sortOrder,
+          }
         : {}),
       ...filterDTO,
     };

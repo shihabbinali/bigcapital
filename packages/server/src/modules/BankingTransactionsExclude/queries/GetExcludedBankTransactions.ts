@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
-import { ExcludedBankTransactionsQuery } from '../types/BankTransactionsExclude.types';
+import type { ExcludedBankTransactionsQuery } from '../types/BankTransactionsExclude.types';
 import { UncategorizedBankTransaction } from '@/modules/BankingTransactions/models/UncategorizedBankTransaction';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { ExcludedBankTransactionTransformer } from './ExcludedBankTransaction.transformer';
 
 @Injectable()

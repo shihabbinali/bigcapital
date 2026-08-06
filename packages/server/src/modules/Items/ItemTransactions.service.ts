@@ -5,7 +5,7 @@ import { ItemBillTransactionTransformer } from './ItemBillsTransactions.transfor
 import { ItemReceiptTransactionTransformer } from './ItemReceiptsTransactions.transformer';
 import { TransformerInjectable } from '../Transformer/TransformerInjectable.service';
 import { ItemEntry } from '../TransactionItemEntry/models/ItemEntry';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 
 @Injectable()
 export class ItemTransactionsService {

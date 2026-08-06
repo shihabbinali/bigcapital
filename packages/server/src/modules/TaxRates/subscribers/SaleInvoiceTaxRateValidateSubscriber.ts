@@ -1,7 +1,7 @@
 import { CommandTaxRatesValidators } from '../commands/CommandTaxRatesValidator.service';
 import { OnEvent } from '@nestjs/event-emitter';
 import { Injectable } from '@nestjs/common';
-import {
+import type {
   ISaleInvoiceCreatingPaylaod,
   ISaleInvoiceEditingPayload,
 } from '@/modules/SaleInvoices/SaleInvoice.types';

@@ -10,7 +10,7 @@ import {
   ArrayMinSize,
   IsNotEmpty,
 } from 'class-validator';
-import { BankRuleComparator } from '../types';
+import type { BankRuleComparator } from '../types';
 import { ApiProperty } from '@nestjs/swagger';
 import { ToNumber } from '@/common/decorators/Validators';
 

@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { first } from 'lodash';
 import { GetMatchedTransactionBillsTransformer } from './GetMatchedTransactionBillsTransformer';
-import {
+import type {
   GetMatchedTransactionsFilter,
   IMatchTransactionDTO,
   MatchedTransactionPOJO,
@@ -12,7 +12,7 @@ import { CreateBillPaymentService } from '@/modules/BillPayments/commands/Create
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { Bill } from '@/modules/Bills/models/Bill';
 import { UncategorizedBankTransaction } from '@/modules/BankingTransactions/models/UncategorizedBankTransaction';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { CreateBillPaymentDto } from '@/modules/BillPayments/dtos/BillPayment.dto';
 
 @Injectable()

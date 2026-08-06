@@ -4,7 +4,7 @@ import { omit, sumBy } from 'lodash';
 import * as composeAsync from 'async/compose';
 import { SaleEstimateValidators } from './SaleEstimateValidators.service';
 import { formatDateFields } from '@/utils/format-date-fields';
-import * as moment from 'moment';
+import moment from 'moment';
 import { SaleEstimateIncrement } from './SaleEstimateIncrement.service';
 import { BranchTransactionDTOTransformer } from '@/modules/Branches/integrations/BranchTransactionDTOTransform';
 import { WarehouseTransactionDTOTransform } from '@/modules/Warehouses/Integrations/WarehouseTransactionDTOTransform';
@@ -13,8 +13,8 @@ import { BrandingTemplateDTOTransformer } from '@/modules/PdfTemplate/BrandingTe
 import { ItemEntry } from '@/modules/TransactionItemEntry/models/ItemEntry';
 import { SaleEstimate } from '../models/SaleEstimate';
 import { Customer } from '@/modules/Customers/models/Customer';
-import { ISaleEstimateDTO } from '../types/SaleEstimates.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { ISaleEstimateDTO } from '../types/SaleEstimates.types';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { CommandSaleEstimateDto } from '../dtos/SaleEstimate.dto';
 
 @Injectable()

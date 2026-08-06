@@ -21,5 +21,12 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    // Bun transpiles per-file (no whole-program elision), so type-only named
+    // imports must be explicit `import type` or circular graphs throw
+    // "Export named 'X' not found". Run `eslint --fix` to apply.
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
+      { fixStyle: 'separate-type-imports' },
+    ],
   },
 };

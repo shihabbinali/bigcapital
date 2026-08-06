@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { TaxRateModel } from './models/TaxRate.model';
 
 export interface ITaxRate {

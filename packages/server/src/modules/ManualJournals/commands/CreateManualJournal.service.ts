@@ -1,11 +1,11 @@
 import { sumBy, omit } from 'lodash';
-import * as moment from 'moment';
+import moment from 'moment';
 import * as R from 'ramda';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import * as composeAsync from 'async/compose';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import {
+import type {
   IManualJournalDTO,
   IManualJournalEventCreatedPayload,
   IManualJournalCreatingPayload,
@@ -18,7 +18,7 @@ import { ManualJournal } from '../models/ManualJournal';
 import { assocItemEntriesDefaultIndex } from '@/utils/associate-item-entries-index';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { ManualJournalBranchesDTOTransformer } from '@/modules/Branches/integrations/ManualJournals/ManualJournalDTOTransformer.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { CreateManualJournalDto } from '../dtos/ManualJournal.dto';
 
 @Injectable()

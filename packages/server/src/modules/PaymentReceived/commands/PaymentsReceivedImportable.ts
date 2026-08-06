@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { CreatePaymentReceivedDto } from '../dtos/PaymentReceived.dto';
 import { Injectable } from '@nestjs/common';
 import { PaymentsReceiveSampleData } from '../constants';

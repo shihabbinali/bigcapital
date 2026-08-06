@@ -4,8 +4,11 @@ import { Vendor } from '../models/Vendor';
 import { DynamicListService } from '@/modules/DynamicListing/DynamicList.service';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import { VendorTransfromer } from './VendorTransformer';
-import { GetVendorsResponse, IVendorsFilter } from '../types/Vendors.types';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type {
+  GetVendorsResponse,
+  IVendorsFilter,
+} from '../types/Vendors.types';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { GetVendorsQueryDto } from '../dtos/GetVendorsQuery.dto';
 
 @Injectable()

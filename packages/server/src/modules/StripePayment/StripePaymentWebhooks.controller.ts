@@ -5,16 +5,16 @@ import {
   HttpException,
   HttpStatus,
   Post,
-  RawBodyRequest,
   Req,
 } from '@nestjs/common';
-import { Request, Response } from 'express';
+import type { RawBodyRequest } from '@nestjs/common';
+import type { Request, Response } from 'express';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { ConfigService } from '@nestjs/config';
 import { StripePaymentService } from './StripePaymentService';
 import { events } from '@/common/events/events';
-import {
+import type {
   StripeCheckoutSessionCompletedEventPayload,
   StripeWebhookEventPayload,
 } from './StripePayment.types';
@@ -28,7 +28,7 @@ export class StripePaymentWebhooksController {
     private readonly stripePaymentService: StripePaymentService,
     private readonly eventEmitter: EventEmitter2,
     private readonly configService: ConfigService,
-  ) { }
+  ) {}
 
   /**
    * Handles incoming Stripe webhook events.

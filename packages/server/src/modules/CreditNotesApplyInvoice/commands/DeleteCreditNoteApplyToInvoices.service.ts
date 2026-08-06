@@ -1,14 +1,14 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { IApplyCreditToInvoicesDeletedPayload } from '../types/CreditNoteApplyInvoice.types';
+import type { IApplyCreditToInvoicesDeletedPayload } from '../types/CreditNoteApplyInvoice.types';
 import { CreditNoteAppliedInvoice } from '../models/CreditNoteAppliedInvoice';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
 import { events } from '@/common/events/events';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { CreditNote } from '../../CreditNotes/models/CreditNote';
 import { ERRORS } from '../../CreditNotes/constants';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class DeleteCreditNoteApplyToInvoices {

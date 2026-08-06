@@ -1,20 +1,29 @@
 import { Controller, Get, Headers, Query, Res } from '@nestjs/common';
-import { ApiExtraModels, ApiOperation, ApiResponse, ApiTags, getSchemaPath } from '@nestjs/swagger';
+import {
+  ApiExtraModels,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+  getSchemaPath,
+} from '@nestjs/swagger';
 import {
   TransactionsByCustomerResponseDto,
   TransactionsByCustomerTableResponseDto,
 } from './TransactionsByCustomerResponse.dto';
-import { ITransactionsByCustomersFilter } from './TransactionsByCustomer.types';
+import type { ITransactionsByCustomersFilter } from './TransactionsByCustomer.types';
 import { TransactionsByCustomerApplication } from './TransactionsByCustomersApplication';
 import { AcceptType } from '@/constants/accept-type';
-import { Response } from 'express';
+import type { Response } from 'express';
 import { TransactionsByCustomerQueryDto } from './TransactionsByCustomerQuery.dto';
 import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
 
 @Controller('/reports/transactions-by-customers')
 @ApiTags('Reports')
 @ApiCommonHeaders()
-@ApiExtraModels(TransactionsByCustomerResponseDto, TransactionsByCustomerTableResponseDto)
+@ApiExtraModels(
+  TransactionsByCustomerResponseDto,
+  TransactionsByCustomerTableResponseDto,
+)
 export class TransactionsByCustomerController {
   constructor(
     private readonly transactionsByCustomersApp: TransactionsByCustomerApplication,

@@ -1,5 +1,6 @@
 import type { RedisClientOptions } from 'redis';
-import { DynamicModule, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
+import type { DynamicModule } from '@nestjs/common';
 import { CacheModule } from '@nestjs/cache-manager';
 
 interface TenancyCacheModuleConfig {
@@ -15,4 +16,3 @@ export class TenancyCacheModule {
     };
   }
 }
-

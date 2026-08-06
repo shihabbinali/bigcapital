@@ -1,17 +1,17 @@
 // @ts-nocheck
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { Inject, Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import {
+import type {
   IInventoryTransactionsDeletedPayload,
   TInventoryTransactionDirection,
 } from '../types/InventoryCost.types';
 import { InventoryCostLotTracker } from '../models/InventoryCostLotTracker';
 import { InventoryTransaction } from '../models/InventoryTransaction';
 import { events } from '@/common/events/events';
-import { IInventoryTransactionsCreatedPayload } from '../types/InventoryCost.types';
+import type { IInventoryTransactionsCreatedPayload } from '../types/InventoryCost.types';
 import { transformItemEntriesToInventory } from '../utils';
-import { IItemEntryTransactionType } from '../../TransactionItemEntry/ItemEntry.types';
+import type { IItemEntryTransactionType } from '../../TransactionItemEntry/ItemEntry.types';
 import { ItemEntry } from '../../TransactionItemEntry/models/ItemEntry';
 
 @Injectable()

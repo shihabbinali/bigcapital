@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { InventoryTransaction } from '../models/InventoryTransaction';
 
 export const ComputeItemCostQueue = 'ComputeItemCostQueue';

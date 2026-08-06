@@ -5,11 +5,11 @@ import { contactAddressTextFormat } from '@/utils/address-text-format';
 
 export const mergePdfTemplateWithDefaultAttributes = (
   brandingTemplate?: Record<string, any>,
-  defaultAttributes: Record<string, any> = {}
+  defaultAttributes: Record<string, any> = {},
 ) => {
   const brandingAttributes = pickBy(
     brandingTemplate,
-    (val, key) => val !== null && Object.keys(defaultAttributes).includes(key)
+    (val, key) => val !== null && Object.keys(defaultAttributes).includes(key),
   );
   return {
     ...defaultAttributes,
@@ -18,7 +18,7 @@ export const mergePdfTemplateWithDefaultAttributes = (
 };
 
 export const transformInvoiceToPdfTemplate = (
-  invoice: ISaleInvoice
+  invoice: ISaleInvoice,
 ): Partial<InvoicePdfTemplateAttributes> => {
   return {
     dueDate: invoice.dueDateFormatted,
@@ -48,6 +48,10 @@ export const transformInvoiceToPdfTemplate = (
     discountLabel: invoice.discountPercentageFormatted
       ? `Discount [${invoice.discountPercentageFormatted}]`
       : 'Discount',
-    customerAddress: contactAddressTextFormat(invoice.customer, undefined, invoice.customerName),
+    customerAddress: contactAddressTextFormat(
+      invoice.customer,
+      undefined,
+      invoice.customerName,
+    ),
   };
 };

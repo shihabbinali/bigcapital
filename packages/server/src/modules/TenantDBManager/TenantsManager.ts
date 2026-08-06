@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { I18nService } from 'nestjs-i18n';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { TenantDBManager } from './TenantDBManager';
@@ -71,7 +71,7 @@ export class TenantsManagerService {
    */
   public async migrateTenant(): Promise<void> {
     const tenant = await this.tenancyContext.getTenant();
-   
+
     // Throw error if the tenant already initialized.
     throwErrorIfTenantAlreadyInitialized(tenant);
 

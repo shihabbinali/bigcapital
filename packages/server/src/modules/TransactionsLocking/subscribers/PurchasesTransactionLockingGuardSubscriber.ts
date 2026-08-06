@@ -1,24 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { events } from '@/common/events/events';
-import {
+import type {
   IRefundVendorCreditCreatingPayload,
   IRefundVendorCreditDeletingPayload,
 } from '@/modules/VendorCreditsRefund/types/VendorCreditRefund.types';
-import {
+import type {
   IVendorCreditCreatingPayload,
   IVendorCreditDeletingPayload,
   IVendorCreditEditingPayload,
 } from '@/modules/VendorCredit/types/VendorCredit.types';
-import {
+import type {
   IBillCreatingPayload,
   IBillEditingPayload,
   IBillEventDeletingPayload,
 } from '@/modules/Bills/Bills.types';
-import {
+import type {
   IBillPaymentCreatingPayload,
   IBillPaymentEditingPayload,
 } from '@/modules/BillPayments/types/BillPayments.types';
-import { IBillPaymentDeletingPayload } from '@/modules/BillPayments/types/BillPayments.types';
+import type { IBillPaymentDeletingPayload } from '@/modules/BillPayments/types/BillPayments.types';
 import { PurchasesTransactionLockingGuard } from '../guards/PurchasesTransactionLockingGuard';
 import { OnEvent } from '@nestjs/event-emitter';
 
@@ -26,7 +26,7 @@ import { OnEvent } from '@nestjs/event-emitter';
 export class PurchasesTransactionLockingGuardSubscriber {
   constructor(
     public readonly purchasesTransactionsLocking: PurchasesTransactionLockingGuard,
-  ) { }
+  ) {}
 
   /**
    * ---------------------------------------------

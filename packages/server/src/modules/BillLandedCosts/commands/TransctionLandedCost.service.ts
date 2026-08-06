@@ -1,6 +1,6 @@
 import * as R from 'ramda';
 import { Model } from 'objection';
-import {
+import type {
   ILandedCostTransaction,
   ILandedCostTransactionEntry,
   LandedCostTransactionModel,
@@ -10,9 +10,10 @@ import { Injectable } from '@nestjs/common';
 import { Bill } from '@/modules/Bills/models/Bill';
 import { Expense } from '@/modules/Expenses/models/Expense.model';
 import { ServiceError } from '@/modules/Items/ServiceError';
-import { ContextIdFactory, ModuleRef } from '@nestjs/core';
+import { ContextIdFactory } from '@nestjs/core';
+import { ModuleRef } from '@nestjs/core';
 import { sanitizeModelName } from '@/utils/sanitize-model-name';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { ExpenseLandedCost } from './ExpenseLandedCost.service';
 import { BillLandedCost } from './BillLandedCost.service';
 import { ERRORS } from '../utils';
@@ -51,22 +52,21 @@ export class TransactionLandedCost {
    * @param {IBill|IExpense} transaction - Expense or bill transaction.
    * @returns {ILandedCostTransaction}
    */
-  public transformToLandedCost = 
-    (
-      transactionType: LandedCostTransactionType,
-      transaction: LandedCostTransactionModel,
-    ): ILandedCostTransaction => {
-      return R.compose(
-        R.when(
-          R.always(transactionType === 'Bill'),
-          this.billLandedCost.transformToLandedCost,
-        ),
-        R.when(
-          R.always(transactionType === 'Expense'),
-          this.expenseLandedCost.transformToLandedCost,
-        ),
-      )(transaction) as ILandedCostTransaction;
-    };
+  public transformToLandedCost = (
+    transactionType: LandedCostTransactionType,
+    transaction: LandedCostTransactionModel,
+  ): ILandedCostTransaction => {
+    return R.compose(
+      R.when(
+        R.always(transactionType === 'Bill'),
+        this.billLandedCost.transformToLandedCost,
+      ),
+      R.when(
+        R.always(transactionType === 'Expense'),
+        this.expenseLandedCost.transformToLandedCost,
+      ),
+    )(transaction) as ILandedCostTransaction;
+  };
 
   /**
    * Transformes the given expense or bill entry to landed cost transaction entry.

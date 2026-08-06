@@ -14,16 +14,16 @@ import { ContactMailNotification } from '@/modules/MailNotification/ContactMailN
 import { PaymentReceived } from '../models/PaymentReceived';
 import { GetPaymentReceivedService } from '../queries/GetPaymentReceived.service';
 import { mergeAndValidateMailOptions } from '@/modules/MailNotification/utils';
-import {
+import type {
   PaymentReceiveMailOptsDTO,
   SendPaymentReceivedMailPayload,
 } from '../types/PaymentReceived.types';
-import { PaymentReceiveMailOpts } from '../types/PaymentReceived.types';
-import { PaymentReceiveMailPresendEvent } from '../types/PaymentReceived.types';
-import { SendInvoiceMailDTO } from '@/modules/SaleInvoices/SaleInvoice.types';
+import type { PaymentReceiveMailOpts } from '../types/PaymentReceived.types';
+import type { PaymentReceiveMailPresendEvent } from '../types/PaymentReceived.types';
+import type { SendInvoiceMailDTO } from '@/modules/SaleInvoices/SaleInvoice.types';
 import { Mail } from '@/modules/Mail/Mail';
 import { MailTransporter } from '@/modules/Mail/MailTransporter.service';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { GetPaymentReceivedMailTemplate } from '../queries/GetPaymentReceivedMailTemplate.service';
 

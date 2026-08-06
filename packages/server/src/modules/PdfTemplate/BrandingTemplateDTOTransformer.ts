@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { isNil } from 'lodash';
 import { PdfTemplateModel } from './models/PdfTemplate';
-import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 
 @Injectable()
 export class BrandingTemplateDTOTransformer {

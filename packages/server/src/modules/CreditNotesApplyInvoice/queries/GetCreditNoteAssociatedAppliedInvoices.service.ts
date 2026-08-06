@@ -3,7 +3,7 @@ import { CreditNoteAppliedInvoiceTransformer } from './CreditNoteAppliedInvoiceT
 import { CreditNote } from '../../CreditNotes/models/CreditNote';
 import { TransformerInjectable } from '../../Transformer/TransformerInjectable.service';
 import { CreditNoteAppliedInvoice } from '../models/CreditNoteAppliedInvoice';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class GetCreditNoteAssociatedAppliedInvoices {
@@ -16,7 +16,9 @@ export class GetCreditNoteAssociatedAppliedInvoices {
     private readonly transformer: TransformerInjectable,
 
     @Inject(CreditNoteAppliedInvoice.name)
-    private readonly creditNoteAppliedInvoiceModel: TenantModelProxy<typeof CreditNoteAppliedInvoice>,
+    private readonly creditNoteAppliedInvoiceModel: TenantModelProxy<
+      typeof CreditNoteAppliedInvoice
+    >,
 
     @Inject(CreditNote.name)
     private readonly creditNoteModel: TenantModelProxy<typeof CreditNote>,

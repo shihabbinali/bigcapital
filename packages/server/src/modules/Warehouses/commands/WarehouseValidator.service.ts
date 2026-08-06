@@ -3,7 +3,7 @@ import { Inject } from '@nestjs/common';
 import { Injectable } from '@nestjs/common';
 import { ERRORS } from '../contants';
 import { Warehouse } from '../models/Warehouse.model';
-import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
 export class WarehouseValidator {

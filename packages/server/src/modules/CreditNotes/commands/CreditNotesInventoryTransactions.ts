@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InventoryTransactionsService } from '@/modules/InventoryCost/commands/InventoryTransactions.service';
 import { ItemsEntriesService } from '@/modules/Items/ItemsEntries.service';
 import { CreditNote } from '../models/CreditNote';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 @Injectable()
 export class CreditNoteInventoryTransactions {
   constructor(

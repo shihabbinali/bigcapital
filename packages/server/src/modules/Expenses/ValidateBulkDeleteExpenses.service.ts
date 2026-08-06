@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import { TENANCY_DB_CONNECTION } from '../Tenancy/TenancyDB/TenancyDB.constants';
 import { DeleteExpense } from './commands/DeleteExpense.service';
 
@@ -9,7 +9,7 @@ export class ValidateBulkDeleteExpensesService {
     private readonly deleteExpenseService: DeleteExpense,
     @Inject(TENANCY_DB_CONNECTION)
     private readonly tenantKnex: () => Knex,
-  ) { }
+  ) {}
 
   public async validateBulkDeleteExpenses(expenseIds: number[]): Promise<{
     deletableCount: number;
@@ -48,4 +48,3 @@ export class ValidateBulkDeleteExpensesService {
     }
   }
 }
-
