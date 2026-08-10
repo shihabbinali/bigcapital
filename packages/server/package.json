@@ -7,6 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "bun --bun nest build",
+    "dev": "bun --bun nest start --watch",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "format:check": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "bun --bun nest start",

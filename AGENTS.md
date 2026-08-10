@@ -14,6 +14,8 @@ Branch `feature/bun-runtime` migrated from pnpm + Lerna to bun. pnpm/lerna files
 - Node 18.16.1 (`.nvmrc`); `engines` range is `16.x || 17.x || 18.x`. Node is still needed for the `postinstall` patch script (runs via `node`).
 - `bun install` hoists into `node_modules/.bun/<pkg>@<version>/node_modules/<pkg>/` (symlinked from each package dir).
 - `workspace:*` deps work natively under bun.
+- **`bun` respects `#!/usr/bin/env node` shebangs**: CLIs like `vite`, `tsup`, `nest` run under **node** by default unless invoked with `--bun` (bun then installs a temp self-symlink named `node` on PATH, so `ps`/args may show `node` while `/proc/<pid>/exe` is actually bun). webapp (`vite`), utils and sdk-ts (`tsup`) all use `bun --bun ...` in their scripts so the whole toolchain runs under bun; only `cross-env` (a trivial env-setter) still runs on node.
+- **`bun run --filter` runs scripts in dependency order** — a package's script waits for its deps' scripts to *finish*. Long-running dev/watch scripts therefore MUST be run with `--parallel` (e.g. root `dev`/`dev:webapp`/`dev:server`), otherwise a dependent's `vite`/`nest --watch` never starts while `@bigcapital/utils`'s tsup watch runs forever.
 
 ## Key commands (run from repo root)
 
@@ -22,7 +24,7 @@ Branch `feature/bun-runtime` migrated from pnpm + Lerna to bun. pnpm/lerna files
 | `bun install` | install (migrates lockfile if needed) |
 | `bun run --filter '@bigcapital/utils' --filter '@bigcapital/pdf-templates' build` | build shared packages first |
 | `bun run --filter '@bigcapital/server' build` | server (`bun --bun nest build`, CJS dist — dist is unused in prod, only for `nest start`) |
-| `bun run --filter '@bigcapital/webapp' build` | webapp (`vite build`) |
+| `bun run --filter '@bigcapital/webapp' build` | webapp (`bun --bun vite build`) |
 | `bun src/main.ts` | **server dev/prod runtime** (native, from `packages/server/`) |
 | `bun run typecheck` | all packages (`tsc --noEmit`) |
 | `bun run lint` | all packages |

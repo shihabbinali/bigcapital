@@ -13,8 +13,8 @@
     }
   },
   "scripts": {
-    "build:cjs": "tsup src/index.ts --format cjs --dts --sourcemap",
-    "build:esm": "tsup src/index.ts --format esm --dts --sourcemap",
+    "build:cjs": "bun --bun tsup src/index.ts --format cjs --dts --sourcemap",
+    "build:esm": "bun --bun tsup src/index.ts --format esm --dts --sourcemap",
     "build": "bun run build:cjs && bun run build:esm",
     "dev": "bun run build -- --watch"
   },
