@@ -89,6 +89,16 @@ const PATCHES = [
   var file = callSite.getFileName() || '<anonymous>'`,
   },
   {
+    name: '@nestjs/cli (tsconfig-paths hook under bun)',
+    file: findPackage('@nestjs/cli', 'lib/compiler/hooks/tsconfig-paths.hook.js'),
+    old: `        if (packagePath) {
+            return text;
+        }`,
+    next: `        if (packagePath && packagePath.includes(path_1.sep + 'node_modules' + path_1.sep)) {
+            return text;
+        }`,
+  },
+  {
     name: '@nestjs/swagger (bun enum design:type normalization)',
     file: findPackage('@nestjs/swagger', 'dist/decorators/helpers.js'),
     old: `        else {

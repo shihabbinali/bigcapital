@@ -21,7 +21,7 @@ Branch `feature/bun-runtime` migrated from pnpm + Lerna to bun. pnpm/lerna files
 |---|---|
 | `bun install` | install (migrates lockfile if needed) |
 | `bun run --filter '@bigcapital/utils' --filter '@bigcapital/pdf-templates' build` | build shared packages first |
-| `bun run --filter '@bigcapital/server' build` | server (`nest build`) |
+| `bun run --filter '@bigcapital/server' build` | server (`bun --bun nest build`, CJS dist — dist is unused in prod, only for `nest start`) |
 | `bun run --filter '@bigcapital/webapp' build` | webapp (`vite build`) |
 | `bun src/main.ts` | **server dev/prod runtime** (native, from `packages/server/`) |
 | `bun run typecheck` | all packages (`tsc --noEmit`) |
@@ -31,7 +31,7 @@ Branch `feature/bun-runtime` migrated from pnpm + Lerna to bun. pnpm/lerna files
 
 Dev server needs `packages/server/.env` (loaded from `ConfigModule.forRoot({ envFilePath: '.env' })`).
 
-Server scripts of note (`packages/server/package.json`): `start:prod` = `bun src/main.ts`, all `cli:*` = `bun src/cli.ts <cmd>`. `start`/`start:dev`/`start:debug` stay on the nest CLI.
+Server scripts of note (`packages/server/package.json`): `start:prod` = `bun src/main.ts`, all `cli:*` = `bun src/cli.ts <cmd>`. The dev-loop scripts (`start`/`start:dev`/`start:debug`) run the **nest CLI under bun**: `bun --bun nest start [--watch|--debug]`, and `nest-cli.json` sets `"exec": "bun"` so the compiled dist is spawned with `bun` (not `node`).
 
 ## JWT gotcha
 
@@ -50,16 +50,18 @@ Server reads `APP_JWT_SECRET` (not `JWT_SECRET`). Falls back to hardcoded `"1231
 - E2E config: `packages/server/test/jest-e2e.json`. `testRegex` pins to `auth.e2e-spec.ts$` by default — only runs auth tests. `maxWorkers: 1`. `testTimeout: 300000` (AppModule compiles 13–26s cold).
 - `init-app-test.ts` signs in as existing user (`bigcapital@bigcapital.com` / `123123123`) — it does NOT create the user or seed the tenant. In this env that signin 401s (user not present) — non-blocking, signup/signin/reset tests create their own users.
 - Unit tests use Jest (`*.spec.ts` inside `src/`).
-- **tsconfig split (required)**: main `packages/server/tsconfig.json` uses `module: esnext` + `verbatimModuleSyntax: true` for bun. **`tsconfig.build.json` (used by the nest CLI for `nest build`/`nest start`/`start:dev`) MUST override to `module: commonjs` + `verbatimModuleSyntax: false` + `esModuleInterop: true`** — otherwise the nest CLI emits ESM with extensionless imports that Node can't run (`ERR_MODULE_NOT_FOUND` on `nest start --watch`). ts-jest likewise MUST use `tsconfig.spec.json` / `test/tsconfig.spec.json` (same CJS override). Wired via `jest.globals['ts-jest'].tsconfig` and `test/jest-e2e.json` `globals`. All 56 e2e specs use `import request from 'supertest'` (default import, not `import * as`).
+- **tsconfig split (required)**: main `packages/server/tsconfig.json` uses `module: esnext` + `verbatimModuleSyntax: true` for bun. **`tsconfig.build.json` (used by the nest CLI for `nest build`/`nest start`/`start:dev`) MUST override to `module: commonjs` + `verbatimModuleSyntax: false` + `esModuleInterop: true` + `incremental: false`** — otherwise the nest CLI emits ESM with extensionless imports that can't run (`ERR_MODULE_NOT_FOUND` on `nest start --watch`). ts-jest likewise MUST use `tsconfig.spec.json` / `test/tsconfig.spec.json` (same CJS override). Wired via `jest.globals['ts-jest'].tsconfig` and `test/jest-e2e.json` `globals`. All 56 e2e specs use `import request from 'supertest'` (default import, not `import * as`).
 - **node_modules patches** (`scripts/patch-node-modules.js`, runs in `postinstall`):
   1. `jest-runtime`: `Module` statics are readonly under bun → `Object.defineProperty` instead of assignment (bun issue #16933).
   2. `depd`: bun's `Error.captureStackTrace` returns strings in jest's vm sandbox → guard `typeof callSite.getFileName !== 'function'`.
-  3. `@nestjs/swagger`: normalize enum `design:type` under bun.
+  3. `@nestjs/cli` tsconfig-paths hook: under bun, `require.resolve('@/...')` resolves tsconfig aliases (node throws, so the `#838` package short-circuit correctly falls through to the relative-path rewrite). With the short-circuit firing, the emitted `dist/**` keeps raw `@/` requires → bun resolves them back to `src/**` at runtime → duplicate module identities → DI failures (`Nest can't resolve dependencies ... argument Object at index [2]`) and missing routes. Patch: only `return text` when `packagePath` is under `node_modules`.
+  4. `@nestjs/swagger`: normalize enum `design:type` under bun.
 - If you bump `bun install`/delete `node_modules`, re-apply via `node scripts/patch-node-modules.js`.
 
 ## Bun runtime gotchas (server)
 
-- **Native `bun src/main.ts` is the working runtime** (binds :3000, `/api/system_db` → 200). The compiled-dist (`dist/main.js`) approach was abandoned (broken/slow under both node and bun).
+- **Native `bun src/main.ts` is the prod runtime** (binds :3000, `/api/system_db` → 200) and the fast dev path (`bun --watch src/main.ts`). The nest-CLI dev loop (`start:dev`) compiles to CJS `dist/` and runs `bun dist/main.js` — this works and boots (all DI + routes resolve) thanks to the tsconfig-paths patch (above), but the initial tsc watch compile is slow under bun (~4–5 min vs ~3 min under node); edit→recompile→restart cycles work (~30–60 s) but `touch` (same-size mtime-only change) is ignored by tsc's watcher on both runtimes. `dist/` is unused in prod/Docker (they run from `src/`).
+- **nest CLI runs under bun**: invoke as `bun --bun nest ...` (the `-b/--bun` flag makes the node-shebang CLI run under bun; process title may still show `node`). `nest-cli.json` sets `"exec": "bun"` so `nest start` spawns `bun --enable-source-maps [--inspect=9229] dist/main.js` (bun accepts both flags). `nest g` works: `printf '\n\n\n\n' | bun --bun nest g <schematic> <name> --dry-run`.
 - **`design:paramtypes` elision bug**: a value import used only as a constructor param type is elided to `Object` in `design:paramtypes` IF the class has NO class-level decorator but HAS param decorators, AND the imported type sits at an index BEFORE the first decorated param. Position-dependent; `verbatimModuleSyntax` does NOT fix it. **Any DI class with param decorators but no class decorator needs `@Injectable()` (or another class-level decorator)** or Nest fails with `Nest can't resolve dependencies ... argument Object at index [0]`.
 - **`mapKeysDeep is not a function` (serialize.interceptor)**: `import * as _ from 'lodash'` + `deepdash` breaks (ESM namespace wrapper is read-only; `mixin` can't attach). `src/utils/deepdash.ts` must use `import _ from 'lodash'` (default interop). Only 2 other files namespace-import lodash (`entries-amount-diff.ts`, `is-blank.ts`) — fine since they only read methods.
 - Type-only imports should use `import type` (codemod enforced via eslint `consistent-type-imports`); needed for bun's per-file transpiler to elide types in circular import graphs.

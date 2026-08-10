@@ -3,6 +3,7 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
   "entryFile": "main",
+  "exec": "bun",
   "compilerOptions": {
     "deleteOutDir": true,
     "assets": [
