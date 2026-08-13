@@ -112,7 +112,7 @@ export class BillDTOTransformer {
         !oldBill?.openedAt && {
           openedAt: moment().toMySqlDateTime(),
         }),
-      userId: authorizedUser.id,
+      userId: oldBill?.userId ?? authorizedUser.id,
     };
 
     const asyncDto = await composeAsync(

@@ -9,6 +9,7 @@ import { ItemsValidators } from './ItemValidator.service';
 import { Item } from './models/Item';
 import { UnitOfWork } from '../Tenancy/TenancyDB/UnitOfWork.service';
 import type { TenantModelProxy } from '../System/models/TenantBaseModel';
+import { TenancyContext } from '../Tenancy/TenancyContext.service';
 import { CreateItemDto } from './dtos/Item.dto';
 
 @Injectable({ scope: Scope.REQUEST })
@@ -19,11 +20,13 @@ export class CreateItemService {
    * @param {UnitOfWork} uow - Unit of Work for tenant database transactions.
    * @param {ItemsValidators} validators - Service for validating item data.
    * @param {typeof Item} itemModel - The Item model class for database operations.
+   * @param {TenancyContext} tenancyContext - Tenancy context for the current user.
    */
   constructor(
     private readonly eventEmitter: EventEmitter2,
     private readonly uow: UnitOfWork,
     private readonly validators: ItemsValidators,
+    private readonly tenancyContext: TenancyContext,
 
     @Inject(Item.name)
     private readonly itemModel: TenantModelProxy<typeof Item>,
@@ -81,9 +84,12 @@ export class CreateItemService {
    * @param {CreateItemDto} itemDTO - Item DTO.
    * @return {IItem}
    */
-  private transformNewItemDTOToModel(itemDTO: CreateItemDto) {
+  private async transformNewItemDTOToModel(itemDTO: CreateItemDto) {
+    const authorizedUser = await this.tenancyContext.getSystemUser();
+
     return {
       ...itemDTO,
+      userId: authorizedUser?.id,
       active: defaultTo(itemDTO.active, 1),
       quantityOnHand: itemDTO.type === 'inventory' ? 0 : null,
     };
@@ -103,7 +109,7 @@ export class CreateItemService {
 
     // Creates a new item with associated transactions under unit-of-work envirement.
     return this.uow.withTransaction<number>(async (trx: Knex.Transaction) => {
-      const itemInsert = this.transformNewItemDTOToModel(itemDTO);
+      const itemInsert = await this.transformNewItemDTOToModel(itemDTO);
 
       // Inserts a new item and fetch the created item.
       const item = await this.itemModel()

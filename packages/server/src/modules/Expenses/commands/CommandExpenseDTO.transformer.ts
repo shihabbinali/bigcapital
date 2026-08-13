@@ -51,6 +51,7 @@ export class ExpenseDTOTransformer {
    */
   private async expenseDTOToModel(
     expenseDTO: CreateExpenseDto | EditExpenseDto,
+    oldExpense?: Expense,
   ): Promise<Expense> {
     const landedCostAmount = this.getExpenseLandedCostAmount(expenseDTO);
     const totalAmount = this.getExpenseCategoriesTotal(expenseDTO.categories);
@@ -66,6 +67,7 @@ export class ExpenseDTOTransformer {
       totalAmount,
       landedCostAmount,
       paymentDate: moment(expenseDTO.paymentDate).toMySqlDateTime(),
+      userId: oldExpense?.userId,
       ...(expenseDTO.publish
         ? {
             publishedAt: moment().toMySqlDateTime(),
@@ -94,11 +96,11 @@ export class ExpenseDTOTransformer {
       ...initialDTO,
       currencyCode: expenseDTO.currencyCode || tenant?.metadata?.baseCurrency,
       exchangeRate: expenseDTO.exchangeRate || 1,
-      // ...(user
-      //   ? {
-      //       userId: user.id,
-      //     }
-      //   : {}),
+      ...(initialDTO.userId
+        ? {}
+        : {
+            userId: (await this.tenancyContext.getSystemUser())?.id,
+          }),
     };
   };
 
@@ -109,7 +111,8 @@ export class ExpenseDTOTransformer {
    */
   public expenseEditDTO = async (
     expenseDTO: EditExpenseDto,
+    oldExpense?: Expense,
   ): Promise<Expense> => {
-    return this.expenseDTOToModel(expenseDTO);
+    return this.expenseDTOToModel(expenseDTO, oldExpense);
   };
 }

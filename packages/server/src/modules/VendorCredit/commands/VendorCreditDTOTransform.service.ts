@@ -13,6 +13,7 @@ import { VendorCreditAutoIncrementService } from './VendorCreditAutoIncrement.se
 import { ServiceError } from '@/modules/Items/ServiceError';
 import { Injectable } from '@nestjs/common';
 import { CreateVendorCreditDto, EditVendorCreditDto, VendorCreditEntryDto } from '../dtos/VendorCredit.dto';
+import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 
 @Injectable()
 export class VendorCreditDTOTransformService {
@@ -21,12 +22,14 @@ export class VendorCreditDTOTransformService {
    * @param {BranchTransactionDTOTransformer} branchDTOTransform - The branch transaction DTO transformer.
    * @param {WarehouseTransactionDTOTransform} warehouseDTOTransform - The warehouse transaction DTO transformer.
    * @param {VendorCreditAutoIncrementService} vendorCreditAutoIncrement - The vendor credit auto increment service.
+   * @param {TenancyContext} tenancyContext - The tenancy context service.
    */
   constructor(
     private itemsEntriesService: ItemsEntriesService,
     private branchDTOTransform: BranchTransactionDTOTransformer,
     private warehouseDTOTransform: WarehouseTransactionDTOTransform,
     private vendorCreditAutoIncrement: VendorCreditAutoIncrementService,
+    private tenancyContext: TenancyContext,
   ) {}
 
   /**
@@ -75,6 +78,9 @@ export class VendorCreditDTOTransformService {
       exchangeRate: vendorCreditDTO.exchangeRate || 1,
       vendorCreditNumber,
       entries,
+      userId:
+        oldVendorCredit?.userId ??
+        (await this.tenancyContext.getSystemUser())?.id,
       ...(vendorCreditDTO.open &&
         !oldVendorCredit?.openedAt && {
           openedAt: moment().toMySqlDateTime(),

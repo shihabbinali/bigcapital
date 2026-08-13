@@ -19,6 +19,7 @@ import type {
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { CreateBankTransactionDto } from '../dtos/CreateBankTransaction.dto';
 import { formatDateFields } from '@/utils/format-date-fields';
+import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 
 @Injectable()
 export class CreateBankTransactionService {
@@ -28,6 +29,7 @@ export class CreateBankTransactionService {
     private eventPublisher: EventEmitter2,
     private autoIncrement: BankTransactionAutoIncrement,
     private branchDTOTransform: BranchTransactionDTOTransformer,
+    private tenancyContext: TenancyContext,
 
     @Inject(BankTransaction.name)
     private bankTransactionModel: TenantModelProxy<typeof BankTransaction>,
@@ -134,11 +136,15 @@ export class CreateBankTransactionService {
     // Authorize before creating cashflow transaction.
     await this.authorize(newTransactionDTO, creditAccount);
 
+    // Resolve the current user id when not explicitly provided.
+    const authorizedUserId =
+      userId ?? (await this.tenancyContext.getSystemUser())?.id;
+
     // Transformes owner contribution DTO to cashflow transaction.
     const cashflowTransactionObj = await this.transformCashflowTransactionDTO(
       newTransactionDTO,
       cashflowAccount,
-      userId,
+      authorizedUserId,
     );
     // Creates a new cashflow transaction under UOW envirement.
     return this.uow.withTransaction(async (trx: Knex.Transaction) => {

@@ -15,6 +15,7 @@ import { SaleEstimate } from '../models/SaleEstimate';
 import { Customer } from '@/modules/Customers/models/Customer';
 import type { ISaleEstimateDTO } from '../types/SaleEstimates.types';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { CommandSaleEstimateDto } from '../dtos/SaleEstimate.dto';
 
 @Injectable()
@@ -28,6 +29,7 @@ export class SaleEstimateDTOTransformer {
     private readonly warehouseDTOTransform: WarehouseTransactionDTOTransform,
     private readonly estimateIncrement: SaleEstimateIncrement,
     private readonly brandingTemplatesTransformer: BrandingTemplateDTOTransformer,
+    private readonly tenancyContext: TenancyContext,
   ) {}
 
   /**
@@ -75,6 +77,9 @@ export class SaleEstimateDTOTransformer {
       exchangeRate: estimateDTO.exchangeRate || 1,
       ...(estimateNumber ? { estimateNumber } : {}),
       entries,
+      userId:
+        oldSaleEstimate?.userId ??
+        (await this.tenancyContext.getSystemUser())?.id,
       // Avoid rewrite the deliver date in edit mode when already published.
       ...(estimateDTO.delivered &&
         !oldSaleEstimate?.deliveredAt && {

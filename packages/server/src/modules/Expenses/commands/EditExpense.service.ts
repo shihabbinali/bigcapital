@@ -113,7 +113,10 @@ export class EditExpense {
     await this.authorize(oldExpense, expenseDTO);
 
     // Update the expense on the storage.
-    const expenseObj = await this.transformDTO.expenseEditDTO(expenseDTO);
+    const expenseObj = await this.transformDTO.expenseEditDTO(
+      expenseDTO,
+      oldExpense,
+    );
 
     // Edits expense transactions and associated transactions under UOW envirement.
     return this.uow.withTransaction(async (trx: Knex.Transaction) => {

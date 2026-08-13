@@ -15,6 +15,7 @@ import { assocItemEntriesDefaultIndex } from '@/utils/associate-item-entries-ind
 import { Customer } from '@/modules/Customers/models/Customer';
 import { formatDateFields } from '@/utils/format-date-fields';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 
 @Injectable()
 export class PaymentReceiveDTOTransformer {
@@ -23,6 +24,7 @@ export class PaymentReceiveDTOTransformer {
     private readonly increments: PaymentReceivedIncrement,
     private readonly branchDTOTransform: BranchTransactionDTOTransformer,
     private readonly brandingTemplatesTransformer: BrandingTemplateDTOTransformer,
+    private readonly tenancyContext: TenancyContext,
 
     @Inject(PaymentReceived.name)
     private readonly paymentReceivedModel: TenantModelProxy<
@@ -70,6 +72,9 @@ export class PaymentReceiveDTOTransformer {
       ...(paymentReceiveNo ? { paymentReceiveNo } : {}),
       exchangeRate: paymentReceiveDTO.exchangeRate || 1,
       entries,
+      userId:
+        oldPaymentReceive?.userId ??
+        (await this.tenancyContext.getSystemUser())?.id,
     };
     const asyncDto = await composeAsync(
       this.branchDTOTransform.transformDTO<PaymentReceived>,

@@ -7,11 +7,13 @@ import { BranchTransactionDTOTransformer } from '@/modules/Branches/integrations
 import { Vendor } from '@/modules/Vendors/models/Vendor';
 import { BillPayment } from '../models/BillPayment';
 import { CreateBillPaymentDto, EditBillPaymentDto } from '../dtos/BillPayment.dto';
+import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 
 @Injectable()
 export class CommandBillPaymentDTOTransformer {
   constructor(
     private readonly branchDTOTransform: BranchTransactionDTOTransformer,
+    private readonly tenancyContext: TenancyContext,
   ) {}
 
   /**
@@ -43,6 +45,9 @@ export class CommandBillPaymentDTOTransformer {
       currencyCode: vendor.currencyCode,
       exchangeRate: billPaymentDTO.exchangeRate || 1,
       entries,
+      userId:
+        oldBillPayment?.userId ??
+        (await this.tenancyContext.getSystemUser())?.id,
     };
     return R.compose(this.branchDTOTransform.transformDTO<BillPayment>)(
       initialDTO,

@@ -30,6 +30,7 @@ import { VendorCreditsExportable } from './commands/VendorCreditsExportable';
 import { VendorCreditsImportable } from './commands/VendorCreditsImportable';
 import { BulkDeleteVendorCreditsService } from './BulkDeleteVendorCredits.service';
 import { ValidateBulkDeleteVendorCreditsService } from './ValidateBulkDeleteVendorCredits.service';
+import { TenancyContext } from '../Tenancy/TenancyContext.service';
 
 @Module({
   imports: [
@@ -65,6 +66,7 @@ import { ValidateBulkDeleteVendorCreditsService } from './ValidateBulkDeleteVend
     VendorCreditsImportable,
     BulkDeleteVendorCreditsService,
     ValidateBulkDeleteVendorCreditsService,
+    TenancyContext,
   ],
   exports: [
     CreateVendorCreditService,

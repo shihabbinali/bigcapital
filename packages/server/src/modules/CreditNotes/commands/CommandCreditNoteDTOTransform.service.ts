@@ -14,6 +14,7 @@ import { formatDateFields } from '@/utils/format-date-fields';
 import { CreditNoteAutoIncrementService } from './CreditNoteAutoIncrement.service';
 import { CreditNote } from '../models/CreditNote';
 import { CreateCreditNoteDto, CreditNoteEntryDto, EditCreditNoteDto } from '../dtos/CreditNote.dto';
+import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 
 @Injectable()
 export class CommandCreditNoteDTOTransform {
@@ -23,6 +24,7 @@ export class CommandCreditNoteDTOTransform {
    * @param {WarehouseTransactionDTOTransform} warehouseDTOTransform - The warehouse transaction DTO transformer.
    * @param {BrandingTemplateDTOTransformer} brandingTemplatesTransformer - The branding template DTO transformer.
    * @param {CreditNoteAutoIncrementService} creditNoteAutoIncrement - The credit note auto increment service.
+   * @param {TenancyContext} tenancyContext - The tenancy context service.
    */
   constructor(
     private readonly itemsEntriesService: ItemsEntriesService,
@@ -30,6 +32,7 @@ export class CommandCreditNoteDTOTransform {
     private readonly warehouseDTOTransform: WarehouseTransactionDTOTransform,
     private readonly brandingTemplatesTransformer: BrandingTemplateDTOTransformer,
     private readonly creditNoteAutoIncrement: CreditNoteAutoIncrementService,
+    private readonly tenancyContext: TenancyContext,
   ) {}
 
   /**
@@ -75,6 +78,9 @@ export class CommandCreditNoteDTOTransform {
       currencyCode: customerCurrencyCode,
       exchangeRate: creditNoteDTO.exchangeRate || 1,
       entries,
+      userId:
+        oldCreditNote?.userId ??
+        (await this.tenancyContext.getSystemUser())?.id,
       ...(creditNoteDTO.open &&
         !oldCreditNote?.openedAt && {
           openedAt: moment().toMySqlDateTime(),

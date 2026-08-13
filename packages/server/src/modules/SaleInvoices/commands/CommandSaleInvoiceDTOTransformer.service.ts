@@ -120,7 +120,7 @@ export class CommandSaleInvoiceDTOTransformer {
       ...(!oldSaleInvoice && { paymentAmount: 0 }),
       ...(invoiceNo ? { invoiceNo } : {}),
       entries,
-      userId: authorizedUser.id,
+      userId: oldSaleInvoice?.userId ?? authorizedUser.id,
     } as SaleInvoice;
 
     const initialAsyncDTO = await composeAsync(

@@ -100,6 +100,9 @@ export class SaleReceiptDTOTransformer {
       currencyCode: currencyCode,
       exchangeRate: saleReceiptDTO.exchangeRate || 1,
       receiptNumber,
+      userId:
+        oldSaleReceipt?.userId ??
+        (await this.tenancyContext.getSystemUser())?.id,
       // Avoid rewrite the deliver date in edit mode when already published.
       ...(saleReceiptDTO.closed &&
         !oldSaleReceipt?.closedAt && {

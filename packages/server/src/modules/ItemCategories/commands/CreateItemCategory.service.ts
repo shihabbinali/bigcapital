@@ -6,6 +6,7 @@ import { events } from '@/common/events/events';
 import { CommandItemCategoryValidatorService } from './CommandItemCategoryValidator.service';
 import { ItemCategory } from '../models/ItemCategory.model';
 import { UnitOfWork } from '@/modules/Tenancy/TenancyDB/UnitOfWork.service';
+import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { CreateItemCategoryDto } from '../dtos/ItemCategory.dto';
 
 @Injectable()
@@ -15,11 +16,13 @@ export class CreateItemCategoryService {
    * @param {CommandItemCategoryValidatorService} validator - Command item category validator service.
    * @param {EventEmitter2} eventEmitter - Event emitter.
    * @param {typeof ItemCategory} itemCategoryModel - Item category model.
+   * @param {TenancyContext} tenancyContext - Tenancy context.
    */
   constructor(
     private readonly uow: UnitOfWork,
     private readonly validator: CommandItemCategoryValidatorService,
     private readonly eventEmitter: EventEmitter2,
+    private readonly tenancyContext: TenancyContext,
 
     @Inject(ItemCategory.name)
     private readonly itemCategoryModel: () => typeof ItemCategory,
@@ -28,14 +31,16 @@ export class CreateItemCategoryService {
   /**
    * Transforms OTD to model object.
    * @param {CreateItemCategoryDto} itemCategoryOTD
-   * @returns {Partial<ItemCategory>}
+   * @returns {Promise<Partial<ItemCategory>>}
    */
-  private transformOTDToObject(
+  private async transformOTDToObject(
     itemCategoryOTD: CreateItemCategoryDto,
-  ): Partial<ItemCategory> {
+  ): Promise<Partial<ItemCategory>> {
+    const authorizedUser = await this.tenancyContext.getSystemUser();
+
     return {
       ...itemCategoryOTD,
-      // userId: authorizedUser.id
+      userId: authorizedUser?.id,
     };
   }
   /**
@@ -62,7 +67,7 @@ export class CreateItemCategoryService {
         itemCategoryOTD.inventoryAccountId,
       );
     }
-    const itemCategoryObj = this.transformOTDToObject(itemCategoryOTD);
+    const itemCategoryObj = await this.transformOTDToObject(itemCategoryOTD);
 
     // Creates item category under unit-of-work evnirement.
     return this.uow.withTransaction(async (trx: Knex.Transaction) => {
