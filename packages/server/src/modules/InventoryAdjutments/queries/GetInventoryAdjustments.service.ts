@@ -48,13 +48,14 @@ export class GetInventoryAdjustmentsService {
       this.inventoryAdjustmentModel(),
       filter,
     );
+    const userScope = await this.userScopedQuery.getUserScope();
     const { results, pagination } = await this.inventoryAdjustmentModel()
       .query()
-      .onBuild(async (query) => {
+      .onBuild((query) => {
         query.withGraphFetched('entries.item');
         query.withGraphFetched('adjustmentAccount');
 
-        await this.userScopedQuery.applyUserScope(query, 'userId');
+        this.userScopedQuery.applyUserScopeSync(query, userScope, 'userId');
 
         dynamicFilter.buildQuery()(query);
       })

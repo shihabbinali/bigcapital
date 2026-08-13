@@ -13,6 +13,7 @@ import { Ledger } from '@/modules/Ledger/Ledger';
 import type { ITransactionsByCustomersFilter } from './TransactionsByCustomer.types';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { TransactionsByContactRepository } from '../TransactionsByContact/TransactionsByContactRepository';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 import type { DateInput } from '@/common/types/Date';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
@@ -34,6 +35,9 @@ export class TransactionsByCustomersRepository extends TransactionsByContactRepo
 
   @Inject(TenancyContext)
   private readonly tenancyContext: TenancyContext;
+
+  @Inject(UserScopedQueryService)
+  private readonly userScopedQuery: UserScopedQueryService;
 
   /**
    * Customers models.
@@ -229,7 +233,7 @@ export class TransactionsByCustomersRepository extends TransactionsByContactRepo
     const receivableAccounts = await this.getReceivableAccounts();
     const receivableAccountsIds = map(receivableAccounts, 'id');
 
-    const openingTransactions = await this.accountTransactionModel()
+    const openingTransactionsQuery = this.accountTransactionModel()
       .query()
       .modify(
         'contactsOpeningBalance',
@@ -237,7 +241,12 @@ export class TransactionsByCustomersRepository extends TransactionsByContactRepo
         receivableAccountsIds,
         customersIds,
       );
-    return openingTransactions;
+    await this.userScopedQuery.applyUserScope(
+      openingTransactionsQuery,
+      'userId',
+    );
+
+    return openingTransactionsQuery;
   }
 
   /**
@@ -253,7 +262,7 @@ export class TransactionsByCustomersRepository extends TransactionsByContactRepo
     const receivableAccounts = await this.getReceivableAccounts();
     const receivableAccountsIds = map(receivableAccounts, 'id');
 
-    const transactions = await this.accountTransactionModel()
+    const transactionsQuery = this.accountTransactionModel()
       .query()
       .onBuild((query) => {
         // Filter by date.
@@ -265,6 +274,8 @@ export class TransactionsByCustomersRepository extends TransactionsByContactRepo
         // Filter by accounts.
         query.whereIn('accountId', receivableAccountsIds);
       });
-    return transactions;
+    await this.userScopedQuery.applyUserScope(transactionsQuery, 'userId');
+
+    return transactionsQuery;
   }
 }

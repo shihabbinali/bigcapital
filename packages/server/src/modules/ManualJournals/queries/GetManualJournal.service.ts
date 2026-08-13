@@ -21,10 +21,11 @@ export class GetManualJournal {
    * @param {number} manualJournalId
    */
   public getManualJournal = async (manualJournalId: number) => {
+    const userScope = await this.userScopedQuery.getUserScope();
     const manualJournal = await this.manualJournalModel()
       .query()
-      .onBuild(async (builder) => {
-        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      .onBuild((builder) => {
+        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
       })
       .findById(manualJournalId)
       .withGraphFetched('entries.account')

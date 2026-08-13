@@ -28,10 +28,11 @@ export class GetVendorCreditService {
    */
   public async getVendorCredit(vendorCreditId: number, trx?: Knex.Transaction) {
     // Retrieve the vendor credit model graph.
+    const userScope = await this.userScopedQuery.getUserScope();
     const vendorCredit = await this.vendorCreditModel()
       .query(trx)
-      .onBuild(async (builder) => {
-        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      .onBuild((builder) => {
+        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
       })
       .findById(vendorCreditId)
       .withGraphFetched('entries.item')

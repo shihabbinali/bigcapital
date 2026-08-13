@@ -52,16 +52,17 @@ export class GetItemCategoriesService {
       filter,
     );
     // Items categories.
+    const userScope = await this.userScopedQuery.getUserScope();
     const data = await this.itemCategoryModel()
       .query()
-      .onBuild(async (query) => {
+      .onBuild((query) => {
         // Subquery to calculate sumation of associated items to the item category.
         query.select(
           '*',
           this.itemCategoryModel().relatedQuery('items').count().as('count'),
         );
 
-        await this.userScopedQuery.applyUserScope(query, 'userId');
+        this.userScopedQuery.applyUserScopeSync(query, userScope, 'userId');
 
         dynamicList.buildQuery()(query);
       });

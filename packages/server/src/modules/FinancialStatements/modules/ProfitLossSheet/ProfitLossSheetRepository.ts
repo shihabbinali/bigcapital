@@ -15,6 +15,7 @@ import { Account } from '@/modules/Accounts/models/Account.model';
 import { FinancialDatePeriods } from '../../common/FinancialDatePeriods';
 import { AccountTransaction } from '@/modules/Accounts/models/AccountTransaction.model';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable({ scope: Scope.TRANSIENT })
@@ -29,6 +30,12 @@ export class ProfitLossSheetRepository extends R.compose(FinancialDatePeriods)(
 
   @Inject(TenancyContext)
   public tenancyContext: TenancyContext;
+
+  /**
+   * User scoped query service.
+   */
+  @Inject(UserScopedQueryService)
+  public userScopedQuery: UserScopedQueryService;
 
   /**
    * Tenancy base currency.
@@ -313,7 +320,7 @@ export class ProfitLossSheetRepository extends R.compose(FinancialDatePeriods)(
     fromDate: moment.MomentInput,
     toDate: moment.MomentInput,
   ) => {
-    return this.accountTransactionModel()
+    const transactionsQuery = this.accountTransactionModel()
       .query()
       .onBuild((query) => {
         query.sum('credit as credit');
@@ -326,6 +333,9 @@ export class ProfitLossSheetRepository extends R.compose(FinancialDatePeriods)(
 
         this.commonFilterBranchesQuery(query);
       });
+    await this.userScopedQuery.applyUserScope(transactionsQuery, 'userId');
+
+    return transactionsQuery;
   };
 
   /**
@@ -339,7 +349,7 @@ export class ProfitLossSheetRepository extends R.compose(FinancialDatePeriods)(
     toDate: moment.MomentInput,
     datePeriodsType,
   ) => {
-    return this.accountTransactionModel()
+    const transactionsQuery = this.accountTransactionModel()
       .query()
       .onBuild((query) => {
         query.sum('credit as credit');
@@ -353,6 +363,9 @@ export class ProfitLossSheetRepository extends R.compose(FinancialDatePeriods)(
 
         this.commonFilterBranchesQuery(query);
       });
+    await this.userScopedQuery.applyUserScope(transactionsQuery, 'userId');
+
+    return transactionsQuery;
   };
 
   /**

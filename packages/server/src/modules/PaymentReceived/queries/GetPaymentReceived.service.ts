@@ -27,10 +27,11 @@ export class GetPaymentReceivedService {
   public async getPaymentReceive(
     paymentReceiveId: number,
   ): Promise<PaymentReceived> {
+    const userScope = await this.userScopedQuery.getUserScope();
     const paymentReceive = await this.paymentReceiveModel()
       .query()
-      .onBuild(async (builder) => {
-        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      .onBuild((builder) => {
+        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
       })
       .withGraphFetched('customer')
       .withGraphFetched('depositAccount')

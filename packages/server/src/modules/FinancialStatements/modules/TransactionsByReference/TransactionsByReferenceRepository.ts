@@ -1,4 +1,5 @@
 import { AccountTransaction } from '@/modules/Accounts/models/AccountTransaction.model';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { Inject, Injectable } from '@nestjs/common';
 import type { ModelObject } from 'objection';
@@ -10,6 +11,9 @@ export class TransactionsByReferenceRepository {
     private readonly accountTransactionModel: TenantModelProxy<
       typeof AccountTransaction
     >,
+
+    @Inject(UserScopedQueryService)
+    private readonly userScopedQuery: UserScopedQueryService,
   ) {}
 
   /**
@@ -22,11 +26,14 @@ export class TransactionsByReferenceRepository {
     referenceId: number,
     referenceType: string,
   ): Promise<Array<ModelObject<AccountTransaction>>> {
-    return this.accountTransactionModel()
+    const transactionsQuery = this.accountTransactionModel()
       .query()
       .skipUndefined()
       .where('reference_id', referenceId)
       .where('reference_type', referenceType)
       .withGraphFetched('account');
+    await this.userScopedQuery.applyUserScope(transactionsQuery, 'userId');
+
+    return transactionsQuery;
   }
 }

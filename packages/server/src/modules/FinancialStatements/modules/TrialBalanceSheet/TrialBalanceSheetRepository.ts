@@ -7,6 +7,7 @@ import { Inject, Injectable, Scope } from '@nestjs/common';
 import type { ITrialBalanceSheetQuery } from './TrialBalanceSheet.types';
 import { Ledger } from '@/modules/Ledger/Ledger';
 import { AccountRepository } from '@/modules/Accounts/repositories/Account.repository';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable({ scope: Scope.TRANSIENT })
@@ -21,6 +22,9 @@ export class TrialBalanceSheetRepository {
 
   @Inject(AccountRepository)
   private accountRepository: AccountRepository;
+
+  @Inject(UserScopedQueryService)
+  private userScopedQuery: UserScopedQueryService;
 
   public accountsDepGraph: any;
   public accounts: Array<ModelObject<Account>>;
@@ -86,7 +90,7 @@ export class TrialBalanceSheetRepository {
    * @param {Date|string} openingDate -
    */
   public closingAccountsTotal = async (openingDate: Date | string) => {
-    return this.accountTransactionModel()
+    const transactionsQuery = this.accountTransactionModel()
       .query()
       .onBuild((query) => {
         query.sum('credit as credit');
@@ -100,6 +104,9 @@ export class TrialBalanceSheetRepository {
         // @ts-ignore
         this.commonFilterBranchesQuery(query);
       });
+    await this.userScopedQuery.applyUserScope(transactionsQuery, 'userId');
+
+    return transactionsQuery;
   };
 
   /**

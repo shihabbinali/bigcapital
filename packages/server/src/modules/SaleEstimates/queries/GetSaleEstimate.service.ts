@@ -26,10 +26,11 @@ export class GetSaleEstimate {
    * @param {Integer} estimateId
    */
   public async getEstimate(estimateId: number) {
+    const userScope = await this.userScopedQuery.getUserScope();
     const estimate = await this.saleEstimateModel()
       .query()
-      .onBuild(async (builder) => {
-        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      .onBuild((builder) => {
+        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
       })
       .findById(estimateId)
       .withGraphFetched('entries.item')

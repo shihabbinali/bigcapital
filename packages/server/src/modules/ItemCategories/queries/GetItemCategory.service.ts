@@ -20,10 +20,11 @@ export class GetItemCategoryService {
    * @returns {Promise<IItemCategory>}
    */
   public async getItemCategory(itemCategoryId: number) {
+    const userScope = await this.userScopedQuery.getUserScope();
     const itemCategory = await this.itemCategoryModel()
       .query()
-      .onBuild(async (builder) => {
-        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      .onBuild((builder) => {
+        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
       })
       .findById(itemCategoryId)
       .throwIfNotFound();

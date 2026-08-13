@@ -7,6 +7,7 @@ import type { ModelObject } from 'objection';
 import type { ICashFlowStatementQuery } from './Cashflow.types';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { AccountTransaction } from '@/modules/Accounts/models/AccountTransaction.model';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
@@ -23,6 +24,9 @@ export class CashFlowRepository {
     private readonly accountTransactionModel: TenantModelProxy<
       typeof AccountTransaction
     >,
+
+    @Inject(UserScopedQueryService)
+    private readonly userScopedQuery: UserScopedQueryService,
   ) {}
 
   /**
@@ -62,7 +66,7 @@ export class CashFlowRepository {
       .subtract(1, 'day')
       .toDate();
 
-    const transactions = await this.accountTransactionModel()
+    const transactionsQuery = this.accountTransactionModel()
       .query()
       .onBuild((query) => {
         query.modify('creditDebitSummation');
@@ -75,7 +79,9 @@ export class CashFlowRepository {
 
         this.commonFilterBranchesQuery(filter, query);
       });
-    return transactions;
+    await this.userScopedQuery.applyUserScope(transactionsQuery, 'userId');
+
+    return transactionsQuery;
   }
 
   /**
@@ -89,7 +95,7 @@ export class CashFlowRepository {
     const groupByDateType = this.getGroupTypeFromPeriodsType(
       filter.displayColumnsBy,
     );
-    return await this.accountTransactionModel()
+    const transactionsQuery = this.accountTransactionModel()
       .query()
       .onBuild((query) => {
         query.modify('creditDebitSummation');
@@ -104,6 +110,9 @@ export class CashFlowRepository {
 
         this.commonFilterBranchesQuery(filter, query);
       });
+    await this.userScopedQuery.applyUserScope(transactionsQuery, 'userId');
+
+    return transactionsQuery;
   }
 
   /**
@@ -118,7 +127,7 @@ export class CashFlowRepository {
     const groupByDateType = this.getGroupTypeFromPeriodsType(
       filter.displayColumnsBy,
     );
-    return await this.accountTransactionModel()
+    const transactionsQuery = this.accountTransactionModel()
       .query()
       .onBuild((query) => {
         query.modify('creditDebitSummation');
@@ -132,6 +141,9 @@ export class CashFlowRepository {
 
         this.commonFilterBranchesQuery(filter, query);
       });
+    await this.userScopedQuery.applyUserScope(transactionsQuery, 'userId');
+
+    return transactionsQuery;
   }
 
   /**
@@ -145,8 +157,7 @@ export class CashFlowRepository {
     const groupByDateType = this.getGroupTypeFromPeriodsType(
       filter.displayColumnsBy,
     );
-
-    return await this.accountTransactionModel()
+    const transactionsQuery = this.accountTransactionModel()
       .query()
       .onBuild((query) => {
         query.modify('creditDebitSummation');
@@ -160,6 +171,9 @@ export class CashFlowRepository {
 
         this.commonFilterBranchesQuery(filter, query);
       });
+    await this.userScopedQuery.applyUserScope(transactionsQuery, 'userId');
+
+    return transactionsQuery;
   }
 
   /**

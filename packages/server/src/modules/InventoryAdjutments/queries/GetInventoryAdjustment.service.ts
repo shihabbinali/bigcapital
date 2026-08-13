@@ -23,10 +23,11 @@ export class GetInventoryAdjustmentService {
    */
   async getInventoryAdjustment(inventoryAdjustmentId: number) {
     // Retrieve inventory adjustment transation with associated models.
+    const userScope = await this.userScopedQuery.getUserScope();
     const inventoryAdjustment = await this.inventoryAdjustmentModel()
       .query()
-      .onBuild(async (builder) => {
-        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      .onBuild((builder) => {
+        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
       })
       .findById(inventoryAdjustmentId)
       .withGraphFetched('entries.item')

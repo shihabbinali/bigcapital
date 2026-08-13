@@ -8,6 +8,7 @@ import { Vendor } from '@/modules/Vendors/models/Vendor';
 import { ACCOUNT_TYPE } from '@/constants/accounts';
 import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import { TransactionsByContactRepository } from '../TransactionsByContact/TransactionsByContactRepository';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { AccountRepository } from '@/modules/Accounts/repositories/Account.repository';
 import { Ledger } from '@/modules/Ledger/Ledger';
@@ -34,6 +35,9 @@ export class TransactionsByVendorRepository extends TransactionsByContactReposit
   public readonly accountTransactionModel: TenantModelProxy<
     typeof AccountTransaction
   >;
+
+  @Inject(UserScopedQueryService)
+  public readonly userScopedQuery: UserScopedQueryService;
 
   /**
    * Ledger.
@@ -235,7 +239,7 @@ export class TransactionsByVendorRepository extends TransactionsByContactReposit
     const payableAccounts = await this.getPayableAccounts();
     const payableAccountsIds = map(payableAccounts, 'id');
 
-    const openingTransactions = await this.accountTransactionModel()
+    const openingTransactionsQuery = this.accountTransactionModel()
       .query()
       .modify(
         'contactsOpeningBalance',
@@ -243,7 +247,12 @@ export class TransactionsByVendorRepository extends TransactionsByContactReposit
         payableAccountsIds,
         customersIds,
       );
-    return openingTransactions;
+    await this.userScopedQuery.applyUserScope(
+      openingTransactionsQuery,
+      'userId',
+    );
+
+    return openingTransactionsQuery;
   }
 
   /**
@@ -259,7 +268,7 @@ export class TransactionsByVendorRepository extends TransactionsByContactReposit
     const receivableAccounts = await this.getPayableAccounts();
     const receivableAccountsIds = map(receivableAccounts, 'id');
 
-    const transactions = await this.accountTransactionModel()
+    const transactionsQuery = this.accountTransactionModel()
       .query()
       .onBuild((query) => {
         // Filter by date.
@@ -271,6 +280,8 @@ export class TransactionsByVendorRepository extends TransactionsByContactReposit
         // Filter by accounts.
         query.whereIn('accountId', receivableAccountsIds);
       });
-    return transactions;
+    await this.userScopedQuery.applyUserScope(transactionsQuery, 'userId');
+
+    return transactionsQuery;
   }
 }

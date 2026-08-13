@@ -21,10 +21,11 @@ export class GetExpenseService {
    * @return {Promise<IExpense>}
    */
   public async getExpense(expenseId: number): Promise<Expense> {
+    const userScope = await this.userScopedQuery.getUserScope();
     const expense = await this.expenseModel()
       .query()
-      .onBuild(async (builder) => {
-        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      .onBuild((builder) => {
+        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
       })
       .findById(expenseId)
       .withGraphFetched('categories.expenseAccount')

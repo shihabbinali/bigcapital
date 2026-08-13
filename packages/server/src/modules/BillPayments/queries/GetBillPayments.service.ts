@@ -40,13 +40,14 @@ export class GetBillPaymentsService {
       BillPayment,
       filter,
     );
+    const userScope = await this.userScopedQuery.getUserScope();
     const { results, pagination } = await this.billPaymentModel()
       .query()
-      .onBuild(async (builder) => {
+      .onBuild((builder) => {
         builder.withGraphFetched('vendor');
         builder.withGraphFetched('paymentAccount');
 
-        await this.userScopedQuery.applyUserScope(builder, 'userId');
+        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
 
         dynamicList.buildQuery()(builder);
         filter?.filterQuery && filter?.filterQuery(builder);

@@ -23,10 +23,11 @@ export class GetCreditNoteService {
    */
   public async getCreditNote(creditNoteId: number) {
     // Retrieve the vendor credit model graph.
+    const userScope = await this.userScopedQuery.getUserScope();
     const creditNote = await this.creditNoteModel()
       .query()
-      .onBuild(async (builder) => {
-        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      .onBuild((builder) => {
+        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
       })
       .findById(creditNoteId)
       .withGraphFetched('entries.item')

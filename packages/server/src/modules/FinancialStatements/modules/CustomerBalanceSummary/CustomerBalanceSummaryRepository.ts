@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { AccountTransaction } from '@/modules/Accounts/models/AccountTransaction.model';
 import { Customer } from '@/modules/Customers/models/Customer';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 import type { ModelObject } from 'objection';
 import { ACCOUNT_TYPE } from '@/constants/accounts';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
@@ -20,6 +21,9 @@ export class CustomerBalanceSummaryRepository {
 
     @Inject(Customer.name)
     private readonly customerModel: TenantModelProxy<typeof Customer>,
+
+    @Inject(UserScopedQueryService)
+    private readonly userScopedQuery: UserScopedQueryService,
   ) {}
 
   /**
@@ -62,7 +66,7 @@ export class CustomerBalanceSummaryRepository {
     const receivableAccountsIds = map(receivableAccounts, 'id');
 
     // Retrieve the customers transactions of A/R accounts.
-    const customersTranasctions = await this.accountTransactionModel()
+    const customersTransactionsQuery = this.accountTransactionModel()
       .query()
       .onBuild((query) => {
         query.whereIn('accountId', receivableAccountsIds);
@@ -72,6 +76,8 @@ export class CustomerBalanceSummaryRepository {
         query.sum('debit as debit');
         query.select('contactId');
       });
-    return customersTranasctions;
+    await this.userScopedQuery.applyUserScope(customersTransactionsQuery, 'userId');
+
+    return customersTransactionsQuery;
   }
 }

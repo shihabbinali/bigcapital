@@ -72,13 +72,14 @@ export class SalesProfitReportService {
     // 3. Query sale invoices filtered by date range.
     const invoiceMap = new Map<string, ISalesProfitParent>();
     if (invoiceIds.length > 0) {
+      const userScope = await this.userScopedQuery.getUserScope();
       const invoices = await this.saleInvoiceModel()
         .query()
-        .onBuild(async (builder: any) => {
+        .onBuild((builder: any) => {
           builder.whereIn('id', invoiceIds);
           builder.modify('filterDateRange', filter.fromDate, filter.toDate);
 
-          await this.userScopedQuery.applyUserScope(builder, 'userId');
+          this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
         })
         .withGraphFetched('customer');
 
@@ -96,14 +97,15 @@ export class SalesProfitReportService {
     // 4. Query sale receipts filtered by date range.
     const receiptMap = new Map<string, ISalesProfitParent>();
     if (receiptIds.length > 0) {
+      const userScope = await this.userScopedQuery.getUserScope();
       const receipts = await this.saleReceiptModel()
         .query()
-        .onBuild(async (builder: any) => {
+        .onBuild((builder: any) => {
           builder.whereIn('id', receiptIds);
           builder.where('receipt_date', '>=', filter.fromDate);
           builder.where('receipt_date', '<=', filter.toDate);
 
-          await this.userScopedQuery.applyUserScope(builder, 'userId');
+          this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
         })
         .withGraphFetched('customer');
 

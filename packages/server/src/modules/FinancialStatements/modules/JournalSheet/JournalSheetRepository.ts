@@ -3,6 +3,7 @@ import { AccountRepository } from '@/modules/Accounts/repositories/Account.repos
 import { Contact } from '@/modules/Contacts/models/Contact';
 import { Ledger } from '@/modules/Ledger/Ledger';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { transformToMap } from '@/utils/transform-to-key';
 import { Inject } from '@nestjs/common';
@@ -23,6 +24,9 @@ export class JournalSheetRepository {
 
   @Inject(AccountTransaction.name)
   private accountTransactions: Array<ModelObject<AccountTransaction>>;
+
+  @Inject(UserScopedQueryService)
+  private userScopedQuery: UserScopedQueryService;
 
   /**
    *
@@ -89,7 +93,7 @@ export class JournalSheetRepository {
    */
   async initAccountTransactions() {
     // Retrieve all journal transactions based on the given query.
-    const transactions = await this.accountTransaction()
+    const transactionsQuery = this.accountTransaction()
       .query()
       .onBuild((query) => {
         if (this.filter.fromRange || this.filter.toRange) {
@@ -114,7 +118,9 @@ export class JournalSheetRepository {
         }
         query.withGraphFetched('account');
       });
-    this.accountTransactions = transactions;
+    await this.userScopedQuery.applyUserScope(transactionsQuery, 'userId');
+
+    this.accountTransactions = await transactionsQuery;
   }
 
   /**

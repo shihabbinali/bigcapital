@@ -48,13 +48,14 @@ export class GetPaymentsReceivedService {
       PaymentReceived,
       filter,
     );
+    const userScope = await this.userScopedQuery.getUserScope();
     const { results, pagination } = await this.paymentReceivedModel()
       .query()
-      .onBuild(async (builder) => {
+      .onBuild((builder) => {
         builder.withGraphFetched('customer');
         builder.withGraphFetched('depositAccount');
 
-        await this.userScopedQuery.applyUserScope(builder, 'userId');
+        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
 
         dynamicList.buildQuery()(builder);
         _filterDto?.filterQuery && _filterDto.filterQuery(builder as any);

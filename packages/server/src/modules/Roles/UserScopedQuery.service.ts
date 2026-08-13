@@ -4,6 +4,11 @@ import { Model, QueryBuilder } from 'objection';
 import { TenantUser } from '../Tenancy/TenancyModels/models/TenantUser.model';
 import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 
+export interface IUserScope {
+  userId?: number;
+  isAdmin: boolean;
+}
+
 @Injectable()
 export class UserScopedQueryService {
   /**
@@ -52,8 +57,43 @@ export class UserScopedQueryService {
   }
 
   /**
+   * Resolves the current user scope (user id + admin flag) once.
+   * Call before building the query, then pass the result to
+   * `applyUserScopeSync` inside a synchronous `onBuild` callback.
+   * @returns {Promise<IUserScope>}
+   */
+  public async getUserScope(): Promise<IUserScope> {
+    const userId = this.clsService.get('userId');
+    const isAdmin = await this.isAdmin();
+
+    return { userId, isAdmin };
+  }
+
+  /**
+   * Synchronously applies per-user row-level scoping to a query builder.
+   * Non-admin users only see records they created; admins see everything.
+   * Safe to call inside an objection `onBuild` callback.
+   * @param {QueryBuilder} builder - Objection query builder.
+   * @param {IUserScope} scope - Pre-resolved user scope.
+   * @param {string} userIdColumn - The user id column name (default 'user_id').
+   * @returns {QueryBuilder}
+   */
+  public applyUserScopeSync<T extends Model>(
+    builder: QueryBuilder<T>,
+    scope: IUserScope,
+    userIdColumn: string = 'user_id',
+  ): QueryBuilder<T> {
+    if (!scope.isAdmin && scope.userId) {
+      builder.where(userIdColumn, scope.userId);
+    }
+    return builder;
+  }
+
+  /**
    * Applies per-user row-level scoping to a query builder.
    * Non-admin users only see records they created; admins see everything.
+   * Must be awaited before the query is executed (e.g. before returning
+   * the builder from an async method).
    * @param {QueryBuilder} builder - Objection query builder.
    * @param {string} userIdColumn - The user id column name (default 'user_id').
    * @returns {Promise<QueryBuilder>}
@@ -62,14 +102,8 @@ export class UserScopedQueryService {
     builder: QueryBuilder<T>,
     userIdColumn: string = 'user_id',
   ): Promise<QueryBuilder<T>> {
-    if (await this.isAdmin()) {
-      return builder;
-    }
-    const userId = this.clsService.get('userId');
+    const scope = await this.getUserScope();
 
-    if (!userId) {
-      return builder;
-    }
-    return builder.where(userIdColumn, userId);
+    return this.applyUserScopeSync(builder, scope, userIdColumn);
   }
 }

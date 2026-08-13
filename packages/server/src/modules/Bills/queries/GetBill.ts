@@ -22,10 +22,11 @@ export class GetBill {
    * @returns {Promise<IBill>}
    */
   public async getBill(billId: number): Promise<Bill> {
+    const userScope = await this.userScopedQuery.getUserScope();
     const bill = await this.billModel()
       .query()
-      .onBuild(async (builder) => {
-        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      .onBuild((builder) => {
+        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
       })
       .findById(billId)
       .withGraphFetched('vendor')

@@ -21,10 +21,11 @@ export class GetBillPayment {
    * @return {Promise<BillPayment>}
    */
   public async getBillPayment(billPyamentId: number): Promise<BillPayment> {
+    const userScope = await this.userScopedQuery.getUserScope();
     const billPayment = await this.billPaymentModel()
       .query()
-      .onBuild(async (builder) => {
-        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      .onBuild((builder) => {
+        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
       })
       .withGraphFetched('entries.bill')
       .withGraphFetched('vendor')

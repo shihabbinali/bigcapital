@@ -46,13 +46,14 @@ export class GetSaleInvoicesService {
       SaleInvoice,
       filter,
     );
+    const userScope = await this.userScopedQuery.getUserScope();
     const { results, pagination } = await this.saleInvoiceModel()
       .query()
-      .onBuild(async (builder) => {
+      .onBuild((builder) => {
         builder.withGraphFetched('entries.item');
         builder.withGraphFetched('customer');
 
-        await this.userScopedQuery.applyUserScope(builder, 'userId');
+        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
 
         dynamicFilter.buildQuery()(builder);
         _filterDto?.filterQuery?.(builder as any);

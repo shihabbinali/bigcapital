@@ -13,6 +13,7 @@ import { Ledger } from '@/modules/Ledger/Ledger';
 import { transformToMapBy } from '@/utils/transform-to-map-by';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import { AccountTransaction } from '@/modules/Accounts/models/AccountTransaction.model';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable({ scope: Scope.TRANSIENT })
@@ -33,6 +34,12 @@ export class BalanceSheetRepository extends R.compose(
   public readonly accountTransactionModel: TenantModelProxy<
     typeof AccountTransaction
   >;
+
+  /**
+   * User scoped query service.
+   */
+  @Inject(UserScopedQueryService)
+  public readonly userScopedQuery: UserScopedQueryService;
 
   /**
    * @description Balance sheet query.
@@ -355,7 +362,7 @@ export class BalanceSheetRepository extends R.compose(
     toDate: Date,
     datePeriodsType: string,
   ) => {
-    return this.accountTransactionModel()
+    const transactionsQuery = this.accountTransactionModel()
       .query()
       .onBuild((query) => {
         query.sum('credit as credit');
@@ -369,6 +376,9 @@ export class BalanceSheetRepository extends R.compose(
 
         this.commonFilterBranchesQuery(query);
       });
+    await this.userScopedQuery.applyUserScope(transactionsQuery, 'userId');
+
+    return transactionsQuery;
   };
 
   /**
@@ -376,7 +386,7 @@ export class BalanceSheetRepository extends R.compose(
    * @param {Date|string} openingDate -
    */
   public closingAccountsTotal = async (openingDate: Date | string) => {
-    return this.accountTransactionModel()
+    const transactionsQuery = this.accountTransactionModel()
       .query()
       .onBuild((query) => {
         query.sum('credit as credit');
@@ -389,6 +399,9 @@ export class BalanceSheetRepository extends R.compose(
 
         this.commonFilterBranchesQuery(query);
       });
+    await this.userScopedQuery.applyUserScope(transactionsQuery, 'userId');
+
+    return transactionsQuery;
   };
 
   /**

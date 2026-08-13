@@ -12,6 +12,7 @@ import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 import { transformToMap } from '@/utils/transform-to-key';
 import { Ledger } from '@/modules/Ledger/Ledger';
 import { TenantModel } from '@/modules/System/models/TenantModel';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable({ scope: Scope.TRANSIENT })
@@ -51,6 +52,9 @@ export class GeneralLedgerRepository {
 
   @Inject(TenancyContext)
   private readonly tenancyContext: TenancyContext;
+
+  @Inject(UserScopedQueryService)
+  private readonly userScopedQuery: UserScopedQueryService;
 
   /**
    * Set the filter.
@@ -108,7 +112,7 @@ export class GeneralLedgerRepository {
    * Initialize the G/L transactions from/to the given date.
    */
   public async initTransactions() {
-    this.transactions = await this.accountTransactionModel()
+    const transactionsQuery = this.accountTransactionModel()
       .query()
       .onBuild((query) => {
         query.modify(
@@ -126,7 +130,10 @@ export class GeneralLedgerRepository {
         }
         query.withGraphFetched('account');
       });
+    await this.userScopedQuery.applyUserScope(transactionsQuery, 'userId');
+
     // Transform array transactions to journal collection.
+    this.transactions = await transactionsQuery;
     this.transactionsLedger = Ledger.fromTransactions(this.transactions);
   }
 
@@ -135,7 +142,7 @@ export class GeneralLedgerRepository {
    */
   public async initAccountsOpeningBalance() {
     // Retrieves opening balance credit/debit sumation.
-    this.openingBalanceTransactions = await this.accountTransactionModel()
+    const openingBalanceQuery = this.accountTransactionModel()
       .query()
       .onBuild((query) => {
         const toDate = moment(this.filter.fromDate).subtract(1, 'day');
@@ -148,7 +155,10 @@ export class GeneralLedgerRepository {
         }
         query.withGraphFetched('account');
       });
+    await this.userScopedQuery.applyUserScope(openingBalanceQuery, 'userId');
+
     // Accounts opening transactions.
+    this.openingBalanceTransactions = await openingBalanceQuery;
     this.openingBalanceTransactionsLedger = Ledger.fromTransactions(
       this.openingBalanceTransactions,
     );

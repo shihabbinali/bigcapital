@@ -47,13 +47,14 @@ export class GetExpensesService {
       filter,
     );
     // Retrieves the paginated results.
+    const userScope = await this.userScopedQuery.getUserScope();
     const { results, pagination } = await this.expense()
       .query()
-      .onBuild(async (builder) => {
+      .onBuild((builder) => {
         builder.withGraphFetched('paymentAccount');
         builder.withGraphFetched('categories.expenseAccount');
 
-        await this.userScopedQuery.applyUserScope(builder, 'userId');
+        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
 
         dynamicList.buildQuery()(builder);
         _filterDto?.filterQuery && _filterDto?.filterQuery(builder);

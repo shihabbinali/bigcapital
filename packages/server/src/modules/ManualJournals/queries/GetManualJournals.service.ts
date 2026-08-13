@@ -54,10 +54,11 @@ export class GetManualJournals {
       this.manualJournalModel(),
       filter,
     );
+    const userScope = await this.userScopedQuery.getUserScope();
     const { results, pagination } = await this.manualJournalModel()
       .query()
-      .onBuild(async (builder) => {
-        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      .onBuild((builder) => {
+        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
 
         dynamicService.buildQuery()(builder);
         builder.withGraphFetched('entries.account');

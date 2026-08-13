@@ -9,6 +9,7 @@ import { Account } from '@/modules/Accounts/models/Account.model';
 import type { ILedgerEntry } from '@/modules/Ledger/types/Ledger.types';
 import type { ModelObject } from 'objection';
 import { ACCOUNT_TYPE } from '@/constants/accounts';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable({ scope: Scope.TRANSIENT })
@@ -23,6 +24,9 @@ export class VendorBalanceSummaryRepository {
 
   @Inject(Account.name)
   private readonly accountModel: TenantModelProxy<typeof Account>;
+
+  @Inject(UserScopedQueryService)
+  private readonly userScopedQuery: UserScopedQueryService;
 
   /**
    * Filter.
@@ -133,7 +137,7 @@ export class VendorBalanceSummaryRepository {
     const payableAccountsIds = map(payableAccounts, 'id');
 
     // Retrieve the customers transactions of A/R accounts.
-    const customersTranasctions = await this.accountTransactionModel()
+    const vendorsTransactionsQuery = this.accountTransactionModel()
       .query()
       .onBuild((query) => {
         query.whereIn('accountId', payableAccountsIds);
@@ -143,7 +147,12 @@ export class VendorBalanceSummaryRepository {
         query.sum('debit as debit');
         query.select('contactId');
       });
-    return customersTranasctions;
+    await this.userScopedQuery.applyUserScope(
+      vendorsTransactionsQuery,
+      'userId',
+    );
+
+    return vendorsTransactionsQuery;
   }
 
   /**

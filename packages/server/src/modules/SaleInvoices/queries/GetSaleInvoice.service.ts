@@ -32,10 +32,11 @@ export class GetSaleInvoice {
     saleInvoiceId: number,
     trx?: Knex.Transaction,
   ): Promise<SaleInvoiceResponseDto> {
+    const userScope = await this.userScopedQuery.getUserScope();
     const saleInvoice = await this.saleInvoiceModel()
       .query(trx)
-      .onBuild(async (builder) => {
-        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      .onBuild((builder) => {
+        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
       })
       .findById(saleInvoiceId)
       .withGraphFetched('entries.item')

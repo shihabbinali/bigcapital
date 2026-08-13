@@ -25,10 +25,11 @@ export class GetItemService {
    * @param {number} itemId - The item id.
    */
   public async getItem(itemId: number): Promise<any> {
+    const userScope = await this.userScopedQuery.getUserScope();
     const item = await this.itemModel()
       .query()
-      .onBuild(async (builder) => {
-        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      .onBuild((builder) => {
+        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
       })
       .findById(itemId)
       .withGraphFetched('sellAccount')

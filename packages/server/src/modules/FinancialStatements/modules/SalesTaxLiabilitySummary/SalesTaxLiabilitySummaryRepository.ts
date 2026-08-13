@@ -9,6 +9,7 @@ import { TaxRateModel } from '@/modules/TaxRates/models/TaxRate.model';
 import { AccountTransaction } from '@/modules/Accounts/models/AccountTransaction.model';
 import { Account } from '@/modules/Accounts/models/Account.model';
 import type { ModelObject } from 'objection';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable({ scope: Scope.TRANSIENT })
@@ -23,6 +24,9 @@ export class SalesTaxLiabilitySummaryRepository {
 
   @Inject(Account.name)
   private readonly accountModel: TenantModelProxy<typeof Account>;
+
+  @Inject(UserScopedQueryService)
+  private readonly userScopedQuery: UserScopedQueryService;
 
   /**
    * @param {SalesTaxLiabilitySummarySalesById}
@@ -95,7 +99,7 @@ export class SalesTaxLiabilitySummaryRepository {
 
     const payableAccountsIds = taxPayableAccounts.map((account) => account.id);
 
-    const groupedTaxesById = await this.accountTransactionModel()
+    const transactionsQuery = this.accountTransactionModel()
       .query()
       .whereIn('account_id', payableAccountsIds)
       .whereNot('tax_rate_id', null)
@@ -103,6 +107,9 @@ export class SalesTaxLiabilitySummaryRepository {
       .select(['tax_rate_id'])
       .sum('credit as credit')
       .sum('debit as debit');
+    await this.userScopedQuery.applyUserScope(transactionsQuery, 'userId');
+
+    const groupedTaxesById = await transactionsQuery;
 
     return keyBy(groupedTaxesById, 'taxRateId');
   }
@@ -121,7 +128,7 @@ export class SalesTaxLiabilitySummaryRepository {
         ]);
       const incomeAccountsIds = incomeAccounts.map((account) => account.id);
 
-      const groupedTaxesById = await this.accountTransactionModel()
+      const transactionsQuery = this.accountTransactionModel()
         .query()
         .whereIn('account_id', incomeAccountsIds)
         .whereNot('tax_rate_id', null)
@@ -129,6 +136,9 @@ export class SalesTaxLiabilitySummaryRepository {
         .select(['tax_rate_id'])
         .sum('credit as credit')
         .sum('debit as debit');
+      await this.userScopedQuery.applyUserScope(transactionsQuery, 'userId');
+
+      const groupedTaxesById = await transactionsQuery;
 
       return keyBy(groupedTaxesById, 'taxRateId');
     };
