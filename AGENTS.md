@@ -33,7 +33,7 @@ Branch `feature/bun-runtime` migrated from pnpm + Lerna to bun. pnpm/lerna files
 
 Dev server needs `packages/server/.env` (loaded from `ConfigModule.forRoot({ envFilePath: '.env' })`).
 
-Server scripts of note (`packages/server/package.json`): `start:prod` = `bun src/main.ts`, all `cli:*` = `bun src/cli.ts <cmd>`. The dev-loop scripts (`start`/`start:dev`/`start:debug`) run the **nest CLI under bun**: `bun --bun nest start [--watch|--debug]`, and `nest-cli.json` sets `"exec": "bun"` so the compiled dist is spawned with `bun` (not `node`).
+Server scripts of note (`packages/server/package.json`): `start:prod` = `bun src/main.ts`, all `cli:*` = `bun src/cli.ts <cmd>`. **`dev` = `bun --watch src/main.ts`** — the fast dev loop: no tsc compile, ~3 s cold start, ~20 s edit→restart (bun re-transpiles the whole ~2.2k-file graph on restart; process itself exits in ~220 ms). Transpile-only, **no typecheck** — use `bun run typecheck` / the editor. `start`/`start:dev`/`start:debug` run the **nest CLI under bun**: `bun --bun nest start [--watch|--debug]` (type-checked, slow initial compile of ~2.2k files, edit→restart ~30–60 s), and `nest-cli.json` sets `"exec": "bun"` so the compiled dist is spawned with `bun` (not `node`).
 
 ## JWT gotcha
 
