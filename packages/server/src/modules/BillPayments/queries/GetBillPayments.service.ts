@@ -6,12 +6,14 @@ import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectab
 import { DynamicListService } from '@/modules/DynamicListing/DynamicList.service';
 import { BillPaymentTransformer } from './BillPaymentTransformer';
 import { GetBillPaymentsFilterDto } from '../dtos/GetBillPaymentsFilter.dto';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetBillPaymentsService {
   constructor(
     private readonly dynamicListService: DynamicListService,
     private readonly transformer: TransformerInjectable,
+    private readonly userScopedQuery: UserScopedQueryService,
 
     @Inject(BillPayment.name)
     private readonly billPaymentModel: TenantModelProxy<typeof BillPayment>,
@@ -40,9 +42,11 @@ export class GetBillPaymentsService {
     );
     const { results, pagination } = await this.billPaymentModel()
       .query()
-      .onBuild((builder) => {
+      .onBuild(async (builder) => {
         builder.withGraphFetched('vendor');
         builder.withGraphFetched('paymentAccount');
+
+        await this.userScopedQuery.applyUserScope(builder, 'userId');
 
         dynamicList.buildQuery()(builder);
         filter?.filterQuery && filter?.filterQuery(builder);

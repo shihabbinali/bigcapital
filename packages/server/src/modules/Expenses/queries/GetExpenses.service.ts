@@ -8,12 +8,14 @@ import { GetExpensesQueryDto } from '../dtos/GetExpensesQuery.dto';
 import { Expense } from '../models/Expense.model';
 import type { IFilterMeta } from '@/interfaces/Model';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetExpensesService {
   constructor(
     private readonly transformer: TransformerInjectable,
     private readonly dynamicListService: DynamicListService,
+    private readonly userScopedQuery: UserScopedQueryService,
 
     @Inject(Expense.name)
     private readonly expense: TenantModelProxy<typeof Expense>,
@@ -47,9 +49,11 @@ export class GetExpensesService {
     // Retrieves the paginated results.
     const { results, pagination } = await this.expense()
       .query()
-      .onBuild((builder) => {
+      .onBuild(async (builder) => {
         builder.withGraphFetched('paymentAccount');
         builder.withGraphFetched('categories.expenseAccount');
+
+        await this.userScopedQuery.applyUserScope(builder, 'userId');
 
         dynamicList.buildQuery()(builder);
         _filterDto?.filterQuery && _filterDto?.filterQuery(builder);

@@ -5,11 +5,13 @@ import { PaymentReceived } from '../models/PaymentReceived';
 import { TransformerInjectable } from '../../Transformer/TransformerInjectable.service';
 import { ServiceError } from '../../Items/ServiceError';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetPaymentReceivedService {
   constructor(
     private readonly transformer: TransformerInjectable,
+    private readonly userScopedQuery: UserScopedQueryService,
 
     @Inject(PaymentReceived.name)
     private readonly paymentReceiveModel: TenantModelProxy<
@@ -27,6 +29,9 @@ export class GetPaymentReceivedService {
   ): Promise<PaymentReceived> {
     const paymentReceive = await this.paymentReceiveModel()
       .query()
+      .onBuild(async (builder) => {
+        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      })
       .withGraphFetched('customer')
       .withGraphFetched('depositAccount')
       .withGraphFetched('entries.invoice')

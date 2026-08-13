@@ -7,12 +7,14 @@ import { ManualJournal } from '../models/ManualJournal';
 import type { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
 import { GetManualJournalsQueryDto } from '../dtos/GetManualJournalsQuery.dto';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetManualJournals {
   constructor(
     private readonly dynamicListService: DynamicListService,
     private readonly transformer: TransformerInjectable,
+    private readonly userScopedQuery: UserScopedQueryService,
 
     @Inject(ManualJournal.name)
     private readonly manualJournalModel: TenantModelProxy<typeof ManualJournal>,
@@ -54,7 +56,9 @@ export class GetManualJournals {
     );
     const { results, pagination } = await this.manualJournalModel()
       .query()
-      .onBuild((builder) => {
+      .onBuild(async (builder) => {
+        await this.userScopedQuery.applyUserScope(builder, 'userId');
+
         dynamicService.buildQuery()(builder);
         builder.withGraphFetched('entries.account');
       })

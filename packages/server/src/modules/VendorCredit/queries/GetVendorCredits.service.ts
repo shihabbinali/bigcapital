@@ -6,12 +6,14 @@ import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectab
 import { VendorCredit } from '../models/VendorCredit';
 import { GetVendorCreditsQueryDto } from '../dtos/GetVendorCreditsQuery.dto';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetVendorCreditsService {
   constructor(
     private readonly dynamicListService: DynamicListService,
     private readonly transformer: TransformerInjectable,
+    private readonly userScopedQuery: UserScopedQueryService,
 
     @Inject(VendorCredit.name)
     private readonly vendorCreditModel: TenantModelProxy<typeof VendorCredit>,
@@ -50,9 +52,12 @@ export class GetVendorCreditsService {
     );
     const { results, pagination } = await this.vendorCreditModel()
       .query()
-      .onBuild((builder) => {
+      .onBuild(async (builder) => {
         builder.withGraphFetched('entries');
         builder.withGraphFetched('vendor');
+
+        await this.userScopedQuery.applyUserScope(builder, 'userId');
+
         dynamicFilter.buildQuery()(builder);
 
         // Gives ability to inject custom query to filter results.

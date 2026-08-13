@@ -8,12 +8,14 @@ import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectab
 import { DynamicListService } from '@/modules/DynamicListing/DynamicList.service';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { ISortOrder } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetInventoryAdjustmentsService {
   constructor(
     private readonly transformer: TransformerInjectable,
     private readonly dynamicListService: DynamicListService,
+    private readonly userScopedQuery: UserScopedQueryService,
 
     @Inject(InventoryAdjustment.name)
     private readonly inventoryAdjustmentModel: TenantModelProxy<
@@ -48,9 +50,11 @@ export class GetInventoryAdjustmentsService {
     );
     const { results, pagination } = await this.inventoryAdjustmentModel()
       .query()
-      .onBuild((query) => {
+      .onBuild(async (query) => {
         query.withGraphFetched('entries.item');
         query.withGraphFetched('adjustmentAccount');
+
+        await this.userScopedQuery.applyUserScope(query, 'userId');
 
         dynamicFilter.buildQuery()(query);
       })

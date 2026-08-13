@@ -6,6 +6,7 @@ import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectab
 import { VendorCredit } from '../models/VendorCredit';
 import { ServiceError } from '@/modules/Items/ServiceError';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetVendorCreditService {
@@ -17,6 +18,7 @@ export class GetVendorCreditService {
     @Inject(VendorCredit.name)
     private readonly vendorCreditModel: TenantModelProxy<typeof VendorCredit>,
     private readonly transformer: TransformerInjectable,
+    private readonly userScopedQuery: UserScopedQueryService,
   ) {}
 
   /**
@@ -28,6 +30,9 @@ export class GetVendorCreditService {
     // Retrieve the vendor credit model graph.
     const vendorCredit = await this.vendorCreditModel()
       .query(trx)
+      .onBuild(async (builder) => {
+        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      })
       .findById(vendorCreditId)
       .withGraphFetched('entries.item')
       .withGraphFetched('vendor')

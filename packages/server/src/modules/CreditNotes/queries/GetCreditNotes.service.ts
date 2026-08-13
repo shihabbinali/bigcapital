@@ -7,12 +7,14 @@ import { GetCreditNotesQueryDto } from '../dtos/GetCreditNotesQuery.dto';
 import { CreditNote } from '../models/CreditNote';
 import { CreditNoteTransformer } from './CreditNoteTransformer';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetCreditNotesService {
   constructor(
     private readonly dynamicListService: DynamicListService,
     private readonly transformer: TransformerInjectable,
+    private readonly userScopedQuery: UserScopedQueryService,
 
     @Inject(CreditNote.name)
     private readonly creditNoteModel: TenantModelProxy<typeof CreditNote>,
@@ -52,9 +54,11 @@ export class GetCreditNotesService {
     );
     const { results, pagination } = await this.creditNoteModel()
       .query()
-      .onBuild((builder) => {
+      .onBuild(async (builder) => {
         builder.withGraphFetched('entries.item');
         builder.withGraphFetched('customer');
+
+        await this.userScopedQuery.applyUserScope(builder, 'userId');
 
         dynamicFilter.buildQuery()(builder);
         _filterDto?.filterQuery?.(builder as any);

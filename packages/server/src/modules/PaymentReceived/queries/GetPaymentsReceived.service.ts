@@ -7,12 +7,14 @@ import { PaymentReceived } from '../models/PaymentReceived';
 import type { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
 import { GetPaymentsReceivedQueryDto } from '../dtos/GetPaymentsReceivedQuery.dto';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetPaymentsReceivedService {
   constructor(
     private readonly dynamicListService: DynamicListService,
     private readonly transformer: TransformerInjectable,
+    private readonly userScopedQuery: UserScopedQueryService,
 
     @Inject(PaymentReceived.name)
     private readonly paymentReceivedModel: TenantModelProxy<
@@ -48,9 +50,11 @@ export class GetPaymentsReceivedService {
     );
     const { results, pagination } = await this.paymentReceivedModel()
       .query()
-      .onBuild((builder) => {
+      .onBuild(async (builder) => {
         builder.withGraphFetched('customer');
         builder.withGraphFetched('depositAccount');
+
+        await this.userScopedQuery.applyUserScope(builder, 'userId');
 
         dynamicList.buildQuery()(builder);
         _filterDto?.filterQuery && _filterDto.filterQuery(builder as any);

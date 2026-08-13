@@ -7,12 +7,14 @@ import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectab
 import type { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
 import type { ISalesEstimatesFilter } from '../types/SaleEstimates.types';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetSaleEstimatesService {
   constructor(
     private readonly dynamicListService: DynamicListService,
     private readonly transformer: TransformerInjectable,
+    private readonly userScopedQuery: UserScopedQueryService,
 
     @Inject(SaleEstimate.name)
     private readonly saleEstimateModel: TenantModelProxy<typeof SaleEstimate>,
@@ -46,10 +48,12 @@ export class GetSaleEstimatesService {
     );
     const { results, pagination } = await this.saleEstimateModel()
       .query()
-      .onBuild((builder) => {
+      .onBuild(async (builder) => {
         builder.withGraphFetched('customer');
         builder.withGraphFetched('entries');
         builder.withGraphFetched('entries.item');
+
+        await this.userScopedQuery.applyUserScope(builder, 'userId');
 
         dynamicFilter.buildQuery()(builder);
         _filterDto?.filterQuery && _filterDto?.filterQuery(builder);

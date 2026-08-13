@@ -4,6 +4,7 @@ import { BillTransformer } from './Bill.transformer';
 import { Bill } from '../models/Bill';
 import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectable.service';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetBill {
@@ -12,6 +13,7 @@ export class GetBill {
 
     private transformer: TransformerInjectable,
     private validators: BillsValidators,
+    private userScopedQuery: UserScopedQueryService,
   ) {}
 
   /**
@@ -22,6 +24,9 @@ export class GetBill {
   public async getBill(billId: number): Promise<Bill> {
     const bill = await this.billModel()
       .query()
+      .onBuild(async (builder) => {
+        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      })
       .findById(billId)
       .withGraphFetched('vendor')
       .withGraphFetched('entries.item')

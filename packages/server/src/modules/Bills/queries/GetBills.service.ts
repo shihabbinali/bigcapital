@@ -7,12 +7,14 @@ import type { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
 import { BillTransformer } from './Bill.transformer';
 import { GetBillsQueryDto } from '../dtos/GetBillsQuery.dto';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetBillsService {
   constructor(
     private transformer: TransformerInjectable,
     private dynamicListService: DynamicListService,
+    private userScopedQuery: UserScopedQueryService,
 
     @Inject(Bill.name) private billModel: TenantModelProxy<typeof Bill>,
   ) {}
@@ -43,9 +45,12 @@ export class GetBillsService {
     );
     const { results, pagination } = await this.billModel()
       .query()
-      .onBuild((builder) => {
+      .onBuild(async (builder) => {
         builder.withGraphFetched('vendor');
         builder.withGraphFetched('entries.item');
+
+        await this.userScopedQuery.applyUserScope(builder, 'userId');
+
         dynamicFilter.buildQuery()(builder);
 
         // Filter query.

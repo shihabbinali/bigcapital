@@ -6,6 +6,7 @@ import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectab
 import { SaleEstimate } from '../models/SaleEstimate';
 import { events } from '@/common/events/events';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetSaleEstimate {
@@ -16,6 +17,7 @@ export class GetSaleEstimate {
     private readonly transformer: TransformerInjectable,
     private readonly validators: SaleEstimateValidators,
     private readonly eventPublisher: EventEmitter2,
+    private readonly userScopedQuery: UserScopedQueryService,
   ) {}
 
   /**
@@ -26,6 +28,9 @@ export class GetSaleEstimate {
   public async getEstimate(estimateId: number) {
     const estimate = await this.saleEstimateModel()
       .query()
+      .onBuild(async (builder) => {
+        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      })
       .findById(estimateId)
       .withGraphFetched('entries.item')
       .withGraphFetched('customer')

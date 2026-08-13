@@ -3,11 +3,13 @@ import { TransformerInjectable } from '../../Transformer/TransformerInjectable.s
 import { BillPayment } from '../models/BillPayment';
 import { BillPaymentTransformer } from './BillPaymentTransformer';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetBillPayment {
   constructor(
     private readonly transformer: TransformerInjectable,
+    private readonly userScopedQuery: UserScopedQueryService,
 
     @Inject(BillPayment.name)
     private readonly billPaymentModel: TenantModelProxy<typeof BillPayment>,
@@ -21,6 +23,9 @@ export class GetBillPayment {
   public async getBillPayment(billPyamentId: number): Promise<BillPayment> {
     const billPayment = await this.billPaymentModel()
       .query()
+      .onBuild(async (builder) => {
+        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      })
       .withGraphFetched('entries.bill')
       .withGraphFetched('vendor')
       .withGraphFetched('paymentAccount')

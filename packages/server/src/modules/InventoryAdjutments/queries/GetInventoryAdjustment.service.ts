@@ -3,11 +3,13 @@ import { TransformerInjectable } from '@/modules/Transformer/TransformerInjectab
 import { InventoryAdjustment } from '../models/InventoryAdjustment';
 import { InventoryAdjustmentTransformer } from '../InventoryAdjustmentTransformer';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetInventoryAdjustmentService {
   constructor(
     private readonly transformer: TransformerInjectable,
+    private readonly userScopedQuery: UserScopedQueryService,
 
     @Inject(InventoryAdjustment.name)
     private readonly inventoryAdjustmentModel: TenantModelProxy<
@@ -23,6 +25,9 @@ export class GetInventoryAdjustmentService {
     // Retrieve inventory adjustment transation with associated models.
     const inventoryAdjustment = await this.inventoryAdjustmentModel()
       .query()
+      .onBuild(async (builder) => {
+        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      })
       .findById(inventoryAdjustmentId)
       .withGraphFetched('entries.item')
       .withGraphFetched('adjustmentAccount')
