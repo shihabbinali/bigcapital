@@ -4,6 +4,7 @@ import { Customer } from '@/modules/Customers/models/Customer';
 import { SaleInvoice } from '@/modules/SaleInvoices/models/SaleInvoice';
 import type { ModelObject } from 'objection';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { ARAgingSummaryQueryDto } from './ARAgingSummaryQuery.dto';
 
@@ -17,6 +18,9 @@ export class ARAgingSummaryRepository {
 
   @Inject(SaleInvoice.name)
   private saleInvoiceModel: TenantModelProxy<typeof SaleInvoice>;
+
+  @Inject(UserScopedQueryService)
+  private userScopedQuery: UserScopedQueryService;
 
   /**
    * Filter.
@@ -111,11 +115,15 @@ export class ARAgingSummaryRepository {
         query.modify('filterByBranches', this.filter.branchesIds);
       }
     };
+    const userScope = await this.userScopedQuery.getUserScope();
     // Retrieve all overdue sale invoices.
     const overdueSaleInvoices = await this.saleInvoiceModel()
       .query()
       .modify('overdueInvoicesFromDate', this.filter.asDate)
-      .onBuild(commonQuery);
+      .onBuild((query) => {
+        this.userScopedQuery.applyUserScopeSync(query, userScope, 'userId');
+        commonQuery(query);
+      });
 
     this.overdueSaleInvoices = overdueSaleInvoices;
     this.overdueInvoicesByContactId = groupBy(
@@ -133,11 +141,15 @@ export class ARAgingSummaryRepository {
         query.modify('filterByBranches', this.filter.branchesIds);
       }
     };
+    const userScope = await this.userScopedQuery.getUserScope();
     // Retrieve all due sale invoices.
     const currentInvoices = await this.saleInvoiceModel()
       .query()
       .modify('dueInvoicesFromDate', this.filter.asDate)
-      .onBuild(commonQuery);
+      .onBuild((query) => {
+        this.userScopedQuery.applyUserScopeSync(query, userScope, 'userId');
+        commonQuery(query);
+      });
 
     this.currentInvoices = currentInvoices;
     this.currentInvoicesByContactId = groupBy(currentInvoices, 'customerId');

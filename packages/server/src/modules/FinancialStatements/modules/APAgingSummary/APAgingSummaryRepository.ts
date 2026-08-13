@@ -4,6 +4,7 @@ import type { ModelObject } from 'objection';
 import { Bill } from '@/modules/Bills/models/Bill';
 import { Vendor } from '@/modules/Vendors/models/Vendor';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { APAgingSummaryQueryDto } from './APAgingSummaryQuery.dto';
 
@@ -17,6 +18,9 @@ export class APAgingSummaryRepository {
 
   @Inject(TenancyContext)
   private readonly tenancyContext: TenancyContext;
+
+  @Inject(UserScopedQueryService)
+  private readonly userScopedQuery: UserScopedQueryService;
 
   /**
    * A/P aging filter.
@@ -110,10 +114,14 @@ export class APAgingSummaryRepository {
         query.modify('filterByBranches', this.filter.branchesIds);
       }
     };
+    const userScope = await this.userScopedQuery.getUserScope();
     const overdueBills = await this.billModel()
       .query()
       .modify('overdueBillsFromDate', this.filter.asDate)
-      .onBuild(commonQuery);
+      .onBuild((query) => {
+        this.userScopedQuery.applyUserScopeSync(query, userScope, 'userId');
+        commonQuery(query);
+      });
 
     this.overdueBills = overdueBills;
     this.overdueBillsByVendorId = groupBy(overdueBills, 'vendorId');
@@ -128,11 +136,15 @@ export class APAgingSummaryRepository {
         query.modify('filterByBranches', this.filter.branchesIds);
       }
     };
+    const userScope = await this.userScopedQuery.getUserScope();
     // Retrieve all due vendors bills.
     const dueBills = await this.billModel()
       .query()
       .modify('dueBillsFromDate', this.filter.asDate)
-      .onBuild(commonQuery);
+      .onBuild((query) => {
+        this.userScopedQuery.applyUserScopeSync(query, userScope, 'userId');
+        commonQuery(query);
+      });
 
     this.dueBills = dueBills;
     this.dueBillsByVendorId = groupBy(dueBills, 'vendorId');
