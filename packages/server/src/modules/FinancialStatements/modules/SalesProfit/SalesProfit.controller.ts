@@ -1,4 +1,4 @@
-import { Controller, Get, Headers, Query, Res } from '@nestjs/common';
+import { Controller, Get, Headers, Query, Res, UseGuards } from '@nestjs/common';
 import { AcceptType } from '@/constants/accept-type';
 import { SalesProfitApplication } from './SalesProfitApplication';
 import type { Response } from 'express';
@@ -15,15 +15,22 @@ import {
   SalesProfitTableResponseDto,
 } from './SalesProfitResponse.dto';
 import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
+import { RequirePermission } from '@/modules/Roles/RequirePermission.decorator';
+import { PermissionGuard } from '@/modules/Roles/Permission.guard';
+import { AuthorizationGuard } from '@/modules/Roles/Authorization.guard';
+import { AbilitySubject } from '@/modules/Roles/Roles.types';
+import { ReportsAction } from '../../types/Report.types';
 
 @Controller('/reports/sales-profit')
 @ApiTags('Reports')
 @ApiCommonHeaders()
+@UseGuards(AuthorizationGuard, PermissionGuard)
 @ApiExtraModels(SalesProfitResponseDto, SalesProfitTableResponseDto)
 export class SalesProfitController {
   constructor(private readonly salesProfitApp: SalesProfitApplication) {}
 
   @Get()
+  @RequirePermission(ReportsAction.READ_SALES_PROFIT, AbilitySubject.Report)
   @ApiResponse({
     status: 200,
     description: 'Sales profit report',

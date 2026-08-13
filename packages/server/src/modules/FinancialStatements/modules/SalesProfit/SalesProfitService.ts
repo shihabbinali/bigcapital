@@ -16,6 +16,7 @@ import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import type { ModelObject } from 'objection';
 import { get } from 'lodash';
 import { events } from '@/common/events/events';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class SalesProfitReportService {
@@ -23,6 +24,7 @@ export class SalesProfitReportService {
     private readonly salesProfitMeta: SalesProfitMeta,
     private readonly eventPublisher: EventEmitter2,
     private readonly tenancyContext: TenancyContext,
+    private readonly userScopedQuery: UserScopedQueryService,
 
     @Inject(ItemEntry.name)
     private readonly itemEntryModel: TenantModelProxy<typeof ItemEntry>,
@@ -72,9 +74,11 @@ export class SalesProfitReportService {
     if (invoiceIds.length > 0) {
       const invoices = await this.saleInvoiceModel()
         .query()
-        .onBuild((builder: any) => {
+        .onBuild(async (builder: any) => {
           builder.whereIn('id', invoiceIds);
           builder.modify('filterDateRange', filter.fromDate, filter.toDate);
+
+          await this.userScopedQuery.applyUserScope(builder, 'userId');
         })
         .withGraphFetched('customer');
 
@@ -94,10 +98,12 @@ export class SalesProfitReportService {
     if (receiptIds.length > 0) {
       const receipts = await this.saleReceiptModel()
         .query()
-        .onBuild((builder: any) => {
+        .onBuild(async (builder: any) => {
           builder.whereIn('id', receiptIds);
           builder.where('receipt_date', '>=', filter.fromDate);
           builder.where('receipt_date', '<=', filter.toDate);
+
+          await this.userScopedQuery.applyUserScope(builder, 'userId');
         })
         .withGraphFetched('customer');
 

@@ -226,6 +226,10 @@ export class AccountTransaction extends BaseModel {
         query.whereIn('projectId', formattedProjectsIds);
       },
 
+      filterByUserId(query, userId) {
+        query.where('userId', userId);
+      },
+
       filterByReference(query, referenceId: number, referenceType: string) {
         query.where('reference_id', referenceId);
         query.where('reference_type', referenceType);
