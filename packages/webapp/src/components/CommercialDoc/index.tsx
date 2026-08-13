@@ -3,11 +3,14 @@ import { Card } from '../Card';
 import { DataTable } from '../Datatable';
 
 export const CommercialDocBox = styled(Card)`
-  --x-background-color: var(--x-white);
-  --x-background-color: var(--color-dark-gray2);
-  
+  --x-background-color: var(--color-card-background);
+
   background-color: var(--x-background-color);
   padding: 22px 20px;
+
+  .bp4-dark & {
+    --x-background-color: var(--color-dark-gray2);
+  }
 `;
 
 export const CommercialDocHeader = styled.div`

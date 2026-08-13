@@ -67,8 +67,10 @@ export const TotalLinePrimitive = styled.div`
   --x-color-divider: #d2dde2;
   --x-color-divider-dark: #000;
 
-  --x-color-divider: rgba(255, 255, 255, 0.1);
-  --x-color-divider-dark: rgba(255, 255, 255, 0.2);
+  .bp4-dark & {
+    --x-color-divider: rgba(255, 255, 255, 0.1);
+    --x-color-divider-dark: rgba(255, 255, 255, 0.2);
+  }
 
   display: table-row;
 
