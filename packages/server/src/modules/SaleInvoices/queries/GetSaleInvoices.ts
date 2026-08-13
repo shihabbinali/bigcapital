@@ -8,12 +8,14 @@ import type { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
 import { SaleInvoice } from '../models/SaleInvoice';
 import { GetSaleInvoicesQueryDto } from '../dtos/GetSaleInvoicesQuery.dto';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetSaleInvoicesService {
   constructor(
     private readonly dynamicListService: DynamicListService,
     private readonly transformer: TransformerInjectable,
+    private readonly userScopedQuery: UserScopedQueryService,
 
     @Inject(SaleInvoice.name)
     private readonly saleInvoiceModel: TenantModelProxy<typeof SaleInvoice>,
@@ -46,9 +48,11 @@ export class GetSaleInvoicesService {
     );
     const { results, pagination } = await this.saleInvoiceModel()
       .query()
-      .onBuild((builder) => {
+      .onBuild(async (builder) => {
         builder.withGraphFetched('entries.item');
         builder.withGraphFetched('customer');
+
+        await this.userScopedQuery.applyUserScope(builder, 'userId');
 
         dynamicFilter.buildQuery()(builder);
         _filterDto?.filterQuery?.(builder as any);

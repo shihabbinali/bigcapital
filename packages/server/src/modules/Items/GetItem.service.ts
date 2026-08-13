@@ -6,6 +6,7 @@ import { TransformerInjectable } from '../Transformer/TransformerInjectable.serv
 import { ItemTransformer } from './Item.transformer';
 import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { ClsService } from 'nestjs-cls';
+import { UserScopedQueryService } from '../Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetItemService {
@@ -15,6 +16,7 @@ export class GetItemService {
     private readonly eventEmitter2: EventEmitter2,
     private readonly transformerInjectable: TransformerInjectable,
     private readonly clsService: ClsService,
+    private readonly userScopedQuery: UserScopedQueryService,
   ) {}
 
   /**
@@ -25,6 +27,9 @@ export class GetItemService {
   public async getItem(itemId: number): Promise<any> {
     const item = await this.itemModel()
       .query()
+      .onBuild(async (builder) => {
+        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      })
       .findById(itemId)
       .withGraphFetched('sellAccount')
       .withGraphFetched('inventoryAccount')

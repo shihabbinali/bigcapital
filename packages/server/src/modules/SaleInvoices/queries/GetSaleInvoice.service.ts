@@ -8,6 +8,7 @@ import { CommandSaleInvoiceValidators } from '../commands/CommandSaleInvoiceVali
 import { events } from '@/common/events/events';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { SaleInvoiceResponseDto } from '../dtos/SaleInvoiceResponse.dto';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetSaleInvoice {
@@ -15,6 +16,7 @@ export class GetSaleInvoice {
     private transformer: TransformerInjectable,
     private validators: CommandSaleInvoiceValidators,
     private eventPublisher: EventEmitter2,
+    private userScopedQuery: UserScopedQueryService,
 
     @Inject(SaleInvoice.name)
     private saleInvoiceModel: TenantModelProxy<typeof SaleInvoice>,
@@ -32,6 +34,9 @@ export class GetSaleInvoice {
   ): Promise<SaleInvoiceResponseDto> {
     const saleInvoice = await this.saleInvoiceModel()
       .query(trx)
+      .onBuild(async (builder) => {
+        await this.userScopedQuery.applyUserScope(builder, 'userId');
+      })
       .findById(saleInvoiceId)
       .withGraphFetched('entries.item')
       .withGraphFetched('entries.tax')

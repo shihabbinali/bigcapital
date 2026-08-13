@@ -7,6 +7,7 @@ import type { IFilterMeta, IPaginationMeta } from '@/interfaces/Model';
 import { GetSaleReceiptsQueryDto } from '../dtos/GetSaleReceiptsQuery.dto';
 import { SaleReceipt } from '../models/SaleReceipt';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
+import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 interface GetSaleReceiptsSettings {
   fetchEntriesGraph?: boolean;
@@ -16,6 +17,7 @@ export class GetSaleReceiptsService {
   constructor(
     private readonly transformer: TransformerInjectable,
     private readonly dynamicListService: DynamicListService,
+    private readonly userScopedQuery: UserScopedQueryService,
 
     @Inject(SaleReceipt.name)
     private readonly saleReceiptModel: TenantModelProxy<typeof SaleReceipt>,
@@ -47,10 +49,12 @@ export class GetSaleReceiptsService {
     );
     const { results, pagination } = await this.saleReceiptModel()
       .query()
-      .onBuild((builder) => {
+      .onBuild(async (builder) => {
         builder.withGraphFetched('depositAccount');
         builder.withGraphFetched('customer');
         builder.withGraphFetched('entries.item');
+
+        await this.userScopedQuery.applyUserScope(builder, 'userId');
 
         dynamicFilter.buildQuery()(builder);
         _filterDto?.filterQuery && _filterDto?.filterQuery(builder);

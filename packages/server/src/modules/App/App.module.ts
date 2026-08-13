@@ -81,6 +81,7 @@ import { WarehousesTransfersModule } from '../WarehousesTransfers/WarehouseTrans
 import { DashboardModule } from '../Dashboard/Dashboard.module';
 import { PaymentLinksModule } from '../PaymentLinks/PaymentLinks.module';
 import { RolesModule } from '../Roles/Roles.module';
+import { UserScopedModule } from '../Roles/UserScoped.module';
 import { SubscriptionModule } from '../Subscription/Subscription.module';
 import { OrganizationModule } from '../Organization/Organization.module';
 import { TenantDBManagerModule } from '../TenantDBManager/TenantDBManager.module';
@@ -243,6 +244,7 @@ import { AppThrottleModule } from './AppThrottle.module';
     DashboardModule,
     PaymentLinksModule,
     RolesModule,
+    UserScopedModule,
     SubscriptionModule,
     OrganizationModule,
     TenantDBManagerModule,
