@@ -3,7 +3,7 @@ import { omit, sumBy } from 'lodash';
 import * as R from 'ramda';
 import moment from 'moment';
 import '../../../utils/moment-mysql';
-import * as composeAsync from 'async/compose';
+import composeAsync from 'async/compose';
 import { Customer } from '@/modules/Customers/models/Customer';
 import { BranchTransactionDTOTransformer } from '@/modules/Branches/integrations/BranchTransactionDTOTransform';
 import { WarehouseTransactionDTOTransform } from '@/modules/Warehouses/Integrations/WarehouseTransactionDTOTransform';

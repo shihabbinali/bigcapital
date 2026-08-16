@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { omit, sumBy } from 'lodash';
 import moment from 'moment';
 import * as R from 'ramda';
-import * as composeAsync from 'async/compose';
+import composeAsync from 'async/compose';
 import { formatDateFields } from '@/utils/format-date-fields';
 import { BranchTransactionDTOTransformer } from '@/modules/Branches/integrations/BranchTransactionDTOTransform';
 import { WarehouseTransactionDTOTransform } from '@/modules/Warehouses/Integrations/WarehouseTransactionDTOTransform';

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { omit, sumBy } from 'lodash';
 import moment from 'moment';
 import * as R from 'ramda';
-import * as composeAsync from 'async/compose';
+import composeAsync from 'async/compose';
 import { BranchTransactionDTOTransformer } from '@/modules/Branches/integrations/BranchTransactionDTOTransform';
 import { Expense } from '../models/Expense.model';
 import { assocItemEntriesDefaultIndex } from '@/utils/associate-item-entries-index';
