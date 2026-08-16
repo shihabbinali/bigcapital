@@ -24,6 +24,19 @@ services:
       retries: 10
       start_period: 20s
 
+  phpmyadmin:
+    image: phpmyadmin:latest
+    environment:
+      - PMA_HOST=mariadb
+      - PMA_PORT=3306
+      - UPLOAD_LIMIT=100M
+    ports:
+      - '7081:80'
+    restart: unless-stopped
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
   redis:
     build:
       context: ./docker/redis
