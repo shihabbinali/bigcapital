@@ -3,7 +3,6 @@ import { FinancialSheet } from '../../common/FinancialSheet';
 import type { ModelObject } from 'objection';
 import { AccountTransaction } from '@/modules/Accounts/models/AccountTransaction.model';
 import type {
-  INumberFormatQuery,
   IFinancialReportMeta,
 } from '../../types/Report.types';
 import { DEFAULT_REPORT_META } from '../../types/Report.types';
@@ -13,7 +12,6 @@ export class TransactionsByReference extends FinancialSheet {
   readonly transactions: ModelObject<AccountTransaction>[];
   readonly query: TransactionsByReferenceQueryDto;
   readonly baseCurrency: string;
-  readonly numberFormat: INumberFormatQuery;
 
   /**
    * Constructor method.
@@ -32,7 +30,6 @@ export class TransactionsByReference extends FinancialSheet {
     this.query = query;
     this.baseCurrency = meta.baseCurrency;
     this.dateFormat = meta.dateFormat || DEFAULT_REPORT_META.dateFormat;
-    // this.numberFormat = this.query.numberFormat;
   }
 
   /**
