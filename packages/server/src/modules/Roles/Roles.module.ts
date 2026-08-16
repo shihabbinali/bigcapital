@@ -13,6 +13,7 @@ import { RolePermissionsSchema } from './queries/RolePermissionsSchema';
 import { AuthorizationGuard } from './Authorization.guard';
 import { PermissionGuard } from './Permission.guard';
 import { UserScopedQueryService } from './UserScopedQuery.service';
+import { PurgeRoleAbilityCacheSubscriber } from './subscribers/PurgeRoleAbilityCache.subscriber';
 
 const models = [
   RegisterTenancyModel(Role),
@@ -32,6 +33,7 @@ const models = [
     AuthorizationGuard,
     PermissionGuard,
     UserScopedQueryService,
+    PurgeRoleAbilityCacheSubscriber,
   ],
   controllers: [RolesController],
   exports: [

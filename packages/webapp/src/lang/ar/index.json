@@ -1753,6 +1753,7 @@
   "permissions.payment_made": "سندات الموردين",
   "permissions.financial_accounting": "الأمور المالية",
   "permissions.manual_journals": "القيود اليدوية",
+  "permissions.tax_rates": "معدلات الضرائب",
   "permissions.chart_of_accounts": "شجرة الحسابات",
   "permissions.expenses": "المصاريف",
   "permissions.reports": "التقارير",

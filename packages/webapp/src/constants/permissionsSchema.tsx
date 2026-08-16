@@ -16,6 +16,7 @@ import {
   SaleEstimateAction,
   SaleInvoiceAction,
   SaleReceiptAction,
+  TaxRateAction,
   VendorAction,
   VendorCreditAction,
 } from './abilityOption';
@@ -489,6 +490,35 @@ export const getPermissionsSchema = () => [
             key: ManualJournalAction.Delete,
             relatedColumn: PermissionColumn.Delete,
             depend: [{ key: ManualJournalAction.Edit }],
+          },
+        ],
+      },
+      {
+        label: intl.get('permissions.tax_rates'),
+        subject: AbilitySubject.TaxRate,
+        permissions: [
+          {
+            label: intl.get('permissions.column.view'),
+            key: TaxRateAction.View,
+            relatedColumn: PermissionColumn.View,
+          },
+          {
+            label: intl.get('permissions.column.create'),
+            key: TaxRateAction.Create,
+            relatedColumn: PermissionColumn.Create,
+            depend: [{ key: TaxRateAction.View }],
+          },
+          {
+            label: intl.get('permissions.column.edit'),
+            key: TaxRateAction.Edit,
+            relatedColumn: PermissionColumn.Edit,
+            depend: [{ key: TaxRateAction.Create }],
+          },
+          {
+            label: intl.get('permissions.column.delete'),
+            key: TaxRateAction.Delete,
+            relatedColumn: PermissionColumn.Delete,
+            depend: [{ key: TaxRateAction.Edit }],
           },
         ],
       },

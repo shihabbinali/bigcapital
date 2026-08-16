@@ -1732,6 +1732,7 @@
   "permissions.payment_made": "Betalning gjord",
   "permissions.financial_accounting": "Finansiell redovisning",
   "permissions.manual_journals": "Manuella tidskrifter",
+  "permissions.tax_rates": "Skattesatser",
   "permissions.chart_of_accounts": "Kontoplan",
   "permissions.expenses": "Kostnader",
   "permissions.reports": "Finansiella rapporter",

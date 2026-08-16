@@ -1754,6 +1754,7 @@
   "permissions.payment_made": "Pago realizado",
   "permissions.financial_accounting": "Contabilidad Financiera",
   "permissions.manual_journals": "Diarios Manuales",
+  "permissions.tax_rates": "Tipos de impuestos",
   "permissions.chart_of_accounts": "Plan de Cuentas",
   "permissions.expenses": "Gastos",
   "permissions.reports": "Informes Financieros",

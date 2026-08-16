@@ -1741,6 +1741,7 @@
   "permissions.payment_made": "Payment Made",
   "permissions.financial_accounting": "Financial Accounting",
   "permissions.manual_journals": "Manual Journals",
+  "permissions.tax_rates": "Tax Rates",
   "permissions.chart_of_accounts": "Chart of Accounts",
   "permissions.expenses": "Expenses",
   "permissions.reports": "Financial Reports",
