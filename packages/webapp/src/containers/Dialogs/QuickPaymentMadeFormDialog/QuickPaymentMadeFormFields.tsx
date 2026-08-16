@@ -42,7 +42,8 @@ function QuickPaymentMadeFormFields({
   // #withCurrentOrganization
   organization: { base_currency },
 }) {
-  const { accounts, branches, baseCurrency } = useQuickPaymentMadeContext();
+  const { accounts, branches, baseCurrency, bill } =
+    useQuickPaymentMadeContext();
 
   // Intl context.
   const { values } = useFormikContext();
@@ -73,7 +74,12 @@ function QuickPaymentMadeFormFields({
         {/* ------------- Vendor name ------------- */}
         <Col xs={5}>
           <FFormGroup name={'vendor_id'} label={<T id={'vendor_name'} />}>
-            <FInputGroup name={'vendor_id'} minimal={true} disabled={true} />
+            <FInputGroup
+              name={'vendor_id'}
+              minimal={true}
+              disabled={true}
+              value={bill?.vendor?.display_name}
+            />
           </FFormGroup>
         </Col>
 

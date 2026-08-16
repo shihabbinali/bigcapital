@@ -48,7 +48,14 @@ function QuickPaymentReceiveFormProvider({
   } = useBranches(query, { enabled: isBranchFeatureCan });
 
   const invoicePayment = useMemo(
-    () => pick(invoice, ['id', 'due_amount', 'customer_id', 'currency_code']),
+    () =>
+      pick(invoice, [
+        'id',
+        'due_amount',
+        'customer_id',
+        'currency_code',
+        'customer',
+      ]),
     [invoice],
   );
 

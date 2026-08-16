@@ -40,7 +40,8 @@ function QuickPaymentMadeFormProvider({ query, billId, dialogName, ...props }) {
   } = useBranches(query, { enabled: isBranchFeatureCan });
 
   const paymentBill = useMemo(
-    () => pick(bill, ['id', 'due_amount', 'vendor_id', 'currency_code']),
+    () =>
+      pick(bill, ['id', 'due_amount', 'vendor_id', 'currency_code', 'vendor']),
     [bill],
   );
 

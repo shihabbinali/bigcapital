@@ -42,7 +42,8 @@ function QuickPaymentReceiveFormFields({
   // #withCurrentOrganization
   organization: { base_currency },
 }) {
-  const { accounts, branches, baseCurrency } = useQuickPaymentReceiveContext();
+  const { accounts, branches, baseCurrency, invoice } =
+    useQuickPaymentReceiveContext();
 
   // Intl context.
   const { values } = useFormikContext();
@@ -77,7 +78,12 @@ function QuickPaymentReceiveFormFields({
             label={<T id={'customer_name'} />}
             labelInfo={<FieldRequiredHint />}
           >
-            <FInputGroup name={'customer_id'} minimal={true} disabled={true} />
+            <FInputGroup
+              name={'customer_id'}
+              minimal={true}
+              disabled={true}
+              value={invoice?.customer?.display_name}
+            />
           </FFormGroup>
         </Col>
 
