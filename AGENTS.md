@@ -46,6 +46,13 @@ Server reads `APP_JWT_SECRET` (not `JWT_SECRET`). Falls back to hardcoded `"1231
 - `shared/sdk-ts/src/middleware/` has `camel-case-request-middleware.ts`, `snake-case-request-middleware.ts`, `error-reporter-middleware.ts` (Middleware type = `(url, init, next) => Promise<ApiResponse>`, `init.headers` is a `Headers`).
 - Webapp builds the fetcher via `createApiFetcher({ baseUrl: '/api', init: { headers: { Authorization, organization-id } } })`.
 
+## Webapp theming
+
+- Centralized theme system: `AppThemeProvider` (`packages/webapp/src/context/theme/ThemeProvider.tsx`). `applyTheme` sets `data-theme` on `<html>` and toggles the `bp4-dark` class on **both** `<html>` and `<body>` so portal content (drawers/dialogs/toasts) inherits the theme.
+- Themes: `appThemes` = `light` (`bpDark: false`), `dark` (`bpDark: true`). Resolution order: localStorage `theme` key → OS `prefers-color-scheme` → light. Pre-paint script `packages/webapp/public/preload-theme.js` applies the theme before React mounts (avoids flash). `/payment/*` routes force light.
+- Hooks: `useTheme()` → `{ theme, isDark, setTheme, toggleTheme }`; `useDarkMode` wraps it. Toggle lives in the topbar user dropdown + Shift+H hotkey (`GlobalHotkeys`).
+- **Styling convention**: light-mode values are the default; dark-mode overrides go under `.bp4-dark &` (styled-components/SCSS) or inside `:root[data-theme='dark']` (CSS variables in `style/_variables.scss`, lines 321+). Do NOT hardcode dark values as the base declaration — it breaks light mode (recently fixed in `CommercialDocBox`/`DrawerMainTabs`/`TotalLinePrimitive`, which had dark-only overrides).
+
 ## Testing
 
 - Jest runs under bun: **`bunx --bun jest`**. Requires node_modules patches (below) — auto-applied by `postinstall` via `scripts/patch-node-modules.js`.
