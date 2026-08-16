@@ -8,14 +8,12 @@ import { ItemTransformer } from './Item.transformer';
 import type { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { ISortOrder } from '../DynamicListing/DynamicFilter/DynamicFilter.types';
 import { GetItemsQueryDto } from './dtos/GetItemsQuery.dto';
-import { UserScopedQueryService } from '../Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetItemsService {
   constructor(
     private readonly dynamicListService: DynamicListService,
     private readonly transformer: TransformerInjectable,
-    private readonly userScopedQuery: UserScopedQueryService,
 
     @Inject(Item.name)
     private readonly itemModel: TenantModelProxy<typeof Item>,
@@ -52,13 +50,10 @@ export class GetItemsService {
       Item,
       filter,
     );
-    const userScope = await this.userScopedQuery.getUserScope();
     const { results: items, pagination } = await this.itemModel()
       .query()
       .onBuild((builder) => {
         builder.modify('inactiveMode', filter.inactiveMode);
-
-        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
 
         builder.withGraphFetched('inventoryAccount');
         builder.withGraphFetched('sellAccount');

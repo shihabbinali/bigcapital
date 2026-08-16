@@ -6,13 +6,11 @@ import type { GetItemCategoriesResponse } from '../ItemCategory.interfaces';
 import { GetItemCategoriesQueryDto } from '../dtos/GetItemCategoriesQuery.dto';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { ISortOrder } from '@/modules/DynamicListing/DynamicFilter/DynamicFilter.types';
-import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetItemCategoriesService {
   constructor(
     private readonly dynamicListService: DynamicListService,
-    private readonly userScopedQuery: UserScopedQueryService,
 
     @Inject(ItemCategory.name)
     private readonly itemCategoryModel: TenantModelProxy<typeof ItemCategory>,
@@ -52,7 +50,6 @@ export class GetItemCategoriesService {
       filter,
     );
     // Items categories.
-    const userScope = await this.userScopedQuery.getUserScope();
     const data = await this.itemCategoryModel()
       .query()
       .onBuild((query) => {
@@ -61,8 +58,6 @@ export class GetItemCategoriesService {
           '*',
           this.itemCategoryModel().relatedQuery('items').count().as('count'),
         );
-
-        this.userScopedQuery.applyUserScopeSync(query, userScope, 'userId');
 
         dynamicList.buildQuery()(query);
       });

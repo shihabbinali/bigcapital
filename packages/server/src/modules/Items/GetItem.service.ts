@@ -5,8 +5,6 @@ import { events } from '@/common/events/events';
 import { TransformerInjectable } from '../Transformer/TransformerInjectable.service';
 import { ItemTransformer } from './Item.transformer';
 import type { TenantModelProxy } from '../System/models/TenantBaseModel';
-import { ClsService } from 'nestjs-cls';
-import { UserScopedQueryService } from '../Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetItemService {
@@ -15,8 +13,6 @@ export class GetItemService {
     private readonly itemModel: TenantModelProxy<typeof Item>,
     private readonly eventEmitter2: EventEmitter2,
     private readonly transformerInjectable: TransformerInjectable,
-    private readonly clsService: ClsService,
-    private readonly userScopedQuery: UserScopedQueryService,
   ) {}
 
   /**
@@ -25,12 +21,8 @@ export class GetItemService {
    * @param {number} itemId - The item id.
    */
   public async getItem(itemId: number): Promise<any> {
-    const userScope = await this.userScopedQuery.getUserScope();
     const item = await this.itemModel()
       .query()
-      .onBuild((builder) => {
-        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
-      })
       .findById(itemId)
       .withGraphFetched('sellAccount')
       .withGraphFetched('inventoryAccount')

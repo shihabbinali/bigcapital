@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ItemCategory } from '../models/ItemCategory.model';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
-import { UserScopedQueryService } from '@/modules/Roles/UserScopedQuery.service';
 
 @Injectable()
 export class GetItemCategoryService {
@@ -11,7 +10,6 @@ export class GetItemCategoryService {
   constructor(
     @Inject(ItemCategory.name)
     private readonly itemCategoryModel: TenantModelProxy<typeof ItemCategory>,
-    private readonly userScopedQuery: UserScopedQueryService,
   ) {}
 
   /**
@@ -20,12 +18,8 @@ export class GetItemCategoryService {
    * @returns {Promise<IItemCategory>}
    */
   public async getItemCategory(itemCategoryId: number) {
-    const userScope = await this.userScopedQuery.getUserScope();
     const itemCategory = await this.itemCategoryModel()
       .query()
-      .onBuild((builder) => {
-        this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
-      })
       .findById(itemCategoryId)
       .throwIfNotFound();
 
