@@ -36,6 +36,7 @@ import { CreditNoteRefundsModule } from '../CreditNoteRefunds/CreditNoteRefunds.
 import { CreditNotesApplyInvoiceModule } from '../CreditNotesApplyInvoice/CreditNotesApplyInvoice.module';
 import { BulkDeleteCreditNotesService } from './BulkDeleteCreditNotes.service';
 import { ValidateBulkDeleteCreditNotesService } from './ValidateBulkDeleteCreditNotes.service';
+import { TenancyContext } from '../Tenancy/TenancyContext.service';
 
 @Module({
   imports: [
@@ -77,6 +78,7 @@ import { ValidateBulkDeleteCreditNotesService } from './ValidateBulkDeleteCredit
     CreditNoteAutoSerialSubscriber,
     BulkDeleteCreditNotesService,
     ValidateBulkDeleteCreditNotesService,
+    TenancyContext,
   ],
   exports: [
     CreateCreditNoteService,
