@@ -13,7 +13,7 @@ name: Build & Deploy Alwathba (Dokploy)
 
 on:
   push:
-    branches: [alwathba-merged]
+    branches: [alwathba-merged, feature/bun-runtime]
   workflow_dispatch:
 
 env:
