@@ -1,10 +1,13 @@
 # Stage 1: Build
-FROM oven/bun:1.3.14-alpine AS builder
+# Debian base (glibc + modern bun build) to match local dev and the server image.
+FROM oven/bun:1.3.14 AS builder
 
 WORKDIR /app
 
 # Install build dependencies
-RUN apk add --no-cache python3 build-base
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends python3 build-essential && \
+    rm -rf /var/lib/apt/lists/*
 
 ENV PYTHON=/usr/bin/python3
 
