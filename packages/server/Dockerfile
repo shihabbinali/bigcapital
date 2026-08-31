@@ -1,6 +1,6 @@
 # Stage 1: Builder — full install + build shared workspace packages.
 # The server itself runs natively via `bun src/main.ts` (no tsc/nest compile).
-FROM oven/bun:1.3.9-alpine AS builder
+FROM oven/bun:1.3.14-alpine AS builder
 
 WORKDIR /app
 
@@ -28,7 +28,7 @@ RUN bun run --filter '@bigcapital/utils' --filter '@bigcapital/sdk-ts' --filter 
 
 # Stage 2: Production dependencies (installed on bun/alpine so native modules
 # like bcrypt compile against the musl toolchain, matching the runtime)
-FROM oven/bun:1.3.9-alpine AS deps
+FROM oven/bun:1.3.14-alpine AS deps
 
 WORKDIR /app
 
@@ -59,7 +59,7 @@ RUN bun install --production --filter '@bigcapital/server' \
 RUN apk del python3 build-base
 
 # Stage 3: Runtime (bun, runs server natively from src/)
-FROM oven/bun:1.3.9-alpine AS runtime
+FROM oven/bun:1.3.14-alpine AS runtime
 
 WORKDIR /app
 
