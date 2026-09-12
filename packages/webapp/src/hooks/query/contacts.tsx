@@ -33,14 +33,15 @@ export function useContact(id, props) {
  */
 export function useAutoCompleteContacts(props) {
   const apiRequest = useApiRequest();
+  const { params, ...restProps } = props || {};
 
   return useQueryTenant(
-    ['CONTACTS', 'AUTO-COMPLETE'],
-    () => apiRequest.get('contacts/auto-complete'),
+    ['CONTACTS', 'AUTO-COMPLETE', params],
+    () => apiRequest.get('contacts/auto-complete', { params }),
     {
       select: (res) => res.data,
       defaultData: [],
-      ...props,
+      ...restProps,
     },
   );
 }

@@ -188,6 +188,7 @@ function FilterValueField() {
   const fieldType = get(fieldMeta, 'fieldType');
   const fieldName = get(fieldMeta, 'name');
   const options = get(fieldMeta, 'options');
+  const relationKey = get(fieldMeta, 'relationKey');
 
   const valueFieldPath = getConditionFieldPath('value');
 
@@ -206,6 +207,7 @@ function FilterValueField() {
             label={fieldName}
             fieldType={fieldType}
             options={options}
+            relationKey={relationKey}
             onChange={(value) => {
               setFieldValue(valueFieldPath, value);
             }}

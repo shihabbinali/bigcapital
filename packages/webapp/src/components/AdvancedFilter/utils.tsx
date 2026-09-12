@@ -45,6 +45,11 @@ export const getOptionsCompatators = () => [
   { value: 'is_not', label: intl.get('is_not') },
 ];
 
+export const getRelationCompatators = () => [
+  { value: 'is', label: intl.get('is') },
+  { value: 'is_not', label: intl.get('is_not') },
+];
+
 export const getNumberCampatators = () => [
   { value: 'equal', label: intl.get('equals') },
   { value: 'not_equal', label: intl.get('not_equal') },
@@ -66,6 +71,8 @@ export const getConditionTypeCompatators = (
       ? [...getBooleanCompatators()]
       : dataType === 'number'
       ? [...getNumberCampatators()]
+      : dataType === 'relation'
+      ? [...getRelationCompatators()]
       : [...getTextCompatators()]),
   ];
 };
