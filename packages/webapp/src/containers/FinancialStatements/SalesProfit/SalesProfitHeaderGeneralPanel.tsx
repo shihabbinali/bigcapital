@@ -1,9 +1,9 @@
 // @ts-nocheck
 import React from 'react';
-import { FormGroup, Row, Col } from '@blueprintjs/core';
+import { FormGroup } from '@blueprintjs/core';
 
 import FinancialStatementDateRange from '../FinancialStatementDateRange';
-import { UserSelect } from '@/components';
+import { Row, Col, UserSelect } from '@/components';
 import { useUsers, useAuthenticatedAccount } from '@/hooks/query/users';
 
 /**
