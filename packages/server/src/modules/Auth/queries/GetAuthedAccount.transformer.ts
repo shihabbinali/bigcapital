@@ -14,6 +14,7 @@ export class GetAuthedAccountTransformer extends Transformer {
       'language',
       'tenantId',
       'verified',
+      'isAdmin',
     ];
   };
 }

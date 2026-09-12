@@ -1,6 +1,7 @@
 import {
   IsBoolean,
   IsDateString,
+  IsInt,
   IsNotEmpty,
   IsOptional,
   ValidateNested,
@@ -60,4 +61,19 @@ export class SalesProfitQueryDto {
   @Transform(({ value }) => parseBoolean(value, false))
   @IsOptional()
   onlyActive: boolean;
+
+  @ApiPropertyOptional({
+    description:
+      'Filter transactions created by the given user id (admins only; ignored for non-admin users)',
+    example: 1,
+    type: Number,
+  })
+  @Transform(({ value }) =>
+    value === '' || value === null || value === undefined
+      ? undefined
+      : Number(value),
+  )
+  @IsInt()
+  @IsOptional()
+  userId: number;
 }

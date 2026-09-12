@@ -10,6 +10,7 @@ export interface ISalesProfitQuery {
   numberFormat: INumberFormatQuery;
   noneTransactions: boolean;
   onlyActive: boolean;
+  userId?: number;
 }
 
 export interface ISalesProfitSheetMeta extends IFinancialSheetCommonMeta {

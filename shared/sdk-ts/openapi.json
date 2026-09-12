@@ -17143,6 +17143,16 @@
             }
           },
           {
+            "name": "userId",
+            "required": false,
+            "in": "query",
+            "description": "Filter transactions created by the given user id (admins only; ignored for non-admin users)",
+            "schema": {
+              "example": 1,
+              "type": "number"
+            }
+          },
+          {
             "name": "accept",
             "required": true,
             "in": "header",

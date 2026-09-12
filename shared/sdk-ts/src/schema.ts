@@ -24351,6 +24351,8 @@ export interface operations {
                 noneTransactions?: boolean;
                 /** @description Whether to include only active rows */
                 onlyActive?: boolean;
+                /** @description Filter transactions created by the given user id (admins only; ignored for non-admin users) */
+                userId?: number;
             };
             header: {
                 /** @description Value must be 'Bearer <token>' where <token> is an API key prefixed with 'bc_' or a JWT token. */

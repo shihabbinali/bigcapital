@@ -17,6 +17,7 @@ export const getSalesProfitQueryShema = () => {
       .min(Yup.ref('fromDate'))
       .required()
       .label(intl.get('to_date')),
+    userId: Yup.number().nullable(),
   });
 };
 
@@ -27,6 +28,7 @@ export const getDefaultSalesProfitQuery = () => ({
   fromDate: moment().startOf('month').format('YYYY-MM-DD'),
   toDate: moment().format('YYYY-MM-DD'),
   filterByOption: 'with-transactions',
+  userId: '',
 });
 
 /**
@@ -38,6 +40,8 @@ const parseSalesProfitQuery = (locationQuery) => {
   const transformed = {
     ...defaultQuery,
     ...transformToForm(locationQuery, defaultQuery),
+    // Coerce the URL string to a number so the user select matches by id.
+    userId: locationQuery.userId ? Number(locationQuery.userId) : '',
   };
   return transformed;
 };

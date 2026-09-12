@@ -40,6 +40,7 @@ export * from './FeatureGuard';
 export * from './ExchangeRate';
 export * from './PaymentReceive';
 export * from './Branches';
+export * from './Users';
 export * from './Warehouses';
 export * from './Currencies';
 export * from './Paper';

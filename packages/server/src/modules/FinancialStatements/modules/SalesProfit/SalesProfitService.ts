@@ -50,6 +50,13 @@ export class SalesProfitReportService {
     };
     const tenantMetadata = await this.tenancyContext.getTenantMetadata();
 
+    // Resolve the user scope once: admins may narrow the report to a specific
+    // user via the explicit `userId` filter; non-admins are always implicitly
+    // scoped to their own transactions and the filter is ignored.
+    const userScope = await this.userScopedQuery.getUserScope();
+    const filterByUserId =
+      userScope.isAdmin && filter.userId ? Number(filter.userId) : null;
+
     // 1. Retrieve all item entries that reference sales documents.
     const entries = await this.itemEntryModel()
       .query()
@@ -72,13 +79,15 @@ export class SalesProfitReportService {
     // 3. Query sale invoices filtered by date range.
     const invoiceMap = new Map<string, ISalesProfitParent>();
     if (invoiceIds.length > 0) {
-      const userScope = await this.userScopedQuery.getUserScope();
       const invoices = await this.saleInvoiceModel()
         .query()
         .onBuild((builder: any) => {
           builder.whereIn('id', invoiceIds);
           builder.modify('filterDateRange', filter.fromDate, filter.toDate);
 
+          if (filterByUserId) {
+            builder.where('user_id', filterByUserId);
+          }
           this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
         })
         .withGraphFetched('customer');
@@ -97,7 +106,6 @@ export class SalesProfitReportService {
     // 4. Query sale receipts filtered by date range.
     const receiptMap = new Map<string, ISalesProfitParent>();
     if (receiptIds.length > 0) {
-      const userScope = await this.userScopedQuery.getUserScope();
       const receipts = await this.saleReceiptModel()
         .query()
         .onBuild((builder: any) => {
@@ -105,6 +113,9 @@ export class SalesProfitReportService {
           builder.where('receipt_date', '>=', filter.fromDate);
           builder.where('receipt_date', '<=', filter.toDate);
 
+          if (filterByUserId) {
+            builder.where('user_id', filterByUserId);
+          }
           this.userScopedQuery.applyUserScopeSync(builder, userScope, 'userId');
         })
         .withGraphFetched('customer');
