@@ -192,6 +192,10 @@ export const defaultInvoicePdfTemplateAttributes = {
   companyAddress: '',
   billedToLabel: 'Billed To',
 
+  // # Billed by (agent)
+  agentName: '',
+  billedByLabel: 'Billed By',
+
   // Entries
   lineItemLabel: 'Item',
   lineQuantityLabel: 'Qty',

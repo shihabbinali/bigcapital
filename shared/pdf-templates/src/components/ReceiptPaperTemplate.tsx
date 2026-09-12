@@ -35,6 +35,10 @@ export interface ReceiptPaperTemplateProps extends PaperTemplateProps {
 
   billedToLabel?: string;
 
+  // Billed by (agent)
+  agentName?: string;
+  billedByLabel?: string;
+
   // # Subtotal
   subtotal?: string;
   showSubtotal?: boolean;
@@ -126,6 +130,10 @@ export function ReceiptPaperTemplate({
 
   billedToLabel = 'Billed To',
 
+  // Billed by (agent)
+  agentName = '',
+  billedByLabel = 'Billed By',
+
   // # Total
   total = '$1000.00',
   totalLabel = 'Total',
@@ -209,6 +217,11 @@ export function ReceiptPaperTemplate({
               {showReceiptDate && (
                 <PaperTemplate.TermsItem label={receiptDateLabel}>
                   {receiptDate}
+                </PaperTemplate.TermsItem>
+              )}
+              {agentName && (
+                <PaperTemplate.TermsItem label={billedByLabel}>
+                  {agentName}
                 </PaperTemplate.TermsItem>
               )}
             </PaperTemplate.TermsList>

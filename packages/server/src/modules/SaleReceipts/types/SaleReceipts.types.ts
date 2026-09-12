@@ -104,6 +104,10 @@ export interface ISaleReceiptBrandingTemplateAttributes {
   companyAddress: string;
   billedToLabel: string;
 
+  // Billed by (agent)
+  agentName?: string;
+  billedByLabel?: string;
+
   // Total
   total: string;
   totalLabel: string;

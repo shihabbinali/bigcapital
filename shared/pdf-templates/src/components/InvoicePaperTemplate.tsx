@@ -66,6 +66,10 @@ export interface InvoicePaperTemplateProps extends PaperTemplateProps {
 
   billedToLabel?: string;
 
+  // Billed by (agent)
+  agentName?: string;
+  billedByLabel?: string;
+
   // Entries
   lineItemLabel?: string;
   lineQuantityLabel?: string;
@@ -166,6 +170,10 @@ export function InvoicePaperTemplate({
 
   billedToLabel = 'Billed To',
 
+  // Billed by (agent)
+  agentName = '',
+  billedByLabel = 'Billed By',
+
   // Entries
   lineItemLabel = 'Item',
   lineQuantityLabel = 'Qty',
@@ -259,6 +267,11 @@ export function InvoicePaperTemplate({
               {showDueDate && (
                 <PaperTemplate.TermsItem label={dueDateLabel}>
                   {dueDate}
+                </PaperTemplate.TermsItem>
+              )}
+              {agentName && (
+                <PaperTemplate.TermsItem label={billedByLabel}>
+                  {agentName}
                 </PaperTemplate.TermsItem>
               )}
             </PaperTemplate.TermsList>

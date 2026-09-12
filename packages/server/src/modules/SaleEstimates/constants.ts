@@ -190,6 +190,10 @@ export const defaultEstimatePdfBrandingAttributes = {
   showCompanyAddress: true,
   billedToLabel: 'Billed To',
 
+  // # Billed by (agent)
+  agentName: '',
+  billedByLabel: 'Billed By',
+
   total: '$1000.00',
   totalLabel: 'Total',
   showTotal: true,
@@ -253,6 +257,10 @@ export interface EstimatePdfBrandingAttributes {
   showCompanyAddress: boolean;
   companyAddress: string;
   billedToLabel: string;
+
+  // Billed by (agent)
+  agentName?: string;
+  billedByLabel?: string;
 
   total: string;
   totalLabel: string;

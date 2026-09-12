@@ -29,6 +29,10 @@ export interface PaymentReceivedPaperTemplateProps extends PaperTemplateProps {
 
   billedToLabel?: string;
 
+  // Billed by (agent)
+  agentName?: string;
+  billedByLabel?: string;
+
   // Total.
   total?: string;
   showTotal?: boolean;
@@ -78,6 +82,10 @@ export function PaymentReceivedPaperTemplate({
 
   billedToLabel = 'Billed To',
 
+  // Billed by (agent)
+  agentName = '',
+  billedByLabel = 'Billed By',
+
   total = '$1000.00',
   totalLabel = 'Total',
   showTotal = true,
@@ -118,6 +126,11 @@ export function PaymentReceivedPaperTemplate({
               {showPaymentReceivedDate && (
                 <PaperTemplate.TermsItem label={paymentReceivedDateLabel}>
                   {paymentReceivedDate}
+                </PaperTemplate.TermsItem>
+              )}
+              {agentName && (
+                <PaperTemplate.TermsItem label={billedByLabel}>
+                  {agentName}
                 </PaperTemplate.TermsItem>
               )}
             </PaperTemplate.TermsList>

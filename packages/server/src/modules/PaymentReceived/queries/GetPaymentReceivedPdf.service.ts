@@ -8,6 +8,7 @@ import { PaymentReceived } from '../models/PaymentReceived';
 import { PdfTemplateModel } from '@/modules/PdfTemplate/models/PdfTemplate';
 import { ChromiumlyTenancy } from '@/modules/ChromiumlyTenancy/ChromiumlyTenancy.service';
 import type { PaymentReceivedPdfTemplateAttributes } from '../types/PaymentReceived.types';
+import { TenantUser } from '@/modules/Tenancy/TenancyModels/models/TenantUser.model';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { events } from '@/common/events/events';
 
@@ -24,7 +25,25 @@ export class GetPaymentReceivedPdfService {
 
     @Inject(PdfTemplateModel.name)
     private pdfTemplateModel: TenantModelProxy<typeof PdfTemplateModel>,
+
+    @Inject(TenantUser.name)
+    private readonly tenantUserModel: TenantModelProxy<typeof TenantUser>,
   ) {}
+
+  /**
+   * Resolves the agent (creating user) full name for the given system user
+   * id. Returns an empty string when the user id is missing or unknown so
+   * the template hides the "Billed by" line.
+   */
+  private async getAgentName(userId?: number): Promise<string> {
+    if (!userId) {
+      return '';
+    }
+    const user = await this.tenantUserModel().query().findOne({
+      systemUserId: userId,
+    });
+    return user ? user.fullName : '';
+  }
 
   /**
    * Retrieves payment received html content.
@@ -104,9 +123,12 @@ export class GetPaymentReceivedPdfService {
       await this.paymentBrandingTemplateService.getPaymentReceivedPdfTemplate(
         templateId,
       );
+    const { userId } = await this.paymentReceiveModel().query().findById(paymentReceivedId).select('userId');
+    const agentName = await this.getAgentName(userId);
     return {
       ...brandingTemplate.attributes,
       ...transformPaymentReceivedToPdfTemplate(paymentReceived),
+      agentName,
     };
   }
 }

@@ -8,6 +8,7 @@ import { ChromiumlyTenancy } from '@/modules/ChromiumlyTenancy/ChromiumlyTenancy
 import { PdfTemplateModel } from '@/modules/PdfTemplate/models/PdfTemplate';
 import { events } from '@/common/events/events';
 import { SaleEstimate } from '../models/SaleEstimate';
+import { TenantUser } from '@/modules/Tenancy/TenancyModels/models/TenantUser.model';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { renderEstimatePaperTemplateHtml } from '@bigcapital/pdf-templates';
 
@@ -26,7 +27,25 @@ export class GetSaleEstimatePdf {
 
     @Inject(SaleEstimate.name)
     private readonly saleEstimateModel: TenantModelProxy<typeof SaleEstimate>,
+
+    @Inject(TenantUser.name)
+    private readonly tenantUserModel: TenantModelProxy<typeof TenantUser>,
   ) {}
+
+  /**
+   * Resolves the agent (creating user) full name for the given system user
+   * id. Returns an empty string when the user id is missing or unknown so
+   * the template hides the "Billed by" line.
+   */
+  private async getAgentName(userId?: number): Promise<string> {
+    if (!userId) {
+      return '';
+    }
+    const user = await this.tenantUserModel().query().findOne({
+      systemUserId: userId,
+    });
+    return user ? user.fullName : '';
+  }
 
   /**
    * Retrieve sale estimate html content.
@@ -95,9 +114,12 @@ export class GetSaleEstimatePdf {
       )?.id;
     const brandingTemplate =
       await this.estimatePdfTemplate.getEstimatePdfTemplate(templateId);
+    const { userId } = await this.saleEstimateModel().query().findById(estimateId).select('userId');
+    const agentName = await this.getAgentName(userId);
     return {
       ...brandingTemplate.attributes,
       ...transformEstimateToPdfTemplate(saleEstimate),
+      agentName,
     };
   }
 }

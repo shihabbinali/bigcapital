@@ -266,6 +266,10 @@ export interface InvoicePdfTemplateAttributes {
   companyAddress: string;
   billedToLabel: string;
 
+  // Billed by (agent)
+  agentName?: string;
+  billedByLabel?: string;
+
   lineItemLabel: string;
   lineDescriptionLabel: string;
   lineRateLabel: string;

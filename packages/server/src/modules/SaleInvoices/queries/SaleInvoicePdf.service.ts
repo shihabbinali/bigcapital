@@ -8,6 +8,7 @@ import { SaleInvoicePdfTemplate } from './SaleInvoicePdfTemplate.service';
 import { ChromiumlyTenancy } from '@/modules/ChromiumlyTenancy/ChromiumlyTenancy.service';
 import { SaleInvoice } from '../models/SaleInvoice';
 import { PdfTemplateModel } from '@/modules/PdfTemplate/models/PdfTemplate';
+import { TenantUser } from '@/modules/Tenancy/TenancyModels/models/TenantUser.model';
 import { events } from '@/common/events/events';
 import type { InvoicePdfTemplateAttributes } from '../SaleInvoice.types';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
@@ -25,7 +26,25 @@ export class SaleInvoicePdf {
 
     @Inject(PdfTemplateModel.name)
     private pdfTemplateModel: TenantModelProxy<typeof PdfTemplateModel>,
+
+    @Inject(TenantUser.name)
+    private tenantUserModel: TenantModelProxy<typeof TenantUser>,
   ) {}
+
+  /**
+   * Resolves the agent (creating user) full name for the given system user
+   * id. Returns an empty string when the user id is missing or unknown so
+   * the template hides the "Billed by" line.
+   */
+  private async getAgentName(userId?: number): Promise<string> {
+    if (!userId) {
+      return '';
+    }
+    const user = await this.tenantUserModel().query().findOne({
+      systemUserId: userId,
+    });
+    return user ? user.fullName : '';
+  }
 
   /**
    * Retrieve sale invoice html content.
@@ -99,9 +118,12 @@ export class SaleInvoicePdf {
       );
 
     // Merge the branding template attributes with the invoice.
+    const { userId } = await this.saleInvoiceModel().query().findById(invoiceId).select('userId');
+    const agentName = await this.getAgentName(userId);
     const attributes = {
       ...brandingTemplate.attributes,
       ...transformInvoiceToPdfTemplate(invoice),
+      agentName,
     } as InvoicePdfTemplateAttributes;
 
     // Fetch the company logo and embed it as a data URI so that Gotenberg's

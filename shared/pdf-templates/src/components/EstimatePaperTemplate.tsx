@@ -49,6 +49,10 @@ export interface EstimatePaperTemplateProps extends PaperTemplateProps {
   companyAddress?: string;
   billedToLabel?: string;
 
+  // Billed by (agent)
+  agentName?: string;
+  billedByLabel?: string;
+
   // Total
   total?: string;
   showTotal?: boolean;
@@ -116,6 +120,10 @@ export function EstimatePaperTemplate({
   customerAddress = DefaultPdfTemplateAddressBilledTo,
   showCustomerAddress = true,
   billedToLabel = 'Billed To',
+
+  // Billed by (agent)
+  agentName = '',
+  billedByLabel = 'Billed By',
 
   // # Total
   total = '$1000.00',
@@ -203,6 +211,11 @@ export function EstimatePaperTemplate({
               {showExpirationDate && (
                 <PaperTemplate.TermsItem label={expirationDateLabel}>
                   {expirationDate}
+                </PaperTemplate.TermsItem>
+              )}
+              {agentName && (
+                <PaperTemplate.TermsItem label={billedByLabel}>
+                  {agentName}
                 </PaperTemplate.TermsItem>
               )}
             </PaperTemplate.TermsList>

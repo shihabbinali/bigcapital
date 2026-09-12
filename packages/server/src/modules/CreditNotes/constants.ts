@@ -89,6 +89,10 @@ export const defaultCreditNoteBrandingAttributes = {
   companyAddress: '',
   billedToLabel: 'Billed To',
 
+  // # Billed by (agent)
+  agentName: '',
+  billedByLabel: 'Billed By',
+
   // Total
   total: '$1000.00',
   totalLabel: 'Total',

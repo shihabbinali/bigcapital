@@ -52,6 +52,10 @@ export interface CreditNotePaperTemplateProps extends PaperTemplateProps {
 
   billedToLabel?: string;
 
+  // Billed by (agent)
+  agentName?: string;
+  billedByLabel?: string;
+
   // Entries
   lineItemLabel?: string;
   lineQuantityLabel?: string;
@@ -111,6 +115,10 @@ export function CreditNotePaperTemplate({
 
   billedToLabel = 'Billed To',
 
+  // Billed by (agent)
+  agentName = '',
+  billedByLabel = 'Billed By',
+
   // Entries
   lineItemLabel = 'Item',
   lineQuantityLabel = 'Qty',
@@ -168,6 +176,11 @@ export function CreditNotePaperTemplate({
               {showCreditNoteDate && (
                 <PaperTemplate.TermsItem label={creditNoteDateLabel}>
                   {creditNoteDate}
+                </PaperTemplate.TermsItem>
+              )}
+              {agentName && (
+                <PaperTemplate.TermsItem label={billedByLabel}>
+                  {agentName}
                 </PaperTemplate.TermsItem>
               )}
             </PaperTemplate.TermsList>

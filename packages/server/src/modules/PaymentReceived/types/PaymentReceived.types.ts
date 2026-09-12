@@ -166,6 +166,10 @@ export interface PaymentReceivedPdfTemplateAttributes {
   companyAddress: string;
   billedToLabel: string;
 
+  // Billed by (agent)
+  agentName?: string;
+  billedByLabel?: string;
+
   total: string;
   totalLabel: string;
   showTotal: boolean;

@@ -9,6 +9,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { PdfTemplateModel } from '@/modules/PdfTemplate/models/PdfTemplate';
 import type { CreditNotePdfTemplateAttributes } from '../types/CreditNotes.types';
 import { events } from '@/common/events/events';
+import { TenantUser } from '@/modules/Tenancy/TenancyModels/models/TenantUser.model';
 import type { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 
 @Injectable()
@@ -34,7 +35,25 @@ export class GetCreditNotePdf {
     private readonly pdfTemplateModel: TenantModelProxy<
       typeof PdfTemplateModel
     >,
+
+    @Inject(TenantUser.name)
+    private readonly tenantUserModel: TenantModelProxy<typeof TenantUser>,
   ) {}
+
+  /**
+   * Resolves the agent (creating user) full name for the given system user
+   * id. Returns an empty string when the user id is missing or unknown so
+   * the template hides the "Billed by" line.
+   */
+  private async getAgentName(userId?: number): Promise<string> {
+    if (!userId) {
+      return '';
+    }
+    const user = await this.tenantUserModel().query().findOne({
+      systemUserId: userId,
+    });
+    return user ? user.fullName : '';
+  }
 
   /**
    * Retrieves credit note html content.
@@ -118,9 +137,12 @@ export class GetCreditNotePdf {
       await this.creditNoteBrandingTemplate.getCreditNoteBrandingTemplate(
         templateId,
       );
+    const { userId } = await this.creditNoteModel().query().findById(creditNoteId).select('userId');
+    const agentName = await this.getAgentName(userId);
     return {
       ...brandingTemplate.attributes,
       ...transformCreditNoteToPdfTemplate(creditNote),
+      agentName,
     };
   }
 }
