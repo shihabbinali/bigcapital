@@ -72,6 +72,7 @@ interface ContactAddressTextFormatArgs {
   address2?: string;
   address1?: string;
   phone?: string;
+  website?: string;
 }
 
 export const defaultContactAddressFormat = `{CONTACT_NAME}
@@ -80,6 +81,8 @@ export const defaultContactAddressFormat = `{CONTACT_NAME}
 {CITY} {STATE} {POSTAL_CODE}
 {COUNTRY}
 {PHONE}
+{EMAIL}
+{WEBSITE}
 `;
 
 export const contactAddressTextFormat = (
@@ -98,6 +101,7 @@ export const contactAddressTextFormat = (
       COUNTRY: '',
       EMAIL: '',
       PHONE: '',
+      WEBSITE: '',
     };
     return formatText(message, replacements);
   }
@@ -112,6 +116,7 @@ export const contactAddressTextFormat = (
     city: contact?.billingAddressCity,
     email: contact?.email,
     phone: contact?.billingAddressPhone,
+    website: contact?.website,
   } as ContactAddressTextFormatArgs;
 
   const replacements: Record<string, string> = {
@@ -124,6 +129,7 @@ export const contactAddressTextFormat = (
     COUNTRY: args.country || '',
     EMAIL: args?.email || '',
     PHONE: args?.phone || '',
+    WEBSITE: args?.website || '',
   };
   return formatText(message, replacements);
 };
