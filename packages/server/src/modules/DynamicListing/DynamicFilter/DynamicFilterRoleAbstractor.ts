@@ -208,6 +208,7 @@ export abstract class DynamicFilterRoleAbstractor implements IDynamicFilter {
           builder.where(comparatorColumn, '>', role.value);
         };
       case COMPARATOR_TYPE.BIGGER_OR_EQUALS:
+      case COMPARATOR_TYPE.BIGGER_OR_EQUAL:
         return (builder) => {
           builder.where(comparatorColumn, '>=', role.value);
         };
@@ -217,6 +218,7 @@ export abstract class DynamicFilterRoleAbstractor implements IDynamicFilter {
           builder.where(comparatorColumn, '<', role.value);
         };
       case COMPARATOR_TYPE.SMALLER_OR_EQUALS:
+      case COMPARATOR_TYPE.SMALLER_OR_EQUAL:
         return (builder) => {
           builder.where(comparatorColumn, '<=', role.value);
         };

@@ -8,10 +8,12 @@ export const COMPARATOR_TYPE = {
   BIGGER_THAN: 'bigger_than',
   BIGGER: 'bigger',
   BIGGER_OR_EQUALS: 'bigger_or_equals',
+  BIGGER_OR_EQUAL: 'bigger_or_equal',
 
   SMALLER_THAN: 'smaller_than',
   SMALLER: 'smaller',
   SMALLER_OR_EQUALS: 'smaller_or_equals',
+  SMALLER_OR_EQUAL: 'smaller_or_equal',
 
   IS: 'is',
   IS_NOT: 'is_not',

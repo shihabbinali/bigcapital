@@ -22,6 +22,7 @@ export const ItemCategoryMeta = {
       column: 'count',
       fieldType: 'number',
       virtualColumn: true,
+      filterable: false,
     },
     created_at: {
       name: 'item_category.field.created_at',

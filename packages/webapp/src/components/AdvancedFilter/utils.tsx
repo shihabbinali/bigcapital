@@ -49,9 +49,9 @@ export const getNumberCampatators = () => [
   { value: 'equal', label: intl.get('equals') },
   { value: 'not_equal', label: intl.get('not_equal') },
   { value: 'bigger_than', label: intl.get('bigger_than') },
-  { value: 'bigger_or_equal', label: intl.get('bigger_or_equals') },
+  { value: 'bigger_or_equals', label: intl.get('bigger_or_equals') },
   { value: 'smaller_than', label: intl.get('smaller_than') },
-  { value: 'smaller_or_equal', label: intl.get('smaller_or_equals') },
+  { value: 'smaller_or_equals', label: intl.get('smaller_or_equals') },
 ];
 
 export const getConditionTypeCompatators = (

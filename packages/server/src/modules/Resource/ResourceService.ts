@@ -50,8 +50,22 @@ export class ResourceService {
     // Retrieve the resource meta.
     const resourceMeta = resourceModel().getMeta(metakey);
 
-    // Localization the fields names.
-    return resourceMeta;
+    // Localize the fields names.
+    const localizedMeta = {
+      ...resourceMeta,
+      fields: resourceMeta?.fields
+        ? this.localizeFields(
+            resourceMeta.fields as Record<string, IModelMetaField2>,
+          )
+        : resourceMeta?.fields,
+      fields2: resourceMeta?.fields2
+        ? this.localizeFields(
+            resourceMeta.fields2 as Record<string, IModelMetaField2>,
+          )
+        : resourceMeta?.fields2,
+    };
+
+    return localizedMeta;
   }
 
   /**

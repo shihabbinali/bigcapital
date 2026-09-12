@@ -2,8 +2,14 @@
 .filter-dropdown{
   width: 600px;
 
+  &__loading{
+    padding: 14px 12px;
+    color: #8f99a8;
+    font-size: 13px;
+  }
+
   &__form{
-    
+
   }
 
 

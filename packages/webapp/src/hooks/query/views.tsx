@@ -25,7 +25,13 @@ export function useResourceMeta(resourceSlug, props) {
     ['RESOURCE_META', resourceSlug],
     { method: 'get', url: `resources/${resourceSlug}/meta` },
     {
-      select: (res) => res.data.resource_meta,
+      // The endpoint returns the meta object directly
+      // ({ fields, fields2, columns, ... }). Older builds wrapped it as
+      // `data.resource_meta` — accept both shapes.
+      select: (res) => {
+        const body = res?.data ?? {};
+        return body.resource_meta ?? body;
+      },
       defaultData: {
         fields: {},
       },

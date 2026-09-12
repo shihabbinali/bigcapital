@@ -1,10 +1,26 @@
 import { ToNumber } from '@/common/decorators/Validators';
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { IsArray, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsInt, IsOptional, IsString } from 'class-validator';
 import { ISortOrder } from '../DynamicFilter/DynamicFilter.types';
 import type { IFilterRole } from '../DynamicFilter/DynamicFilter.types';
 
 export class DynamicFilterQueryDto {
+  @ApiPropertyOptional({ description: 'Page number', example: 1, type: Number })
+  @IsOptional()
+  @ToNumber()
+  @IsInt()
+  page?: number;
+
+  @ApiPropertyOptional({
+    description: 'Rows per page',
+    example: 12,
+    type: Number,
+  })
+  @IsOptional()
+  @ToNumber()
+  @IsInt()
+  pageSize?: number;
+
   @ApiPropertyOptional({ description: 'Custom view ID', type: Number })
   @IsOptional()
   @ToNumber()

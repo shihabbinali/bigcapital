@@ -113,7 +113,7 @@ function FilterCompatatorFilter() {
 
 /**
  * Changes default value of comparator field in the condition row once the
- * field option changing.
+ * field option changing. Also clears the value field.
  */
 function useDefaultComparatorFieldValue({
   getConditionValue,
@@ -122,17 +122,16 @@ function useDefaultComparatorFieldValue({
 }) {
   const fieldKeyValue = getConditionValue('fieldKey');
 
-  const comparatorsOptions = React.useMemo(
-    () => getConditionTypeCompatators(fieldMeta.fieldType),
-    [fieldMeta.fieldType],
-  );
-
   useUpdateEffect(() => {
-    if (fieldKeyValue) {
-      const defaultValue = get(first(comparatorsOptions), 'value');
-      setConditionValue('comparator', defaultValue);
+    if (fieldKeyValue && fieldMeta) {
+      const comparatorsOptions =
+        getConditionTypeCompatators(fieldMeta.fieldType);
+      setConditionValue('comparator', get(first(comparatorsOptions), 'value'));
+      setConditionValue('value', '');
     }
-  }, [fieldKeyValue, setConditionValue, comparatorsOptions]);
+    // Fires only on real field-key changes — fieldMeta/setValue identities
+    // churn on every render and must not retrigger this.
+  }, [fieldKeyValue]);
 }
 
 /**
@@ -149,7 +148,6 @@ function FilterFieldsField() {
   const { fields } = useAdvancedFilterContext();
 
   const fieldPath = getConditionFieldPath('fieldKey');
-  const valueFieldPath = getConditionFieldPath('value');
 
   useDefaultComparatorFieldValue({
     getConditionValue,
@@ -158,30 +156,20 @@ function FilterFieldsField() {
   });
 
   return (
-    <FastField name={fieldPath}>
-      {({ field, form }) => (
-        <FFormGroup className={'form-group--fieldKey'} name={fieldPath}>
-          <FSelect
-            selectedItem={field.value}
-            textAccessor={'label'}
-            valueAccessor={'value'}
-            items={transformFieldsToOptions(fields)}
-            className={Classes.FILL}
-            onItemSelect={(option) => {
-              form.setFieldValue(fieldPath, option.value);
-
-              // Resets the value field to empty once the field option changing.
-              form.setFieldValue(valueFieldPath, '');
-            }}
-            popoverProps={{
-              inline: true,
-              minimal: true,
-              captureDismiss: true,
-            }}
-          />
-        </FFormGroup>
-      )}
-    </FastField>
+    <FFormGroup className={'form-group--fieldKey'} name={fieldPath}>
+      <FSelect
+        name={fieldPath}
+        textAccessor={'label'}
+        valueAccessor={'value'}
+        items={transformFieldsToOptions(fields)}
+        className={Classes.FILL}
+        popoverProps={{
+          inline: true,
+          minimal: true,
+          captureDismiss: true,
+        }}
+      />
+    </FFormGroup>
   );
 }
 
@@ -346,15 +334,32 @@ export function AdvancedFilterDropdown({
     value: defaultTo(defaultValue, ''),
   };
   // Initial conditions.
-  const initialConditions = !isEmpty(conditions)
-    ? conditions
-    : [initialCondition, initialCondition];
+  // Drops conditions referencing fields that no longer exist in the resource
+  // fields (e.g. stale conditions restored from persisted table state).
+  const dropInvalidConditions = (conditions) => {
+    if (isEmpty(fields)) {
+      return conditions;
+    }
+    return conditions.filter((condition) =>
+      fields.some((field) => field.key === condition.fieldKey),
+    );
+  };
+
+  const initialConditions = (() => {
+    const provided = !isEmpty(conditions)
+      ? conditions
+      : [initialCondition, initialCondition];
+    const valid = dropInvalidConditions(provided);
+    return valid.length > 0 ? valid : [initialCondition, initialCondition];
+  })();
 
   const [prevConditions, setPrevConditions] = React.useState(initialConditions);
 
   // Handle the filter dropdown form submit.
   const handleFitlerDropdownSubmit = (values) => {
-    const conditions = filterConditionRoles(values.conditions);
+    const conditions = filterConditionRoles(
+      dropInvalidConditions(values.conditions),
+    );
 
     // Campare the current conditions with previous conditions, if they were equal
     // there is no need to execute `onFilterChange` function.
@@ -370,6 +375,16 @@ export function AdvancedFilterDropdown({
   const initialValues = {
     conditions: initialConditions,
   };
+
+  // Resource fields load async — show a loading hint instead of an unusable
+  // empty select while they haven't arrived (or failed to load).
+  if (isEmpty(fields)) {
+    return (
+      <div className="filter-dropdown">
+        <div className="filter-dropdown__loading">Loading filters…</div>
+      </div>
+    );
+  }
 
   return (
     <div className="filter-dropdown">

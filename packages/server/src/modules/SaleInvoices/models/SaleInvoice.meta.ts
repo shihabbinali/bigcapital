@@ -75,6 +75,7 @@ export const SaleInvoiceMeta = {
       column: 'due_amount',
       fieldType: 'number',
       virtualColumn: true,
+      filterable: false,
     },
     status: {
       name: 'invoice.field.status',
