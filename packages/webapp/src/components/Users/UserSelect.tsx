@@ -13,7 +13,9 @@ export function UserSelect({ users, ...rest }) {
     <FSelect
       valueAccessor={'id'}
       textAccessor={(user) =>
-        [user.firstName, user.lastName].filter(Boolean).join(' ')
+        user
+          ? [user.firstName, user.lastName].filter(Boolean).join(' ')
+          : ''
       }
       items={users}
       {...rest}
