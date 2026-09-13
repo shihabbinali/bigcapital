@@ -9,15 +9,20 @@ import { FSelect } from '../Forms';
  * @returns {JSX.Element}
  */
 export function UserSelect({ users, ...rest }) {
+  // /users returns snake_cased fields — map to explicit {value,label}
+  // options with string accessors (null-safe, filterable).
+  const options = (users || []).map((user) => ({
+    value: user.id,
+    label:
+      user.full_name ||
+      [user.first_name, user.last_name].filter(Boolean).join(' '),
+  }));
+
   return (
     <FSelect
-      valueAccessor={'id'}
-      textAccessor={(user) =>
-        user
-          ? [user.firstName, user.lastName].filter(Boolean).join(' ')
-          : ''
-      }
-      items={users}
+      valueAccessor={'value'}
+      textAccessor={'label'}
+      items={options}
       {...rest}
     />
   );
